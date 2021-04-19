@@ -6,6 +6,8 @@
 package com.mycompany.applicationmvc.controller;
 
 import com.mycompany.applicationmvc.Bean.DanhMucBean;
+import com.mycompany.applicationmvc.model.MainModel;
+import com.mycompany.applicationmvc.view.DonBaoDuongPanel;
 import com.mycompany.applicationmvc.view.HomePanel;
 import com.mycompany.applicationmvc.view.KhachHangPanel;
 import com.mycompany.applicationmvc.view.LinhKienPanel;
@@ -27,9 +29,13 @@ public class SwitchController {
     private JFrame jFrameMain;
     private JPanel jPaneRoot;
     private String kindSelected;
+    
     List<DanhMucBean> listDanhMucBeans;
     
+    MainModel M_Model;
+    
     public SwitchController(JFrame jFrameMain,JPanel jPaneRoot, List<DanhMucBean> listDanhMucBeans) {
+        M_Model = new MainModel();
         this.jFrameMain=jFrameMain;
         this.jPaneRoot = jPaneRoot;
         this.listDanhMucBeans = listDanhMucBeans;
@@ -106,6 +112,11 @@ public class SwitchController {
             else if(kind.equals("linhKienPage"))
             {
                 node=new LinhKienPanel();
+            }
+            else if(kind.equals("donBaoDuongPage")){
+                node = new DonBaoDuongPanel();
+                new DonBaoDuongController((DonBaoDuongPanel)node, M_Model.DBDModel);
+                
             }
            getjPaneRoot().removeAll();
            getjPaneRoot().setLayout(new BorderLayout());
