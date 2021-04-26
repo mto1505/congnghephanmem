@@ -21,6 +21,5 @@ public class PersonServiceImpl implements PersonService{
      public List<PersonModel> findListPerson()
     {
        return personDao.findListPerson();
-               
     }
 }

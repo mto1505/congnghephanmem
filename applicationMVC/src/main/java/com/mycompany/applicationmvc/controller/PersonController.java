@@ -61,11 +61,11 @@ public class PersonController {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                     List<PersonModel> listPerson=personService.findListPerson();
           //  Enumeration<TableColumn> col =jTable1.getTableHeader().getColumnModel().getColumns();
-            DefaultTableModel defaultModel=TableModelCustom.setTablePerson(listPerson, (DefaultTableModel) jTable1.getModel());
-             rowSorter=new TableRowSorter<TableModel>(jTable1.getModel());
-            jTable1.setModel(defaultModel);
-            jTable1.setRowSorter(rowSorter);
-   
+//            DefaultTableModel defaultModel=TableModelCustom.setTable(listPerson, (DefaultTableModel) jTable1.getModel());
+//             rowSorter=new TableRowSorter<TableModel>(jTable1.getModel());
+//            jTable1.setModel(defaultModel);
+//            jTable1.setRowSorter(rowSorter);
+//   
             }
         });
     }

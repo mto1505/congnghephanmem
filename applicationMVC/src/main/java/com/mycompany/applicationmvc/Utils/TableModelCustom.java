@@ -5,6 +5,7 @@
  */
 package com.mycompany.applicationmvc.Utils;
 
+import com.mycompany.applicationmvc.model.KhachHangModel;
 import com.mycompany.applicationmvc.model.PersonModel;
 import java.util.List;
 import java.util.Vector;
@@ -14,23 +15,13 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author MinhTo
  */
-public class TableModelCustom {
-    
-   public static DefaultTableModel setTablePerson(List<PersonModel> listPerson, DefaultTableModel defaultTableModel)
-            {   
-                
-                for (PersonModel personModel : listPerson) {
-                    Vector<Object> obj=new Vector<>();
-                    obj.add(personModel.getFirstname());
-                     obj.add(personModel.getLastname());   
-                     defaultTableModel.addRow(obj);
-                }
-                
-                return defaultTableModel;
-            
-            }
-{
+public interface  TableModelCustom<T> {
 
-}
+    
+    
+   public  DefaultTableModel setTableData(List<T> listPerson, DefaultTableModel defaultTableModel);
+            
+
+
             
 }

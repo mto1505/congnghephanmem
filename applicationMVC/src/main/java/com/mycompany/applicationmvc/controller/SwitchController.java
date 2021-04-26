@@ -5,6 +5,7 @@
  */
 package com.mycompany.applicationmvc.controller;
 
+import View.DonBaoDuongPanel;
 import com.mycompany.applicationmvc.Bean.DanhMucBean;
 import com.mycompany.applicationmvc.view.HomePanel;
 import com.mycompany.applicationmvc.view.KhachHangPanel;
@@ -24,6 +25,7 @@ import javax.swing.JPanel;
  * @author MinhTo
  */
 public class SwitchController {
+    
     private JFrame jFrameMain;
     private JPanel jPaneRoot;
     private String kindSelected;
@@ -106,6 +108,10 @@ public class SwitchController {
             else if(kind.equals("linhKienPage"))
             {
                 node=new LinhKienPanel();
+            }
+             else if(kind.equals("donBaoDuongPage"))
+            {
+                node=new DonBaoDuongPanel();
             }
            getjPaneRoot().removeAll();
            getjPaneRoot().setLayout(new BorderLayout());

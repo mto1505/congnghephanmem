@@ -48,7 +48,9 @@ public class MenuFrame extends javax.swing.JFrame {
         listDanhMuc.add(new DanhMucBean("khachHangPage", null, khachHangLabel));
         listDanhMuc.add(new DanhMucBean("xePage", null,xeLabel));
           listDanhMuc.add(new DanhMucBean("linhKienPage", null,linhKienLabel));
+          listDanhMuc.add(new DanhMucBean("donBaoDuongPage",null,donBaoDuongLabel));
         SwitchController c=new SwitchController(this,Panels, listDanhMuc);
+        
         c.setEvent();
        
   
@@ -77,9 +79,9 @@ public class MenuFrame extends javax.swing.JFrame {
         quyen3 = new javax.swing.JLabel();
         quyen4 = new javax.swing.JLabel();
         linhKienLabel = new javax.swing.JLabel();
+        donBaoDuongLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1200, 700));
 
         Panels.setPreferredSize(new java.awt.Dimension(990, 650));
 
@@ -188,6 +190,8 @@ public class MenuFrame extends javax.swing.JFrame {
             }
         });
 
+        donBaoDuongLabel.setText("Don bao duong");
+
         javax.swing.GroupLayout menuLayout = new javax.swing.GroupLayout(menu);
         menu.setLayout(menuLayout);
         menuLayout.setHorizontalGroup(
@@ -212,7 +216,10 @@ public class MenuFrame extends javax.swing.JFrame {
                         .addComponent(quanLiLK))
                     .addGroup(menuLayout.createSequentialGroup()
                         .addGap(51, 51, 51)
-                        .addComponent(trangChinhLabel)))
+                        .addComponent(trangChinhLabel))
+                    .addGroup(menuLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(donBaoDuongLabel)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         menuLayout.setVerticalGroup(
@@ -232,9 +239,11 @@ public class MenuFrame extends javax.swing.JFrame {
                 .addComponent(quanTri)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(listQuanTri, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(donBaoDuongLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
                 .addComponent(quanLiLK, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(68, Short.MAX_VALUE))
+                .addContainerGap(81, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -244,15 +253,13 @@ public class MenuFrame extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(menu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Panels, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Panels, javax.swing.GroupLayout.DEFAULT_SIZE, 1035, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(menu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(Panels, javax.swing.GroupLayout.DEFAULT_SIZE, 656, Short.MAX_VALUE))
+            .addComponent(Panels, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE)
         );
 
         Panels.getAccessibleContext().setAccessibleName("");
@@ -357,6 +364,7 @@ public class MenuFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Panels;
     private javax.swing.JLabel dichVuBD;
+    private javax.swing.JLabel donBaoDuongLabel;
     private javax.swing.JLabel khachHangLabel;
     private javax.swing.JLabel linhKienLabel;
     private javax.swing.JPanel listQuanTri;
