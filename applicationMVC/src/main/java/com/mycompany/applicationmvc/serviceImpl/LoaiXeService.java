@@ -43,6 +43,11 @@ public class LoaiXeService implements ILoaiXeService {
     }
 
     @Override
+    public LoaiXeModel findOneByName(String ten) {
+        return loaiXeDao.findOneByName(ten);
+    }
+
+    @Override
     public int getTotalItem() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

@@ -20,6 +20,7 @@ public class XeModel {
     
 
     public XeModel() {
+        
     }
 
     public XeModel(String bienSo, String tenXe, LoaiXeModel loaixe, KhachHangModel khachHang) {

@@ -14,8 +14,9 @@ import java.util.List;
  * @author MinhTo
  */
 public interface ILoaiXeService {
-    LoaiXeModel save(LoaiXeModel LoaiXeModel);
+        LoaiXeModel save(LoaiXeModel LoaiXeModel);
 	LoaiXeModel update(LoaiXeModel updateModel);
+        LoaiXeModel findOneByName(String ten);
 	void delete(int id);
 	List<LoaiXeModel> findAll();
 	int getTotalItem();

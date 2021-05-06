@@ -6,7 +6,10 @@
 package com.mycompany.applicationmvc.controller;
 
 import com.mycompany.applicationmvc.Utils.TableKhachHangModel;
+import com.mycompany.applicationmvc.Utils.TableLoaiXeModel;
 import com.mycompany.applicationmvc.Utils.TableModelCustom;
+import com.mycompany.applicationmvc.Utils.TableXeModel;
+import com.mycompany.applicationmvc.Utils.ValidationRegEx;
 import com.mycompany.applicationmvc.dao.IKhachHangDAO;
 import com.mycompany.applicationmvc.dao.ILoaiXeDao;
 import com.mycompany.applicationmvc.daoImpl.KhachHangDAO;
@@ -14,18 +17,39 @@ import com.mycompany.applicationmvc.daoImpl.LoaiXeDAO;
 import com.mycompany.applicationmvc.model.KhachHangModel;
 import com.mycompany.applicationmvc.model.LoaiXeModel;
 import com.mycompany.applicationmvc.model.XeModel;
+import com.mycompany.applicationmvc.service.IKhachHangService;
+import com.mycompany.applicationmvc.service.ILoaiXeService;
 import com.mycompany.applicationmvc.service.IXeService;
+import com.mycompany.applicationmvc.serviceImpl.KhachHangService;
+import com.mycompany.applicationmvc.serviceImpl.LoaiXeService;
 import com.mycompany.applicationmvc.serviceImpl.XeService;
+import com.sun.java_cup.internal.runtime.lr_parser;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.List;
+import javax.swing.ComboBoxModel;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.RowFilter;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.event.TableModelListener;
+import javax.swing.plaf.IconUIResource;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 
@@ -35,7 +59,9 @@ import javax.swing.table.TableRowSorter;
  */
 public class XeController {
 
-      private javax.swing.JTextField bienSoField;
+    public static final String iconErrorURL = "C:\\Users\\MinhTo\\Documents\\GitHub\\congnghephanmem\\applicationMVC\\src\\main\\resource\\img\\error_30px.png";
+    public static final String iconImportantURL = "C:\\Users\\MinhTo\\Documents\\GitHub\\congnghephanmem\\applicationMVC\\src\\main\\resource\\img\\high_priority_30px.png";
+    private javax.swing.JTextField bienSoField;
     private javax.swing.JLabel chuSoHuu;
     private javax.swing.JTextField chuSoHuuField;
     private javax.swing.JLabel errorBienSo;
@@ -65,11 +91,15 @@ public class XeController {
     private javax.swing.JTable xeMayTable;
     private javax.swing.JButton xoaLoaiXeBtn;
     private javax.swing.JButton xoaXeBtn;
-     private TableModelCustom tableModelCustom;
+    private javax.swing.JRadioButton radioNam;
+    private javax.swing.JRadioButton radioNu;
+    private TableModelCustom tableModelCustom;
+    private TableModelCustom tableLoaiXeCustom;
+
     //service
-    private  IXeService xeSevice=new XeService();
-    private IKhachHangDAO khachHangDAO=new KhachHangDAO();
-    private ILoaiXeDao loaiXeDao=new LoaiXeDAO();
+    private IXeService xeSevice = new XeService();
+    private IKhachHangService khachHangService = new KhachHangService();
+    private ILoaiXeService loaiXeService = new LoaiXeService();
     // view 
     private JPanel jpanel;
 
@@ -80,7 +110,7 @@ public class XeController {
     public void setJpanel(JPanel jpanel) {
         this.jpanel = jpanel;
     }
-    
+
     public JTextField getBienSoField() {
         return bienSoField;
     }
@@ -273,7 +303,7 @@ public class XeController {
         this.themXeBtn = themXeBtn;
     }
 
-    public XeController(JTextField bienSoField, JLabel chuSoHuu, JTextField chuSoHuuField, JLabel errorBienSo, JLabel errorChuSoHuu, JLabel errorLoaiXe, JLabel errorSoDienThoai, JLabel errorTenXe, JLabel lbHoTen, JLabel lbMaKhachHang, JLabel loaiXe, JComboBox<String> loaiXeCombobox, JLabel maLoaiXe, JTextField maLoaiXeField, JLabel soDienThoai, JTextField soDienThoaiField, JButton suaLoaiXeBtn, JButton suaXeBtn, JTable tableMaLoaiXe, JLabel tenLoaiXe, JTextField tenLoaiXeField, JTextField tenXeMayField, JButton themLoaiXeBtn, JButton themXeBtn, JTextField timKiemXeField, JLabel timKiemXeLbl, JTable xeMayTable, JButton xoaLoaiXeBtn, JButton xoaXeBtn, JPanel jpanel) {
+    public XeController(JTextField bienSoField, JLabel chuSoHuu, JTextField chuSoHuuField, JLabel errorBienSo, JLabel errorChuSoHuu, JLabel errorLoaiXe, JLabel errorSoDienThoai, JLabel errorTenXe, JLabel lbHoTen, JLabel lbMaKhachHang, JLabel loaiXe, JComboBox<String> loaiXeCombobox, JLabel maLoaiXe, JTextField maLoaiXeField, JLabel soDienThoai, JTextField soDienThoaiField, JButton suaLoaiXeBtn, JButton suaXeBtn, JTable tableMaLoaiXe, JLabel tenLoaiXe, JTextField tenLoaiXeField, JTextField tenXeMayField, JButton themLoaiXeBtn, JButton themXeBtn, JTextField timKiemXeField, JLabel timKiemXeLbl, JTable xeMayTable, JButton xoaLoaiXeBtn, JButton xoaXeBtn, JRadioButton radioNam, JRadioButton radioNu, JPanel jpanel) {
         this.bienSoField = bienSoField;
         this.chuSoHuu = chuSoHuu;
         this.chuSoHuuField = chuSoHuuField;
@@ -303,31 +333,56 @@ public class XeController {
         this.xeMayTable = xeMayTable;
         this.xoaLoaiXeBtn = xoaLoaiXeBtn;
         this.xoaXeBtn = xoaXeBtn;
+        this.radioNam = radioNam;
+        this.radioNu = radioNu;
         this.jpanel = jpanel;
-        tableModelCustom=new TableKhachHangModel();
+        this.tableModelCustom = new TableXeModel();
+        this.tableLoaiXeCustom = new TableLoaiXeModel();
     }
 
-   public void setView(XeModel xe)
-   {
-       this.errorTenXe.setVisible(false); 
+//   tableModelCustom = new TableXeModel();
+//        tableLoaiXeCustom = new TableLoaiXeModel();
+    public void setView(XeModel xe, List<LoaiXeModel> listLoaiXeCombobox) {
+        this.errorTenXe.setVisible(false);
         this.errorBienSo.setVisible(false);
-        this.errorChuSoHuu.setVisible(false); 
-        this.errorSoDienThoai.setVisible(false); 
-        this.errorLoaiXe.setVisible(false); 
-       this.getBienSoField().setText(xe.getBienSo());
-       this.getTenXeMayField().setText(xe.getTenXe());
-       this.getChuSoHuu().setText(xe.getKhachHang().getHoTen());
-       this.getTenLoaiXe().setText(xe.getLoaixe().getTenLoaiXe());
-       this.getSoDienThoai().setText(xe.getKhachHang().getSoDienThoai());       
-       
-   }
-   public void setDataToTableModel(List<XeModel> xe)
-   {
+        this.errorChuSoHuu.setVisible(false);
+        this.errorSoDienThoai.setVisible(false);
+        this.errorLoaiXe.setVisible(false);
+        this.getBienSoField().setText(xe.getBienSo());
+        this.getTenXeMayField().setText(xe.getTenXe());
+        this.getChuSoHuuField().setText(xe.getKhachHang().getHoTen());
+        this.getSoDienThoaiField().setText(xe.getKhachHang().getSoDienThoai());
+        this.getLoaiXeCombobox().setModel(new DefaultComboBoxModel<String>()); //thêm dữ liệu cho combobox
+
+        for (LoaiXeModel loaiXeModel : listLoaiXeCombobox) {
+            this.getLoaiXeCombobox().addItem(loaiXeModel.getTenLoaiXe());
+        }
+        this.getLoaiXeCombobox().setSelectedItem(xe.getLoaixe().getTenLoaiXe());
+
+        if (xe.getKhachHang().getGioiTinh().equals("Nam")) {
+            radioNam.setSelected(true);
+        } else {
+            radioNu.setSelected(true);
+
+        }
+        // disable textfield biển số
+        bienSoField.setEnabled(false);
+        //không cho sữa giới tính trong bảng xe
+        radioNam.setEnabled(false);
+        radioNu.setEnabled(false);
+        themXeBtn.setText("Khôi phục");
+    }
+
+    public void setViewLoaiXe(LoaiXeModel loaiXe) {
+        this.maLoaiXeField.setText(Integer.toString(loaiXe.getMaLoaiXe()));
+        this.tenLoaiXeField.setText(loaiXe.getTenLoaiXe());
+    }
+
+    public void setDataToTableModel() {
         DefaultTableModel modelTable = (DefaultTableModel) xeMayTable.getModel();
         modelTable.setRowCount(0);
-        List<XeModel> listXe=xeSevice.findAll();
-        
-        
+        //Data Xe may
+        List<XeModel> listXe = xeSevice.findAllMultiTable();
         modelTable = tableModelCustom.setTableData(listXe, modelTable);
         TableRowSorter<DefaultTableModel> rowSorter = new TableRowSorter<>(modelTable);
         xeMayTable.setRowSorter(rowSorter);
@@ -341,7 +396,6 @@ public class XeController {
                     rf = RowFilter.regexFilter(timKiemXeField.getText(), 0);
                     rowSorter.setRowFilter(rf);
                 }
-
             }
 
             @Override
@@ -360,7 +414,613 @@ public class XeController {
                 throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }
         });
-       
-   }
-    
+        // data Bang LoaiXe
+        List<LoaiXeModel> listLoaiXe = loaiXeService.findAll();
+        DefaultTableModel modelLoaiXeTable = (DefaultTableModel) tableMaLoaiXe.getModel();
+        modelLoaiXeTable.setRowCount(0);
+        modelLoaiXeTable = tableLoaiXeCustom.setTableData(listLoaiXe, modelLoaiXeTable);
+
+        xeMayTable.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int colNum = 0;
+                DefaultTableModel modelTable = (DefaultTableModel) xeMayTable.getModel();
+                colNum = modelTable.getColumnCount();
+                int rowSelected = xeMayTable.getSelectedRow();
+                XeModel xe = new XeModel();
+                xe.setKhachHang(new KhachHangModel());
+                xe.setLoaixe(new LoaiXeModel());
+
+                xe.setBienSo(xeMayTable.getValueAt(rowSelected, 0).toString());
+                xe.setTenXe(xeMayTable.getValueAt(rowSelected, 1).toString());
+                xe.getLoaixe().setTenLoaiXe(xeMayTable.getValueAt(rowSelected, 2).toString());
+                xe.getKhachHang().setHoTen(xeMayTable.getValueAt(rowSelected, 3).toString());
+                xe.getKhachHang().setSoDienThoai(xeMayTable.getValueAt(rowSelected, 4).toString());
+                xe.getKhachHang().setGioiTinh(xeMayTable.getValueAt(rowSelected, 5).toString());
+                setView(xe, loaiXeService.findAll());
+
+            }
+
+        });
+        tableMaLoaiXe.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                DefaultTableModel modelTable = (DefaultTableModel) tableMaLoaiXe.getModel();
+
+                int rowSeleted = tableMaLoaiXe.getSelectedRow();
+
+                LoaiXeModel loaiXeModel = new LoaiXeModel();
+                loaiXeModel.setMaLoaiXe(Integer.valueOf(modelTable.getValueAt(rowSeleted, 0).toString()));
+                loaiXeModel.setTenLoaiXe(modelTable.getValueAt(rowSeleted, 1).toString());
+                setViewLoaiXe(loaiXeModel);
+
+            }
+        });
+    }
+
+    public void setEvent() {
+        themXeBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (themXeBtn.getText().equals("Thêm")) {
+                    //kiểm tra thông tin rỗng 
+                    boolean isEmpty = false;
+                    boolean isInvalidFomat = false;
+                    if (bienSoField.getText().isEmpty()) {
+                        isEmpty = true;
+                        ImageIcon img = new ImageIcon(iconImportantURL);
+                        //  errorBienSo.setText("");
+                        errorBienSo.setIcon(img);
+                        errorBienSo.revalidate();
+                        errorBienSo.repaint();
+                        errorBienSo.setVisible(true);
+                    }
+                    if (tenXeMayField.getText().isEmpty()) {
+                        isEmpty = true;
+                        ImageIcon img = new ImageIcon(iconImportantURL);
+                        //  errorBienSo.setText("");
+                        errorTenXe.setIcon(img);
+                        errorTenXe.revalidate();
+                        errorTenXe.repaint();
+                        errorTenXe.setVisible(true);
+                    }
+                    if (chuSoHuuField.getText().isEmpty()) {
+                        isEmpty = true;
+                        ImageIcon img = new ImageIcon(iconImportantURL);
+                        //  errorBienSo.setText("");
+                        errorChuSoHuu.setIcon(img);
+                        errorChuSoHuu.revalidate();
+                        errorChuSoHuu.repaint();
+                        errorChuSoHuu.setVisible(true);
+                    }
+                    if (soDienThoaiField.getText().isEmpty()) {
+                        isEmpty = true;
+                        ImageIcon img = new ImageIcon(iconImportantURL);
+                        //  errorBienSo.setText("");
+                        errorSoDienThoai.setIcon(img);
+                        errorSoDienThoai.revalidate();
+                        errorSoDienThoai.repaint();
+                        errorSoDienThoai.setVisible(true);
+                    }
+                    if (loaiXeCombobox.getSelectedItem() == null) {
+                        isEmpty = true;
+                        ImageIcon img = new ImageIcon(iconImportantURL);
+                        //  errorBienSo.setText("");
+                        errorLoaiXe.setIcon(img);
+                        errorLoaiXe.revalidate();
+                        errorLoaiXe.repaint();
+                        errorLoaiXe.setVisible(true);
+                    }
+
+                    if (isEmpty == true) {
+                        JOptionPane.showOptionDialog(jpanel, "Vui lòng điền đầy đủ thông tin", "Infomation", JOptionPane.OK_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
+                    } else {
+                        //kiem tra dinh dang
+                        //kiem tra so dien thoai
+                        if (!ValidationRegEx.validationSDT(soDienThoaiField.getText())) {
+                            ImageIcon imgError = new ImageIcon(iconErrorURL);
+                            //errorChuSoHuu.setText("");
+                            errorSoDienThoai.setIcon(imgError);
+                            errorSoDienThoai.revalidate();
+                            errorSoDienThoai.repaint();
+                            errorSoDienThoai.setVisible(true);
+                            isInvalidFomat = true;
+                        }
+                        //kiem tra dinh dang ten
+                        if (!ValidationRegEx.validationTextRegex(tenXeMayField.getText())) {
+                            ImageIcon imgError = new ImageIcon(iconErrorURL);
+                            //errorChuSoHuu.setText("");
+                            errorTenXe.setIcon(imgError);
+                            errorTenXe.revalidate();
+                            errorTenXe.repaint();
+                            errorTenXe.setVisible(true);
+                            isInvalidFomat = true;
+                        }
+
+                        //kiem tra dinh dang chu so huu
+                        if (!ValidationRegEx.validationTextRegex(chuSoHuuField.getText())) {
+                            ImageIcon imgError = new ImageIcon(iconErrorURL);
+                            //errorChuSoHuu.setText("");
+                            errorChuSoHuu.setIcon(imgError);
+                            errorChuSoHuu.revalidate();
+                            errorChuSoHuu.repaint();
+                            errorChuSoHuu.setVisible(true);
+                            isInvalidFomat = true;
+                        }
+                        //kiem tra dinh dang BIEN SO
+                        if (!ValidationRegEx.validationBienSo(bienSoField.getText())) {
+                            ImageIcon imgError = new ImageIcon(iconErrorURL);
+                            //errorChuSoHuu.setText("");
+                            errorBienSo.setIcon(imgError);
+                            errorBienSo.revalidate();
+                            errorBienSo.repaint();
+                            errorBienSo.setVisible(true);
+                            isInvalidFomat = true;
+                        }
+                        //kiem tra dinh dang LOAI XE
+                        System.out.println(loaiXeCombobox.getSelectedItem().toString());
+                        if (!ValidationRegEx.validationTextRegex(loaiXeCombobox.getSelectedItem().toString())) {
+                            ImageIcon imgError = new ImageIcon(iconErrorURL);
+                            //errorChuSoHuu.setText("");
+                            errorLoaiXe.setIcon(imgError);
+                            errorLoaiXe.revalidate();
+                            errorLoaiXe.repaint();
+                            errorLoaiXe.setVisible(true);
+                            isInvalidFomat = true;
+                        }
+                        if (isInvalidFomat) {
+                            JOptionPane.showMessageDialog(jpanel, "Thông tin không đúng đinh dạng", "Lỗi định dạng", JOptionPane.ERROR_MESSAGE, new ImageIcon(iconErrorURL));
+                        }
+
+                    }
+
+                    if (isInvalidFomat != true && isEmpty != true)// ko có thuộc tính rỗng và sai định dạng
+                    {
+                        //them thong tin xe và db
+                        String bienSo = bienSoField.getText();
+                        String tenXemay = tenXeMayField.getText();
+                        String chuSoHuu = chuSoHuuField.getText();
+                        String soDienThoai = soDienThoaiField.getText();
+                        String loaiXe = loaiXeCombobox.getSelectedItem().toString();
+                        String gioiTinh = null;
+                        if (radioNam.isSelected()) {
+                            gioiTinh = radioNam.getText();
+                        } else {
+                            gioiTinh = radioNu.getText();
+                        }
+                        //tạo khach hang
+                        KhachHangModel khachHang = new KhachHangModel();
+                        khachHang = khachHangService.findOneByNameAndSDT(chuSoHuu, soDienThoai);
+
+                        if (khachHang == null) {
+                            JOptionPane.showMessageDialog(jpanel, "Khách hàng không tồn tại ", "Not Found", 0);
+                            //them khach hang
+                            khachHang = new KhachHangModel();
+                            khachHang.setHoTen(chuSoHuu);
+                            khachHang.setSoDienThoai(soDienThoai);
+                            khachHang.setGioiTinh(gioiTinh);
+                            KhachHangModel khachHangNew = khachHangService.save(khachHang);
+
+                            if (khachHangNew == null) {
+                                JOptionPane.showMessageDialog(jpanel, "Lưu thất bại ", "Not Found", 0);
+                            } else {
+                                // tạo loại xe
+                                LoaiXeModel loaiXeModel = new LoaiXeModel();
+                                loaiXeModel = loaiXeService.findOneByName(loaiXe);
+                                //tạo xe;
+                                XeModel xe = new XeModel(bienSo, tenXemay, loaiXeModel, khachHangNew);
+                                //kiểm tra tồn tại
+                                if (xeSevice.findOne(xe.getBienSo()) == null) {
+                                    xe = xeSevice.save(xe);
+                                    if (xe != null) {
+                                        JOptionPane.showMessageDialog(jpanel, "Thêm xe thành công", "Lưu", 0);
+                                    } else {
+                                        JOptionPane.showMessageDialog(jpanel, "Thêm xe thất bại", "Lưu", 0);
+                                    }
+                                } else {
+                                    JOptionPane.showMessageDialog(jpanel, "Xe đã tồn tại", "Kiểm tra", 0);
+                                }
+                            }
+
+                        } //khách hàng đã tồn tại
+                        else {
+
+                            // tạo loại xe
+                            LoaiXeModel loaiXeModel = new LoaiXeModel();
+                            loaiXeModel = loaiXeService.findOneByName(loaiXe);
+                            //tạo xe;
+                            XeModel xe = new XeModel(bienSo, tenXemay, loaiXeModel, khachHang);
+                            //kiểm tra tồn tại
+                            if (xeSevice.findOne(xe.getBienSo()) == null) {
+                                xe = xeSevice.save(xe);
+                                if (xe != null) {
+                                    JOptionPane.showMessageDialog(jpanel, "Thêm xe thành công", "Lưu", 0);
+                                } else {
+                                    JOptionPane.showMessageDialog(jpanel, "Thêm xe thất bại", "Lưu", 0);
+                                }
+                            } else {
+                                JOptionPane.showMessageDialog(jpanel, "Xe đã tồn tại", "Kiểm tra", 0);
+                            }
+                        }
+                    }
+                } else {
+                    //reset field
+                    bienSoField.setText("");
+                    tenXeMayField.setText("");
+                    chuSoHuuField.setText("");
+                    soDienThoaiField.setText("");
+                    loaiXeCombobox.setSelectedIndex(0);
+                    themXeBtn.setText("Thêm");
+                    bienSoField.setEnabled(true);
+                    radioNam.setEnabled(true);
+                    radioNu.setEnabled(true);
+
+                }
+            }
+
+        });
+        suaXeBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //kiểm tra thông tin rỗng 
+                boolean isEmpty = false;
+                boolean isInvalidFomat = false;
+                if (bienSoField.getText().isEmpty()) {
+                    isEmpty = true;
+                    ImageIcon img = new ImageIcon(iconImportantURL);
+                    //  errorBienSo.setText("");
+                    errorBienSo.setIcon(img);
+                    errorBienSo.revalidate();
+                    errorBienSo.repaint();
+                    errorBienSo.setVisible(true);
+                }
+                if (tenXeMayField.getText().isEmpty()) {
+                    isEmpty = true;
+                    ImageIcon img = new ImageIcon(iconImportantURL);
+                    //  errorBienSo.setText("");
+                    errorTenXe.setIcon(img);
+                    errorTenXe.revalidate();
+                    errorTenXe.repaint();
+                    errorTenXe.setVisible(true);
+                }
+                if (chuSoHuuField.getText().isEmpty()) {
+                    isEmpty = true;
+                    ImageIcon img = new ImageIcon(iconImportantURL);
+                    //  errorBienSo.setText("");
+                    errorChuSoHuu.setIcon(img);
+                    errorChuSoHuu.revalidate();
+                    errorChuSoHuu.repaint();
+                    errorChuSoHuu.setVisible(true);
+                }
+                if (soDienThoaiField.getText().isEmpty()) {
+                    isEmpty = true;
+                    ImageIcon img = new ImageIcon(iconImportantURL);
+                    //  errorBienSo.setText("");
+                    errorSoDienThoai.setIcon(img);
+                    errorSoDienThoai.revalidate();
+                    errorSoDienThoai.repaint();
+                    errorSoDienThoai.setVisible(true);
+                }
+                if (loaiXeCombobox.getSelectedItem() == null) {
+                    isEmpty = true;
+                    ImageIcon img = new ImageIcon(iconImportantURL);
+                    //  errorBienSo.setText("");
+                    errorLoaiXe.setIcon(img);
+                    errorLoaiXe.revalidate();
+                    errorLoaiXe.repaint();
+                    errorLoaiXe.setVisible(true);
+                }
+
+                if (isEmpty == true) {
+                    JOptionPane.showOptionDialog(jpanel, "Vui lòng điền đầy đủ thông tin", "Infomation", JOptionPane.OK_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
+                } else {
+                    //kiem tra dinh dang
+                    //kiem tra so dien thoai
+                    if (!ValidationRegEx.validationSDT(soDienThoaiField.getText())) {
+                        ImageIcon imgError = new ImageIcon(iconErrorURL);
+                        //errorChuSoHuu.setText("");
+                        errorSoDienThoai.setIcon(imgError);
+                        errorSoDienThoai.revalidate();
+                        errorSoDienThoai.repaint();
+                        errorSoDienThoai.setVisible(true);
+                        isInvalidFomat = true;
+                    }
+                    //kiem tra dinh dang ten
+                    if (!ValidationRegEx.validationTextRegex(tenXeMayField.getText())) {
+                        ImageIcon imgError = new ImageIcon(iconErrorURL);
+                        //errorChuSoHuu.setText("");
+                        errorTenXe.setIcon(imgError);
+                        errorTenXe.revalidate();
+                        errorTenXe.repaint();
+                        errorTenXe.setVisible(true);
+                        isInvalidFomat = true;
+                    }
+
+                    //kiem tra dinh dang chu so huu
+                    if (!ValidationRegEx.validationTextRegex(chuSoHuuField.getText())) {
+                        ImageIcon imgError = new ImageIcon(iconErrorURL);
+                        //errorChuSoHuu.setText("");
+                        errorChuSoHuu.setIcon(imgError);
+                        errorChuSoHuu.revalidate();
+                        errorChuSoHuu.repaint();
+                        errorChuSoHuu.setVisible(true);
+                        isInvalidFomat = true;
+                    }
+                    //kiem tra dinh dang BIEN SO
+                    if (!ValidationRegEx.validationBienSo(bienSoField.getText())) {
+                        ImageIcon imgError = new ImageIcon(iconErrorURL);
+                        //errorChuSoHuu.setText("");
+                        errorBienSo.setIcon(imgError);
+                        errorBienSo.revalidate();
+                        errorBienSo.repaint();
+                        errorBienSo.setVisible(true);
+                        isInvalidFomat = true;
+                    }
+                    //kiem tra dinh dang LOAI XE
+                    System.out.println(loaiXeCombobox.getSelectedItem().toString());
+                    if (!ValidationRegEx.validationTextRegex(loaiXeCombobox.getSelectedItem().toString())) {
+                        ImageIcon imgError = new ImageIcon(iconErrorURL);
+                        //errorChuSoHuu.setText("");
+                        errorLoaiXe.setIcon(imgError);
+                        errorLoaiXe.revalidate();
+                        errorLoaiXe.repaint();
+                        errorLoaiXe.setVisible(true);
+                        isInvalidFomat = true;
+                    }
+                    if (isInvalidFomat) {
+                        JOptionPane.showMessageDialog(jpanel, "Thông tin không đúng đinh dạng", "Lỗi định dạng", JOptionPane.ERROR_MESSAGE, new ImageIcon(iconErrorURL));
+                    }
+
+                }
+
+                if (isInvalidFomat != true && isEmpty != true)// ko có thuộc tính rỗng và sai định dạng
+                {
+                    //them thong tin xe và db
+                    String bienSo = bienSoField.getText();
+                    String tenXemay = tenXeMayField.getText();
+                    String chuSoHuu = chuSoHuuField.getText();
+                    String soDienThoai = soDienThoaiField.getText();
+                    String loaiXe = loaiXeCombobox.getSelectedItem().toString();
+                    String gioiTinh = null;
+                    if (radioNam.isSelected()) {
+                        gioiTinh = radioNam.getText();
+                    } else {
+                        gioiTinh = radioNu.getText();
+                    }
+                    //tạo khach hang
+                    KhachHangModel khachHang = new KhachHangModel();
+                    khachHang = khachHangService.findOneByNameAndSDT(chuSoHuu, soDienThoai);
+
+                    if (khachHang == null) {
+                        JOptionPane.showMessageDialog(jpanel, "Khách hàng không tồn tại ", "Not Found", 0);
+                        //them khach hang
+                        khachHang = new KhachHangModel();
+                        khachHang.setHoTen(chuSoHuu);
+                        khachHang.setSoDienThoai(soDienThoai);
+                        khachHang.setGioiTinh(gioiTinh);
+                        KhachHangModel khachHangNew = khachHangService.save(khachHang);
+                        if (khachHangNew == null) {
+                            JOptionPane.showMessageDialog(jpanel, "Cập nhật thất bại ", "Not Found", 0);
+                        } else {
+                            // tạo loại xe
+                            LoaiXeModel loaiXeModel = new LoaiXeModel();
+                            loaiXeModel = loaiXeService.findOneByName(loaiXe);
+                            //tạo xe;
+                            XeModel xe = new XeModel(bienSo, tenXemay, loaiXeModel, khachHangNew);
+                            //cập nhật xe
+                            xe = xeSevice.update(xe);
+                            if (xe != null) {
+                                JOptionPane.showMessageDialog(jpanel, "Cập nhật xe thành công", "Lưu", 0);
+                            } else {
+                                JOptionPane.showMessageDialog(jpanel, "Cập nhật xe thất bại", "Lưu", 0);
+                            }
+
+                        }
+
+                    } else {
+                        // tạo loại xe
+                        LoaiXeModel loaiXeModel = new LoaiXeModel();
+                        loaiXeModel = loaiXeService.findOneByName(loaiXe);
+                        //tạo xe;
+                        XeModel xe = new XeModel(bienSo, tenXemay, loaiXeModel, khachHang);
+                        //cập nhật xe
+                        XeModel xeNew = xeSevice.update(xe);
+                        if (xeNew != null) {
+                            JOptionPane.showMessageDialog(jpanel, "Cập nhật xe thành công", "Lưu", 0);
+                        } else {
+                            JOptionPane.showMessageDialog(jpanel, "Cập nhật xe thất bại", "Lưu", 0);
+                        }
+                    }
+                }
+
+            }
+
+        });
+        xoaXeBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //kiem tra thong tin xe can xoa
+                String bienSo = bienSoField.getText();
+                if (bienSo.isEmpty()) {
+                    JOptionPane.showMessageDialog(jpanel, "Vui lòng chọn xe", "Thông tin", 0);
+                } else {
+                    //xoá Ràng buộc khoá ngoại 
+                    xeSevice.delete(bienSo);
+                    JOptionPane.showMessageDialog(jpanel, "Xoá thành công", "Xoá", 0);
+                }
+            }
+        });
+        //kiem tra bien so
+        bienSoField.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (bienSoField.getText().isEmpty()) {    //FIELD EMPTY
+                    ImageIcon img = new ImageIcon(iconImportantURL);
+                    //  errorBienSo.setText("");
+                    errorBienSo.setIcon(img);
+
+                    errorBienSo.revalidate();
+                    errorBienSo.repaint();
+                    errorBienSo.setVisible(true);
+                } else {
+                    //INVALID FORMAT
+                    System.out.println(ValidationRegEx.validationBienSo(bienSoField.getText()));
+                    if (ValidationRegEx.validationBienSo(bienSoField.getText())) {
+                        errorBienSo.setVisible(false);
+                    } else {
+                        ImageIcon img2 = new ImageIcon(iconErrorURL);
+                        //errorBienSo.setText("");
+                        errorBienSo.setIcon(img2);
+
+                        errorBienSo.revalidate();
+                        errorBienSo.repaint();
+                        errorBienSo.setVisible(true);
+                    }
+                }
+            }
+
+            @Override
+            public void focusGained(FocusEvent e) {
+                errorBienSo.setVisible(false);
+            }
+        });
+        // kiem tra ten xe
+        tenXeMayField.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (tenXeMayField.getText().isEmpty()) {    //FIELD EMPTY
+                    ImageIcon imgImportane = new ImageIcon(iconImportantURL);
+                    //  errorBienSo.setText("");
+                    errorTenXe.setIcon(imgImportane);
+                    errorTenXe.revalidate();
+                    errorTenXe.repaint();
+                    errorTenXe.setVisible(true);
+                } else {
+                    //INVALID FORMAT
+                    System.out.println("tenXeMayField.getText() " + tenXeMayField.getText());
+                    if (ValidationRegEx.validationTextAndNumRegex(tenXeMayField.getText())) {
+                        errorTenXe.setVisible(false);
+                    } else {
+                        ImageIcon imgError = new ImageIcon(iconErrorURL);
+                        //errorTenXe.setText("");
+                        errorTenXe.setIcon(imgError);
+                        errorTenXe.revalidate();
+                        errorTenXe.repaint();
+                        errorTenXe.setVisible(true);
+                    }
+                }
+            }
+
+            @Override
+            public void focusGained(FocusEvent e) {
+                errorTenXe.setVisible(false);
+            }
+        });
+        chuSoHuuField.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (chuSoHuuField.getText().isEmpty()) {    //FIELD EMPTY
+                    ImageIcon imgImportane = new ImageIcon(iconImportantURL);
+                    //  errorBienSo.setText("");
+                    errorChuSoHuu.setIcon(imgImportane);
+                    errorChuSoHuu.revalidate();
+                    errorChuSoHuu.repaint();
+                    errorChuSoHuu.setVisible(true);
+                } else {
+                    //INVALID FORMAT
+                    System.out.println(ValidationRegEx.validationTextRegex(chuSoHuuField.getText()));
+                    if (ValidationRegEx.validationTextRegex(chuSoHuuField.getText())) {
+                        errorChuSoHuu.setVisible(false);
+                    } else {
+                        ImageIcon imgError = new ImageIcon(iconErrorURL);
+                        //errorChuSoHuu.setText("");
+                        errorChuSoHuu.setIcon(imgError);
+                        errorChuSoHuu.revalidate();
+                        errorChuSoHuu.repaint();
+                        errorChuSoHuu.setVisible(true);
+                    }
+                }
+            }
+
+            @Override
+            public void focusGained(FocusEvent e) {
+                errorChuSoHuu.setVisible(false);
+            }
+        });
+        soDienThoaiField.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (soDienThoaiField.getText().isEmpty()) {    //FIELD EMPTY
+                    ImageIcon imgImportane = new ImageIcon(iconImportantURL);
+                    //  errorBienSo.setText("");
+                    errorSoDienThoai.setIcon(imgImportane);
+                    errorSoDienThoai.revalidate();
+                    errorSoDienThoai.repaint();
+                    errorSoDienThoai.setVisible(true);
+                } else {
+                    //INVALID FORMAT
+                    System.out.println(ValidationRegEx.validationBienSo(soDienThoaiField.getText()));
+                    if (ValidationRegEx.validationSDT(soDienThoaiField.getText())) {
+                        errorSoDienThoai.setVisible(false);
+                    } else {
+                        ImageIcon imgError = new ImageIcon(iconErrorURL);
+                        //errorSoDienThoai.setText("");
+                        errorSoDienThoai.setIcon(imgError);
+                        errorSoDienThoai.revalidate();
+                        errorSoDienThoai.repaint();
+                        errorSoDienThoai.setVisible(true);
+                    }
+                }
+            }
+
+            @Override
+            public void focusGained(FocusEvent e) {
+                errorSoDienThoai.setVisible(false);
+            }
+        });
+
+        loaiXeCombobox.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (loaiXeCombobox.getSelectedItem() == null) {    //FIELD EMPTY
+                    ImageIcon imgImportane = new ImageIcon(iconImportantURL);
+                    //  errorBienSo.setText("");
+                    errorLoaiXe.setIcon(imgImportane);
+                    errorLoaiXe.revalidate();
+                    errorLoaiXe.repaint();
+                    errorLoaiXe.setVisible(true);
+                } else {
+                    //INVALID FORMAT
+                    System.out.println(loaiXeCombobox.getSelectedItem().toString());
+                    if (ValidationRegEx.validationTextRegex(loaiXeCombobox.getSelectedItem().toString())) {
+                        errorLoaiXe.setVisible(false);
+                    } else {
+                        ImageIcon imgError = new ImageIcon(iconErrorURL);
+                        //errorLoaiXe.setText("");
+                        errorLoaiXe.setIcon(imgError);
+                        errorLoaiXe.revalidate();
+                        errorLoaiXe.repaint();
+                        errorLoaiXe.setVisible(true);
+                    }
+                }
+            }
+
+            @Override
+            public void focusGained(FocusEvent e) {
+                errorLoaiXe.setVisible(false);
+            }
+        });
+
+    }
+
+    public void setDataToCombobox() {
+        List<LoaiXeModel> listLoaiXe = loaiXeService.findAll();
+        DefaultComboBoxModel model = (DefaultComboBoxModel) loaiXeCombobox.getModel();
+        model.removeAllElements();
+        for (LoaiXeModel loaiXeModel : listLoaiXe) {
+            model.addElement(loaiXeModel.getTenLoaiXe());
+        }
+        model.setSelectedItem(null);
+    }
+
 }

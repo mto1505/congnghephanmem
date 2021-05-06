@@ -15,22 +15,23 @@ public class KhachHangModel {
     
     private int maKH;
     private String hoTen;
-    private String soCMT;
+//    private String soCMT;
     private String gioiTinh;
     private Date ngaySinh;
     private String soDienThoai;
 
     public KhachHangModel() {
     }
-    
-    public KhachHangModel(int maKH, String HoTen, String soCMT, String gioiTinh, Date ngaySinh, String soDienThoai) {
+
+    public KhachHangModel(int maKH, String hoTen, String gioiTinh, Date ngaySinh, String soDienThoai) {
         this.maKH = maKH;
-        this.hoTen = HoTen;
-        this.soCMT = soCMT;
+        this.hoTen = hoTen;
         this.gioiTinh = gioiTinh;
         this.ngaySinh = ngaySinh;
         this.soDienThoai = soDienThoai;
     }
+    
+   
 
     public int getMaKH() {
         return maKH;
@@ -48,14 +49,7 @@ public class KhachHangModel {
         this.hoTen = HoTen;
     }
 
-    public String getSoCMT() {
-        return soCMT;
-    }
-
-    public void setSoCMT(String soCMT) {
-        this.soCMT = soCMT;
-    }
-
+    
     public String getGioiTinh() {
         return gioiTinh;
     }

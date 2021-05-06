@@ -19,7 +19,7 @@ public interface IKhachHangDAO extends GenericDAO<KhachHangModel> {
     KhachHangModel findOneByCMND(String cmnd);
      KhachHangModel findOneByNameAndSDT(String name,String sdt);
     List<KhachHangModel> findByCategoryId(Long categoryId);
-
+  KhachHangModel findOneBySDT(String sdt);
     int save(KhachHangModel KhachHangModel);
 
     void update(KhachHangModel updateNhanVien);

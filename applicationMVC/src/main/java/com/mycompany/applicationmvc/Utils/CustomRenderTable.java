@@ -20,7 +20,7 @@ import javax.swing.table.TableCellRenderer;
 public class CustomRenderTable extends JLabel implements TableCellRenderer{
 
     public CustomRenderTable() {
-        setFont(new Font("Consolas",Font.BOLD,15) {
+        setFont(new Font("Tahoma",Font.BOLD,15) {
         });
         setForeground(Color.BLUE);
         setBorder(BorderFactory.createRaisedBevelBorder());

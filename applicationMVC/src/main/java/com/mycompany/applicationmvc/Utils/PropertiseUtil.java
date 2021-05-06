@@ -18,7 +18,7 @@ public class PropertiseUtil {
 private static Properties properties;
 	static{
 		try {
-		    //Get the current classPath path
+		    //Get the curre nt classPath path
 			String url =  PropertiseUtil.class.getResource("/").toString().replace("file:/", "");
 			File file=new File(url);
 			//Get all *.properties files under the project

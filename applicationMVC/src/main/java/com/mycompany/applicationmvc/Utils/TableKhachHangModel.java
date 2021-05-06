@@ -25,7 +25,7 @@ public class TableKhachHangModel implements TableModelCustom<KhachHangModel> {
 
                 obj.add(element.getMaKH());
                 obj.add(element.getHoTen());
-                obj.add(element.getSoCMT());
+             
                 obj.add(element.getNgaySinh());
                 obj.add(element.getGioiTinh());
                 obj.add(element.getSoDienThoai());

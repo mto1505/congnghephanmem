@@ -16,21 +16,28 @@ import java.util.List;
  */
 public interface IXeDAO extends GenericDAO<XeModel> {
 
-   XeModel findOne(String bienso);
-   
-   //XeModel findOneByChuSoHuuVsSDT(String chuSoHuu, String sdt);
+    XeModel findOne(String bienso);
 
-   String save(XeModel xeModel);
+    //XeModel findOneByChuSoHuuVsSDT(String chuSoHuu, String sdt);
+    String save(XeModel xeModel);
 
     void update(XeModel updateXe);
 
     void delete(String bienso);
-
+    
+    void deleteByMaChuSoHuu(int maChuSoHuu);
+    
+   List<XeModel> findByMaChuSoHuu(int maChuSoHuu);
+    
+    
+    
+    
+    
+    
+    
     List<XeModel> findAll();
-      List<XeModel> findAllMultiTable();
-    
-    
-    
+
+    List<XeModel> findAllMultiTable();
 
     int getTotalItem();
 }

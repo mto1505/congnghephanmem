@@ -133,6 +133,7 @@ public class SigninForm extends javax.swing.JFrame {
         String pass=passWord.getText();
         String user=userName.getText();
         SessionUtil.putValue(user, pass);
+        
         dispose();
         
 //        JButton click = new JButton("click!");

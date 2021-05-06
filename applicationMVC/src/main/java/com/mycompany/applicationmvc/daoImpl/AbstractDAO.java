@@ -15,6 +15,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,9 +51,9 @@ public class AbstractDAO<T> implements GenericDAO<T> {
         try {
             connection = getConnection();
             statement = connection.prepareStatement(sql);
-            
-            setParameter(statement, parameters);
-            
+
+                setParameter(statement, parameters);
+
             resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 results.add(rowMapper.mapRow(resultSet));
@@ -76,28 +77,32 @@ public class AbstractDAO<T> implements GenericDAO<T> {
             } catch (SQLException e) {
                 System.out.println("SQL error  " + e.getMessage());
             }
-           
+
         }
     }
 
     private void setParameter(PreparedStatement statement, Object... parameters) {
         try {
-            System.out.println("parameters.length +"+ parameters.length);
+            System.out.println("parameters.length +" + parameters.length);
             for (int i = 0; i < parameters.length; i++) {
                 Object parameter = parameters[i];
                 int index = i + 1;
 
-               if (parameter instanceof String) {
+                if (parameter instanceof String) {
                     statement.setString(index, (String) parameter);
                 } else if (parameter instanceof Integer) {
                     statement.setInt(index, (Integer) parameter);
                 } else if (parameter instanceof Timestamp) {
                     statement.setTimestamp(index, (Timestamp) parameter);
                 } else if (parameter instanceof java.sql.Date) {
-                   
-                   
+                        
                     statement.setDate(index, (java.sql.Date) parameter);
-                    
+                } 
+                else if (parameter instanceof Double) {
+                    statement.setDouble(index, (Double) parameter);
+                }
+                else{
+                  statement.setNull(index, Types.NULL);
                 }
                 // đừng để dữ liệu null ==>xử lí đầu vào trước khi truy vấn                           
             }
@@ -146,7 +151,7 @@ public class AbstractDAO<T> implements GenericDAO<T> {
         PreparedStatement statement = null;
         ResultSet resultSet = null;
         try {
-            int id=-1;
+            int id = -1;
             connection = getConnection();
             connection.setAutoCommit(false);
             String[] arrAuto = {"id"};

@@ -40,7 +40,7 @@ public class XeService implements IXeService {
 
     @Override
     public XeModel update(XeModel updateModel) {
-        xeDao.save(updateModel);
+        xeDao.update(updateModel);
         return xeDao.findOne(updateModel.getBienSo());
         
     }
@@ -57,13 +57,28 @@ public class XeService implements IXeService {
     }
 
     @Override
+    public List<XeModel> findAllMultiTable() {
+        return  xeDao.findAllMultiTable();
+    }
+
+    @Override
     public int getTotalItem() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public XeModel findOne(String bienso) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       return xeDao.findOne(bienso);
+    }
+
+    @Override
+    public void deleteByMaChuSoHuu(int idChuSoHuu) {
+        xeDao.deleteByMaChuSoHuu(idChuSoHuu);
+    }
+
+    @Override
+    public List<XeModel> findByMaChuSoHuu(int maChuSoHuu) {
+        return xeDao.findByMaChuSoHuu(maChuSoHuu);
     }
 
    

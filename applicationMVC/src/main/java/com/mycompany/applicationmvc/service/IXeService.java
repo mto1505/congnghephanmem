@@ -20,7 +20,9 @@ public interface IXeService {
 	XeModel update(XeModel updateModel);
 	void delete(String bienso);
 	List<XeModel> findAll();
+        List<XeModel> findAllMultiTable();
+        List<XeModel> findByMaChuSoHuu(int maChuSoHuu);
 	int getTotalItem();
 	XeModel findOne(String bienso);
-     
+        void deleteByMaChuSoHuu(int idChuSoHuu);
 }

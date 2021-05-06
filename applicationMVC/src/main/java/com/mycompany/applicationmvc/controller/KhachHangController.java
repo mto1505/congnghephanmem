@@ -9,9 +9,12 @@ import com.mycompany.applicationmvc.Utils.FomaterDate;
 import com.mycompany.applicationmvc.Utils.TableKhachHangModel;
 import com.mycompany.applicationmvc.Utils.TableModelCustom;
 import com.mycompany.applicationmvc.Utils.ValidationRegEx;
+import com.mycompany.applicationmvc.dao.IXeDAO;
 import com.mycompany.applicationmvc.model.KhachHangModel;
 import com.mycompany.applicationmvc.service.IKhachHangService;
+import com.mycompany.applicationmvc.service.IXeService;
 import com.mycompany.applicationmvc.serviceImpl.KhachHangService;
+import com.mycompany.applicationmvc.serviceImpl.XeService;
 
 import com.toedter.calendar.JDateChooser;
 import java.awt.event.ActionEvent;
@@ -83,6 +86,8 @@ public class KhachHangController {
 
     //service
     private IKhachHangService khachHangService;
+    private IXeService xeService;
+
     // view
     private JPanel panel;
 
@@ -109,6 +114,7 @@ public class KhachHangController {
         this.panel = panel;
         this.khachHangService = new KhachHangService();
         this.tableModelCustom = new TableKhachHangModel();
+        this.xeService = new XeService();
     }
 
     public void setView(KhachHangModel khachHang) {
@@ -120,7 +126,7 @@ public class KhachHangController {
 
         maKHField.setText(String.valueOf(khachHang.getMaKH()));
         hoTenField.setText(khachHang.getHoTen());
-        soCMTField.setText(khachHang.getSoCMT());
+//        soCMTField.setText(khachHang.getSoCMT());
         if (khachHang.getGioiTinh().equals("Nam")) {
             radioNam.setSelected(true);
         } else {
@@ -146,22 +152,20 @@ public class KhachHangController {
                 //To change body of generated methods, choose Tools | Templates.
                 DefaultTableModel modelTable = (DefaultTableModel) tableKhachHang.getModel();
                 int indexSelectedRow = tableKhachHang.getSelectedRow();
-                int countCollum = tableKhachHang.getColumnCount();
 
                 KhachHangModel khachHang = new KhachHangModel();
-                khachHang.setMaKH((int) modelTable.getValueAt(indexSelectedRow, 0));
-                khachHang.setHoTen(modelTable.getValueAt(indexSelectedRow, 1).toString());
-                khachHang.setSoCMT(modelTable.getValueAt(indexSelectedRow, 2).toString());
+                khachHang.setMaKH((int) tableKhachHang.getValueAt(indexSelectedRow, 0));
+                khachHang.setHoTen(tableKhachHang.getValueAt(indexSelectedRow, 1).toString());
+                //  khachHang.setSoCMT(tableKhachHang.getValueAt(indexSelectedRow, 2).toString());
 
-                if (modelTable.getValueAt(indexSelectedRow, 3) != null) {
-                    String ngaySinh = modelTable.getValueAt(indexSelectedRow, 3).toString(); //sql Date YYYY-MM-DD
-
+                if (tableKhachHang.getValueAt(indexSelectedRow, 2) != null) {
+                    String ngaySinh = tableKhachHang.getValueAt(indexSelectedRow, 2).toString(); //sql Date YYYY-MM-DD
                     {
                         khachHang.setNgaySinh(FomaterDate.convertStringToDate(ngaySinh));// to util.date
                     }
                 }
-                khachHang.setGioiTinh(modelTable.getValueAt(indexSelectedRow, 4).toString());
-                khachHang.setSoDienThoai(modelTable.getValueAt(indexSelectedRow, 5).toString());
+                khachHang.setGioiTinh(tableKhachHang.getValueAt(indexSelectedRow, 3).toString());
+                khachHang.setSoDienThoai(tableKhachHang.getValueAt(indexSelectedRow, 4).toString());
                 setView(khachHang);
             }
 
@@ -179,29 +183,34 @@ public class KhachHangController {
                     errorHoVaTen.setText("* Vui lòng nhập trường này");
                     errorHoVaTen.setVisible(true);
                 } else {
-                    errorHoVaTen.setVisible(false);
-                }
-            }
-        });
-        soCMTField.addFocusListener(new FocusListener() {
-            @Override
-            public void focusGained(FocusEvent e) {
-                errorCMND.setVisible(false);
-            }
-
-            @Override
-            public void focusLost(FocusEvent e) {
-                ///kiểm tra value
-                if (!soCMTField.getText().isEmpty()) {
-                    if (ValidationRegEx.validationCMND(soCMTField.getText())) {
-                        errorCMND.setVisible(false);
+                    if (!ValidationRegEx.validationTextRegex(hoTenField.getText())) {
+                        errorHoVaTen.setText("*Sai định dạng(Giữa 2 từ chỉ có 1 khoảng trắng)");
+                        errorHoVaTen.setVisible(true);
                     } else {
-                        errorCMND.setText("Không đúng định dạng vui lòng thử lại");
-                        errorCMND.setVisible(true);
+                        errorHoVaTen.setVisible(false);
                     }
                 }
             }
         });
+//        soCMTField.addFocusListener(new FocusListener() {
+//            @Override
+//            public void focusGained(FocusEvent e) {
+//                errorCMND.setVisible(false);
+//            }
+//
+//            @Override
+//            public void focusLost(FocusEvent e) {
+//                ///kiểm tra value
+//                if (!soCMTField.getText().isEmpty()) {
+//                    if (ValidationRegEx.validationCMND(soCMTField.getText())) {
+//                        errorCMND.setVisible(false);
+//                    } else {
+//                        errorCMND.setText("Không đúng định dạng vui lòng thử lại");
+//                        errorCMND.setVisible(true);
+//                    }
+//                }
+//            }
+//        });
 //        soCMTField.addMouseListener(new MouseAdapter() {
 //            @Override
 //            public void mouseExited(MouseEvent e) {
@@ -272,8 +281,7 @@ public class KhachHangController {
 
                 if (ngaySinhJchooseDateField.getDate() != null) {
                     errorNgaySinh.setVisible(false);
-                    System.out.println(" value " + ngaySinhJchooseDateField.getDate().toString());
-
+                   // System.out.println(" value " + ngaySinhJchooseDateField.getDate().toString());
                 }
 
             }
@@ -329,7 +337,7 @@ public class KhachHangController {
 //            }
 //
 //        });
-        themBtn.addActionListener(new ActionListener() {
+        suaBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // KIỂM TRA RỖNG 
@@ -341,11 +349,11 @@ public class KhachHangController {
                     errorHoVaTen.setVisible(true);
                     hasFieldEmpty = true;
                 }
-                if (soCMTField.getText().isEmpty()) {
-                    errorCMND.setText("* Vui lòng nhập trường này");
-                    errorCMND.setVisible(true);
-                    hasFieldEmpty = true;
-                }
+//                if (soCMTField.getText().isEmpty()) {
+//                    errorCMND.setText("* Vui lòng nhập trường này");
+//                    errorCMND.setVisible(true);
+//                    hasFieldEmpty = true;
+//                }
                 if (radioNam.getText().isEmpty() && radioNu.getText().isEmpty()) {
                     errorGioiTinh.setText("* Vui lòng nhập trường này");
                     errorGioiTinh.setVisible(true);
@@ -367,12 +375,122 @@ public class KhachHangController {
                         errorSoDienThoai.setVisible(true);
                         isNotFormated = true;
                     }
-
-                    if (!ValidationRegEx.validationCMND(soCMTField.getText())) {
-                        errorCMND.setText("Không đúng định dạng vui lòng thử lại");
-                        errorCMND.setVisible(true);
+                    if (!ValidationRegEx.validationTextRegex(hoTenField.getText())) {
+                        errorSoDienThoai.setText("*Không đúng định dạng vui lòng nhập lại");
+                        errorSoDienThoai.setVisible(true);
                         isNotFormated = true;
                     }
+
+//                    if (!ValidationRegEx.validationCMND(soCMTField.getText())) {
+//                        errorCMND.setText("Không đúng định dạng vui lòng thử lại");
+//                        errorCMND.setVisible(true);
+//                        isNotFormated = true;
+//                    }
+                    if (isNotFormated == true) {
+                        JOptionPane.showOptionDialog(panel, "Thông tin sai định dạng", "Infomation", JOptionPane.OK_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
+                    }
+                }
+
+                if (isNotFormated != true && hasFieldEmpty != true) {
+                    String maKH = maKHField.getText();
+                    String hoTen = hoTenField.getText();
+                    String soCMND = soCMTField.getText();
+                    String gioiTinh = null;
+                    if (radioNam.isSelected()) {
+                        gioiTinh = radioNam.getText();
+                    } else {
+                        gioiTinh = radioNu.getText();
+                    }
+
+                    java.util.Date ngaySinh = new java.util.Date();
+                    ngaySinh = ngaySinhJchooseDateField.getDate();
+                    String soDienThoai = null;
+                    soDienThoai = soDienThoaiField.getText();
+                    //khoi tạo đối tượng
+
+                    // KhachHangModel khachHang = new KhachHangModel(0, hoTen, gioiTinh, ngaySinh, soDienThoai);
+                    if (!maKH.isEmpty()) {
+                        KhachHangModel khachHang = new KhachHangModel(Integer.parseInt(maKH), hoTen, gioiTinh, ngaySinh, soDienThoai);
+                        KhachHangModel khachHangold = khachHangService.findOne(Integer.parseInt(maKHField.getText()));
+                        if (khachHangold.getSoDienThoai().equals(soDienThoai) && khachHangold.getHoTen().equals(hoTen)) {
+                            KhachHangModel newKhachHang = khachHangService.update(khachHang);
+                            if (newKhachHang != null) {
+                                JOptionPane.showMessageDialog(panel, "Cập nhật thành công", "Thông báo", 0, null);
+                            }
+                        } else {
+
+                            if (khachHangService.findOneByNameAndSDT(hoTen, soDienThoai) == null) {
+                                KhachHangModel newKhachHang = khachHangService.update(khachHang);
+                                if (newKhachHang != null) {
+                                    JOptionPane.showMessageDialog(panel, "Cập nhật thành công", "Thông báo", 0, null);
+                                } else {
+                                    JOptionPane.showMessageDialog(panel, "Cập nhật không thành công", "Thông báo", 0, null);
+                                }
+                            } else {
+                                JOptionPane.showMessageDialog(panel, "Số điện thoại khách hàng đã tồn tại", "Thông báo", 0, null);
+                            }
+                        }
+
+                    } else {
+                        JOptionPane.showMessageDialog(panel, "Vui lòng chọn khách hàng cần cập nhật", "Thông báo", 0, null);
+                    }
+                }
+
+            }
+
+        }
+        );
+        themBtn.addActionListener(
+                new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e
+            ) {
+                // KIỂM TRA RỖNG 
+                boolean isValid = false;
+                boolean hasFieldEmpty = false;
+                boolean isNotFormated = false;
+                if (hoTenField.getText().isEmpty()) {
+                    errorHoVaTen.setText("* Vui lòng nhập trường này");
+                    errorHoVaTen.setVisible(true);
+                    hasFieldEmpty = true;
+                }
+//                if (soCMTField.getText().isEmpty()) {
+//                    errorCMND.setText("* Vui lòng nhập trường này");
+//                    errorCMND.setVisible(true);
+//                    hasFieldEmpty = true;
+//                }
+                if (radioNam.getText().isEmpty() && radioNu.getText().isEmpty()) {
+                    errorGioiTinh.setText("* Vui lòng nhập trường này");
+                    errorGioiTinh.setVisible(true);
+                    hasFieldEmpty = true;
+                }
+                if (soDienThoaiField.getText().isEmpty()) {
+                    errorSoDienThoai.setText("* Vui lòng nhập trường này");
+                    errorSoDienThoai.setVisible(true);
+                    hasFieldEmpty = true;
+                }
+                //neu có thuộc tính rỗng
+                if (hasFieldEmpty == true) {
+                    JOptionPane.showOptionDialog(panel, "Vui lòng điền đầy đủ thông tin", "Infomation", JOptionPane.OK_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
+                    isValid = false;
+                } // không có thuoc tính rỗng kiểm tra định dạng
+                else {
+                    if (!ValidationRegEx.validationSDT(soDienThoaiField.getText())) {
+                        errorSoDienThoai.setText("*Không đúng định dạng vui lòng nhập lại");
+                        errorSoDienThoai.setVisible(true);
+                        isNotFormated = true;
+                    }
+                    if (hoTenField.getText().isEmpty()) {
+                        errorHoVaTen.setText("* Vui lòng nhập trường này");
+                        errorHoVaTen.setVisible(true);
+                        hasFieldEmpty = true;
+                    }
+
+//                    if (!ValidationRegEx.validationCMND(soCMTField.getText())) {
+//                        errorCMND.setText("Không đúng định dạng vui lòng thử lại");
+//                        errorCMND.setVisible(true);
+//                        isNotFormated = true;
+//                    }
                     if (isNotFormated == true) {
                         JOptionPane.showOptionDialog(panel, "Thông tin sai định dạng", "Infomation", JOptionPane.OK_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
                     }
@@ -393,26 +511,28 @@ public class KhachHangController {
                     String soDienThoai = null;
                     soDienThoai = soDienThoaiField.getText();
                     //khoi tạo đối tượng
-                    KhachHangModel khachHang = new KhachHangModel(0, hoTen, soCMND, gioiTinh, ngaySinh, soDienThoai);
-                    // Kiểm tra số chứng minh
-                    if (khachHangService.findOneByCMND(soCMND) != null) {
+                    KhachHangModel khachHang = new KhachHangModel(0, hoTen, gioiTinh, ngaySinh, soDienThoai);
+                    khachHangService.findOneBySDT(soDienThoai);
+                    if (khachHangService.findOneBySDT(soDienThoai) == null) {
                         KhachHangModel newKhachHang = khachHangService.save(khachHang);
                         if (newKhachHang != null) {
                             JOptionPane.showMessageDialog(panel, "Lưu thành công", "Thông báo", 0, null);
-                            //showOptionDialog(panel, "Thông tin sai định dạng", "Infomation", JOptionPane.OK_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
+                        } else {
+                            JOptionPane.showMessageDialog(panel, "Lưu thất bại", "Thông báo", 0, null);
                         }
+                    } else {
+                        JOptionPane.showMessageDialog(panel, "Khách hàng đã tồn tại", "Thông báo", 0, null);
                     }
-                    else{
-                          JOptionPane.showMessageDialog(panel, "Thông tin thêm vào bị trùng số CMND ", "Thông báo", 0, null);
-                    }
-
                 }
-
             }
-        });
-        xoaBtn.addActionListener(new ActionListener() {
+
+        }
+        );
+        xoaBtn.addActionListener(
+                new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e
+            ) {
                 // Kiểm tra mã khách hàng
 
                 String idKhachHang = maKHField.getText();
@@ -422,99 +542,24 @@ public class KhachHangController {
                         "Họ và tên: " + hoTenField.getText(),
                         "Số điện thoại: " + soDienThoaiField.getText()
                     };
-                    String op[] = {"Chờ anh", "Em đồng ý"};
+                    String op[] = {"Suy nghĩ lại", "Em đồng ý"};
                     int reply = JOptionPane.showOptionDialog(panel, message, "Xoá khách hàng", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, op, op[0]);
                     if (reply == 1) {
-                        //xoá
-                        System.out.println("Xoa");
+                        //xoá Xe
+                        //B1.Kiểm tra xe 
+                        if (xeService.findByMaChuSoHuu(Integer.parseInt(idKhachHang)) != null) {
+                            xeService.deleteByMaChuSoHuu(Integer.parseInt(idKhachHang));
+                        }
                         khachHangService.delete(Integer.parseInt(idKhachHang));
                         JOptionPane.showMessageDialog(panel, "Xoá thành công", "Thông báo", 1, null);
                     }
 
                 } else {
-
+                    JOptionPane.showMessageDialog(panel, "Vui lòng chọn thông tin khách hàng cần xoá", "Thông báo", 1, null);
                 }
             }
-        });
-        suaBtn.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // KIỂM TRA RỖNG 
-                boolean isValid = false;
-                boolean hasFieldEmpty = false;
-                boolean isNotFormated = false;
-                if (hoTenField.getText().isEmpty()) {
-                    errorHoVaTen.setText("* Vui lòng nhập trường này");
-                    errorHoVaTen.setVisible(true);
-                    hasFieldEmpty = true;
-                }
-                if (soCMTField.getText().isEmpty()) {
-                    errorCMND.setText("* Vui lòng nhập trường này");
-                    errorCMND.setVisible(true);
-                    hasFieldEmpty = true;
-                }
-                if (radioNam.getText().isEmpty() && radioNu.getText().isEmpty()) {
-                    errorGioiTinh.setText("* Vui lòng nhập trường này");
-                    errorGioiTinh.setVisible(true);
-                    hasFieldEmpty = true;
-                }
-                if (soDienThoaiField.getText().isEmpty()) {
-                    errorSoDienThoai.setText("* Vui lòng nhập trường này");
-                    errorSoDienThoai.setVisible(true);
-                    hasFieldEmpty = true;
-                }
-                //neu có thuộc tính rỗng
-                if (hasFieldEmpty == true) {
-                    JOptionPane.showMessageDialog(panel, "Vui lòng điền đầy đủ thông tin", "Infomation", JOptionPane.INFORMATION_MESSAGE, null);
-                    isValid = false;
-                } // không có thuoc tính rỗng kiểm tra định dạng
-                else {
-                    if (!ValidationRegEx.validationSDT(soDienThoaiField.getText())) {
-                        errorSoDienThoai.setText("*Không đúng định dạng vui lòng nhập lại");
-                        errorSoDienThoai.setVisible(true);
-                        isNotFormated = true;
-                    }
-                    if (!ValidationRegEx.validationCMND(soCMTField.getText())) {
-                        errorCMND.setText("Không đúng định dạng vui lòng thử lại");
-                        errorCMND.setVisible(true);
-                        isNotFormated = true;
-                    }
-                    if (isNotFormated == true) {
-                        JOptionPane.showMessageDialog(panel, "Thông tin sai định dạng", "Infomation", 0, null);
-                    }
-                }
-
-                if (isNotFormated != true && hasFieldEmpty != true) {
-                    int id = 0;
-                    if (!maKHField.getText().isEmpty()) {
-                        id = Integer.parseInt(maKHField.getText());
-                    }
-
-                    String hoTen = hoTenField.getText();
-                    String soCMND = soCMTField.getText();
-                    String gioiTinh = null;
-                    if (radioNam.isSelected()) {
-                        gioiTinh = radioNam.getText();
-                    } else {
-                        gioiTinh = radioNu.getText();
-                    }
-
-                    java.util.Date ngaySinh = new java.util.Date();
-                    ngaySinh = ngaySinhJchooseDateField.getDate();
-                    String soDienThoai = null;
-                    soDienThoai = soDienThoaiField.getText();
-                    //khoi tạo đối tượng
-                    KhachHangModel khachHang = new KhachHangModel(id, hoTen, soCMND, gioiTinh, ngaySinh, soDienThoai);
-                    KhachHangModel newKhachHang = khachHangService.update(khachHang);
-                    if (newKhachHang != null) {
-                        JOptionPane.showMessageDialog(panel, "Sữa thành công", "Thông báo", 0, null);
-                        //showOptionDialog(panel, "Thông tin sai định dạng", "Infomation", JOptionPane.OK_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
-                    }
-                }
-
-            }
-
-        });
+        }
+        );
 
         //    hoTenField.addKeyListener(l);
     }

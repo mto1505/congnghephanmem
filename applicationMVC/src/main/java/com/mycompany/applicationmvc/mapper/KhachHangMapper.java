@@ -23,7 +23,7 @@ public class KhachHangMapper implements RowMapper<KhachHangModel> {
             KhachHangModel khachHang = new KhachHangModel();
             khachHang.setMaKH(rs.getInt("id"));
             khachHang.setHoTen(rs.getString("ten"));
-            khachHang.setSoCMT(rs.getString("cmnd"));
+//            khachHang.setSoCMT(rs.getString("cmnd"));
             khachHang.setSoDienThoai(rs.getString("sdt"));
             khachHang.setGioiTinh(rs.getString("gioitinh"));
             if (rs.getDate("ngaysinh") != null) {

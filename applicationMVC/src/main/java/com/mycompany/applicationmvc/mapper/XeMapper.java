@@ -6,6 +6,7 @@
 package com.mycompany.applicationmvc.mapper;
 
 import com.mycompany.applicationmvc.model.KhachHangModel;
+import com.mycompany.applicationmvc.model.LoaiXeModel;
 import com.mycompany.applicationmvc.model.XeModel;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -22,10 +23,14 @@ public class XeMapper implements RowMapper<XeModel> {
     public XeModel mapRow(ResultSet rs) {
         try {
             XeModel Xe = new XeModel();
+            Xe.setKhachHang(new  KhachHangModel());
+            Xe.setLoaixe(new LoaiXeModel());
+            
             Xe.setBienSo(rs.getString("bienso"));
             Xe.setTenXe(rs.getString("tenxe"));
-             Xe.getKhachHang().setHoTen(rs.getString("ten"));
-             Xe.getKhachHang().setSoDienThoai(rs.getString("sdt"));
+            Xe.getKhachHang().setHoTen(rs.getString("ten"));
+            Xe.getKhachHang().setSoDienThoai(rs.getString("sdt"));
+            Xe.getKhachHang().setGioiTinh(rs.getString("gioitinh"));
             Xe.getLoaixe().setTenLoaiXe(rs.getString("tenloai"));
             return Xe;
         } catch (SQLException ex) {

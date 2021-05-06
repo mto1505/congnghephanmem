@@ -61,12 +61,17 @@ public class SwitchController {
         this.jFrameMain = jFrameMain;
     }
 
-  
- 
     public void setDashBoard(JPanel jpn,JLabel jlb)
     {
-        kindSelected="trangChinh";
-        
+         JPanel node=new KhachHangPanel(jFrameMain);
+         //dựa vào jlb lấy kind ra trong List danh mục bean;
+          getjPaneRoot().removeAll();
+           getjPaneRoot().setLayout(new BorderLayout());
+           getjPaneRoot().add(node);
+           getjPaneRoot().validate(); // nếu một compontent có đầy đủ kích thước khi đó nó duocjd gọi là valid
+           getjPaneRoot().repaint();
+           jlb.setBackground(new Color(96, 100, 191));
+           // tô màu Danh mục panel,lable dựa vào kind 
     }
     
     public void setEvent()
@@ -112,6 +117,10 @@ public class SwitchController {
              else if(kind.equals("donBaoDuongPage"))
             {
                 node=new DonBaoDuongPanel();
+                // new Model()
+                
+                //new Controller(model,node)
+               
             }
            getjPaneRoot().removeAll();
            getjPaneRoot().setLayout(new BorderLayout());

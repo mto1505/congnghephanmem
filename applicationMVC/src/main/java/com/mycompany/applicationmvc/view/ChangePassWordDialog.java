@@ -12,12 +12,16 @@ import com.mycompany.applicationmvc.Utils.SessionUtil;
  * @author MinhTo
  */
 public class ChangePassWordDialog extends javax.swing.JDialog {
-
+       private String userName;
+       private String matKhau;
+       
     /**
      * Creates new form ChangePassWord
      */
-    public ChangePassWordDialog(java.awt.Frame parent, boolean modal,String userName) {
+    public ChangePassWordDialog(java.awt.Frame parent, boolean modal,String userName,String matKhauHienTai) {
         super(parent, modal);
+        this.userName=userName;
+        this.matKhau=matKhauHienTai;
         initComponents();
         setLocationRelativeTo(null);
         setVisible(true);
@@ -34,35 +38,35 @@ public class ChangePassWordDialog extends javax.swing.JDialog {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        LoginBtn = new javax.swing.JButton();
-        passWord = new javax.swing.JTextField();
-        userName = new javax.swing.JTextField();
+        doiMatKhaubtn = new javax.swing.JButton();
+        matKhauMoi = new javax.swing.JTextField();
+        matKhauHienTai = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        passWord1 = new javax.swing.JTextField();
+        xacNhanMatKhauMoi = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(239, 242, 245));
 
-        LoginBtn.setText("Đồng ý");
-        LoginBtn.addActionListener(new java.awt.event.ActionListener() {
+        doiMatKhaubtn.setText("Đồng ý");
+        doiMatKhaubtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                LoginBtnActionPerformed(evt);
+                doiMatKhaubtnActionPerformed(evt);
             }
         });
 
-        passWord.addActionListener(new java.awt.event.ActionListener() {
+        matKhauMoi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passWordActionPerformed(evt);
+                matKhauMoiActionPerformed(evt);
             }
         });
 
-        userName.addActionListener(new java.awt.event.ActionListener() {
+        matKhauHienTai.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                userNameActionPerformed(evt);
+                matKhauHienTaiActionPerformed(evt);
             }
         });
 
@@ -80,9 +84,9 @@ public class ChangePassWordDialog extends javax.swing.JDialog {
         jLabel4.setForeground(new java.awt.Color(0, 0, 255));
         jLabel4.setText("Xác nhận mật khẩu mới");
 
-        passWord1.addActionListener(new java.awt.event.ActionListener() {
+        xacNhanMatKhauMoi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passWord1ActionPerformed(evt);
+                xacNhanMatKhauMoiActionPerformed(evt);
             }
         });
 
@@ -99,19 +103,19 @@ public class ChangePassWordDialog extends javax.swing.JDialog {
                             .addComponent(jLabel4))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(passWord, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(passWord1, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(matKhauMoi, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(xacNhanMatKhauMoi, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 39, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(LoginBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(doiMatKhaubtn, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(176, 176, 176))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(userName, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(matKhauHienTai, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(124, 124, 124))))))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(108, 108, 108)
@@ -125,18 +129,18 @@ public class ChangePassWordDialog extends javax.swing.JDialog {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(49, 49, 49)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(userName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(matKhauHienTai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(passWord, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(matKhauMoi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(passWord1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(xacNhanMatKhauMoi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(37, 37, 37)
-                .addComponent(LoginBtn)
+                .addComponent(doiMatKhaubtn)
                 .addContainerGap(37, Short.MAX_VALUE))
         );
 
@@ -160,10 +164,19 @@ public class ChangePassWordDialog extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void LoginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginBtnActionPerformed
+    private void doiMatKhaubtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_doiMatKhaubtnActionPerformed
         // TODO add your handling code here:
-        String pass=passWord.getText();
-        String user=userName.getText();
+        
+        String pass=matKhauMoi.getText();
+        String user=matKhauHienTai.getText();
+        //kiểm tra User có tồn tại
+        
+        
+        //Lay ra tài khoản cần đổi
+        
+
+        //Tiến hành đổi mật khẩu
+        
         SessionUtil.putValue(user, pass);
         dispose();
 
@@ -194,19 +207,19 @@ public class ChangePassWordDialog extends javax.swing.JDialog {
                 //                 }
             //      });
     //        System.out.println("getRootPane().getGlassPane() "+getRootPane().getGlassPane());
-    }//GEN-LAST:event_LoginBtnActionPerformed
+    }//GEN-LAST:event_doiMatKhaubtnActionPerformed
 
-    private void passWordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passWordActionPerformed
+    private void matKhauMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_matKhauMoiActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_passWordActionPerformed
+    }//GEN-LAST:event_matKhauMoiActionPerformed
 
-    private void userNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userNameActionPerformed
+    private void matKhauHienTaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_matKhauHienTaiActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_userNameActionPerformed
+    }//GEN-LAST:event_matKhauHienTaiActionPerformed
 
-    private void passWord1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passWord1ActionPerformed
+    private void xacNhanMatKhauMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_xacNhanMatKhauMoiActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_passWord1ActionPerformed
+    }//GEN-LAST:event_xacNhanMatKhauMoiActionPerformed
 
     /**
      * @param args the command line arguments
@@ -239,27 +252,27 @@ public class ChangePassWordDialog extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                ChangePassWordDialog dialog = new ChangePassWordDialog(new javax.swing.JFrame(), true,"MinhTo");
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
+//             //   ChangePassWordDialog dialog = new ChangePassWordDialog(new javax.swing.JFrame(), true,"MinhTo");
+//                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+//                    @Override
+//                    public void windowClosing(java.awt.event.WindowEvent e) {
+//                        System.exit(0);
+//                    }
+//                });
+//                dialog.setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton LoginBtn;
+    private javax.swing.JButton doiMatKhaubtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField passWord;
-    private javax.swing.JTextField passWord1;
-    private javax.swing.JTextField userName;
+    private javax.swing.JTextField matKhauHienTai;
+    private javax.swing.JTextField matKhauMoi;
+    private javax.swing.JTextField xacNhanMatKhauMoi;
     // End of variables declaration//GEN-END:variables
 }

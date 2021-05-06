@@ -101,5 +101,10 @@ public class KhachHangService implements IKhachHangService {
     public KhachHangModel findOneByNameAndSDT(String name, String sdt) {
        return khachHangDao.findOneByNameAndSDT(name, sdt);
     }
+
+    @Override
+    public KhachHangModel findOneBySDT(String sdt) {
+        return khachHangDao.findOneBySDT(sdt);
+    }
     
 }
