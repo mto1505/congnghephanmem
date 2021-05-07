@@ -55,7 +55,6 @@ public class MenuFrame extends javax.swing.JFrame {
         c.setDashBoard(null, khachHangLabel);
         c.setEvent();
         welcomeUserLabel.setText("UserName");
-
     }
 
     /**
