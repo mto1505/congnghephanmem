@@ -6,6 +6,8 @@
 package com.mycompany.applicationmvc.view;
 
 import com.mycompany.applicationmvc.Utils.SessionUtil;
+import com.mycompany.applicationmvc.model.TaiKhoanModel;
+import com.mycompany.applicationmvc.serviceImpl.TaiKhoanService;
 import java.awt.BorderLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -20,9 +22,11 @@ public class SigninForm extends javax.swing.JFrame {
     /**
      * Creates new form SignupForm
      */
-    public SigninForm() {
+    public SigninForm(String userName) {
         initComponents();
         setAlwaysOnTop(true);
+        userNameField.setText(userName);
+
     }
 
     /**
@@ -35,36 +39,63 @@ public class SigninForm extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        LoginBtn = new javax.swing.JButton();
-        passWord = new javax.swing.JTextField();
-        userName = new javax.swing.JTextField();
+        dangNhapBtn = new javax.swing.JButton();
+        passWordField = new javax.swing.JTextField();
+        userNameField = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        thoatBtn = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        LoginBtn.setText("Đăng Nhập");
-        LoginBtn.addActionListener(new java.awt.event.ActionListener() {
+        dangNhapBtn.setText("Đăng Nhập");
+        dangNhapBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                LoginBtnActionPerformed(evt);
+                dangNhapBtnActionPerformed(evt);
             }
         });
 
-        passWord.addActionListener(new java.awt.event.ActionListener() {
+        passWordField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passWordActionPerformed(evt);
+                passWordFieldActionPerformed(evt);
             }
         });
 
-        userName.addActionListener(new java.awt.event.ActionListener() {
+        userNameField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                userNameActionPerformed(evt);
+                userNameFieldActionPerformed(evt);
             }
         });
 
         jLabel2.setIcon(new javax.swing.ImageIcon("E:\\BT-JAVA-WEB\\applicationMVC\\src\\main\\resource\\img\\key_30px.png")); // NOI18N
 
         jLabel1.setIcon(new javax.swing.ImageIcon("E:\\BT-JAVA-WEB\\applicationMVC\\src\\main\\resource\\img\\user_30px.png")); // NOI18N
+
+        thoatBtn.setText("Thoát");
+        thoatBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                thoatBtnActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        jLabel3.setText("Đăng Nhập");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel3)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -77,27 +108,35 @@ public class SigninForm extends javax.swing.JFrame {
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(userName, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
-                    .addComponent(passWord)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(44, 44, 44)
-                        .addComponent(LoginBtn)))
+                        .addComponent(dangNhapBtn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(thoatBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(userNameField, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
+                    .addComponent(passWordField))
                 .addContainerGap(99, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(79, 79, 79)
+                .addContainerGap()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(userName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(userNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(passWord, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(passWordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(LoginBtn)
-                .addContainerGap(101, Short.MAX_VALUE))
+                .addGap(20, 20, 20)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(dangNhapBtn)
+                    .addComponent(thoatBtn))
+                .addContainerGap(99, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -112,30 +151,40 @@ public class SigninForm extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(21, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void userNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userNameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_userNameActionPerformed
+    private void userNameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userNameFieldActionPerformed
+        TaiKhoanService taiKhoanService = new TaiKhoanService();
 
-    private void passWordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passWordActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_passWordActionPerformed
+    }//GEN-LAST:event_userNameFieldActionPerformed
 
-    private void LoginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginBtnActionPerformed
+    private void passWordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passWordFieldActionPerformed
         // TODO add your handling code here:
-        String pass=passWord.getText();
-        String user=userName.getText();
-        SessionUtil.putValue(user, pass);
-        
-        dispose();
-        
+    }//GEN-LAST:event_passWordFieldActionPerformed
+
+    private void dangNhapBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dangNhapBtnActionPerformed
+        // TODO add your handling code here:
+        String pass = passWordField.getText();
+        String user = userNameField.getText();
+        TaiKhoanService taiKhoanService = new TaiKhoanService();
+        //lay ra ten tài khoan
+        TaiKhoanModel model = new TaiKhoanModel();
+        model = taiKhoanService.findOne(user);
+
+        if (model != null) {
+            if (model.getMatKhau().equals(pass)) {
+                SessionUtil.putValue(user, model);
+                new MenuFrame(model).setVisible(true);
+                setVisible(false);
+            }
+        }
+
 //        JButton click = new JButton("click!");
 //          JTextField content = new JTextField (30);
 //        content.setText(" < -------------This is some content -------------- > ");
@@ -163,7 +212,11 @@ public class SigninForm extends javax.swing.JFrame {
 //                 } 
 //      });
 //        System.out.println("getRootPane().getGlassPane() "+getRootPane().getGlassPane());
-    }//GEN-LAST:event_LoginBtnActionPerformed
+    }//GEN-LAST:event_dangNhapBtnActionPerformed
+
+    private void thoatBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_thoatBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_thoatBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -192,21 +245,23 @@ public class SigninForm extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
-
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new SigninForm().setVisible(true);
+                new SigninForm("").setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton LoginBtn;
+    private javax.swing.JButton dangNhapBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField passWord;
-    private javax.swing.JTextField userName;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JTextField passWordField;
+    private javax.swing.JButton thoatBtn;
+    private javax.swing.JTextField userNameField;
     // End of variables declaration//GEN-END:variables
 }

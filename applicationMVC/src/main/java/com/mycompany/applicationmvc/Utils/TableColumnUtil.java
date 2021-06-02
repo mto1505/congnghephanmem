@@ -13,6 +13,7 @@ import javax.swing.table.TableModel;
  *
  * @author MinhTo
  */
+
 public class TableColumnUtil {
     public static void setTableColumnSize(JTable table,double tablePreferredWidth,int ...percentages)
             {

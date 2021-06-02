@@ -20,7 +20,7 @@ public class ValidationRegEx {
     private static final String textRegex = "^\\w+( +\\w+)*$";
     private static final String textAndNumRegex = "^[\\w\\d]+( +[\\w\\d]+)*$";
     private static final String tiengVietRegex = "([aàảãáạăằẳẵắặâầẩẫấậbcdđeèẻẽéẹêềểễếệfghiìỉĩíịjklmnoòỏõóọôồổỗốộơờởỡớợpqrstuùủũúụưừửữứựvwxyỳỷỹýỵz0-9_AĂÂÁẮẤÀẰẦẢẲẨÃẴẪẠẶẬĐEÊÉẾÈỀẺỂẼỄẸỆIÍÌỈĨỊOÔƠÓỐỚÒỒỜỎỔỞÕỖỠỌỘỢUƯÚỨÙỪỦỬŨỮỤỰYÝỲỶỸỴAĂÂÁẮẤÀẰẦẢẲẨÃẴẪẠẶẬĐEÊÉẾÈỀẺỂẼỄẸỆIÍÌỈĨỊOÔƠÓỐỚÒỒỜỎỔỞÕỖỠỌỘỢUƯÚỨÙỪỦỬŨỮỤỰYÝỲỶỸỴAĂÂÁẮẤÀẰẦẢẲẨÃẴẪẠẶẬĐEÊÉẾÈỀẺỂẼỄẸỆIÍÌỈĨỊOÔƠÓỐỚÒỒỜỎỔỞÕỖỠỌỘỢUƯÚỨÙỪỦỬŨỮỤỰYÝỲỶỸỴAĂÂÁẮẤÀẰẦẢẲẨÃẴẪẠẶẬĐEÊÉẾÈỀẺỂẼỄẸỆIÍÌỈĨỊOÔƠÓỐỚÒỒỜỎỔỞÕỖỠỌỘỢUƯÚỨÙỪỦỬŨỮỤỰYÝỲỶỸỴAĂÂÁẮẤÀẰẦẢẲẨÃẴẪẠẶẬĐEÊÉẾÈỀẺỂẼỄẸỆIÍÌỈĨỊOÔƠÓỐỚÒỒỜỎỔỞÕỖỠỌỘỢUƯÚỨÙỪỦỬŨỮỤỰYÝỲỶỸỴAĂÂÁẮẤÀẰẦẢẲẨÃẴẪẠẶẬĐEÊÉẾÈỀẺỂẼỄẸỆIÍÌỈĨỊOÔƠÓỐỚÒỒỜỎỔỞÕỖỠỌỘỢUƯÚỨÙỪỦỬŨỮỤỰYÝỲỶỸỴA-Z]+\\s?)+";
-    private static final String moneyFormatRegex = "(?<!\\.)(\\d)(?=(\\d{3})+(?!\\d))";
+    private static final String moneyFormatRegex = "(\\d)(?=(\\d{3})+(?!\\d))";
     //private static final String moneyRegex = "^[0-9]+(\\.\\d{3})?";
     private static final String moneyRegex = "^[0-9]+";
     private static final String numberRegex = "^[0-9]+";
@@ -71,13 +71,20 @@ public class ValidationRegEx {
     }
 
     public static String convertToMoneyFomart(String money) {
-        Pattern pattern = Pattern.compile(moneyFormatRegex);
-        Matcher matcher = pattern.matcher(money);
+        if (money.length() <= 15) {
+            Pattern pattern = Pattern.compile(moneyFormatRegex);
+            Matcher matcher = pattern.matcher(money);
+            //hạn mức 1 tỉ 1 món
 
-        String st = null;
-        st = matcher.replaceAll("$1,");
-       
-        return st;
+            String st = null;
+            st = matcher.replaceAll("$1,");
+
+            return st;
+
+        }
+        else{
+            return null;
+        }
 
     }
 
@@ -102,16 +109,16 @@ public class ValidationRegEx {
 //        System.out.println("so " + so);
 //        System.out.println("vung " + vung);
 
-//        String ten="Bùi Minh Tơ";
-//         System.out.println(validationTextRegex(ten));
+        String ten="minhto123";
+         System.out.println(validationTextAndNumRegex(ten));
 //         
 //          Pattern pattern = Pattern.compile(tiengVietRegex);
 //        Matcher matcher = pattern.matcher(ten);
 //        System.out.println(matcher.matches());
-        String money = "2000,000,009.777";
+        String money = "2000,000,009";
         System.out.println(money.indexOf('.'));
-        String r=money.substring(0, money.indexOf('.'));
-        System.out.println("rs"+ r);
+        String r = money.substring(0, money.indexOf('.'));
+        System.out.println("rs" + r);
         String result = convertToMoneyFomart(money);
         System.out.println(result);
         //đổi lại thành ban đầu

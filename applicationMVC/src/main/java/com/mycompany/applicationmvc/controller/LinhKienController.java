@@ -167,9 +167,9 @@ public class LinhKienController {
         maLinhKienField.setText(Integer.toString(linhKien.getId()));
         tenLinhKienField.setText(linhKien.getTenLinhKien());
         soLuongField.setText(Integer.toString(linhKien.getSoLuong()));
-        
+
         String origiFormat = Double.toString(linhKien.getGia());
-        BigDecimal bdec=new BigDecimal(linhKien.getGia(),new MathContext(19, RoundingMode.UP));
+        BigDecimal bdec = new BigDecimal(linhKien.getGia(), new MathContext(19, RoundingMode.UP));
 //        origiFormat = origiFormat.substring(0, origiFormat.indexOf('.'));
         String moneyFomart = ValidationRegEx.convertToMoneyFomart(bdec.toString());
         giaField.setText(moneyFomart);
@@ -185,6 +185,12 @@ public class LinhKienController {
     public void setViewNhaCungCap(NhaCungCapModel nhaCungCapModel) {
         errorTenNhaCC.setVisible(false);
         errorSoDienThoai.setVisible(false);
+        errorGia.setVisible(false);
+        errorMaLinhKien.setVisible(false);
+        errorNgayNhap.setVisible(false);
+        errorSoLuong.setVisible(false);
+        errorNhaCungCapComBoBox.setVisible(false);
+
 
         maNCCField.setText(Integer.toString(nhaCungCapModel.getId()));
         tenNCCField.setText(nhaCungCapModel.getTen());
@@ -196,6 +202,13 @@ public class LinhKienController {
     }
 
     public void setEvent() {
+           errorTenNhaCC.setVisible(false);
+        errorSoDienThoai.setVisible(false);
+        errorGia.setVisible(false);
+        errorMaLinhKien.setVisible(false);
+        errorNgayNhap.setVisible(false);
+        errorSoLuong.setVisible(false);
+        errorNhaCungCapComBoBox.setVisible(false);
         //Sự kiện Bảng Linh Kiện
         linhKienTable.addMouseListener(new MouseAdapter() {
             @Override
@@ -791,7 +804,7 @@ public class LinhKienController {
                 }
                 if (isValid) {
                     // cập nhật
-                    String maNhaCungCap=maNCCField.getText();
+                    String maNhaCungCap = maNCCField.getText();
                     String tenNhaCung = tenNCCField.getText();
                     String soDienThoai = soDienThoaiField.getText();
                     String ghiChu = ghiChuTextArea.getText();
@@ -800,7 +813,7 @@ public class LinhKienController {
                     }
                     NhaCungCapModel nhaCungCap = new NhaCungCapModel(Integer.parseInt(maNhaCungCap), tenNhaCung, ghiChu, soDienThoai);
                     NhaCungCapModel nhaCungCapOld = nhaCungCapService.findOne(Integer.parseInt(maNCCField.getText()));
-                 
+
                     if (!tenNhaCung.equals(nhaCungCapOld.getTen()) || !soDienThoai.equals(nhaCungCapOld.getSoDienThoai())) {
                         if (!tenNhaCung.equals(nhaCungCapOld.getTen())) {
                             if (nhaCungCapService.findOneByName(tenNhaCung) != null) {
@@ -812,8 +825,7 @@ public class LinhKienController {
                                     JOptionPane.showMessageDialog(panel, "Cập nhật thất bại", "Thông tin", JOptionPane.INFORMATION_MESSAGE);
                                 }
                             }
-                        }
-                        else if (!soDienThoai.equals(nhaCungCapOld.getSoDienThoai())) {
+                        } else if (!soDienThoai.equals(nhaCungCapOld.getSoDienThoai())) {
                             if (nhaCungCapService.findOneBySDT(soDienThoai) != null) {
                                 JOptionPane.showMessageDialog(panel, "Nhà Cung Cấp tồn tại", "Thông tin", JOptionPane.INFORMATION_MESSAGE);
                             } else {

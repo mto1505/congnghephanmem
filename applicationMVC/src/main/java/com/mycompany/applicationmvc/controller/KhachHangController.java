@@ -104,7 +104,7 @@ public class KhachHangController {
         this.ngaySinhJchooseDateField = ngaySinhJchooseDateField;
         this.soDienThoaiField = soDienThoaiField;
         this.timkiemSDTField = timkiemSDTField;
-        this.errorCMND = errorCMND;
+//        this.errorCMND = errorCMND;
         this.errorGioiTinh = errorGioiTinh;
         this.errorHoVaTen = errorHoVaTen;
 
@@ -119,10 +119,11 @@ public class KhachHangController {
 
     public void setView(KhachHangModel khachHang) {
         this.errorSoDienThoai.setVisible(false);
-        this.errorCMND.setVisible(false);
+//        this.errorCMND.setVisible(false);
         this.errorHoVaTen.setVisible(false);
         this.errorNgaySinh.setVisible(false);
         this.errorGioiTinh.setVisible(false);
+       
 
         maKHField.setText(String.valueOf(khachHang.getMaKH()));
         hoTenField.setText(khachHang.getHoTen());
@@ -141,11 +142,21 @@ public class KhachHangController {
     public void setEvent() {
 
         this.errorSoDienThoai.setVisible(false);
-        this.errorCMND.setVisible(false);
+     
         this.errorHoVaTen.setVisible(false);
         this.errorNgaySinh.setVisible(false);
         this.errorGioiTinh.setVisible(false);
-
+        timkiemSDTField.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                    if(e.getClickCount()==2)
+                        {
+                            timkiemSDTField.setText("");
+                        }
+            }
+            
+        });
+        
         tableKhachHang.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {

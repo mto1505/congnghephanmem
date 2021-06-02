@@ -6,26 +6,47 @@
 package com.mycompany.applicationmvc.view;
 
 import com.mycompany.applicationmvc.Utils.SessionUtil;
+import com.mycompany.applicationmvc.Utils.ValidationRegEx;
+import com.mycompany.applicationmvc.model.TaiKhoanModel;
+import com.mycompany.applicationmvc.serviceImpl.TaiKhoanService;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author MinhTo
  */
 public class ChangePassWordDialog extends javax.swing.JDialog {
-       private String userName;
-       private String matKhau;
-       
+
+    private String userName;
+    private String matKhau;
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getMatKhau() {
+        return matKhau;
+    }
+
+    public void setMatKhau(String matKhau) {
+        this.matKhau = matKhau;
+    }
+
     /**
      * Creates new form ChangePassWord
      */
-    public ChangePassWordDialog(java.awt.Frame parent, boolean modal,String userName,String matKhauHienTai) {
+    public ChangePassWordDialog(java.awt.Frame parent, boolean modal, String userName, String matKhauHienTai) {
         super(parent, modal);
-        this.userName=userName;
-        this.matKhau=matKhauHienTai;
+        this.userName = userName;
+        this.matKhau = matKhauHienTai;
         initComponents();
         setLocationRelativeTo(null);
         setVisible(true);
-        
+
     }
 
     /**
@@ -166,47 +187,44 @@ public class ChangePassWordDialog extends javax.swing.JDialog {
 
     private void doiMatKhaubtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_doiMatKhaubtnActionPerformed
         // TODO add your handling code here:
-        
-        String pass=matKhauMoi.getText();
-        String user=matKhauHienTai.getText();
-        //kiểm tra User có tồn tại
-        
-        
-        //Lay ra tài khoản cần đổi
-        
 
-        //Tiến hành đổi mật khẩu
-        
-        SessionUtil.putValue(user, pass);
-        dispose();
+        TaiKhoanModel taiKhoanModel = new TaiKhoanModel(userName, matKhau, null, null);
+        String matKhauCurrent = this.matKhauHienTai.getText();
+        String matKhauNew = matKhauMoi.getText();
+        String nhapLai = xacNhanMatKhauMoi.getText();
+        if (matKhauCurrent.equals(matKhau))// kiểm tra mật khẩu hiện tại
+        {
+            if (ValidationRegEx.validationTextAndNumRegex(matKhauNew)) {//  kiểm tra đinh dạng mật khaur mới
+                if (matKhauNew.equals(nhapLai)) { // kiểm tra trùng 
+                    if (matKhauNew.equals(matKhauHienTai)) { // so sánh mật khảu mới vs hiện tại
+                        JOptionPane.showMessageDialog(this, "Mật khẩu hiện tại phải khác mật khẩu mới");
+                    } else {
+                        TaiKhoanService taikhoanService = new TaiKhoanService();
+                        taiKhoanModel.setMatKhau(matKhauNew);
+                        taiKhoanModel = taikhoanService.update(taiKhoanModel);
+                        if (taiKhoanModel != null) {
+                            JOptionPane.showMessageDialog(this, "Cập nhật mật khẩu thành công");
+                            SessionUtil.removeSession(userName);
+                            SessionUtil.putValue(userName, taiKhoanModel);
+                            dispose();
+                        } else {
+                            JOptionPane.showMessageDialog(this, "Cập nhật mật khẩu thất bại");
+                        }
+                    }
 
-        //        JButton click = new JButton("click!");
-        //          JTextField content = new JTextField (30);
-        //        content.setText(" < -------------This is some content -------------- > ");
-        ////frame. getContentPane () returns the underlying ContentPane
-        //        JPanel panel = (JPanel)getContentPane();
-        //
-        //        panel.setLayout(new BorderLayout());
-        //        panel.add(content,BorderLayout.CENTER);
-        //
-        //      //  getRootPane().getGlassPane().setVisible(true);
-        //     JPanel glass = (JPanel)getGlassPane();
-        //
-        //       glass.setVisible(true);
-        //       glass.setLayout(new BorderLayout());
-        //       glass.add(click, BorderLayout.SOUTH);
-        //
-        //       click.addActionListener(e -> {
-            //                  if(panel.isVisible())
-            //                  {
-                //                          panel.setVisible(false);
-                //                  }
-            //                   else
-            //                 {
-                //                          panel.setVisible(true);
-                //                 }
-            //      });
-    //        System.out.println("getRootPane().getGlassPane() "+getRootPane().getGlassPane());
+                } else {
+                    JOptionPane.showMessageDialog(this, "Mật khẩu nhập lại không khớp");
+                }
+            }
+            else{
+            JOptionPane.showMessageDialog(this, "Mật khẩu mới sai định dạng");
+            }
+        }
+        else{
+          JOptionPane.showMessageDialog(this, "Mật khẩu hiện tại không chính xác");
+        }
+
+
     }//GEN-LAST:event_doiMatKhaubtnActionPerformed
 
     private void matKhauMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_matKhauMoiActionPerformed
@@ -219,50 +237,51 @@ public class ChangePassWordDialog extends javax.swing.JDialog {
 
     private void xacNhanMatKhauMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_xacNhanMatKhauMoiActionPerformed
         // TODO add your handling code here:
+//        
     }//GEN-LAST:event_xacNhanMatKhauMoiActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ChangePassWordDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ChangePassWordDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ChangePassWordDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ChangePassWordDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-//             //   ChangePassWordDialog dialog = new ChangePassWordDialog(new javax.swing.JFrame(), true,"MinhTo");
-//                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-//                    @Override
-//                    public void windowClosing(java.awt.event.WindowEvent e) {
-//                        System.exit(0);
-//                    }
-//                });
-//                dialog.setVisible(true);
-            }
-        });
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(ChangePassWordDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(ChangePassWordDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(ChangePassWordDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(ChangePassWordDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//        //</editor-fold>
+//
+//        /* Create and display the dialog */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+////             //   ChangePassWordDialog dialog = new ChangePassWordDialog(new javax.swing.JFrame(), true,"MinhTo");
+////                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+////                    @Override
+////                    public void windowClosing(java.awt.event.WindowEvent e) {
+////                        System.exit(0);
+////                    }
+////                });
+////                dialog.setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton doiMatKhaubtn;

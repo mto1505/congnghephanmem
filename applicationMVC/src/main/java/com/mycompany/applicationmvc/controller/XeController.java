@@ -348,6 +348,7 @@ public class XeController {
         this.errorChuSoHuu.setVisible(false);
         this.errorSoDienThoai.setVisible(false);
         this.errorLoaiXe.setVisible(false);
+        
         this.getBienSoField().setText(xe.getBienSo());
         this.getTenXeMayField().setText(xe.getTenXe());
         this.getChuSoHuuField().setText(xe.getKhachHang().getHoTen());
@@ -459,6 +460,11 @@ public class XeController {
     }
 
     public void setEvent() {
+        this.errorTenXe.setVisible(false);
+        this.errorBienSo.setVisible(false);
+        this.errorChuSoHuu.setVisible(false);
+        this.errorSoDienThoai.setVisible(false);
+        this.errorLoaiXe.setVisible(false);
         themXeBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

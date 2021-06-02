@@ -14,14 +14,14 @@ import javax.swing.JLabel;
  *
  * @author MinhTo
  */
-public class Home extends javax.swing.JFrame {
+public class TestHome extends javax.swing.JFrame {
 
     /**
-     * Creates new form Home
+     * Creates new form TestHome
      */
     private SigninForm signupForm;
     
-    public Home() {
+    public TestHome() {
         initComponents();
         signupForm=null;
         dangXuat.setVisible(false);
@@ -259,32 +259,32 @@ public class Home extends javax.swing.JFrame {
 
     private void dangNhapMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dangNhapMouseClicked
         // TODO add your handling code here:
-        if(signupForm==null){
-        signupForm=new SigninForm();
-        signupForm.setVisible(true);
-        signupForm.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        signupForm.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosed(WindowEvent e) {
-                System.out.println("windownnClosing");
-                String name=SessionUtil.userCurrent;
-                System.out.println("name" + name);
-                labelName.setText(name);
-                 //To change body of generated methods, choose Tools | Templates.
-           
-            }
-
-           
-        });
-        }
-        else
-            {
-                signupForm.setVisible(true);
-                signupForm.toFront();
-                signupForm.requestFocus();
-            }
-        
-        
+//        if(signupForm==null){
+//        signupForm=new SigninForm();
+//        signupForm.setVisible(true);
+//        signupForm.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+//        signupForm.addWindowListener(new WindowAdapter() {
+//            @Override
+//            public void windowClosed(WindowEvent e) {
+//                System.out.println("windownnClosing");
+//                String name=SessionUtil.userCurrent;
+//                System.out.println("name" + name);
+//                labelName.setText(name);
+//                 //To change body of generated methods, choose Tools | Templates.
+//           
+//            }
+//
+//           
+//        });
+//        }
+//        else
+//            {
+//                signupForm.setVisible(true);
+//                signupForm.toFront();
+//                signupForm.requestFocus();
+//            }
+//        
+//        
     }//GEN-LAST:event_dangNhapMouseClicked
 
     private void dangXuatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dangXuatMouseClicked
@@ -331,37 +331,38 @@ public class Home extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Home().setVisible(true);
-            }
-        });
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(TestHome.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(TestHome.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(TestHome.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(TestHome.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new TestHome().setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel chucNang1;

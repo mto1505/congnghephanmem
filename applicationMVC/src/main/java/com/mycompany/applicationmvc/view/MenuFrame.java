@@ -6,8 +6,10 @@
 package com.mycompany.applicationmvc.view;
 
 import com.mycompany.applicationmvc.Bean.DanhMucBean;
+import com.mycompany.applicationmvc.Utils.SessionUtil;
 import com.mycompany.applicationmvc.controller.PersonController;
 import com.mycompany.applicationmvc.controller.SwitchController;
+import com.mycompany.applicationmvc.model.TaiKhoanModel;
 import com.mycompany.applicationmvc.service.PersonService;
 import com.mycompany.applicationmvc.serviceImpl.PersonServiceImpl;
 import java.awt.BorderLayout;
@@ -36,13 +38,14 @@ import javax.swing.table.TableModel;
  * @author MinhTo
  */
 public class MenuFrame extends javax.swing.JFrame {
-     // private TaiKhoan taiKhoan;
+      private TaiKhoanModel taiKhoanModel;
+    
     
     /**
      * Creates new form ListMenuFrame
      */
     //CONTRUCTOR CÓ 1 THAM SỐ TÀI KHOẢN
-    public MenuFrame() {
+    public MenuFrame(TaiKhoanModel taiKhoan) {
         initComponents();
         //setVisible(true);
         List<DanhMucBean> listDanhMuc = new ArrayList<>();
@@ -54,7 +57,13 @@ public class MenuFrame extends javax.swing.JFrame {
         SwitchController c = new SwitchController(this, Panels, listDanhMuc);
         c.setDashBoard(null, khachHangLabel);
         c.setEvent();
-        welcomeUserLabel.setText("UserName");
+        listQuanTri.setVisible(false);//ẩn danh sách quyền quản trị
+        taiKhoanModel=taiKhoan;
+        if(!taiKhoanModel.getQuyen().equals("Quản Lý"))
+            {
+                quanTri.setVisible(false);
+            }   
+        welcomeUserLabel.setText(taiKhoanModel.getTenNhanVien());      
     }
 
     /**
@@ -71,11 +80,10 @@ public class MenuFrame extends javax.swing.JFrame {
         doimatkhau = new javax.swing.JMenuItem();
         dangxuat = new javax.swing.JMenuItem();
         Panels = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
         menuPanel = new javax.swing.JPanel();
-        trangChinhLabel = new javax.swing.JLabel();
         khachHangLabel = new javax.swing.JLabel();
         xeLabel = new javax.swing.JLabel();
-        quanLiLK = new javax.swing.JLabel();
         dichVuBD = new javax.swing.JLabel();
         quanTri = new javax.swing.JLabel();
         listQuanTri = new javax.swing.JPanel();
@@ -86,6 +94,11 @@ public class MenuFrame extends javax.swing.JFrame {
         linhKienLabel = new javax.swing.JLabel();
         donBaoDuongLabel = new javax.swing.JLabel();
         welcomeUserLabel = new javax.swing.JLabel();
+        trangChinhLabel = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         thongtin.setText("Thông tin");
         thongtin.addActionListener(new java.awt.event.ActionListener() {
@@ -104,30 +117,47 @@ public class MenuFrame extends javax.swing.JFrame {
         popDown.add(doimatkhau);
 
         dangxuat.setText("Đăng xuất");
+        dangxuat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dangxuatActionPerformed(evt);
+            }
+        });
         popDown.add(dangxuat);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        Panels.setBackground(new java.awt.Color(204, 204, 255));
         Panels.setPreferredSize(new java.awt.Dimension(990, 650));
+
+        jLabel5.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel5.setText("Quản lí đơn bảo dưỡng");
 
         javax.swing.GroupLayout PanelsLayout = new javax.swing.GroupLayout(Panels);
         Panels.setLayout(PanelsLayout);
         PanelsLayout.setHorizontalGroup(
             PanelsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(PanelsLayout.createSequentialGroup()
+                .addGap(274, 274, 274)
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(384, Short.MAX_VALUE))
         );
         PanelsLayout.setVerticalGroup(
             PanelsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(PanelsLayout.createSequentialGroup()
+                .addGap(145, 145, 145)
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        trangChinhLabel.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        trangChinhLabel.setForeground(new java.awt.Color(255, 0, 0));
-        trangChinhLabel.setText("Home");
+        menuPanel.setBackground(new java.awt.Color(243, 243, 244));
+        menuPanel.setForeground(new java.awt.Color(0, 0, 61));
+        menuPanel.setPreferredSize(new java.awt.Dimension(155, 700));
 
         khachHangLabel.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        khachHangLabel.setForeground(new java.awt.Color(0, 0, 204));
-        khachHangLabel.setText("Quản Lí Khách Hàng");
+        khachHangLabel.setForeground(new java.awt.Color(0, 0, 61));
+        khachHangLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        khachHangLabel.setText("Khách Hàng");
         khachHangLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 khachHangLabelMouseClicked(evt);
@@ -135,29 +165,22 @@ public class MenuFrame extends javax.swing.JFrame {
         });
 
         xeLabel.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        xeLabel.setForeground(new java.awt.Color(0, 0, 204));
-        xeLabel.setText("Quản Lí Xe");
+        xeLabel.setForeground(new java.awt.Color(0, 0, 61));
+        xeLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        xeLabel.setText("Xe");
         xeLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 xeLabelMouseClicked(evt);
             }
         });
 
-        quanLiLK.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        quanLiLK.setForeground(new java.awt.Color(0, 0, 204));
-        quanLiLK.setText("Quản lí .....");
-        quanLiLK.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                quanLiLKMouseClicked(evt);
-            }
-        });
-
         dichVuBD.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        dichVuBD.setForeground(new java.awt.Color(0, 0, 204));
-        dichVuBD.setText("Dịch Vụ Bảo Dưỡng");
+        dichVuBD.setForeground(new java.awt.Color(0, 0, 61));
+        dichVuBD.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        dichVuBD.setText("Dịch Vụ");
 
         quanTri.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        quanTri.setForeground(new java.awt.Color(0, 0, 204));
+        quanTri.setForeground(new java.awt.Color(0, 0, 61));
         quanTri.setText("Quản Trị");
         quanTri.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -165,18 +188,31 @@ public class MenuFrame extends javax.swing.JFrame {
             }
         });
 
+        listQuanTri.setBackground(new java.awt.Color(255, 255, 255));
         listQuanTri.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 listQuanTriMouseClicked(evt);
             }
         });
 
+        quyen1.setBackground(new java.awt.Color(255, 255, 255));
+        quyen1.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        quyen1.setForeground(new java.awt.Color(0, 0, 61));
         quyen1.setText("quyền 1");
 
+        quyen2.setBackground(new java.awt.Color(255, 255, 255));
+        quyen2.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        quyen2.setForeground(new java.awt.Color(0, 0, 61));
         quyen2.setText("quyền 2");
 
+        quyen3.setBackground(new java.awt.Color(255, 255, 255));
+        quyen3.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        quyen3.setForeground(new java.awt.Color(0, 0, 61));
         quyen3.setText("quyền 3");
 
+        quyen4.setBackground(new java.awt.Color(255, 255, 255));
+        quyen4.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        quyen4.setForeground(new java.awt.Color(0, 0, 61));
         quyen4.setText("quyền 4");
 
         javax.swing.GroupLayout listQuanTriLayout = new javax.swing.GroupLayout(listQuanTri);
@@ -207,8 +243,9 @@ public class MenuFrame extends javax.swing.JFrame {
         );
 
         linhKienLabel.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        linhKienLabel.setForeground(new java.awt.Color(0, 0, 204));
-        linhKienLabel.setText("Quản lí Linh Kiện");
+        linhKienLabel.setForeground(new java.awt.Color(0, 0, 61));
+        linhKienLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        linhKienLabel.setText("Linh Kiện");
         linhKienLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 linhKienLabelMouseClicked(evt);
@@ -218,7 +255,7 @@ public class MenuFrame extends javax.swing.JFrame {
         donBaoDuongLabel.setText("Don bao duong");
 
         welcomeUserLabel.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        welcomeUserLabel.setForeground(new java.awt.Color(0, 0, 255));
+        welcomeUserLabel.setForeground(new java.awt.Color(0, 0, 61));
         welcomeUserLabel.setText("Minh Tơ");
         welcomeUserLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -226,63 +263,90 @@ public class MenuFrame extends javax.swing.JFrame {
             }
         });
 
+        trangChinhLabel.setIcon(new javax.swing.ImageIcon("C:\\Users\\MinhTo\\Documents\\GitHub\\congnghephanmem\\applicationMVC\\src\\main\\resource\\img\\home_30px.png")); // NOI18N
+
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\MinhTo\\Documents\\GitHub\\congnghephanmem\\applicationMVC\\src\\main\\resource\\img\\people_30px.png")); // NOI18N
+
+        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\MinhTo\\Documents\\GitHub\\congnghephanmem\\applicationMVC\\src\\main\\resource\\img\\motorcycle_30px.png")); // NOI18N
+
+        jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\MinhTo\\Documents\\GitHub\\congnghephanmem\\applicationMVC\\src\\main\\resource\\img\\support_30px.png")); // NOI18N
+
+        jLabel4.setIcon(new javax.swing.ImageIcon("C:\\Users\\MinhTo\\Documents\\GitHub\\congnghephanmem\\applicationMVC\\src\\main\\resource\\img\\numbered_list_30px.png")); // NOI18N
+
         javax.swing.GroupLayout menuPanelLayout = new javax.swing.GroupLayout(menuPanel);
         menuPanel.setLayout(menuPanelLayout);
         menuPanelLayout.setHorizontalGroup(
             menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menuPanelLayout.createSequentialGroup()
+                .addGroup(menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, menuPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addGroup(menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(linhKienLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(dichVuBD, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(menuPanelLayout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addGroup(menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(menuPanelLayout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(18, 18, 18)
+                                .addComponent(xeLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, menuPanelLayout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(18, 18, 18)
+                                .addComponent(khachHangLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE)))))
+                .addGap(17, 17, 17))
             .addGroup(menuPanelLayout.createSequentialGroup()
                 .addGroup(menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(menuPanelLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(xeLabel)
-                            .addComponent(khachHangLabel)
-                            .addComponent(dichVuBD)
-                            .addComponent(quanTri, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(quanTri, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(menuPanelLayout.createSequentialGroup()
                         .addGap(22, 22, 22)
                         .addComponent(listQuanTri, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(menuPanelLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(linhKienLabel))
-                    .addGroup(menuPanelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(quanLiLK))
-                    .addGroup(menuPanelLayout.createSequentialGroup()
-                        .addContainerGap()
                         .addComponent(donBaoDuongLabel))
-                    .addGroup(menuPanelLayout.createSequentialGroup()
-                        .addGap(44, 44, 44)
-                        .addComponent(trangChinhLabel))
-                    .addGroup(menuPanelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(welcomeUserLabel)))
+                    .addComponent(welcomeUserLabel))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menuPanelLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(trangChinhLabel)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         menuPanelLayout.setVerticalGroup(
             menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(menuPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(welcomeUserLabel)
-                .addGap(1, 1, 1)
-                .addComponent(trangChinhLabel)
+                .addComponent(welcomeUserLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(khachHangLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(52, 52, 52)
-                .addComponent(xeLabel)
-                .addGap(62, 62, 62)
-                .addComponent(linhKienLabel)
-                .addGap(64, 64, 64)
-                .addComponent(dichVuBD)
-                .addGap(64, 64, 64)
-                .addComponent(quanTri)
+                .addComponent(trangChinhLabel)
+                .addGap(18, 18, 18)
+                .addGroup(menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel1)
+                    .addComponent(khachHangLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(22, 22, 22)
+                .addGroup(menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(xeLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(26, 26, 26)
+                .addGroup(menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(linhKienLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(37, 37, 37)
+                .addGroup(menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(dichVuBD, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(152, 152, 152)
+                .addComponent(quanTri, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(listQuanTri, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(donBaoDuongLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
-                .addComponent(quanLiLK, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(81, Short.MAX_VALUE))
+                .addContainerGap(99, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -290,10 +354,9 @@ public class MenuFrame extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(menuPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Panels, javax.swing.GroupLayout.DEFAULT_SIZE, 1035, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(menuPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(Panels, javax.swing.GroupLayout.DEFAULT_SIZE, 981, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -318,21 +381,12 @@ public class MenuFrame extends javax.swing.JFrame {
 //        cardLayout.show(Panels, "card3");
     }//GEN-LAST:event_xeLabelMouseClicked
 
-    private void quanLiLKMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_quanLiLKMouseClicked
-        // TODO add your handling code here:
-//        CardLayout cardLayout = (CardLayout) Panels.getLayout();
-//        cardLayout.show(Panels, "card4");
-    }//GEN-LAST:event_quanLiLKMouseClicked
-
     private void listQuanTriMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listQuanTriMouseClicked
         // TODO add your handling code here:
         listQuanTri.getRootPane();
     }//GEN-LAST:event_listQuanTriMouseClicked
 
     private void quanTriMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_quanTriMouseClicked
-        // TODO add your handling code here:
-//        PersonService personService = new PersonServiceImpl();
-//        personService.find();
 
         if (listQuanTri.isVisible()) {
             listQuanTri.setVisible(false);
@@ -356,47 +410,56 @@ public class MenuFrame extends javax.swing.JFrame {
 
     private void doimatkhauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_doimatkhauActionPerformed
         // TODO add your handling code here
-        JDialog dialogChangePassword = new ChangePassWordDialog(null, true, "username", "123");
-        int x = (this.getWidth() / 2) - (dialogChangePassword.getWidth() / 2);
-        int y = (this.getHeight() / 2) - (dialogChangePassword.getHeight() / 2);
-
+        
+        JDialog dialogChangePassword = new ChangePassWordDialog(null, true, taiKhoanModel.getTenTaiKhoan(), taiKhoanModel.getMatKhau());
+//        int x = (this.getWidth() / 2) - (dialogChangePassword.getWidth() / 2);
+//        int y = (this.getHeight() / 2) - (dialogChangePassword.getHeight() / 2);
+        taiKhoanModel=(TaiKhoanModel) SessionUtil.getValue(taiKhoanModel.getTenTaiKhoan());
+        welcomeUserLabel.setText(taiKhoanModel.getTenNhanVien()); 
     }//GEN-LAST:event_doimatkhauActionPerformed
+
+    private void dangxuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dangxuatActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        new SigninForm(taiKhoanModel.getTenTaiKhoan()).setVisible(true);
+    
+    }//GEN-LAST:event_dangxuatActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MenuFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MenuFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MenuFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MenuFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MenuFrame().setVisible(true);
-            }
-        });
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        <editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(MenuFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(MenuFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(MenuFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(MenuFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        </editor-fold>
+//        </editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new MenuFrame(null).setVisible(true);
+//            }
+//        });
+//    }
 
     public JLabel getQuanLiKH() {
         return khachHangLabel;
@@ -421,12 +484,16 @@ public class MenuFrame extends javax.swing.JFrame {
     private javax.swing.JLabel dichVuBD;
     private javax.swing.JMenuItem doimatkhau;
     private javax.swing.JLabel donBaoDuongLabel;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel khachHangLabel;
     private javax.swing.JLabel linhKienLabel;
     private javax.swing.JPanel listQuanTri;
     private javax.swing.JPanel menuPanel;
     private javax.swing.JPopupMenu popDown;
-    private javax.swing.JLabel quanLiLK;
     private javax.swing.JLabel quanTri;
     private javax.swing.JLabel quyen1;
     private javax.swing.JLabel quyen2;

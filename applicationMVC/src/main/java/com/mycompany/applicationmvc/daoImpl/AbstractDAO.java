@@ -27,7 +27,7 @@ public class AbstractDAO<T> implements GenericDAO<T> {
 
     public Connection getConnection() {
         Connection con = null;
-        String url = "jdbc:sqlserver://DESKTOP-QK1KP4V\\SQLMINHTO:1433;databaseName=QUANLYBAODUONG";
+        String url = "jdbc:sqlserver://MinhTo-PC\\SQLMINHTO:1433;databaseName=QUANLYBAODUONG";
         try {
 
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
