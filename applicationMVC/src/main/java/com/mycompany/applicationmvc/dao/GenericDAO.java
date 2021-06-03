@@ -8,14 +8,16 @@ package com.mycompany.applicationmvc.dao;
 import com.mycompany.applicationmvc.mapper.RowMapper;
 import java.util.List;
 
-
 /**
  *
  * @author MinhTo
  */
 public interface GenericDAO<T> {
-      <T> List<T> query(String sql,RowMapper<T> mapper,Object ...paramater);
-         void update (String sql, Object... parameters);
-	int insert (String sql, Object... parameters);  
-      
+
+    <T> List<T> query(String sql, RowMapper<T> mapper, Object... paramater);
+
+    void update(String sql, Object... parameters);
+
+    int insert(String sql, Object... parameters);
+
 }

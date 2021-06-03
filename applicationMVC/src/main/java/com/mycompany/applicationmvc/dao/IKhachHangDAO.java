@@ -16,10 +16,15 @@ import java.util.List;
 public interface IKhachHangDAO extends GenericDAO<KhachHangModel> {
 
     KhachHangModel findOne(int id);
+
     KhachHangModel findOneByCMND(String cmnd);
-     KhachHangModel findOneByNameAndSDT(String name,String sdt);
+
+    KhachHangModel findOneByNameAndSDT(String name, String sdt);
+
     List<KhachHangModel> findByCategoryId(Long categoryId);
-  KhachHangModel findOneBySDT(String sdt);
+
+    KhachHangModel findOneBySDT(String sdt);
+
     int save(KhachHangModel KhachHangModel);
 
     void update(KhachHangModel updateNhanVien);
@@ -29,4 +34,5 @@ public interface IKhachHangDAO extends GenericDAO<KhachHangModel> {
     List<KhachHangModel> findAll();
 
     int getTotalItem();
+    
 }

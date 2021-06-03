@@ -30,6 +30,11 @@ public class LinhKienMapper implements RowMapper<LinhKienModel>{
             nhaCungCap.setId(rs.getInt("nhacungcap"));
             linhKien.setNhaCungCap(nhaCungCap);
             linhKien.setNgayNhap(rs.getDate("ngaynhap"));
+            try {
+                linhKien.setSoLuongTrongDonBaoDuong(rs.getInt("ctsl"));
+            } catch (SQLException e) {
+                linhKien.setSoLuongTrongDonBaoDuong(0);
+            }
             return linhKien;
         } catch (SQLException ex) {
             Logger.getLogger(LinhKienMapper.class.getName()).log(Level.SEVERE, null, ex);

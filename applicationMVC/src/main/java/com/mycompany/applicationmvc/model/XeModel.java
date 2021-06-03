@@ -5,8 +5,6 @@
  */
 package com.mycompany.applicationmvc.model;
 
-import java.util.Date;
-
 /**
  *
  * @author MinhTo

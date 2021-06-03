@@ -12,13 +12,25 @@ import java.sql.Date;
  * @author MinhTo
  */
 public class NhanVienModel {
-   public String id;
-   public String tenNhanVien;
-   public String soCMND;
-   public String gioiTinh;
-   public String soDienThoai;
-   public Date ngaySinh; // null
-   public String trinhDo;
+
+    public String id;
+    public String tenNhanVien;
+    public String soCMND;
+    public String gioiTinh;
+    public String soDienThoai;
+    public Date ngaySinh; // null
+    public String trinhDo;
+
+    public NhanVienModel(String id, String tenNhanVien, String soCMND, String gioiTinh, String soDienThoai) {
+        this.id = id;
+        this.tenNhanVien = tenNhanVien;
+        this.soCMND = soCMND;
+        this.gioiTinh = gioiTinh;
+        this.soDienThoai = soDienThoai;
+    }
+
+    public NhanVienModel() {
+    }
 
     public String getId() {
         return id;
@@ -75,5 +87,5 @@ public class NhanVienModel {
     public void setTrinhDo(String trinhDo) {
         this.trinhDo = trinhDo;
     }
-   
+
 }

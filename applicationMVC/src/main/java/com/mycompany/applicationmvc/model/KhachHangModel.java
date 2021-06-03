@@ -30,6 +30,13 @@ public class KhachHangModel {
         this.ngaySinh = ngaySinh;
         this.soDienThoai = soDienThoai;
     }
+
+    public KhachHangModel(int maKH, String hoTen, String gioiTinh, String soDienThoai) {
+        this.maKH = maKH;
+        this.hoTen = hoTen;
+        this.gioiTinh = gioiTinh;
+        this.soDienThoai = soDienThoai;
+    }
     
    
 

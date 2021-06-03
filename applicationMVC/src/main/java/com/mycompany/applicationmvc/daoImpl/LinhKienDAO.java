@@ -9,7 +9,12 @@ import com.mycompany.applicationmvc.dao.ILinhKienDAO;
 import com.mycompany.applicationmvc.mapper.LinhKienMapper;
 import com.mycompany.applicationmvc.mapper.RowMapper;
 import com.mycompany.applicationmvc.model.LinhKienModel;
+import java.sql.Connection;
 import java.sql.Date;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -34,6 +39,11 @@ public class LinhKienDAO extends AbstractDAO<LinhKienModel> implements ILinhKien
     @Override
     public int insert(LinhKienModel linhKien) {
         String sql="insert into LinhKien (tenlinhkien,soluong,gia,nhacungcap,ngaynhap) values(?,?,?,?,?)";
+        
+        if(linhKien.getNgayNhapString() != null){
+            return insert(sql,linhKien.getTenLinhKien(),linhKien.getSoLuong(),linhKien.getGia(),linhKien.getNhaCungCap().getId(),linhKien.getNgayNhapString());
+        }
+        
         return insert(sql,linhKien.getTenLinhKien(),linhKien.getSoLuong(),linhKien.getGia(),linhKien.getNhaCungCap().getId(),new Date(linhKien.getNgayNhap().getTime()));
     }
 
@@ -69,7 +79,5 @@ public class LinhKienDAO extends AbstractDAO<LinhKienModel> implements ILinhKien
         String sql="delete from LinhKien where idnhacungcap=?";
         update(sql, idNhaCungCap);
     }
-    
-   
     
 }
