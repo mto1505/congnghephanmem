@@ -22,8 +22,7 @@ public class LoaiXeService implements ILoaiXeService {
     public LoaiXeModel save(LoaiXeModel LoaiXeModel) {
         int id=loaiXeDao.save(LoaiXeModel);
         return loaiXeDao.findOne(id);
-        
-       
+
     }
 
     @Override
@@ -52,6 +51,8 @@ public class LoaiXeService implements ILoaiXeService {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-   
+    public LoaiXeModel findOne(int id){
+        return loaiXeDao.findOne(id);
+    }
     
 }

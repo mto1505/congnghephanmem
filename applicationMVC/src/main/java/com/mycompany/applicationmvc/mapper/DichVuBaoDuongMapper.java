@@ -23,12 +23,12 @@ public class DichVuBaoDuongMapper implements RowMapper<DichVuBaoDuongModel> {
         try {
             DichVuBaoDuongModel dichVuBaoDuongModel = new DichVuBaoDuongModel();
             dichVuBaoDuongModel.setId(rs.getInt("id"));
-            dichVuBaoDuongModel.setLoaiXe(rs.getString("idLoaiXe"));
+            dichVuBaoDuongModel.setIdLoaiXe(rs.getInt("idLoaiXe"));
             dichVuBaoDuongModel.setNgayCapNhat(rs.getString("NgayCapNhat"));
-            dichVuBaoDuongModel.setTrangThai(rs.getInt("TrangThai") + "");
+            dichVuBaoDuongModel.setTrangThai(!rs.getBoolean("TrangThai"));
             dichVuBaoDuongModel.setPhi(rs.getInt("Phi"));
             dichVuBaoDuongModel.setTenDichVuBaoDuong(rs.getString("Ten"));
-
+            
             try {
                 dichVuBaoDuongModel.setSoLuongTrongHoaDon(rs.getInt("ctsl"));
                 dichVuBaoDuongModel.setNv(rs.getInt("idNhanVienPhuTrach"));

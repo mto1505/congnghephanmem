@@ -5,6 +5,8 @@
  */
 package com.mycompany.applicationmvc.dao;
 
+import com.mycompany.applicationmvc.model.ChiTietDonBaoDuongModel;
+import com.mycompany.applicationmvc.model.ChiTietThayTheLinhKienModel;
 import com.mycompany.applicationmvc.model.DichVuBaoDuongModel;
 import com.mycompany.applicationmvc.model.DonBaoDuongModel;
 import com.mycompany.applicationmvc.model.LinhKienModel;
@@ -33,7 +35,7 @@ public interface IDonBaoDuongDAO extends GenericDAO<DonBaoDuongModel> {
 
     void themChiTietThayTheLinhKienTrongDonBaoDuong(int idDonBaoDuong, int idLinhKien, String ngayCapNhatLinhKien, int soLuong,String ghiChu);
 
-    List<LinhKienModel> layDanhSachThayTheLinhKienTrongDonBaoDuong(int idDonBaoDuong);
+    List<ChiTietThayTheLinhKienModel> layDanhSachThayTheLinhKienTrongDonBaoDuong(int idDonBaoDuong);
     
     //Dich vu Bao duong
     void xoaTatCaChiTietDichVuBaoDuongTrongDonBaoDuong(int idDonBaoDuong);
@@ -42,7 +44,7 @@ public interface IDonBaoDuongDAO extends GenericDAO<DonBaoDuongModel> {
 
     void themChiTietDichVuBaoDuongTrongDonBaoDuong(int idDonBaoDuong, int idDichVuBaoDuong, String ngayCapNhatDichVuBaoDuong, int idNhanVienPhuTrach, int soLuong, int phuPhi);
 
-    List<DichVuBaoDuongModel> layDanhSachDichVuBaoDuongTrongDonBaoDuong(int idDonBaoDuong);
+    List<ChiTietDonBaoDuongModel> layDanhSachDichVuBaoDuongTrongDonBaoDuong(int idDonBaoDuong);
 
     
     

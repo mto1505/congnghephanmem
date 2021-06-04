@@ -6,6 +6,7 @@
 package com.mycompany.applicationmvc.daoImpl;
 
 import com.mycompany.applicationmvc.dao.INhanVienDAO;
+import com.mycompany.applicationmvc.mapper.NhanVienMapper;
 import com.mycompany.applicationmvc.mapper.RowMapper;
 import com.mycompany.applicationmvc.model.NhanVienModel;
 import java.util.List;
@@ -43,7 +44,8 @@ public class NhanVienDAO implements INhanVienDAO{
 
     @Override
     public List<NhanVienModel> findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String q  = "SELECT * FROM NhanVien";
+        return query(q, new NhanVienMapper());
     }
 
     @Override

@@ -14,8 +14,8 @@ public class DichVuBaoDuongModel {
     private int id;
     private String tenDichVuBaoDuong;
     private long phi;
-    private String loaiXe;
-    private String trangThai;
+    private int idLoaiXe;
+    private boolean trangThai;
     private int SoLuongTrongHoaDon;
     private long phuPhiTrongHoaDon;
     private int idNhanVienTrongHoaDon;
@@ -24,28 +24,28 @@ public class DichVuBaoDuongModel {
     public DichVuBaoDuongModel() {
     }
 
-    public DichVuBaoDuongModel(int id, String tenDichVuBaoDuong, long phi, String loaiXe, String trangThai ,String ngayCapNhat) {
+    public DichVuBaoDuongModel(int id, String tenDichVuBaoDuong, long phi, int loaiXe, boolean trangThai ,String ngayCapNhat) {
         this.id = id;
         this.tenDichVuBaoDuong = tenDichVuBaoDuong;
         this.phi = phi;
-        this.loaiXe = loaiXe;
+        this.idLoaiXe = loaiXe;
         this.trangThai = trangThai;
         this.ngayCapNhat = ngayCapNhat;
     }
 
-    public DichVuBaoDuongModel(int id, String tenDichVuBaoDuong, long phi, String loaiXe) {
+    public DichVuBaoDuongModel(int id, String tenDichVuBaoDuong, long phi, int loaiXe) {
         this.id = id;
         this.tenDichVuBaoDuong = tenDichVuBaoDuong;
         this.phi = phi;
-        this.loaiXe = loaiXe;
+        this.idLoaiXe = loaiXe;
 
     }
 
-    public DichVuBaoDuongModel(int id, String tenDichVuBaoDuong, long phi, String loaiXe, String trangThai, int SoLuongTrongHoaDon, long phuPhi, int nv) {
+    public DichVuBaoDuongModel(int id, String tenDichVuBaoDuong, long phi, int loaiXe, boolean trangThai, int SoLuongTrongHoaDon, long phuPhi, int nv) {
         this.id = id;
         this.tenDichVuBaoDuong = tenDichVuBaoDuong;
         this.phi = phi;
-        this.loaiXe = loaiXe;
+        this.idLoaiXe = loaiXe;
         this.trangThai = trangThai;
         this.SoLuongTrongHoaDon = SoLuongTrongHoaDon;
         this.phuPhiTrongHoaDon = phuPhi;
@@ -92,13 +92,7 @@ public class DichVuBaoDuongModel {
         this.id = id;
     }
 
-    public String getTrangThai() {
-        return trangThai;
-    }
 
-    public void setTrangThai(String trangThai) {
-        this.trangThai = trangThai;
-    }
 
     public String getTenDichVuBaoDuong() {
         return tenDichVuBaoDuong;
@@ -116,12 +110,38 @@ public class DichVuBaoDuongModel {
         this.phi = phi;
     }
 
-    public String getLoaiXe() {
-        return loaiXe;
+    public int getIdLoaiXe() {
+        return idLoaiXe;
     }
 
-    public void setLoaiXe(String loaiXe) {
-        this.loaiXe = loaiXe;
+    public void setIdLoaiXe(int idLoaiXe) {
+        this.idLoaiXe = idLoaiXe;
     }
+
+    public boolean isTrangThai() {
+        return trangThai;
+    }
+
+    public void setTrangThai(boolean trangThai) {
+        this.trangThai = trangThai;
+    }
+
+    public long getPhuPhiTrongHoaDon() {
+        return phuPhiTrongHoaDon;
+    }
+
+    public void setPhuPhiTrongHoaDon(long phuPhiTrongHoaDon) {
+        this.phuPhiTrongHoaDon = phuPhiTrongHoaDon;
+    }
+
+    public int getIdNhanVienTrongHoaDon() {
+        return idNhanVienTrongHoaDon;
+    }
+
+    public void setIdNhanVienTrongHoaDon(int idNhanVienTrongHoaDon) {
+        this.idNhanVienTrongHoaDon = idNhanVienTrongHoaDon;
+    }
+
+
 
 }

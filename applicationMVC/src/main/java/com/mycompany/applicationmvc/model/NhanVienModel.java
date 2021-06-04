@@ -20,6 +20,7 @@ public class NhanVienModel {
     public String soDienThoai;
     public Date ngaySinh; // null
     public String trinhDo;
+    public String ngaySinhString;
 
     public NhanVienModel(String id, String tenNhanVien, String soCMND, String gioiTinh, String soDienThoai) {
         this.id = id;
@@ -30,6 +31,14 @@ public class NhanVienModel {
     }
 
     public NhanVienModel() {
+    }
+
+    public String getNgaySinhString() {
+        return ngaySinhString;
+    }
+
+    public void setNgaySinhString(String ngaySinhString) {
+        this.ngaySinhString = ngaySinhString;
     }
 
     public String getId() {

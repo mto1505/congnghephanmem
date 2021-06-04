@@ -38,9 +38,14 @@ public class XeDAO extends AbstractDAO<XeModel> implements IXeDAO {
 
     @Override
     public String save(XeModel xeModel) {
-        String sqlString = new String("insert into XeMay (bienso,tenxe,idChuSoHuu,idLoaiXe) values(?,?,?,?)");
-        int st = insert(sqlString, xeModel.getBienSo(), xeModel.getTenXe(), xeModel.getKhachHang().getMaKH(), xeModel.getLoaixe().getMaLoaiXe());
-        //To change body of generated methods, choose Tools | Templates.\
+        int st;
+        if (xeModel.getKhachHang() == null) {
+            String sqlString = new String("insert into XeMay (bienso,tenxe,idLoaiXe) values(?,?,?)");
+            st = insert(sqlString, xeModel.getBienSo(), xeModel.getTenXe(), xeModel.getLoaixe().getMaLoaiXe());
+        } else {
+            String sqlString = new String("insert into XeMay (bienso,tenxe,idChuSoHuu,idLoaiXe) values(?,?,?,?)");
+            st = insert(sqlString, xeModel.getBienSo(), xeModel.getTenXe(), xeModel.getKhachHang().getMaKH(), xeModel.getLoaixe().getMaLoaiXe());
+        }//To change body of generated methods, choose Tools | Templates.\
         if (st != -1) {
             return xeModel.getBienSo();
         } else {
@@ -81,20 +86,18 @@ public class XeDAO extends AbstractDAO<XeModel> implements IXeDAO {
 
     @Override
     public void deleteByMaChuSoHuu(int maChuSoHuu) {
-         StringBuilder sqlString = new StringBuilder("delete from XeMay where idChuSoHuu=?");
-        update(sqlString.toString(), maChuSoHuu );
+        StringBuilder sqlString = new StringBuilder("delete from XeMay where idChuSoHuu=?");
+        update(sqlString.toString(), maChuSoHuu);
     }
 
     @Override
     public List<XeModel> findByMaChuSoHuu(int maChuSoHuu) {
-         String sqlString = new String("select bienso,tenxe,ten,sdt,tenloai,gioitinh from XeMay as xe "
+        String sqlString = new String("select bienso,tenxe,ten,sdt,tenloai,gioitinh from XeMay as xe "
                 + "\n join KhachHang kh on kh.id=xe.idChuSoHuu and xe.idChuSoHuu=?"
                 + "\n join LoaiXe loaixe on xe.idLoaiXe=loaixe.id");
         List<XeModel> xelist = query(sqlString, new XeMapper(), maChuSoHuu);
         //To change body of generated methods, choose Tools | Templates.
-       return xelist;
+        return xelist;
     }
 
-  
-    
 }

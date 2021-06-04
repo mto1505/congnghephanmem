@@ -5,7 +5,7 @@
  */
 package com.mycompany.applicationmvc.controller;
 
-import View.DonBaoDuongPanel;
+import com.mycompany.applicationmvc.view.DonBaoDuong.*;
 import com.mycompany.applicationmvc.Bean.DanhMucBean;
 import com.mycompany.applicationmvc.view.HomePanel;
 import com.mycompany.applicationmvc.view.KhachHangPanel;

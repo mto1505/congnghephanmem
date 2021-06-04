@@ -6,12 +6,16 @@
 package com.mycompany.applicationmvc.daoImpl;
 
 import com.mycompany.applicationmvc.dao.IDonBaoDuongDAO;
-import com.mycompany.applicationmvc.mapper.DichVuBaoDuongMapper;
+import com.mycompany.applicationmvc.mapper.ChiTietDonBaoDuongMapper;
+import com.mycompany.applicationmvc.mapper.ChiTietThayTheLinhKienMapper;
 import com.mycompany.applicationmvc.mapper.DonBaoDuongMapper;
-import com.mycompany.applicationmvc.mapper.LinhKienMapper;
-import com.mycompany.applicationmvc.model.DichVuBaoDuongModel;
+import com.mycompany.applicationmvc.mapper.PhuTungMapper;
+import com.mycompany.applicationmvc.mapper.TrangThaiXeMapper;
+import com.mycompany.applicationmvc.model.ChiTietDonBaoDuongModel;
+import com.mycompany.applicationmvc.model.ChiTietThayTheLinhKienModel;
 import com.mycompany.applicationmvc.model.DonBaoDuongModel;
-import com.mycompany.applicationmvc.model.LinhKienModel;
+import com.mycompany.applicationmvc.model.PhuTungModel;
+import com.mycompany.applicationmvc.model.TrangThaiXeModel;
 import java.util.List;
 
 /**
@@ -65,6 +69,11 @@ public class DonBaoDuongDAO extends AbstractDAO<DonBaoDuongModel> implements IDo
         }
     }
 
+    public void xoaDonBaoDuong(int idDonBaoDuong) {
+        String q = "DELETE FROM DonBaoDuong WHERE DonBaoDuong.idDonBaoDuong = ?";
+        update(q, idDonBaoDuong);
+    }
+
     @Override
     public List<DonBaoDuongModel> timTatCaDonBaoDuong() {
         String q = "SELECT TOP 100 * FROM DonBaoDuong ORDER BY id DESC;";
@@ -112,11 +121,11 @@ public class DonBaoDuongDAO extends AbstractDAO<DonBaoDuongModel> implements IDo
     }
 
     @Override
-    public List<LinhKienModel> layDanhSachThayTheLinhKienTrongDonBaoDuong(int idDonBaoDuong) {
-        String q = "Select LinhKien.*, ChiTietThayTheLinhKien.SoLuong AS ctsl "
-                + "FROM LinhKien join ChiTietThayTheLinhKien ON LinhKien.id = ChiTietThayTheLinhKien.idLinkKien AND LinhKien.NgayNhap = ChiTietThayTheLinhKien.NgayNhapLinhKien "
-                + "WHERE ChiTietThayTheLinhKien.idDonBaoDuong = ?";
-        return query(q, new LinhKienMapper(), idDonBaoDuong);
+    public List<ChiTietThayTheLinhKienModel> layDanhSachThayTheLinhKienTrongDonBaoDuong(int idDonBaoDuong) {
+        String q = "Select * "
+                + "FROM ChiTietThayTheLinhKien "
+                + "WHERE idDonBaoDuong = ?";
+        return query(q, new ChiTietThayTheLinhKienMapper(), idDonBaoDuong);
     }
 
     @Override
@@ -142,14 +151,37 @@ public class DonBaoDuongDAO extends AbstractDAO<DonBaoDuongModel> implements IDo
     }
 
     @Override
-    public List<DichVuBaoDuongModel> layDanhSachDichVuBaoDuongTrongDonBaoDuong(int idDonBaoDuong) {
-        String q = "SELECT DichVuBaoDuong.*, ChiTietDonBaoDuong.SoLuong as ctsl "
-                + "FROM DichVuBaoDuong join ChiTietDonBaoDuong "
-                + "ON DichVuBaoDuong.id = ChiTietDonBaoDuong.idDichVuBaoDuong "
-                + "AND DichVuBaoDuong.NgayCapNhat = ChiTietDonBaoDuong.NgayCapNhatDichVuBaoDuong "
-                + "WHERE ChiTietDonBaoDuong.idDonBaoDuong = ?";
-        return query(q, new DichVuBaoDuongMapper(), idDonBaoDuong);
+    public List<ChiTietDonBaoDuongModel> layDanhSachDichVuBaoDuongTrongDonBaoDuong(int idDonBaoDuong) {
+        String q = "Select * "
+                + "FROM ChiTietDonBaoDuong "
+                + "WHERE idDonBaoDuong = ?";
+        return query(q, new ChiTietDonBaoDuongMapper(), idDonBaoDuong);
     }
 
-    
+    public List<PhuTungModel> layDanhSachTatCaPhuTung() {
+        String q = "SELECT * FROM PhuTungCanKiemTra";
+        return query(q, new PhuTungMapper());
+    }
+
+    public List<PhuTungModel> layDanhSachTatCaPhuTung(boolean trangThai) {
+        String q = "SELECT * FROM PhuTungCanKiemTra ";
+        if (trangThai) {
+            q = q + "WHERE PhuTungCanKiemTra.TrangThai = 0 OR  PhuTungCanKiemTra.TrangThai IS NULL";
+        } else {
+            q = q + "WHERE PhuTungCanKiemTra.TrangThai = 1";
+        }
+        return query(q, new PhuTungMapper());
+    }
+
+    public List<TrangThaiXeModel> layDanhSachPhuTungTrongDonBaoDuong(int idDonBaoDuong) {
+        String q = "SELECT * FROM ChiTietTrangThaiKhiTiepNhanXe "
+                + "WHERE ChiTietTrangThaiKhiTiepNhanXe.idDonBaoDuong = ?";
+
+        return query(q, new TrangThaiXeMapper(), idDonBaoDuong);
+    }
+
+    public void xoaTatCaTrangThaiPhuTungTrongDonBaoDuong(int idDonBaoDuong) {
+        String q = "DELETE FROM ChiTietTrangThaiKhiTiepNhanXe WHERE ChiTietTrangThaiKhiTiepNhanXe.idDonBaoDuong = ?";
+        update(q, idDonBaoDuong);
+    }
 }
