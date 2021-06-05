@@ -25,4 +25,8 @@ public class DichVuBaoDuongService implements IDichVuBaoDuongService {
     public List<DichVuBaoDuongModel> layDanhSachDichVuBaoDuongMoiNhat() {
         return dichVuBaoDuongDAO.timTatCaDichVuBaoDuongMoiNhat();
     }
+    
+    public DichVuBaoDuongModel timDichVuBaoDuongTheoIDVaNgayCapNhat(int id, String ngayCapNhat){
+        return dichVuBaoDuongDAO.timDichVuBaoDuongTheoIDvaNgay(id, ngayCapNhat);
+    }
 }

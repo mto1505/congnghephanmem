@@ -44,7 +44,7 @@ public interface IDonBaoDuongDAO extends GenericDAO<DonBaoDuongModel> {
 
     void themChiTietDichVuBaoDuongTrongDonBaoDuong(int idDonBaoDuong, int idDichVuBaoDuong, String ngayCapNhatDichVuBaoDuong, int idNhanVienPhuTrach, int soLuong, int phuPhi);
 
-    List<ChiTietDonBaoDuongModel> layDanhSachDichVuBaoDuongTrongDonBaoDuong(int idDonBaoDuong);
+    List<ChiTietDonBaoDuongModel> layDanhSachChiTietDonBaoDuongTrongDonBaoDuong(int idDonBaoDuong);
 
     
     

@@ -50,14 +50,21 @@ public class DichVuBaoDuongDAO extends AbstractDAO<DichVuBaoDuongModel> implemen
                 + "SELECT DichVuBaoDuong.* from DichVuBaoDuong ,temporaryTable "
                 + "WHERE DichVuBaoDuong.id = temporaryTable.id "
                 + "AND DichVuBaoDuong.NgayCapNhat = temporaryTable.NgayCapNhat ";
-                
-        
-        if(trangThai) {
-            q+= "AND (DichVuBaoDuong.TrangThai = 0 OR DichVuBaoDuong.TrangThai IS NULL)";
-        }else{
-            q+= "AND DichVuBaoDuong.TrangThai = 1";
+
+        if (trangThai) {
+            q += "AND (DichVuBaoDuong.TrangThai = 0 OR DichVuBaoDuong.TrangThai IS NULL)";
+        } else {
+            q += "AND DichVuBaoDuong.TrangThai = 1";
         }
         return query(q, new DichVuBaoDuongMapper());
     }
 
+    public DichVuBaoDuongModel timDichVuBaoDuongTheoIDvaNgay(int id, String ngayCapNhat) {
+        String q = "SELECT * FROM DichVuBaoDuong WHERE id = ? AND NgayCapNhat = '?'";
+        List<DichVuBaoDuongModel> temp = query(q, new DichVuBaoDuongMapper(), id, ngayCapNhat);
+        if(temp.get(0) != null){
+            return temp.get(0);
+        }
+        return null;
+    }
 }

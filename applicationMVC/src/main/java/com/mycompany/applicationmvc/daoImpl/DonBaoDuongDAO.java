@@ -9,12 +9,11 @@ import com.mycompany.applicationmvc.dao.IDonBaoDuongDAO;
 import com.mycompany.applicationmvc.mapper.ChiTietDonBaoDuongMapper;
 import com.mycompany.applicationmvc.mapper.ChiTietThayTheLinhKienMapper;
 import com.mycompany.applicationmvc.mapper.DonBaoDuongMapper;
-import com.mycompany.applicationmvc.mapper.PhuTungMapper;
 import com.mycompany.applicationmvc.mapper.TrangThaiXeMapper;
 import com.mycompany.applicationmvc.model.ChiTietDonBaoDuongModel;
 import com.mycompany.applicationmvc.model.ChiTietThayTheLinhKienModel;
+import com.mycompany.applicationmvc.model.DichVuBaoDuongModel;
 import com.mycompany.applicationmvc.model.DonBaoDuongModel;
-import com.mycompany.applicationmvc.model.PhuTungModel;
 import com.mycompany.applicationmvc.model.TrangThaiXeModel;
 import java.util.List;
 
@@ -128,6 +127,12 @@ public class DonBaoDuongDAO extends AbstractDAO<DonBaoDuongModel> implements IDo
         return query(q, new ChiTietThayTheLinhKienMapper(), idDonBaoDuong);
     }
 
+    public void capNhatChiTietThayTheLinhKienTrongDonBaoDuong(ChiTietThayTheLinhKienModel c) {
+        String q = "UPDATE ChiTietThayTheLinhKien SET SoLuong = ?, GhiChu = ?"
+                + "WHERE idDonBaoDuong = ? AND idLinkKien = ? AND NgayNhapLinhKien = ?";
+        update(q, c.getSoLuong(), c.getGhiChu(), c.getIdDonBaoDuong(), c.getIdLinkKien(), c.getNgayNhapLinhKien());
+    }
+
     @Override
     public void xoaTatCaChiTietDichVuBaoDuongTrongDonBaoDuong(int idDonBaoDuong) {
         String q = "DELETE FROM ChiTietDonBaoDuong WHERE ChiTietDonBaoDuong.idDonBaoDuong = ?";
@@ -151,28 +156,13 @@ public class DonBaoDuongDAO extends AbstractDAO<DonBaoDuongModel> implements IDo
     }
 
     @Override
-    public List<ChiTietDonBaoDuongModel> layDanhSachDichVuBaoDuongTrongDonBaoDuong(int idDonBaoDuong) {
+    public List<ChiTietDonBaoDuongModel> layDanhSachChiTietDonBaoDuongTrongDonBaoDuong(int idDonBaoDuong) {
         String q = "Select * "
                 + "FROM ChiTietDonBaoDuong "
                 + "WHERE idDonBaoDuong = ?";
         return query(q, new ChiTietDonBaoDuongMapper(), idDonBaoDuong);
     }
-
-    public List<PhuTungModel> layDanhSachTatCaPhuTung() {
-        String q = "SELECT * FROM PhuTungCanKiemTra";
-        return query(q, new PhuTungMapper());
-    }
-
-    public List<PhuTungModel> layDanhSachTatCaPhuTung(boolean trangThai) {
-        String q = "SELECT * FROM PhuTungCanKiemTra ";
-        if (trangThai) {
-            q = q + "WHERE PhuTungCanKiemTra.TrangThai = 0 OR  PhuTungCanKiemTra.TrangThai IS NULL";
-        } else {
-            q = q + "WHERE PhuTungCanKiemTra.TrangThai = 1";
-        }
-        return query(q, new PhuTungMapper());
-    }
-
+    
     public List<TrangThaiXeModel> layDanhSachPhuTungTrongDonBaoDuong(int idDonBaoDuong) {
         String q = "SELECT * FROM ChiTietTrangThaiKhiTiepNhanXe "
                 + "WHERE ChiTietTrangThaiKhiTiepNhanXe.idDonBaoDuong = ?";
@@ -183,5 +173,11 @@ public class DonBaoDuongDAO extends AbstractDAO<DonBaoDuongModel> implements IDo
     public void xoaTatCaTrangThaiPhuTungTrongDonBaoDuong(int idDonBaoDuong) {
         String q = "DELETE FROM ChiTietTrangThaiKhiTiepNhanXe WHERE ChiTietTrangThaiKhiTiepNhanXe.idDonBaoDuong = ?";
         update(q, idDonBaoDuong);
+    }
+
+    public void themTrangThaiPhuTungTrongDonBaoDuong(TrangThaiXeModel t) {
+        String q = "INSERT INTO ChiTietTrangThaiKhiTiepNhanXe (idDonBaoDuong,idPhuTungCanKiemTra,idTrangThaiPhuTung) "
+                + "VALUES (?,?,?)";
+        insert(q, t.getIdDonBaoDuong(),t.getIdPhuTung(),t.getTrangThai());
     }
 }
