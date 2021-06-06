@@ -25,18 +25,18 @@ import javax.swing.JPanel;
  * @author MinhTo
  */
 public class SwitchController {
-    
+
     private JFrame jFrameMain;
     private JPanel jPaneRoot;
     private String kindSelected;
     List<DanhMucBean> listDanhMucBeans;
-    
-    public SwitchController(JFrame jFrameMain,JPanel jPaneRoot, List<DanhMucBean> listDanhMucBeans) {
-        this.jFrameMain=jFrameMain;
+
+    public SwitchController(JFrame jFrameMain, JPanel jPaneRoot, List<DanhMucBean> listDanhMucBeans) {
+        this.jFrameMain = jFrameMain;
         this.jPaneRoot = jPaneRoot;
         this.listDanhMucBeans = listDanhMucBeans;
     }
-    
+
     public JPanel getjPaneRoot() {
         return jPaneRoot;
     }
@@ -61,27 +61,26 @@ public class SwitchController {
         this.jFrameMain = jFrameMain;
     }
 
-    public void setDashBoard(JPanel jpn,JLabel jlb)
-    {
-         JPanel node=new KhachHangPanel(jFrameMain);
-         //dựa vào jlb lấy kind ra trong List danh mục bean;
-          getjPaneRoot().removeAll();
-           getjPaneRoot().setLayout(new BorderLayout());
-           getjPaneRoot().add(node);
-           getjPaneRoot().validate(); // nếu một compontent có đầy đủ kích thước khi đó nó duocjd gọi là valid
-           getjPaneRoot().repaint();
-           jlb.setBackground(new Color(96, 100, 191));
-           // tô màu Danh mục panel,lable dựa vào kind 
+    public void setDashBoard(JPanel jpn, JLabel jlb) {
+        JPanel node = new KhachHangPanel(jFrameMain);
+        //dựa vào jlb lấy kind ra trong List danh mục bean;
+        getjPaneRoot().removeAll();
+        getjPaneRoot().setLayout(new BorderLayout());
+        getjPaneRoot().add(node);
+        getjPaneRoot().validate(); // nếu một compontent có đầy đủ kích thước khi đó nó duocjd gọi là valid
+        getjPaneRoot().repaint();
+        jlb.setBackground(new Color(96, 100, 191));
+        // tô màu Danh mục panel,lable dựa vào kind 
     }
-    
-    public void setEvent()
-    {
-        for (DanhMucBean danhMucBean : listDanhMucBeans){
-            danhMucBean.getJlb().addMouseListener(new LabelEvent(danhMucBean.getKind(),danhMucBean.getJpn(),null,danhMucBean.getJlb()));
+
+    public void setEvent() {
+        for (DanhMucBean danhMucBean : listDanhMucBeans) {
+            danhMucBean.getJlb().addMouseListener(new LabelEvent(danhMucBean.getKind(), danhMucBean.getJpn(), null, danhMucBean.getJlb()));
         }
     }
-    
-  class LabelEvent extends MouseAdapter {
+
+    class LabelEvent extends MouseAdapter {
+
         String kind;  // thể loại Panel cần hiện thị
         JPanel jpn;// chua label
         JPanel node; //panel cần hiển thị
@@ -93,43 +92,33 @@ public class SwitchController {
             this.node = node;
             this.label = label;
         }
-       
+
         @Override
         public void mouseClicked(MouseEvent e) {
             setKindSelected(kind);
-            
-            if("trangChinh".equals(kind))
-            {
-                node=new HomePanel();
-            }
-            else if(kind.equals("khachHangPage"))
-            {
-                node=new KhachHangPanel(jFrameMain);
-            }
-            else if(kind.equals("xePage"))
-            {
-                node=new XePanel();
-            }
-            else if(kind.equals("linhKienPage"))
-            {
-                node=new LinhKienPanel();
-            }
-             else if(kind.equals("donBaoDuongPage"))
-            {
-                node=new DonBaoDuongPanel();
+
+            if ("trangChinh".equals(kind)) {
+                node = new HomePanel();
+            } else if (kind.equals("khachHangPage")) {
+                node = new KhachHangPanel(jFrameMain);
+            } else if (kind.equals("xePage")) {
+                node = new XePanel();
+            } else if (kind.equals("linhKienPage")) {
+                node = new LinhKienPanel();
+            } else if (kind.equals("donBaoDuongPage")) {
+                node = new DonBaoDuongPanel();
                 // new Model()
-                
+
                 //new Controller(model,node)
-               
             }
-           getjPaneRoot().removeAll();
-           getjPaneRoot().setLayout(new BorderLayout());
-           getjPaneRoot().add(node);
-           getjPaneRoot().validate(); // nếu một compontent có đầy đủ kích thước khi đó nó duocjd gọi là valid
-           getjPaneRoot().repaint();
-           setChangeBackground(kind); // tô màu Danh mục panel,lable 
+            getjPaneRoot().removeAll();
+            getjPaneRoot().setLayout(new BorderLayout());
+            getjPaneRoot().add(node);
+            getjPaneRoot().validate(); // nếu một compontent có đầy đủ kích thước khi đó nó duocjd gọi là valid
+            getjPaneRoot().repaint();
+            setChangeBackground(kind); // tô màu Danh mục panel,lable 
         }
-        
+
 //        @Override
 //        public void mouseExited(MouseEvent e) {
 //            super.mouseExited(e); //To change body of generated methods, choose Tools | Templates.
@@ -139,13 +128,13 @@ public class SwitchController {
 //                }
 //        }
     }
-   public void setChangeBackground(String kind)
-            {
-                for (DanhMucBean ds :listDanhMucBeans ) {
-                    if(ds.getKind().equals(kind))
-                    ds.getJlb().setBackground(new Color(96, 100, 191));  // khi dduojc nhán                  
-                }
+
+    public void setChangeBackground(String kind) {
+        for (DanhMucBean ds : listDanhMucBeans) {
+            if (ds.getKind().equals(kind)) {
+                ds.getJlb().setBackground(new Color(96, 100, 191));  // khi dduojc nhán                  
             }
-       
-            
+        }
+    }
+
 }
