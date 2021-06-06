@@ -16,7 +16,7 @@ import java.util.Stack;
  */
 import java.sql.Connection;
 import java.sql.DriverManager;
-impoadasdrt java.sql.SQLException;
+import java.sql.SQLException;
 
 public class DBConnectUtil {
 
