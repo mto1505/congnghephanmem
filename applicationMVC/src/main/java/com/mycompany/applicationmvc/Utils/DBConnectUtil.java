@@ -23,7 +23,7 @@ public class DBConnectUtil {
     private static ThreadLocal<Connection> tl = new ThreadLocal<>();
     private static PropertiseUtil propertiesUtil = new PropertiseUtil();
 
-    private static String url = propertiesUtil.getValue("url", "jdbc:sqlserver://DESKTOP-QK1KP4V\\SQLMINHTO:1433;databaseName=QuanLyBaoDuong");
+    private static String url = propertiesUtil.getValue("url", "jdbc:sqlserver://DESKTOP-8AQ0FSN\\SQLMINHTO:1433;databaseName=QuanLyBaoDuong");
     private static String driver = propertiesUtil.getValue("driver", "com.microsoft.sqlserver.jdbc.SQLServerDriver");
     private static String username = propertiesUtil.getValue("username", "minhto");
     private static String password = propertiesUtil.getValue("password", "minhto123");
