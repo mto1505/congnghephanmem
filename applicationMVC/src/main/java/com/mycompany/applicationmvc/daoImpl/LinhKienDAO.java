@@ -62,7 +62,7 @@ public class LinhKienDAO extends AbstractDAO<LinhKienModel> implements ILinhKien
 
     @Override
     public LinhKienModel findOneByName(String ten) {
-                String sql="select  * from LinhKien where tenlinhkien=?";
+                String sql="select  * from LinhKien where tenlinhkien=N'?'";
         List<LinhKienModel> listLinhKien=query(sql, new LinhKienMapper(),ten);
         return listLinhKien.isEmpty()? null:listLinhKien.get(0);
     }

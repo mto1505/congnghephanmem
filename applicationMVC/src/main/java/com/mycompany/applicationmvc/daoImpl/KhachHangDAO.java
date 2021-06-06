@@ -49,7 +49,7 @@ public class KhachHangDAO extends AbstractDAO<KhachHangModel> implements IKhachH
 
     @Override
     public KhachHangModel findOneByNameAndSDT(String name, String sdt) {
-        String sqlString = new String("select * from KhachHang where ten=? and sdt=?");
+        String sqlString = new String("select * from KhachHang where ten=N'?' and sdt=?");
         List<KhachHangModel> khachHanglist = query(sqlString, new KhachHangMapper(), name, sdt);
         //To change body of generated methods, choose Tools | Templates.
         return khachHanglist.isEmpty() ? null : khachHanglist.get(0);
@@ -62,13 +62,13 @@ public class KhachHangDAO extends AbstractDAO<KhachHangModel> implements IKhachH
 
     @Override
     public int save(KhachHangModel khachHangModel) {
-        StringBuilder stringSQL = new StringBuilder("insert into KhachHang (ten,sdt,gioitinh,ngaysinh) values (?,?,?,?)");
+        StringBuilder stringSQL = new StringBuilder("insert into KhachHang (ten,sdt,gioitinh,ngaysinh) values (N'?',?,N'?',?)");
         // LocalDate dateLocal = khachHangModel.getNgaySinh().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         if (khachHangModel.getNgaySinh() != null) {
             return insert(stringSQL.toString(), khachHangModel.getHoTen(), khachHangModel.getSoDienThoai(),
                     khachHangModel.getGioiTinh(), new Date(khachHangModel.getNgaySinh().getTime()));
         } else {
-            stringSQL = new StringBuilder("insert into KhachHang (ten,sdt,gioitinh) values (?,?,?)");
+            stringSQL = new StringBuilder("insert into KhachHang (ten,sdt,gioitinh) values (N'?',?,N'?')");
             return insert(stringSQL.toString(), khachHangModel.getHoTen(), khachHangModel.getSoDienThoai(),
                     khachHangModel.getGioiTinh());
 
@@ -77,12 +77,12 @@ public class KhachHangDAO extends AbstractDAO<KhachHangModel> implements IKhachH
 
     @Override
     public void update(KhachHangModel khachHangModel) {
-        StringBuilder sqlString = new StringBuilder("update KhachHang set ten=?,sdt=?,gioitinh=?,ngaysinh=? where id=?");
+        StringBuilder sqlString = new StringBuilder("update KhachHang set ten=N'?',sdt=?,gioitinh=N'?',ngaysinh=? where id=?");
         if (khachHangModel.getNgaySinh() != null) {
             update(sqlString.toString(), khachHangModel.getHoTen(), khachHangModel.getSoDienThoai(),
                     khachHangModel.getGioiTinh(), new Date(khachHangModel.getNgaySinh().getTime()), khachHangModel.getMaKH());
         } else {
-            sqlString = new StringBuilder("update KhachHang set ten=?,sdt=?,gioitinh=?, ngaysinh=? where id=?");
+            sqlString = new StringBuilder("update KhachHang set ten=N'?',sdt=?,gioitinh=N'?', ngaysinh=? where id=?");
             update(sqlString.toString(), khachHangModel.getHoTen(), khachHangModel.getSoDienThoai(),
                     khachHangModel.getGioiTinh(), (java.sql.Date) new Date(0), khachHangModel.getMaKH());
         } //(java.sql.Date) new Date(0)

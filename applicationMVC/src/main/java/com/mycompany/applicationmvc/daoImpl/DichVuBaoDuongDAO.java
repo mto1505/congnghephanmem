@@ -19,7 +19,7 @@ public class DichVuBaoDuongDAO extends AbstractDAO<DichVuBaoDuongModel> implemen
     @Override
     public void themDichVuBaoDuong(DichVuBaoDuongModel d) {
         String q = "INSERT INTO DichVuBaoDuong(Ten,idLoaiXe,Phi,TrangThai,NgayCapNhat) "
-                + "VALUES (?,?,?,?,?)";
+                + "VALUES (N'?',?,?,?,?)";
         int tt = d.isTrangThai() ? 0 : 1;
         insert(q, d.getTenDichVuBaoDuong(), d.getIdLoaiXe(), d.getPhi(), tt, d.getNgayCapNhat());
     }
