@@ -25,7 +25,7 @@ public class LinhKienDAO extends AbstractDAO<LinhKienModel> implements ILinhKien
 
     @Override
     public void update(LinhKienModel linhKien) {
-        String  sql="update LinhKien set tenlinhkien=?,soluong=?,gia=?,nhacungcap=? where id=?" ;
+        String  sql="update LinhKien set tenlinhkien=N'?',soluong=?,gia=?,nhacungcap=? where id=?" ;
         update(sql, linhKien.getTenLinhKien(),linhKien.getSoLuong(),linhKien.getGia(),linhKien.getNhaCungCap().getId(),linhKien.getId());
     }
 
@@ -38,7 +38,7 @@ public class LinhKienDAO extends AbstractDAO<LinhKienModel> implements ILinhKien
 
     @Override
     public int insert(LinhKienModel linhKien) {
-        String sql="insert into LinhKien (tenlinhkien,soluong,gia,nhacungcap,ngaynhap) values(?,?,?,?,?)";
+        String sql="insert into LinhKien (tenlinhkien,soluong,gia,nhacungcap,ngaynhap) values(N'?',?,?,?,?)";
         
         if(linhKien.getNgayNhapString() != null){
             return insert(sql,linhKien.getTenLinhKien(),linhKien.getSoLuong(),linhKien.getGia(),linhKien.getNhaCungCap().getId(),linhKien.getNgayNhapString());
@@ -69,7 +69,7 @@ public class LinhKienDAO extends AbstractDAO<LinhKienModel> implements ILinhKien
 
     @Override
     public LinhKienModel findOneByNameAndMaNhaCungCap(String name, int maNCC,Date ngayNhap) {
-        String sql="select * from LinhKien where tenlinhkien=? and nhacungcap=? and ngaynhap=?";
+        String sql="select * from LinhKien where tenlinhkien=N'?' and nhacungcap=? and ngaynhap=?";
         List<LinhKienModel> listLinhKien =query(sql, new LinhKienMapper(), name,maNCC,ngayNhap);
         return listLinhKien.isEmpty()?null:listLinhKien.get(0);
     }

@@ -51,14 +51,14 @@ public class PhuTungDAO extends AbstractDAO<PhuTungModel> implements IPhuTungDAO
     }
 
     public void themPhuTung(PhuTungModel pt) {
-        String q = "INSERT INTO PhuTungCanKiemTra(Ten,TrangThai) "
+        String q = "INSERT INTO PhuTungCanKiemTra(TenPhuTung,TrangThai) "
                 + "VALUES (N'?',?);";
         int tt = pt.isTrangThaiSuDung() ? 0 : 1;
         insert(q, pt.getTenPhuTung(), tt);
     }
 
     public void capNhatPhuTung(PhuTungModel pt) {
-        String q = "UPDATE PhuTungCanKiemTra SET Ten = N'?' , TrangThai = ? "
+        String q = "UPDATE PhuTungCanKiemTra SET TenPhuTung = N'?' , TrangThai = ? "
                 + " WHERE id = ?";
         int tt = pt.isTrangThaiSuDung() ? 0 : 1;
         update(q, pt.getTenPhuTung(), tt, pt.getId());
