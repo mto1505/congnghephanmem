@@ -5,38 +5,19 @@
  */
 package com.mycompany.applicationmvc.controller;
 
-import org.apache.commons.lang.SerializationUtils;
-import View.*;
-import Model.*;
-import Entities.*;
-import View.DonBaoDuong.DonBaoDuongContainerPanel;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
+import com.mycompany.applicationmvc.view.DichVubaoDuongPanel;
+import com.mycompany.applicationmvc.model.*;
+import com.mycompany.applicationmvc.serviceImpl.DichVuBaoDuongService;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseMotionAdapter;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 import java.sql.SQLException;
-import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.Vector;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.DefaultCellEditor;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JComboBox;
-import javax.swing.event.TableModelEvent;
-import java.time.LocalDate;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
-import javax.swing.event.TableModelListener;
-import lib.Config;
-import lib.Stringlib;
+import com.mycompany.applicationmvc.Utils.*;
+import com.mycompany.applicationmvc.serviceImpl.LoaiXeService;
 
 /**
  *
@@ -45,13 +26,15 @@ import lib.Stringlib;
 public class DichVuBaoDuongController {
 
     DichVubaoDuongPanel dichVuPanel;
-    DonBaoDuongModelDB baoDuongModel;
+    DichVuBaoDuongService dichVuBaoDuongService;
     ArrayList<NhanVienModel> danhSachNhanVien;
     ArrayList<DichVuBaoDuongModel> danhSachDichVubaoDuong;
+    LoaiXeService loaiXeService;
 
-    public DichVuBaoDuongController(DichVubaoDuongPanel dichVuPanel, DonBaoDuongModelDB model) throws SQLException {
+    public DichVuBaoDuongController(DichVubaoDuongPanel dichVuPanel) throws SQLException {
         this.dichVuPanel = dichVuPanel;
-        this.baoDuongModel = model;
+        this.dichVuBaoDuongService = new DichVuBaoDuongService();
+        this.loaiXeService = new LoaiXeService();
         init();
     }
 
@@ -62,29 +45,31 @@ public class DichVuBaoDuongController {
         capNhatGiaoDienThemMoiDichVuBaoDuong();
     }
 
-    private void loadDanhSachDichVuBaoDuong() throws SQLException {
-        ArrayList<DichVuBaoDuongModel> arl = baoDuongModel.layDanhSachDichVuBaoDuongMoiNhat();
+    private void loadDanhSachDichVuBaoDuong(){
+        ArrayList<DichVuBaoDuongModel> arl = (ArrayList<DichVuBaoDuongModel>) dichVuBaoDuongService.layDanhSachDichVuBaoDuongMoiNhat();
         DefaultTableModel dftb = (DefaultTableModel) dichVuPanel.getjTable_DanhSachDichVuBaoDuong().getModel();
         dftb.setNumRows(0);
         for (DichVuBaoDuongModel dichVuBaoDuong : arl) {
+            LoaiXeModel temp_lx = loaiXeService.findOne(dichVuBaoDuong.getIdLoaiXe());
+            String tt = dichVuBaoDuong.isTrangThai() ? "Được sử dụng" : "Không sử dụng";
             dftb.addRow(new Object[]{
                 dichVuBaoDuong.getId(),
                 dichVuBaoDuong.getTenDichVuBaoDuong(),
                 dichVuBaoDuong.getPhi(),
-                dichVuBaoDuong.getLoaiXe(),
-                dichVuBaoDuong.getTrangThai(),
+                temp_lx.getTenLoaiXe(),
+                tt,
                 dichVuBaoDuong.getNgayCapNhat()});
         }
     }
 
     private void loadDanhSachLoaiXeComboBox() throws SQLException {
 
-        ArrayList<LoaiXeModel> arl = baoDuongModel.layDanhSachLoaiXe();
-        JComboBox<String> tb = dichVuPanel.getjComboBox_LoaiXe();
+        ArrayList<LoaiXeModel> arl = (ArrayList<LoaiXeModel>) loaiXeService.findAll();
+        JComboBox<String> cb = dichVuPanel.getjComboBox_LoaiXe();
         arl.forEach(loaiXe -> {
-            tb.addItem(loaiXe.getTenLoai());
+            cb.addItem(loaiXe.getTenLoaiXe());
         });
-        tb.setSelectedIndex(0);
+        cb.setSelectedIndex(0);
     }
 
     private void themSuKienChoItem() {
@@ -118,58 +103,41 @@ public class DichVuBaoDuongController {
         dichVuPanel.getjTextField_TimKiemDichVuBaoDuong().addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
-                try {
-                    ArrayList<DichVuBaoDuongModel> ar = baoDuongModel.layDanhSachDichVuBaoDuongMoiNhat();
-                    String key = dichVuPanel.getjTextField_TimKiemDichVuBaoDuong().getText().trim();
-                    DefaultTableModel dm = (DefaultTableModel) dichVuPanel.getjTable_DanhSachDichVuBaoDuong().getModel();
-                    if (!key.equalsIgnoreCase("")) {
-                        dm.setNumRows(0);
-                        for (DichVuBaoDuongModel dv : ar) {
-                            if (Stringlib.isLikeString(key, dv.getTenDichVuBaoDuong()) >= 0.51) {
-                                dm.addRow(new Object[]{dv.getId(), dv.getTenDichVuBaoDuong(), dv.getPhi(), dv.getLoaiXe(), dv.getTrangThai()});
-                            }
+                ArrayList<DichVuBaoDuongModel> ar = (ArrayList<DichVuBaoDuongModel>) dichVuBaoDuongService.layDanhSachDichVuBaoDuongMoiNhat();
+                String key = dichVuPanel.getjTextField_TimKiemDichVuBaoDuong().getText().trim();
+                DefaultTableModel dm = (DefaultTableModel) dichVuPanel.getjTable_DanhSachDichVuBaoDuong().getModel();
+                if (!key.equalsIgnoreCase("")) {
+                    dm.setNumRows(0);
+                    for (DichVuBaoDuongModel dv : ar) {
+                        if (Stringlib.isLikeString(key, dv.getTenDichVuBaoDuong()) >= 0.51) {
+                            LoaiXeModel temp_lx = loaiXeService.findOne(dv.getIdLoaiXe());
+                            String tt = dv.isTrangThai()? "Được sủ dụng" : "Không sử dụng";
+                            dm.addRow(new Object[]{dv.getId(), dv.getTenDichVuBaoDuong(), dv.getPhi(), temp_lx.getTenLoaiXe(), dv.isTrangThai()});
                         }
-                    } else {
-                        loadDanhSachDichVuBaoDuong();
                     }
-
-                } catch (SQLException ex) {
-                    Logger.getLogger(DonBaoDuongController.class.getName()).log(Level.SEVERE, null, ex);
+                } else {
+                    loadDanhSachDichVuBaoDuong();
                 }
             }
         });
 
         dichVuPanel.getjButton_LuuDichVuBaoDuong().addActionListener((e) -> {
-            String st = "Không sử dụng";
-            if (dichVuPanel.getjCheckBox_TrangThaiSuDungDichVuBaoDuong().isSelected()) {
-                st = "Sử dụng";
-            }
+            boolean tt = dichVuPanel.getjCheckBox_TrangThaiSuDungDichVuBaoDuong().isSelected();
+            
             DichVuBaoDuongModel dv = new DichVuBaoDuongModel(
                     Integer.parseInt(dichVuPanel.getjTextField_MaDichVuBaoDuong().getText()),
                     dichVuPanel.getjTextField_TenDichVuBaoDuong().getText(),
                     Long.parseLong(dichVuPanel.getjTextField_PhiDichVuBaoDuong().getText().trim()),
-                    dichVuPanel.getjComboBox_LoaiXe().getSelectedItem().toString(),
-                    st,
+                    loaiXeService.findOneByName(dichVuPanel.getjComboBox_LoaiXe().getSelectedItem().toString()).getMaLoaiXe(),
+                    tt,
                     dichVuPanel.getjTextField_NgayCapNhat().getText());
             if (dichVuPanel.getjTextField_MaDichVuBaoDuong().getText().equalsIgnoreCase("")) {
 
-                try {
-                    baoDuongModel.themDichVuBaoDuong(dv);
-                } catch (SQLException ex) {
-                    Logger.getLogger(DichVuBaoDuongController.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                dichVuBaoDuongService.themDichVuBaoDuong(dv);
             } else {
-                try {
-                    baoDuongModel.capNhatDichVuBaoDuong(dv);
-                } catch (SQLException ex) {
-                    Logger.getLogger(DichVuBaoDuongController.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                dichVuBaoDuongService.capNhatDichVuBaoDuong(dv);
             }
-            try {
-                loadDanhSachDichVuBaoDuong();
-            } catch (SQLException ex) {
-                Logger.getLogger(DichVuBaoDuongController.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            loadDanhSachDichVuBaoDuong();
         });
 
         dichVuPanel.getjButton_ThemDichVubaoDUongMoi().addMouseListener(new MouseAdapter() {

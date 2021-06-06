@@ -5,7 +5,7 @@
  */
 package com.mycompany.applicationmvc.controller;
 
-import com.mycompany.applicationmvc.serviceImpl.DonBaoDuongService;
+import com.mycompany.applicationmvc.serviceImpl.PhuTungService;
 import com.mycompany.applicationmvc.model.*;
 import com.mycompany.applicationmvc.view.DanhSachPhuTungKiemTraPanel;
 import java.awt.event.ActionEvent;
@@ -25,11 +25,11 @@ import javax.swing.table.DefaultTableModel;
 public class DanhSachPhuTungKiemTraController {
 
     DanhSachPhuTungKiemTraPanel danhSachPhuTungKiemTraPanel;
-    DonBaoDuongModelDB donBaoDuongModel;
+    PhuTungService phuTungService;
 
-    public DanhSachPhuTungKiemTraController(DanhSachPhuTungKiemTraPanel ds, DonBaoDuongModelDB bd) throws SQLException {
+    public DanhSachPhuTungKiemTraController(DanhSachPhuTungKiemTraPanel ds) throws SQLException {
         danhSachPhuTungKiemTraPanel = ds;
-        donBaoDuongModel = bd;
+        phuTungService = new PhuTungService();
         cauHinhItem();
         loadDanhSachPhuTung();
         themSuKienchoCacItem();
@@ -73,19 +73,11 @@ public class DanhSachPhuTungKiemTraController {
                 pt.setTenPhuTung(ten);
                 pt.setTrangThaiSuDung(trangthai);
                 if (danhSachPhuTungKiemTraPanel.getjTextField_MaPhuTung().getText().equalsIgnoreCase("[Tự động tạo]")) {
-                    try {
-                        donBaoDuongModel.themPhuTung(pt);
-                    } catch (SQLException ex) {
-                        Logger.getLogger(DanhSachPhuTungKiemTraController.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+                    phuTungService.themPhuTung(pt);
                 } else {
                     int id = Integer.parseInt(danhSachPhuTungKiemTraPanel.getjTextField_MaPhuTung().getText());
                     pt.setId(id);
-                    try {
-                        donBaoDuongModel.capNhatPhuTung(pt);
-                    } catch (SQLException ex) {
-                        Logger.getLogger(DanhSachPhuTungKiemTraController.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+                    phuTungService.capNhatPhuTung(pt);
                 }
 
                 try {
@@ -100,7 +92,7 @@ public class DanhSachPhuTungKiemTraController {
     private void loadDanhSachPhuTung() throws SQLException {
         DefaultTableModel dfm = (DefaultTableModel) danhSachPhuTungKiemTraPanel.getjTable_DanhSachPhuTung().getModel();
         dfm.setRowCount(0);
-        ArrayList<PhuTungModel> dspt = donBaoDuongModel.layDanhSachPhuTungCanKiemTra();
+        ArrayList<PhuTungModel> dspt = (ArrayList<PhuTungModel>) phuTungService.layDanhSachPhuTungCanKiemTra();
         for (PhuTungModel pt : dspt) {
             String temp = pt.isTrangThaiSuDung() ? "Được sử dụng" : "Không sử dụng";
             dfm.addRow(new Object[]{pt.getId(), pt.getTenPhuTung(), temp});

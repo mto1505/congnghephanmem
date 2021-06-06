@@ -26,10 +26,12 @@ public class DichVuBaoDuongDAO extends AbstractDAO<DichVuBaoDuongModel> implemen
 
     @Override
     public void capNhatDichVuBaoDuong(DichVuBaoDuongModel d) {
-        String q = "UPDATE DichVuBaoDuong "
-                + "SET Ten = ?, idLoaiXe = ? , NgayCapNhat = ?, Phi = ?, TrangThai = ?";
+        String q = " SET IDENTITY_INSERT DichVuBaoDuong ON ;"
+                + "INSERT INTO DichVuBaoDuong(id,Ten,Phi,idLoaiXe,TrangThai)"
+                + "VALUES (?,N'?', ?,?,?)";
+
         int tt = d.isTrangThai() ? 0 : 1;
-        update(q, d.getTenDichVuBaoDuong(), d.getIdLoaiXe(), d.getNgayCapNhat(), d.getPhi(), tt);
+        update(q, d.getId(), d.getTenDichVuBaoDuong(), d.getPhi(), d.getIdLoaiXe(), tt);
     }
 
     @Override
@@ -62,7 +64,7 @@ public class DichVuBaoDuongDAO extends AbstractDAO<DichVuBaoDuongModel> implemen
     public DichVuBaoDuongModel timDichVuBaoDuongTheoIDvaNgay(int id, String ngayCapNhat) {
         String q = "SELECT * FROM DichVuBaoDuong WHERE id = ? AND NgayCapNhat = '?'";
         List<DichVuBaoDuongModel> temp = query(q, new DichVuBaoDuongMapper(), id, ngayCapNhat);
-        if(temp.get(0) != null){
+        if (temp.get(0) != null) {
             return temp.get(0);
         }
         return null;

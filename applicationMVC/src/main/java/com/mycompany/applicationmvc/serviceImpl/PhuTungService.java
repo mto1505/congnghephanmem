@@ -34,4 +34,12 @@ public class PhuTungService implements IPhuTungService {
     public PhuTungModel timPhuTungKiemTraTheoID(int ID){
         return phuTungDAO.timPhuTungTheoID(ID);
     }
+    
+    public void capNhatPhuTung(PhuTungModel pt){
+        phuTungDAO.capNhatPhuTung(pt);
+    }
+    
+    public void themPhuTung(PhuTungModel pt) {
+        phuTungDAO.themPhuTung(pt);
+    }
 }

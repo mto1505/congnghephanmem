@@ -29,4 +29,12 @@ public class DichVuBaoDuongService implements IDichVuBaoDuongService {
     public DichVuBaoDuongModel timDichVuBaoDuongTheoIDVaNgayCapNhat(int id, String ngayCapNhat){
         return dichVuBaoDuongDAO.timDichVuBaoDuongTheoIDvaNgay(id, ngayCapNhat);
     }
+    
+    public void themDichVuBaoDuong(DichVuBaoDuongModel d){
+        dichVuBaoDuongDAO.themDichVuBaoDuong(d);
+    }
+    
+    public void capNhatDichVuBaoDuong(DichVuBaoDuongModel d){
+        dichVuBaoDuongDAO.capNhatDichVuBaoDuong(d);
+    }
 }

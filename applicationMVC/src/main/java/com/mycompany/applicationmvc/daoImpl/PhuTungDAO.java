@@ -35,7 +35,7 @@ public class PhuTungDAO extends AbstractDAO<PhuTungModel> implements IPhuTungDAO
     public PhuTungModel timPhuTungTheoTen(String t) {
         String q = "SELECT * FROM PhuTungCanKiemTra WHERE TenPhuTung = N'?'";
         ArrayList<PhuTungModel> temp = (ArrayList<PhuTungModel>) query(q, new PhuTungMapper(), t);
-        if(temp.get(0)!= null){
+        if (temp.get(0) != null) {
             return temp.get(0);
         }
         return null;
@@ -44,9 +44,23 @@ public class PhuTungDAO extends AbstractDAO<PhuTungModel> implements IPhuTungDAO
     public PhuTungModel timPhuTungTheoID(int ID) {
         String q = "SELECT * FROM PhuTungCanKiemTra WHERE  id = ?";
         ArrayList<PhuTungModel> temp = (ArrayList<PhuTungModel>) query(q, new PhuTungMapper(), ID);
-        if(temp.get(0)!= null){
+        if (temp.get(0) != null) {
             return temp.get(0);
         }
         return null;
+    }
+
+    public void themPhuTung(PhuTungModel pt) {
+        String q = "INSERT INTO PhuTungCanKiemTra(Ten,TrangThai) "
+                + "VALUES (N'?',?);";
+        int tt = pt.isTrangThaiSuDung() ? 0 : 1;
+        insert(q, pt.getTenPhuTung(), tt);
+    }
+
+    public void capNhatPhuTung(PhuTungModel pt) {
+        String q = "UPDATE PhuTungCanKiemTra SET Ten = N'?' , TrangThai = ? "
+                + " WHERE id = ?";
+        int tt = pt.isTrangThaiSuDung() ? 0 : 1;
+        update(q, pt.getTenPhuTung(), tt, pt.getId());
     }
 }
