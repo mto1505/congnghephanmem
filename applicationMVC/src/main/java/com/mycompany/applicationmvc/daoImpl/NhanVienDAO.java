@@ -15,7 +15,7 @@ import java.util.List;
  *
  * @author MinhTo
  */
-public class NhanVienDAO implements INhanVienDAO{
+public class NhanVienDAO extends AbstractDAO<NhanVienModel> implements INhanVienDAO {
 
     @Override
     public NhanVienModel findOne(Long id) {
@@ -50,21 +50,6 @@ public class NhanVienDAO implements INhanVienDAO{
 
     @Override
     public int getTotalItem() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public <T> List<T> query(String sql, RowMapper<T> mapper, Object... paramater) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void update(String sql, Object... parameters) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public int insert(String sql, Object... parameters) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
