@@ -23,10 +23,10 @@ public class DBConnectUtil {
     private static ThreadLocal<Connection> tl = new ThreadLocal<>();
     private static PropertiseUtil propertiesUtil = new PropertiseUtil();
 
-    private static String url = propertiesUtil.getValue("url", "jdbc:sqlserver://DESKTOP-QK1KP4V\\SQLMINHTO:1433;databaseName=QuanLyBaoDuong");
+    private static String url = propertiesUtil.getValue("url", "jdbc:sqlserver://;databaseName=QuanLyBaoDuong");
     private static String driver = propertiesUtil.getValue("driver", "com.microsoft.sqlserver.jdbc.SQLServerDriver");
-    private static String username = propertiesUtil.getValue("username", "minhto");
-    private static String password = propertiesUtil.getValue("password", "minhto123");
+    private static String username = propertiesUtil.getValue("username", "sa");
+    private static String password = propertiesUtil.getValue("password", "123");
 
     static {
         try {
@@ -40,7 +40,7 @@ public class DBConnectUtil {
     public static Connection getConnection() throws SQLException {
         Connection conn = tl.get();
         // If there is no connection in the container, get a connection from the connection pool to ThreadLocal
-        if (conn == null) {
+        if (conn == null || conn.isClosed()) {
             conn = DriverManager.getConnection(url, username, password);
             tl.set(conn);
         }
