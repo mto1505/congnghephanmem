@@ -83,7 +83,7 @@ public class DonBaoDuongDAO extends AbstractDAO<DonBaoDuongModel> implements IDo
     public List<DonBaoDuongModel> timTatCaDonBaoDuong(boolean trangThai) {
         String tt = trangThai ? "1" : "0";
         String q = "SELECT TOP 100 * FROM DonBaoDuong WHERE TrangThai  = ? ORDER BY id DESC;";
-        return query(q, new DonBaoDuongMapper());
+        return query(q, new DonBaoDuongMapper(),tt);
     }
 
     @Override
