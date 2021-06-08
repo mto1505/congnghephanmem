@@ -63,7 +63,7 @@ public class DonBaoDuongController {
     NhanVienService nhanVienService;
     PhuTungService phuTungService;
 
-    public DonBaoDuongController(DonBaoDuongContainerPanel baoDuongContainerPanel, DonBaoDuongService model) throws SQLException, ParseException {
+    public DonBaoDuongController(DonBaoDuongContainerPanel baoDuongContainerPanel)  {
         this.baoDuongContainerPanel = baoDuongContainerPanel;
         this.baoduongPanel = baoDuongContainerPanel.getDonBaoDuongPanel();
         this.danhSachDonBaoDuongPanel = baoDuongContainerPanel.getDanhSachDonBaoDuongPanel();
@@ -75,7 +75,13 @@ public class DonBaoDuongController {
         this.xeService = new XeService();
         nhanVienService = new NhanVienService();
         phuTungService = new PhuTungService();
-        init();
+        try {
+            init();
+        } catch (SQLException ex) {
+            Logger.getLogger(DonBaoDuongController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ParseException ex) {
+            Logger.getLogger(DonBaoDuongController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public void init() throws SQLException, ParseException {
