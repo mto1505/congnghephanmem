@@ -26,8 +26,10 @@ public class KhachHangMapper implements RowMapper<KhachHangModel> {
 //            khachHang.setSoCMT(rs.getString("cmnd"));
             khachHang.setSoDienThoai(rs.getString("sdt"));
             khachHang.setGioiTinh(rs.getString("gioitinh"));
-            if (rs.getDate("ngaysinh") != null) {
+            try {
                 khachHang.setNgaySinh(rs.getDate("ngaysinh"));
+            } catch (SQLException e) {
+                khachHang.setNgaySinh(null);
             }
             return khachHang;
         } catch (SQLException ex) {
