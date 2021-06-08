@@ -27,9 +27,9 @@ public class DonBaoDuongDAO extends AbstractDAO<DonBaoDuongModel> implements IDo
     public void capNhatDonBaoDuong(DonBaoDuongModel donBaoDuongModel) {
 
         if (donBaoDuongModel != null && donBaoDuongModel.getId() != 0) {
-            String q = "UPDATE DonBaoDuong set BienSo = '?' ,"
+            String q = "UPDATE DonBaoDuong set BienSo = ? ,"
                     + "idNhanVienLapDon = ?, "
-                    + "NgayHoanThanh = '?', "
+                    + "NgayHoanThanh = ?, "
                     + "TongTien= ? "
  
                     + "where DonBaoDuong.id = ?";
@@ -46,7 +46,7 @@ public class DonBaoDuongDAO extends AbstractDAO<DonBaoDuongModel> implements IDo
     @Override
     public DonBaoDuongModel themDonBaoDuong(DonBaoDuongModel donBaoDuongModel) {
         String q = "INSERT INTO DonBaoDuong (bienso,NgayBatDau,NgayHoanThanh,tongtien,idNhanVienLapDon) "
-                + "VALUES ('?', '?', '?', ?, ?);"
+                + "VALUES (?, ?, ?, ?, ?);"
                 + "SELECT * FROM DonBaoDuong WHere DonBaoDuong.id in(SELECT SCOPE_IDENTITY() AS [SCOPE_IDENTITY]); ";
 
         List<DonBaoDuongModel> d = query(
