@@ -15,7 +15,11 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -106,9 +110,9 @@ public class SwitchController {
             } else if (kind.equals("linhKienPage")) {
                 node = new LinhKienPanel();
             } else if (kind.equals("donBaoDuongPage")) {
-                node = new DonBaoDuongPanel();
-                // new Model()
-
+                node = new DonBaoDuongContainerPanel();
+                new DonBaoDuongController((DonBaoDuongContainerPanel) node);
+                
                 //new Controller(model,node)
             }
             getjPaneRoot().removeAll();
