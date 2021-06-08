@@ -33,7 +33,7 @@ public class PhuTungDAO extends AbstractDAO<PhuTungModel> implements IPhuTungDAO
     }
 
     public PhuTungModel timPhuTungTheoTen(String t) {
-        String q = "SELECT * FROM PhuTungCanKiemTra WHERE TenPhuTung = N'?'";
+        String q = "SELECT * FROM PhuTungCanKiemTra WHERE TenPhuTung = ?";
         ArrayList<PhuTungModel> temp = (ArrayList<PhuTungModel>) query(q, new PhuTungMapper(), t);
         if (temp.get(0) != null) {
             return temp.get(0);
@@ -52,13 +52,13 @@ public class PhuTungDAO extends AbstractDAO<PhuTungModel> implements IPhuTungDAO
 
     public void themPhuTung(PhuTungModel pt) {
         String q = "INSERT INTO PhuTungCanKiemTra(TenPhuTung,TrangThai) "
-                + "VALUES (N'?',?);";
+                + "VALUES (?,?);";
         int tt = pt.isTrangThaiSuDung() ? 0 : 1;
         insert(q, pt.getTenPhuTung(), tt);
     }
 
     public void capNhatPhuTung(PhuTungModel pt) {
-        String q = "UPDATE PhuTungCanKiemTra SET TenPhuTung = N'?' , TrangThai = ? "
+        String q = "UPDATE PhuTungCanKiemTra SET TenPhuTung = ? , TrangThai = ? "
                 + " WHERE id = ?";
         int tt = pt.isTrangThaiSuDung() ? 0 : 1;
         update(q, pt.getTenPhuTung(), tt, pt.getId());

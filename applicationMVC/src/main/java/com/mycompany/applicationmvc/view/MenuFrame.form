@@ -111,9 +111,6 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Dialog" size="14" style="1"/>
             </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="0" green="0" red="0" type="rgb"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Qu&#x1ea3;n l&#xed; &#x111;&#x1a1;n b&#x1ea3;o d&#x1b0;&#x1ee1;ng"/>
           </Properties>
         </Component>
@@ -160,7 +157,7 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="khachHangLabel" pref="104" max="32767" attributes="0"/>
+                                  <Component id="khachHangLabel" pref="134" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -177,10 +174,6 @@
                           <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                           <Component id="listQuanTri" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="donBaoDuongLabel" min="-2" max="-2" attributes="0"/>
-                      </Group>
                       <Component id="welcomeUserLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
@@ -188,6 +181,15 @@
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   <Component id="trangChinhLabel" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                      <Component id="phuTungLabel" alignment="0" max="32767" attributes="0"/>
+                      <Component id="donBaoDuongLabel" max="32767" attributes="0"/>
+                      <Component id="dichVuBaoDuongLabel" max="32767" attributes="0"/>
+                  </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -223,8 +225,12 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="listQuanTri" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="donBaoDuongLabel" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="99" max="32767" attributes="0"/>
+                  <Component id="donBaoDuongLabel" min="-2" pref="40" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="dichVuBaoDuongLabel" min="-2" pref="41" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="phuTungLabel" min="-2" pref="38" max="-2" attributes="0"/>
+                  <EmptySpace pref="37" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -421,38 +427,23 @@
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="trangChinhLabel">
-          <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\MinhTo\Documents\GitHub\congnghephanmem\applicationMVC\src\main\resource\img\home_30px.png"/>
-            </Property>
-          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel1">
-          <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\MinhTo\Documents\GitHub\congnghephanmem\applicationMVC\src\main\resource\img\people_30px.png"/>
-            </Property>
-          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">
-          <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\MinhTo\Documents\GitHub\congnghephanmem\applicationMVC\src\main\resource\img\motorcycle_30px.png"/>
-            </Property>
-          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel3">
-          <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\MinhTo\Documents\GitHub\congnghephanmem\applicationMVC\src\main\resource\img\support_30px.png"/>
-            </Property>
-          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel4">
+        </Component>
+        <Component class="javax.swing.JLabel" name="dichVuBaoDuongLabel">
           <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\MinhTo\Documents\GitHub\congnghephanmem\applicationMVC\src\main\resource\img\numbered_list_30px.png"/>
-            </Property>
+            <Property name="text" type="java.lang.String" value="Danh s&#xe1;ch d&#x1ecb;ch v&#x1ee5; b&#x1ea3;o d&#x1b0;&#x1ee1;ng"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="phuTungLabel">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Danh s&#xe1;ch ph&#x1ee5; t&#xf9;ng ki&#x1ec3;m tra"/>
           </Properties>
         </Component>
       </SubComponents>

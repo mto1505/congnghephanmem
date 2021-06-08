@@ -117,7 +117,7 @@ public class DonBaoDuongDAO extends AbstractDAO<DonBaoDuongModel> implements IDo
     @Override
     public void themChiTietThayTheLinhKienTrongDonBaoDuong(int idDonBaoDuong, int idLinhKien, String ngayCapNhatLinhKien, int soLuong, String ghiChu) {
         String q = "INSERT INTO ChiTietThayTheLinhKien (idDonBaoDuong,idLinkKien,NgayNhapLinhKien,SoLuong,GhiChu) "
-                + "VALUES (?,?,?,?,N'?')";
+                + "VALUES (?,?,?,?,?)";
         insert(q, idDonBaoDuong, idLinhKien, ngayCapNhatLinhKien, soLuong, ghiChu);
     }
 
@@ -130,7 +130,7 @@ public class DonBaoDuongDAO extends AbstractDAO<DonBaoDuongModel> implements IDo
     }
 
     public void capNhatChiTietThayTheLinhKienTrongDonBaoDuong(ChiTietThayTheLinhKienModel c) {
-        String q = "UPDATE ChiTietThayTheLinhKien SET SoLuong = ?, GhiChu = N'?'"
+        String q = "UPDATE ChiTietThayTheLinhKien SET SoLuong = ?, GhiChu = ?"
                 + "WHERE idDonBaoDuong = ? AND idLinkKien = ? AND NgayNhapLinhKien = ?";
         update(q, c.getSoLuong(), c.getGhiChu(), c.getIdDonBaoDuong(), c.getIdLinkKien(), c.getNgayNhapLinhKien());
     }

@@ -169,21 +169,24 @@ public class SigninForm extends javax.swing.JFrame {
     }//GEN-LAST:event_passWordFieldActionPerformed
 
     private void dangNhapBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dangNhapBtnActionPerformed
-        // TODO add your handling code here:
-        String pass = passWordField.getText();
-        String user = userNameField.getText();
-        TaiKhoanService taiKhoanService = new TaiKhoanService();
-        //lay ra ten tài khoan
-        TaiKhoanModel model = new TaiKhoanModel();
-        model = taiKhoanService.findOne(user);
+//        // TODO add your handling code here:
+//        String pass = passWordField.getText();
+//        String user = userNameField.getText();
+//        TaiKhoanService taiKhoanService = new TaiKhoanService();
+//        //lay ra ten tài khoan
+//        TaiKhoanModel model = new TaiKhoanModel();
+//        model = taiKhoanService.findOne(user);
+//
+//        if (model != null) {
+//            if (model.getMatKhau().equalsIgnoreCase(pass)) {
+//                SessionUtil.putValue(user, model);
+//                new MenuFrame(model).setVisible(true);
+//                setVisible(false);
+//            }
+//        }
 
-        if (model != null) {
-            if (model.getMatKhau().equals(pass)) {
-                SessionUtil.putValue(user, model);
-                new MenuFrame(model).setVisible(true);
-                setVisible(false);
-            }
-        }
+        new MenuFrame(new TaiKhoanModel("", "", "", "")).setVisible(true);
+        setVisible(false);
 
 //        JButton click = new JButton("click!");
 //          JTextField content = new JTextField (30);

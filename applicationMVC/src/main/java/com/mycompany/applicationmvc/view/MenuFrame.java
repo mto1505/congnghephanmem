@@ -54,6 +54,8 @@ public class MenuFrame extends javax.swing.JFrame {
         listDanhMuc.add(new DanhMucBean("xePage", null, xeLabel));
         listDanhMuc.add(new DanhMucBean("linhKienPage", null, linhKienLabel));
         listDanhMuc.add(new DanhMucBean("donBaoDuongPage", null, donBaoDuongLabel));
+        listDanhMuc.add(new DanhMucBean("dichVuBaoDuongPage", null, dichVuBaoDuongLabel));
+        listDanhMuc.add(new DanhMucBean("phuTungKiemTraPage", null, phuTungLabel));
         SwitchController c = new SwitchController(this, Panels, listDanhMuc);
         c.setDashBoard(null, khachHangLabel);
         c.setEvent();
@@ -99,6 +101,8 @@ public class MenuFrame extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        dichVuBaoDuongLabel = new javax.swing.JLabel();
+        phuTungLabel = new javax.swing.JLabel();
 
         thongtin.setText("Thông tin");
         thongtin.addActionListener(new java.awt.event.ActionListener() {
@@ -130,7 +134,6 @@ public class MenuFrame extends javax.swing.JFrame {
         Panels.setPreferredSize(new java.awt.Dimension(990, 650));
 
         jLabel5.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Quản lí đơn bảo dưỡng");
 
         javax.swing.GroupLayout PanelsLayout = new javax.swing.GroupLayout(Panels);
@@ -263,15 +266,9 @@ public class MenuFrame extends javax.swing.JFrame {
             }
         });
 
-        trangChinhLabel.setIcon(new javax.swing.ImageIcon("C:\\Users\\MinhTo\\Documents\\GitHub\\congnghephanmem\\applicationMVC\\src\\main\\resource\\img\\home_30px.png")); // NOI18N
+        dichVuBaoDuongLabel.setText("Danh sách dịch vụ bảo dưỡng");
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\MinhTo\\Documents\\GitHub\\congnghephanmem\\applicationMVC\\src\\main\\resource\\img\\people_30px.png")); // NOI18N
-
-        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\MinhTo\\Documents\\GitHub\\congnghephanmem\\applicationMVC\\src\\main\\resource\\img\\motorcycle_30px.png")); // NOI18N
-
-        jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\MinhTo\\Documents\\GitHub\\congnghephanmem\\applicationMVC\\src\\main\\resource\\img\\support_30px.png")); // NOI18N
-
-        jLabel4.setIcon(new javax.swing.ImageIcon("C:\\Users\\MinhTo\\Documents\\GitHub\\congnghephanmem\\applicationMVC\\src\\main\\resource\\img\\numbered_list_30px.png")); // NOI18N
+        phuTungLabel.setText("Danh sách phụ tùng kiểm tra");
 
         javax.swing.GroupLayout menuPanelLayout = new javax.swing.GroupLayout(menuPanel);
         menuPanel.setLayout(menuPanelLayout);
@@ -298,7 +295,7 @@ public class MenuFrame extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, menuPanelLayout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addGap(18, 18, 18)
-                                .addComponent(khachHangLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE)))))
+                                .addComponent(khachHangLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE)))))
                 .addGap(17, 17, 17))
             .addGroup(menuPanelLayout.createSequentialGroup()
                 .addGroup(menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -308,14 +305,18 @@ public class MenuFrame extends javax.swing.JFrame {
                     .addGroup(menuPanelLayout.createSequentialGroup()
                         .addGap(22, 22, 22)
                         .addComponent(listQuanTri, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(menuPanelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(donBaoDuongLabel))
                     .addComponent(welcomeUserLabel))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menuPanelLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(trangChinhLabel)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(menuPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(phuTungLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(donBaoDuongLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(dichVuBaoDuongLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         menuPanelLayout.setVerticalGroup(
@@ -345,8 +346,12 @@ public class MenuFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(listQuanTri, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(donBaoDuongLabel)
-                .addContainerGap(99, Short.MAX_VALUE))
+                .addComponent(donBaoDuongLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(dichVuBaoDuongLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(phuTungLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -482,6 +487,7 @@ public class MenuFrame extends javax.swing.JFrame {
     private javax.swing.JPanel Panels;
     private javax.swing.JMenuItem dangxuat;
     private javax.swing.JLabel dichVuBD;
+    private javax.swing.JLabel dichVuBaoDuongLabel;
     private javax.swing.JMenuItem doimatkhau;
     private javax.swing.JLabel donBaoDuongLabel;
     private javax.swing.JLabel jLabel1;
@@ -493,6 +499,7 @@ public class MenuFrame extends javax.swing.JFrame {
     private javax.swing.JLabel linhKienLabel;
     private javax.swing.JPanel listQuanTri;
     private javax.swing.JPanel menuPanel;
+    private javax.swing.JLabel phuTungLabel;
     private javax.swing.JPopupMenu popDown;
     private javax.swing.JLabel quanTri;
     private javax.swing.JLabel quyen1;

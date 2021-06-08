@@ -7,6 +7,8 @@ package com.mycompany.applicationmvc.controller;
 
 import com.mycompany.applicationmvc.view.DonBaoDuong.*;
 import com.mycompany.applicationmvc.Bean.DanhMucBean;
+import com.mycompany.applicationmvc.view.DanhSachPhuTungKiemTraPanel;
+import com.mycompany.applicationmvc.view.DichVubaoDuongPanel;
 import com.mycompany.applicationmvc.view.HomePanel;
 import com.mycompany.applicationmvc.view.KhachHangPanel;
 import com.mycompany.applicationmvc.view.LinhKienPanel;
@@ -114,6 +116,20 @@ public class SwitchController {
                 new DonBaoDuongController((DonBaoDuongContainerPanel) node);
                 
                 //new Controller(model,node)
+            } else if (kind.equals("dichVuBaoDuongPage")){
+                node  = new DichVubaoDuongPanel();
+                try {
+                    new DichVuBaoDuongController((DichVubaoDuongPanel) node);
+                } catch (SQLException ex) {
+                    Logger.getLogger(SwitchController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }else if (kind.equals("phuTungKiemTraPage")){
+                node = new DanhSachPhuTungKiemTraPanel();
+                try {
+                    new DanhSachPhuTungKiemTraController((DanhSachPhuTungKiemTraPanel) node);
+                } catch (SQLException ex) {
+                    Logger.getLogger(SwitchController.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
             getjPaneRoot().removeAll();
             getjPaneRoot().setLayout(new BorderLayout());

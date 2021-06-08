@@ -5,6 +5,7 @@
  */
 package com.mycompany.applicationmvc.daoImpl;
 
+import com.mycompany.applicationmvc.Utils.DBConnectUtil;
 import com.mycompany.applicationmvc.dao.GenericDAO;
 import com.mycompany.applicationmvc.mapper.KhachHangMapper;
 import com.mycompany.applicationmvc.mapper.RowMapper;
@@ -18,6 +19,8 @@ import java.sql.Timestamp;
 import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -27,16 +30,11 @@ public class AbstractDAO<T> implements GenericDAO<T> {
 
     public Connection getConnection() {
         Connection con = null;
-        String url = "jdbc:sqlserver://MinhTo-PC\\SQLMINHTO:1433;databaseName=QUANLYBAODUONG";
         try {
-
-            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            con = DriverManager.getConnection(url, "minhto", "minhto123");
-
-        } catch (ClassNotFoundException ex) {
-            System.out.println("Class not found " + ex.getMessage());
+            con = DBConnectUtil.getConnection();
+            return con;
         } catch (SQLException ex) {
-            System.out.println("SQL error");
+            Logger.getLogger(AbstractDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         return con;
@@ -52,7 +50,7 @@ public class AbstractDAO<T> implements GenericDAO<T> {
             connection = getConnection();
             statement = connection.prepareStatement(sql);
 
-                setParameter(statement, parameters);
+            setParameter(statement, parameters);
 
             resultSet = statement.executeQuery();
             while (resultSet.next()) {
@@ -94,14 +92,12 @@ public class AbstractDAO<T> implements GenericDAO<T> {
                 } else if (parameter instanceof Timestamp) {
                     statement.setTimestamp(index, (Timestamp) parameter);
                 } else if (parameter instanceof java.sql.Date) {
-                        
+
                     statement.setDate(index, (java.sql.Date) parameter);
-                } 
-                else if (parameter instanceof Double) {
+                } else if (parameter instanceof Double) {
                     statement.setDouble(index, (Double) parameter);
-                }
-                else{
-                  statement.setNull(index, Types.NULL);
+                } else {
+                    statement.setNull(index, Types.NULL);
                 }
                 // đừng để dữ liệu null ==>xử lí đầu vào trước khi truy vấn                           
             }

@@ -40,10 +40,10 @@ public class XeDAO extends AbstractDAO<XeModel> implements IXeDAO {
     public String save(XeModel xeModel) {
         int st;
         if (xeModel.getKhachHang() == null) {
-            String sqlString = new String("insert into XeMay (bienso,tenxe,idLoaiXe) values(?,N'?',?)");
+            String sqlString = new String("insert into XeMay (bienso,tenxe,idLoaiXe) values(?,?,?)");
             st = insert(sqlString, xeModel.getBienSo(), xeModel.getTenXe(), xeModel.getLoaixe().getMaLoaiXe());
         } else {
-            String sqlString = new String("insert into XeMay (bienso,tenxe,idChuSoHuu,idLoaiXe) values(?,N'?',?,?)");
+            String sqlString = new String("insert into XeMay (bienso,tenxe,idChuSoHuu,idLoaiXe) values(?,?,?,?)");
             st = insert(sqlString, xeModel.getBienSo(), xeModel.getTenXe(), xeModel.getKhachHang().getMaKH(), xeModel.getLoaixe().getMaLoaiXe());
         }//To change body of generated methods, choose Tools | Templates.\
         if (st != -1) {
@@ -55,7 +55,7 @@ public class XeDAO extends AbstractDAO<XeModel> implements IXeDAO {
 
     @Override
     public void update(XeModel xe) {
-        String sqlString = new String("update XeMay set tenxe=N'?', idChuSoHuu=?,idLoaiXe=? where bienso=?");
+        String sqlString = new String("update XeMay set tenxe=?, idChuSoHuu=?,idLoaiXe=? where bienso=?");
         update(sqlString, xe.getTenXe(), xe.getKhachHang().getMaKH(), xe.getLoaixe().getMaLoaiXe(), xe.getBienSo());
     }
 

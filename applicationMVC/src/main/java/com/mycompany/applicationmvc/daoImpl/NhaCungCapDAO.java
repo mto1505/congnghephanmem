@@ -19,7 +19,7 @@ public class NhaCungCapDAO extends AbstractDAO<NhaCungCapModel> implements INhaC
 
     @Override
     public void update(NhaCungCapModel nhaCungCapModel) {
-        String sql="update NhaCungCap set ten=N'?',ghichu=N'?',sodienthoai=? where id=?";
+        String sql="update NhaCungCap set ten=?,ghichu=?,sodienthoai=? where id=?";
         update(sql, nhaCungCapModel.getTen(),nhaCungCapModel.getGhiChu(),nhaCungCapModel.getSoDienThoai(),nhaCungCapModel.getId());
     }
 
@@ -46,7 +46,7 @@ public class NhaCungCapDAO extends AbstractDAO<NhaCungCapModel> implements INhaC
 
     @Override
     public NhaCungCapModel findOneByName(String ten) {
-        String sql="select * from NhaCungCap where ten=N'?'";
+        String sql="select * from NhaCungCap where ten=?";
         List<NhaCungCapModel> listNhaCungCapModels=query(sql, new NhaCungCapMapper(),ten);
         return listNhaCungCapModels.isEmpty()? null:listNhaCungCapModels.get(0);
   
@@ -54,7 +54,7 @@ public class NhaCungCapDAO extends AbstractDAO<NhaCungCapModel> implements INhaC
 
     @Override
     public int insert(NhaCungCapModel nhaCungCap) {
-        String sql="insert into NhaCungCap (ten,ghichu,sodienthoai) values(N'?',N'?',?)";
+        String sql="insert into NhaCungCap (ten,ghichu,sodienthoai) values(?,?,?)";
         return insert(sql,nhaCungCap.getTen(),nhaCungCap.getGhiChu(),nhaCungCap.getSoDienThoai());
     }
 
@@ -67,7 +67,7 @@ public class NhaCungCapDAO extends AbstractDAO<NhaCungCapModel> implements INhaC
 
     @Override
     public NhaCungCapModel findOneByNameAndSDT(String name, String sdt) {
-        String sql="select * from NhaCungCap where ten=N'?' and sodienthoai=?";
+        String sql="select * from NhaCungCap where ten=? and sodienthoai=?";
         List<NhaCungCapModel> listNhaCungCapModels=query(sql, new NhaCungCapMapper(),name,sdt);
         return listNhaCungCapModels.isEmpty()? null:listNhaCungCapModels.get(0);
     }

@@ -27,21 +27,21 @@ public class LoaiXeDAO extends AbstractDAO<LoaiXeModel> implements ILoaiXeDao{
 
     @Override
     public LoaiXeModel findOneByName(String tenloai) {
-        String sql=new String("select * from LoaiXe where tenloai=N'?'");
+        String sql=new String("select * from LoaiXe where tenloai=?");
        List<LoaiXeModel> xelist=query(sql, new LoaiXeMapper(), tenloai);
         return xelist.isEmpty() ? null:xelist.get(0);
     }
 
     @Override
     public int save(LoaiXeModel loaiXe) {
-       String sql=new String("insert into LoaiXe (id,tenloai) values (?,N'?')");
+       String sql=new String("insert into LoaiXe (id,tenloai) values (?,?)");
       return insert(sql,loaiXe.getMaLoaiXe(),loaiXe.getTenLoaiXe());
       
     }
 
     @Override
     public void update(LoaiXeModel loaiXe) {
-        String sql=new String("update  LoaiXe set tenxe=N'?' where id=?");
+        String sql=new String("update  LoaiXe set tenxe=? where id=?");
         update(sql, loaiXe.getTenLoaiXe(),loaiXe.getMaLoaiXe());
     }
 
