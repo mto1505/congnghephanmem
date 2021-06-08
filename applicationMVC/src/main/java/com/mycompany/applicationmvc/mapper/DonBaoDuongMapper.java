@@ -26,7 +26,6 @@ public class DonBaoDuongMapper implements RowMapper<DonBaoDuongModel> {
             donBaoDuong.setBienSo(rs.getString("BienSo"));
             donBaoDuong.setNgayBatDau(rs.getString("NgayBatDau"));
             donBaoDuong.setNgayHoanThanh(rs.getString("NgayHoanThanh"));
-            donBaoDuong.setTrangThai(rs.getString("TrangThai"));
             donBaoDuong.setIdNhanVienLapDon(rs.getInt("idNhanVienLapDon"));
             donBaoDuong.setTongTien(rs.getLong("TongTien"));
             return donBaoDuong;

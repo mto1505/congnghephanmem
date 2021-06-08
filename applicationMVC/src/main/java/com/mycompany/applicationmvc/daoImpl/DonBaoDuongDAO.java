@@ -30,8 +30,8 @@ public class DonBaoDuongDAO extends AbstractDAO<DonBaoDuongModel> implements IDo
             String q = "UPDATE DonBaoDuong set BienSo = '?' ,"
                     + "idNhanVienLapDon = ?, "
                     + "NgayHoanThanh = '?', "
-                    + "TongTien= ?, "
-                    + "TrangThai = ? "
+                    + "TongTien= ? "
+ 
                     + "where DonBaoDuong.id = ?";
             update(
                     q,
@@ -39,15 +39,14 @@ public class DonBaoDuongDAO extends AbstractDAO<DonBaoDuongModel> implements IDo
                     donBaoDuongModel.getIdNhanVienLapDon(),
                     donBaoDuongModel.getNgayHoanThanh(),
                     donBaoDuongModel.getTongTien(),
-                    donBaoDuongModel.getTrangThai(),
                     donBaoDuongModel.getId());
         }
     }
 
     @Override
     public DonBaoDuongModel themDonBaoDuong(DonBaoDuongModel donBaoDuongModel) {
-        String q = "INSERT INTO DonBaoDuong (bienso,NgayBatDau,NgayHoanThanh,trangthai,tongtien,idNhanVienLapDon) "
-                + "VALUES ('?', '?', '?', '?', ?, ?);"
+        String q = "INSERT INTO DonBaoDuong (bienso,NgayBatDau,NgayHoanThanh,tongtien,idNhanVienLapDon) "
+                + "VALUES ('?', '?', '?', ?, ?);"
                 + "SELECT * FROM DonBaoDuong WHere DonBaoDuong.id in(SELECT SCOPE_IDENTITY() AS [SCOPE_IDENTITY]); ";
 
         List<DonBaoDuongModel> d = query(
@@ -56,7 +55,6 @@ public class DonBaoDuongDAO extends AbstractDAO<DonBaoDuongModel> implements IDo
                 donBaoDuongModel.getBienSo(),
                 donBaoDuongModel.getNgayBatDau(),
                 donBaoDuongModel.getNgayHoanThanh(),
-                donBaoDuongModel.getTrangThai(),
                 donBaoDuongModel.getTongTien(),
                 donBaoDuongModel.getIdNhanVienLapDon()
         );
@@ -81,9 +79,13 @@ public class DonBaoDuongDAO extends AbstractDAO<DonBaoDuongModel> implements IDo
 
     @Override
     public List<DonBaoDuongModel> timTatCaDonBaoDuong(boolean trangThai) {
-        String tt = trangThai ? "1" : "0";
-        String q = "SELECT TOP 100 * FROM DonBaoDuong WHERE TrangThai  = ? ORDER BY id DESC;";
-        return query(q, new DonBaoDuongMapper(),tt);
+        String q = "SELECT TOP 100 * FROM DonBaoDuong ";
+        if(trangThai){
+            q+="WHERE DonBaoDuong.NgayHoanThanh >= '2010-01-01' ORDER BY id DESC;";
+        }else{
+            q+="WHERE DonBaoDuong.NgayHoanThanh < '2010-01-01' OR DonBaoDuong.NgayHoanThanh IS NULL ORDER BY id DESC;";
+        }
+        return query(q, new DonBaoDuongMapper());
     }
 
     @Override
