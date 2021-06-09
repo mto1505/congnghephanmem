@@ -5,4 +5,3 @@ applicationMVC/src/main/java/com/mycompany/applicationmvc/Utils/DBConnectUtil.ja
 *.lst
 *.class
 *.class
-/applicationMVC/target/
