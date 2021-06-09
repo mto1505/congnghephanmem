@@ -23,7 +23,7 @@ import com.mycompany.applicationmvc.service.IXeService;
 import com.mycompany.applicationmvc.serviceImpl.KhachHangService;
 import com.mycompany.applicationmvc.serviceImpl.LoaiXeService;
 import com.mycompany.applicationmvc.serviceImpl.XeService;
-import com.sun.java_cup.internal.runtime.lr_parser;
+//import com.sun.java_cup.internal.runtime.lr_parser;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
