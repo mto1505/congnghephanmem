@@ -62,7 +62,7 @@ public class DichVuBaoDuongDAO extends AbstractDAO<DichVuBaoDuongModel> implemen
     }
 
     public DichVuBaoDuongModel timDichVuBaoDuongTheoIDvaNgay(int id, String ngayCapNhat) {
-        String q = "SELECT * FROM DichVuBaoDuong WHERE id = ? AND NgayCapNhat = '?'";
+        String q = "SELECT * FROM DichVuBaoDuong WHERE id = ? AND NgayCapNhat = ?";
         List<DichVuBaoDuongModel> temp = query(q, new DichVuBaoDuongMapper(), id, ngayCapNhat);
         if (temp.get(0) != null) {
             return temp.get(0);
