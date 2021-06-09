@@ -245,4 +245,49 @@ public class ControllerAdmin {
         }
         return s;
     }
+    // biểu đồ
+    public static long DT_Month(int m){
+       long kt=0;
+       Connection cn=ModelAdmin.connectMSSQL();
+       String sql="""
+                  select sum(dbd.TongTien)
+                  from DonBaoDuong as dbd
+                  where Month(NgayHoanThanh)="""+m+" and NgayBatDau<=NgayHoanThanh";
+       try{
+           PreparedStatement ps=cn.prepareStatement(sql);
+           ResultSet rs=ps.executeQuery();
+           if(rs.next()){
+               kt=rs.getLong(1);
+           }
+           rs.close();
+           ps.close();
+           cn.close();
+       }
+       catch (SQLException ex){
+           ex.printStackTrace();
+       }
+        return kt;
+    }
+    public static int DBD_Month(int m){
+       int kt=0;
+       Connection cn=ModelAdmin.connectMSSQL();
+       String sql="""
+                  select count(dbd.id)
+                  from DonBaoDuong as dbd
+                  where Month(NgayHoanThanh)="""+m+" and NgayBatDau<=NgayHoanThanh";
+       try{
+           PreparedStatement ps=cn.prepareStatement(sql);
+           ResultSet rs=ps.executeQuery();
+           if (rs.next()){
+               kt=rs.getInt(1);
+           }
+           rs.close();
+           ps.close();
+           cn.close();
+       }
+       catch (SQLException ex){
+           ex.printStackTrace();
+       }
+        return kt;
+    }
 }
