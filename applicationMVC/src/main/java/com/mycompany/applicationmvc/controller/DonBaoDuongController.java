@@ -572,14 +572,13 @@ public class DonBaoDuongController {
                         danhSachDonBaoDuongPanel.getjButton_SuaDonBaoDuong().setVisible(false);
                         danhSachDonBaoDuongPanel.getjButton_XoaDonBaoDuong().setVisible(false);
                         danhSachDonBaoDuongPanel.getjButton_XemDonBaoDuong().setVisible(true);
-                        
 
                     } else {
                         danhSachDonBaoDuongPanel.getjButton_XacNhanHoanThanhButton().setVisible(true);
                         danhSachDonBaoDuongPanel.getjButton_SuaDonBaoDuong().setVisible(true);
                         danhSachDonBaoDuongPanel.getjButton_XoaDonBaoDuong().setVisible(true);
                         danhSachDonBaoDuongPanel.getjButton_XemDonBaoDuong().setVisible(false);
-                        
+
                     }
                     loadDanhSachDonBaoDuongChuaHoanThanh();
                 } catch (SQLException ex) {
@@ -683,7 +682,7 @@ public class DonBaoDuongController {
             @Override
             public void keyTyped(KeyEvent e) {
                 String key = danhSachDonBaoDuongPanel.getjTextField_TimKiem().getText().trim();
-                
+
                 DefaultTableModel dm = (DefaultTableModel) danhSachDonBaoDuongPanel.getjTable_DanhSachDonBaoDuong().getModel();
                 dm.setNumRows(0);
                 for (DonBaoDuongModel d : danhSachDonBaoDuongHienThi) {
@@ -1157,6 +1156,8 @@ public class DonBaoDuongController {
 
             } else {
                 capNhatDonBaoDuong();
+                loadDanhSachDichVuBaoDuonginDialog();
+                loadDanhSachLinhKieninDialog();
             }
 
             if (hienThiHoaDon) {

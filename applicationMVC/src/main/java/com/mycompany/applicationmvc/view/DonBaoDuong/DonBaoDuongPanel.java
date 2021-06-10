@@ -389,7 +389,7 @@ public class DonBaoDuongPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Mã", "Tên ", "Giá", "Nhà cung cấp", "Ngày nhập", "Số lượng", "Chọn "
+                "Mã", "Tên ", "Giá", "Nhà cung cấp", "Ngày nhập", "Số lượng còn lại", "Chọn "
             }
         ) {
             Class[] types = new Class [] {

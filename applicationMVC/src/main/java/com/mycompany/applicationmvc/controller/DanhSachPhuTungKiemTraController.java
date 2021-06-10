@@ -101,5 +101,6 @@ public class DanhSachPhuTungKiemTraController {
 
     private void cauHinhItem() {
         danhSachPhuTungKiemTraPanel.getjTextField_MaPhuTung().setEditable(false);
+        danhSachPhuTungKiemTraPanel.getjTextField_MaPhuTung().setText("[Tự động tạo]");
     }
 }
