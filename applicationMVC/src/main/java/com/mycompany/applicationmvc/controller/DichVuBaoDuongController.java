@@ -45,7 +45,7 @@ public class DichVuBaoDuongController {
         capNhatGiaoDienThemMoiDichVuBaoDuong();
     }
 
-    private void loadDanhSachDichVuBaoDuong(){
+    private void loadDanhSachDichVuBaoDuong() {
         ArrayList<DichVuBaoDuongModel> arl = (ArrayList<DichVuBaoDuongModel>) dichVuBaoDuongService.layDanhSachDichVuBaoDuongMoiNhat();
         DefaultTableModel dftb = (DefaultTableModel) dichVuPanel.getjTable_DanhSachDichVuBaoDuong().getModel();
         dftb.setNumRows(0);
@@ -89,7 +89,7 @@ public class DichVuBaoDuongController {
                     dichVuPanel.getjTextField_PhiDichVuBaoDuong().setEditable(true);
                     dichVuPanel.getjComboBox_LoaiXe().setSelectedItem(md.getValueAt(row, 3).toString());
                     dichVuPanel.getjComboBox_LoaiXe().setEnabled(false);
-                    if (md.getValueAt(row, 4).toString().equalsIgnoreCase("Sử dụng")) {
+                    if (md.getValueAt(row, 4).toString().equalsIgnoreCase("Được sử dụng")) {
                         dichVuPanel.getjCheckBox_TrangThaiSuDungDichVuBaoDuong().setSelected(true);
                     } else {
                         dichVuPanel.getjCheckBox_TrangThaiSuDungDichVuBaoDuong().setSelected(false);
@@ -97,8 +97,6 @@ public class DichVuBaoDuongController {
                 }
             }
         });
-
-
 
         dichVuPanel.getjTextField_TimKiemDichVuBaoDuong().addKeyListener(new KeyAdapter() {
             @Override
@@ -111,7 +109,7 @@ public class DichVuBaoDuongController {
                     for (DichVuBaoDuongModel dv : ar) {
                         if (Stringlib.isLikeString(key, dv.getTenDichVuBaoDuong()) >= 0.51) {
                             LoaiXeModel temp_lx = loaiXeService.findOne(dv.getIdLoaiXe());
-                            String tt = dv.isTrangThai()? "Được sủ dụng" : "Không sử dụng";
+                            String tt = dv.isTrangThai() ? "Được sủ dụng" : "Không sử dụng";
                             dm.addRow(new Object[]{dv.getId(), dv.getTenDichVuBaoDuong(), dv.getPhi(), temp_lx.getTenLoaiXe(), dv.isTrangThai()});
                         }
                     }
@@ -123,7 +121,7 @@ public class DichVuBaoDuongController {
 
         dichVuPanel.getjButton_LuuDichVuBaoDuong().addActionListener((e) -> {
             boolean tt = dichVuPanel.getjCheckBox_TrangThaiSuDungDichVuBaoDuong().isSelected();
-            
+
             DichVuBaoDuongModel dv = new DichVuBaoDuongModel(
                     Integer.parseInt(dichVuPanel.getjTextField_MaDichVuBaoDuong().getText()),
                     dichVuPanel.getjTextField_TenDichVuBaoDuong().getText(),
@@ -131,11 +129,25 @@ public class DichVuBaoDuongController {
                     loaiXeService.findOneByName(dichVuPanel.getjComboBox_LoaiXe().getSelectedItem().toString()).getMaLoaiXe(),
                     tt,
                     dichVuPanel.getjTextField_NgayCapNhat().getText());
-            if (dichVuPanel.getjTextField_MaDichVuBaoDuong().getText().equalsIgnoreCase("")) {
-
-                dichVuBaoDuongService.themDichVuBaoDuong(dv);
+            if (dichVuPanel.getjTextField_MaDichVuBaoDuong().getText().equalsIgnoreCase("[Tự động tạo]")) {
+                DichVuBaoDuongModel tempdv = dichVuBaoDuongService.timDichVuBaoDuongTheoTenVaLoaiXe(dv.getTenDichVuBaoDuong(), dv.getIdLoaiXe());
+                if (tempdv == null) {
+                    dichVuBaoDuongService.themDichVuBaoDuong(dv);
+                }else{
+                    dichVuPanel.getjDialog_CanhBaoTrungDichVuBaoDuong().setVisible(true);
+                }
             } else {
-                dichVuBaoDuongService.capNhatDichVuBaoDuong(dv);
+                DichVuBaoDuongModel tempdv = dichVuBaoDuongService.timDichVuBaoDuongTheoIDVaNgayCapNhat(dv.getId(), dv.getNgayCapNhat());
+                if (tempdv.isTrangThai() && !dv.isTrangThai()) {
+                    ArrayList<DonBaoDuongModel> ds = (ArrayList<DonBaoDuongModel>) dichVuBaoDuongService.layDanhSachDonBaoDuongBiAnhHuongKHiCapNhatDVBD(dv.getId());
+                    if (ds == null || ds.isEmpty() || ds.get(0) == null) {
+                        dichVuBaoDuongService.capNhatDichVuBaoDuong(dv);
+                    } else {
+                        dichVuPanel.getjDialog_CanhBaoKHiCapNhatTrangThaiCuaDichVuBaoDuong().setVisible(true);
+                    }
+
+                }
+
             }
             loadDanhSachDichVuBaoDuong();
         });
@@ -146,9 +158,6 @@ public class DichVuBaoDuongController {
                 capNhatGiaoDienThemMoiDichVuBaoDuong();
             }
         });
-
-        
-
     }
 
     private void capNhatGiaoDienThemMoiDichVuBaoDuong() {
@@ -162,6 +171,5 @@ public class DichVuBaoDuongController {
         dichVuPanel.getjComboBox_LoaiXe().setEnabled(true);
         dichVuPanel.getjCheckBox_TrangThaiSuDungDichVuBaoDuong().setSelected(true);
     }
-    
-    
+
 }

@@ -7,6 +7,7 @@ package com.mycompany.applicationmvc.serviceImpl;
 
 import com.mycompany.applicationmvc.daoImpl.DichVuBaoDuongDAO;
 import com.mycompany.applicationmvc.model.DichVuBaoDuongModel;
+import com.mycompany.applicationmvc.model.DonBaoDuongModel;
 import com.mycompany.applicationmvc.service.IDichVuBaoDuongService;
 import java.util.List;
 
@@ -36,5 +37,17 @@ public class DichVuBaoDuongService implements IDichVuBaoDuongService {
     
     public void capNhatDichVuBaoDuong(DichVuBaoDuongModel d){
         dichVuBaoDuongDAO.capNhatDichVuBaoDuong(d);
+    }
+    
+    public List<DichVuBaoDuongModel> layDanhSachDichVuBaoDuongMoiNhat(boolean mode) {
+        return dichVuBaoDuongDAO.timTatCaDichVuBaoDuongMoiNhat(mode);
+    }
+    
+    public List<DonBaoDuongModel> layDanhSachDonBaoDuongBiAnhHuongKHiCapNhatDVBD(int idDV){
+        return dichVuBaoDuongDAO.layDanhSachDonBaoDuongBiAnhHuongKHiCapNhatDVBD(idDV);
+    }
+    
+    public DichVuBaoDuongModel timDichVuBaoDuongTheoTenVaLoaiXe(String ten, int loaiXe){
+        return dichVuBaoDuongDAO.timDichVuBaoDuongTheoTenVaLoaiXe(ten, loaiXe);
     }
 }
