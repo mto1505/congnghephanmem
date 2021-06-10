@@ -324,9 +324,9 @@ public class JPanel_TKLinhKien extends javax.swing.JPanel {
         Connection cn=ModelAdmin.connectMSSQL();
         dtm.setNumRows(0);
         //---------------------Xử lý sắp xếp-------------------------
-        String sql="select LK.id,LK.TenLinhKien,LK.SoLuong,LK.Gia,LK.NhaCungCap,NCC.TenNhaCungCap,LK.NgayNhap\n" + "from LinhKien as LK, NhaCungCap as NCC\n" + "where LK.NhaCungCap=NCC.id";
-        String sql1="select LK.id,LK.TenLinhKien,LK.SoLuong,LK.Gia,LK.NhaCungCap,NCC.TenNhaCungCap,LK.NgayNhap\n" + "from LinhKien as LK, NhaCungCap as NCC\n" + "where LK.NhaCungCap=NCC.id\n" + "order by Gia";
-        String sql2="select LK.id,LK.TenLinhKien,LK.SoLuong,LK.Gia,LK.NhaCungCap,NCC.TenNhaCungCap,LK.NgayNhap\n" + "from LinhKien as LK, NhaCungCap as NCC\n" + "where LK.NhaCungCap=NCC.id\n" + "order by Gia DESC";
+        String sql="select LK.id,LK.TenLinhKien,LK.SoLuong,LK.Gia,LK.NhaCungCap,NCC.Ten,LK.NgayNhap\n" + "from LinhKien as LK, NhaCungCap as NCC\n" + "where LK.NhaCungCap=NCC.id";
+        String sql1="select LK.id,LK.TenLinhKien,LK.SoLuong,LK.Gia,LK.NhaCungCap,NCC.Ten,LK.NgayNhap\n" + "from LinhKien as LK, NhaCungCap as NCC\n" + "where LK.NhaCungCap=NCC.id\n" + "order by Gia";
+        String sql2="select LK.id,LK.TenLinhKien,LK.SoLuong,LK.Gia,LK.NhaCungCap,NCC.Ten,LK.NgayNhap\n" + "from LinhKien as LK, NhaCungCap as NCC\n" + "where LK.NhaCungCap=NCC.id\n" + "order by Gia DESC";
         int i_sx=(int)jComboBox_SapXepLK.getSelectedIndex();
         if (i_sx==1) sql=sql1;
         else  if (i_sx==2) sql=sql2;
@@ -372,7 +372,9 @@ public class JPanel_TKLinhKien extends javax.swing.JPanel {
                     ControllerAdmin.Compare_Date(Integer.parseInt(D1[0]),Integer.parseInt(D1[1]),Integer.parseInt(D1[2]),
                         Integer.parseInt((String)jComboBox_NgayLK2.getSelectedItem()),Integer.parseInt((String)jComboBox_ThangLK2.getSelectedItem()),
                         Integer.parseInt((String)jComboBox_NamLK2.getSelectedItem()))!=1 ){
-                    vt.add(date1);
+                    SimpleDateFormat f1= new SimpleDateFormat("dd/MM/yyyy HH:mm:ss.SSS");
+                    String date=f1.format(rs.getTimestamp(7)); 
+                    vt.add(date);
                     System.out.println("oke");
                 }
                 else kt=false;
@@ -390,14 +392,14 @@ public class JPanel_TKLinhKien extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jTextField_FindID_LKKeyReleased
 
-    private void importDataTKLK(){
+     private void importDataTKLK(){
         DefaultTableModel dtm= (DefaultTableModel) jTable_DanhSachTKLK.getModel();
         Connection cn=ModelAdmin.connectMSSQL();
         dtm.setNumRows(0);
         //---------------------Xử lý sắp xếp-------------------------
-        String sql="select LK.id,LK.TenLinhKien,LK.SoLuong,LK.Gia,LK.NhaCungCap,NCC.TenNhaCungCap,LK.NgayNhap\n" + "from LinhKien as LK, NhaCungCap as NCC\n" + "where LK.NhaCungCap=NCC.id";
-        String sql1="select LK.id,LK.TenLinhKien,LK.SoLuong,LK.Gia,LK.NhaCungCap,NCC.TenNhaCungCap,LK.NgayNhap\n" + "from LinhKien as LK, NhaCungCap as NCC\n" + "where LK.NhaCungCap=NCC.id\n" + "order by Gia";
-        String sql2="select LK.id,LK.TenLinhKien,LK.SoLuong,LK.Gia,LK.NhaCungCap,NCC.TenNhaCungCap,LK.NgayNhap\n" + "from LinhKien as LK, NhaCungCap as NCC\n" + "where LK.NhaCungCap=NCC.id\n" + "order by Gia DESC";
+        String sql="select LK.id,LK.TenLinhKien,LK.SoLuong,LK.Gia,LK.NhaCungCap,NCC.Ten,LK.NgayNhap\n" + "from LinhKien as LK, NhaCungCap as NCC\n" + "where LK.NhaCungCap=NCC.id";
+        String sql1="select LK.id,LK.TenLinhKien,LK.SoLuong,LK.Gia,LK.NhaCungCap,NCC.Ten,LK.NgayNhap\n" + "from LinhKien as LK, NhaCungCap as NCC\n" + "where LK.NhaCungCap=NCC.id\n" + "order by Gia";
+        String sql2="select LK.id,LK.TenLinhKien,LK.SoLuong,LK.Gia,LK.NhaCungCap,NCC.Ten,LK.NgayNhap\n" + "from LinhKien as LK, NhaCungCap as NCC\n" + "where LK.NhaCungCap=NCC.id\n" + "order by Gia DESC";
         int i_sx=(int)jComboBox_SapXepLK.getSelectedIndex();
         if (i_sx==1) sql=sql1;
            else  if (i_sx==2) sql=sql2;
@@ -441,7 +443,9 @@ public class JPanel_TKLinhKien extends javax.swing.JPanel {
                     ControllerAdmin.Compare_Date(Integer.parseInt(D1[0]),Integer.parseInt(D1[1]),Integer.parseInt(D1[2]),
                         Integer.parseInt((String)jComboBox_NgayLK2.getSelectedItem()),Integer.parseInt((String)jComboBox_ThangLK2.getSelectedItem()),
                         Integer.parseInt((String)jComboBox_NamLK2.getSelectedItem()))!=1 ){
-                     vt.add(date1);
+                    SimpleDateFormat f1= new SimpleDateFormat("dd/MM/yyyy HH:mm:ss.SSS");
+                    String date=f1.format(rs.getTimestamp(7)); 
+                    vt.add(date);
                      //System.out.println("oke");
                  }
                 else kt=false;
@@ -459,7 +463,7 @@ public class JPanel_TKLinhKien extends javax.swing.JPanel {
       
     private void importDataNCCLK(){
        Connection cn=ModelAdmin.connectMSSQL();
-       String sql="select id,TenNhaCungCap from NhaCungCap";
+       String sql="select id,Ten from NhaCungCap";
        try{
            PreparedStatement ps=cn.prepareStatement(sql);
            ResultSet rs=ps.executeQuery();
