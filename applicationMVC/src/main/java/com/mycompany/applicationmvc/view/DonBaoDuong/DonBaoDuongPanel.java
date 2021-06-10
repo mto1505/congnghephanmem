@@ -623,7 +623,7 @@ public class DonBaoDuongPanel extends javax.swing.JPanel {
                 java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, true, false, false, true, false
+                false, false, true, false, true, true, false
             };
 
             public Class getColumnClass(int columnIndex) {

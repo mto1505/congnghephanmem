@@ -954,7 +954,7 @@
                         <Column editable="false" title="T&#xea;n" type="java.lang.String"/>
                         <Column editable="true" title="S&#x1ed1; l&#x1b0;&#x1ee3;ng" type="java.lang.String"/>
                         <Column editable="false" title="Ph&#xed; / &#x111;&#x1a1;n v&#x1ecb;" type="java.lang.String"/>
-                        <Column editable="false" title="Ph&#x1ee5; ph&#xed;" type="java.lang.String"/>
+                        <Column editable="true" title="Ph&#x1ee5; ph&#xed;" type="java.lang.String"/>
                         <Column editable="true" title="Ph&#x1ee5; tr&#xe1;ch" type="java.lang.String"/>
                         <Column editable="false" title="Ng&#xe0;y C&#x1ead;p Nh&#x1ead;t" type="java.lang.String"/>
                       </Table>

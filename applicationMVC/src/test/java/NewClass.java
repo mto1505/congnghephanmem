@@ -35,6 +35,11 @@ public class NewClass {
                 + " where DichVuBaoDuong.id = temporaryTable.id and DichVuBaoDuong.NgayCapNhat = temporaryTable.NgayCapNhat";
         //System.out.println(q);
         
-        testDate();
+        
+        String sqlString = "select bienso,tenxe,ten,sdt,tenloai,gioitinh from XeMay as xe "
+                + " join KhachHang kh on kh.id=xe.idChuSoHuu and xe.bienso= ? "
+                + " join LoaiXe loaixe on xe.idLoaiXe=loaixe.id";
+         System.out.println(sqlString);
+        //testDate();
     }
 }

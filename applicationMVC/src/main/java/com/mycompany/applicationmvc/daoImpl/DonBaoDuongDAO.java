@@ -33,6 +33,7 @@ public class DonBaoDuongDAO extends AbstractDAO<DonBaoDuongModel> implements IDo
                     + "TongTien= ? "
  
                     + "where DonBaoDuong.id = ?";
+            System.out.println("com.mycompany.applicationmvc.daoImpl.DonBaoDuongDAO.capNhatDonBaoDuong()"+donBaoDuongModel.getTongTien());
             update(
                     q,
                     donBaoDuongModel.getBienSo(),

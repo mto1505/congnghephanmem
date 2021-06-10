@@ -63,7 +63,7 @@ public class DonBaoDuongController {
     NhanVienService nhanVienService;
     PhuTungService phuTungService;
 
-    public DonBaoDuongController(DonBaoDuongContainerPanel baoDuongContainerPanel)  {
+    public DonBaoDuongController(DonBaoDuongContainerPanel baoDuongContainerPanel) {
         this.baoDuongContainerPanel = baoDuongContainerPanel;
         this.baoduongPanel = baoDuongContainerPanel.getDonBaoDuongPanel();
         this.danhSachDonBaoDuongPanel = baoDuongContainerPanel.getDanhSachDonBaoDuongPanel();
@@ -147,7 +147,7 @@ public class DonBaoDuongController {
         DefaultTableModel dftb = (DefaultTableModel) baoduongPanel.getDanhSachLinhKienThayTheTB_ThemLinhKienThayTheDailog().getModel();
         dftb.setNumRows(0);
         arl.forEach(lk -> {
-            dftb.addRow(new Object[]{lk.getId(), lk.getTenLinhKien(), lk.getGia(), lk.getNhaCungCap(), lk.getNgayNhap(), lk.getSoLuong(), null});
+            dftb.addRow(new Object[]{lk.getId(), lk.getTenLinhKien(), (int) lk.getGia(), lk.getNhaCungCap(), lk.getNgayNhap(), lk.getSoLuong(), null});
         });
     }
 
@@ -523,6 +523,7 @@ public class DonBaoDuongController {
                     String id = danhSachDonBaoDuongPanel.getjTable_DanhSachDonBaoDuong().getValueAt(danhSachDonBaoDuongPanel.getjTable_DanhSachDonBaoDuong().getSelectedRow(), 0).toString();
                     try {
                         loadDonBaoDuong(id);
+                        System.out.println(".actionPerformed()" + id);
                     } catch (SQLException ex) {
                         Logger.getLogger(DonBaoDuongController.class.getName()).log(Level.SEVERE, null, ex);
                     } catch (ParseException ex) {
@@ -560,9 +561,9 @@ public class DonBaoDuongController {
             }
         });
 
-        danhSachDonBaoDuongPanel.getjCheckBox_CheDoHienThiDanhSachHoaDon().addChangeListener(new ChangeListener() {
+        danhSachDonBaoDuongPanel.getjCheckBox_CheDoHienThiDanhSachHoaDon().addActionListener(new ActionListener() {
             @Override
-            public void stateChanged(ChangeEvent e) {
+            public void actionPerformed(ActionEvent e) {
                 try {
                     if (danhSachDonBaoDuongPanel.getjCheckBox_CheDoHienThiDanhSachHoaDon().isSelected()) {
                         danhSachDonBaoDuongPanel.getjButton_XacNhanHoanThanhButton().setVisible(false);
@@ -590,7 +591,9 @@ public class DonBaoDuongController {
                 int id = Integer.parseInt(danhSachDonBaoDuongPanel.getjTable_DanhSachDonBaoDuong().getValueAt(danhSachDonBaoDuongPanel.getjTable_DanhSachDonBaoDuong().getSelectedRow(), 0).toString());
                 try {
                     DonBaoDuongModel temp = baoDuongService.timDonBaoDuong(id);
+                    System.out.println(temp.getTongTien());
                     temp.setTrangThai("1");
+                    temp.setNgayHoanThanh(LocalDate.now().toString());
                     baoDuongService.capNhatDonBaoDuong(temp);
                     loadDanhSachDonBaoDuongChuaHoanThanh(danhSachDonBaoDuongPanel.getjCheckBox_CheDoHienThiDanhSachHoaDon().isSelected());
                 } catch (SQLException ex) {
@@ -726,6 +729,15 @@ public class DonBaoDuongController {
         for (NhanVienModel nv : ar) {
             baoduongPanel.getDanhSachNhanVienComboBox().addItem(nv.getTenNhanVien() + " (" + nv.getId() + ")");
         }
+
+        JComboBox<String> cb = new JComboBox<>();
+        cb.removeAllItems();
+        for (int i = 0; i < 100; i++) {
+            cb.addItem(Integer.toString(i * 5000));
+        }
+
+        baoduongPanel.getDanhSachDichVuBaoDuongTB().getColumnModel().getColumn(4).setCellEditor(new DefaultCellEditor(cb));
+
         baoduongPanel.getDanhSachDichVuBaoDuongTB().getColumnModel().getColumn(5).setCellEditor(new DefaultCellEditor(baoduongPanel.getDanhSachNhanVienComboBox()));
         baoduongPanel.getNgayThangNamTF().setText(Stringlib.dinhDangNgayHienThitu_yyyyMMdd_Thanh_ddMMyyyy(LocalDate.now().toString()));
         danhSachDonBaoDuongPanel.getjCheckBox_CheDoHienThiDanhSachHoaDon().setSelected(false);
@@ -934,7 +946,7 @@ public class DonBaoDuongController {
     private void loadXeMay(String bienSo) throws SQLException {
         XeModel xm = xeService.findOne(bienSo);
         if (xm == null) {
-            System.err.println("Loi tim xe may");
+            System.out.println("Loi tim xe may");
         } else {
             baoduongPanel.getBienSoXeTF().setText(xm.getBienSo());
             baoduongPanel.getLoaiXeComboBox().setSelectedItem(xm.getLoaixe().getTenLoaiXe().trim());
@@ -951,12 +963,18 @@ public class DonBaoDuongController {
         for (ChiTietDonBaoDuongModel c : ds) {
             DichVuBaoDuongModel d = dichVuBaoDuongService.timDichVuBaoDuongTheoIDVaNgayCapNhat(c.getIdDichVuBaoDuong(), c.getNgayCapNhatDichVuBaoDuong());
             NhanVienModel nv = nhanVienService.findOne(c.getIdNhanVienPhuTrach());
+            String ten;
+            if (nv == null) {
+                ten = "";
+            } else {
+                ten = nv.getTenNhanVien() + " (" + nv.getId() + ")";
+            }
             dm.addRow(new Object[]{d.getId(),
                 d.getTenDichVuBaoDuong(),
                 c.getSoLuong(),
                 d.getPhi(),
                 c.getPhuPhi(),
-                nv.getTenNhanVien() + " (" + nv.getId() + ")",
+                ten,
                 d.getNgayCapNhat()});
         }
     }
@@ -970,7 +988,7 @@ public class DonBaoDuongController {
             dm.addRow(new Object[]{lk.getId(),
                 lk.getTenLinhKien(),
                 c.getSoLuong(),
-                lk.getGia(),
+                (int) lk.getGia(),
                 c.getGhiChu(),
                 lk.getNgayNhap()});
         }
@@ -1034,11 +1052,18 @@ public class DonBaoDuongController {
         DefaultTableModel dm = (DefaultTableModel) danhSachDonBaoDuongPanel.getjTable_DanhSachDonBaoDuong().getModel();
         dm.setNumRows(0);
         for (DonBaoDuongModel d : arl) {
+            XeModel xe = xeService.findOne(d.getBienSo());
+            String tenKhachHang = "Khách vãng lai";
+            String sdtKhachHang = "";
+            if (xe != null && xe.getKhachHang() != null) {
+                tenKhachHang = xe.getKhachHang().getHoTen();
+                sdtKhachHang = xe.getKhachHang().getSoDienThoai();
+            }
             String t = "Đang sửa";
             if (d.getTrangThai().equalsIgnoreCase("1")) {
                 t = "Đã sửa xong";
             }
-            dm.addRow(new Object[]{d.getId(), d.getBienSo(), d.getTenKhachHang(), d.getSDTKhachhang(), Stringlib.dinhDangTienHienThi(d.getTongTien()), t});
+            dm.addRow(new Object[]{d.getId(), d.getBienSo(), tenKhachHang, sdtKhachHang, Stringlib.dinhDangTienHienThi(d.getTongTien()), t});
         }
     }
 

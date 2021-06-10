@@ -32,6 +32,7 @@ public class NhanVienMapper implements RowMapper<NhanVienModel> {
             return nhanVienModel;
         } catch (SQLException ex) {
             Logger.getLogger(NhaCungCapMapper.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex.getMessage());
             return null;
         }
     }
