@@ -3,8 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+import com.mycompany.applicationmvc.daoImpl.LinhKienDAO;
+import com.mycompany.applicationmvc.model.LinhKienModel;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -39,7 +42,12 @@ public class NewClass {
         String sqlString = "select bienso,tenxe,ten,sdt,tenloai,gioitinh from XeMay as xe "
                 + " join KhachHang kh on kh.id=xe.idChuSoHuu and xe.bienso= ? "
                 + " join LoaiXe loaixe on xe.idLoaiXe=loaixe.id";
-         System.out.println(sqlString);
+        // System.out.println(sqlString);
         //testDate();
+        LinhKienDAO dao = new LinhKienDAO();
+        ArrayList<LinhKienModel> ls = (ArrayList<LinhKienModel>) dao.layDanhSachLinhKienMoiNhat();
+        for (LinhKienModel l : ls) {
+            System.out.println(l.getNgayNhapString());
+        }
     }
 }

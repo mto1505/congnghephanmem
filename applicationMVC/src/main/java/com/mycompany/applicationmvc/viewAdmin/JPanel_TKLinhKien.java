@@ -459,7 +459,7 @@ public class JPanel_TKLinhKien extends javax.swing.JPanel {
       
     private void importDataNCCLK(){
        Connection cn=ModelAdmin.connectMSSQL();
-       String sql="select id,TenNhaCungCap from NhaCungCap";
+       String sql="select id,ten from NhaCungCap";
        try{
            PreparedStatement ps=cn.prepareStatement(sql);
            ResultSet rs=ps.executeQuery();
