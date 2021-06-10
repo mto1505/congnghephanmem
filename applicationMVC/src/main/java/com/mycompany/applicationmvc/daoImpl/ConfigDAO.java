@@ -10,5 +10,5 @@ package com.mycompany.applicationmvc.daoImpl;
  * @author minh
  */
 public class ConfigDAO {
-    public void capNhatThueVATChoTrigger
+    //public void capNhatThueVATChoTrigger
 }
