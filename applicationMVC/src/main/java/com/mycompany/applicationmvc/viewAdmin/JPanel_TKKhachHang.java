@@ -138,17 +138,7 @@ public class JPanel_TKKhachHang extends javax.swing.JPanel {
         DefaultTableModel dtm= (DefaultTableModel) jTable_DanhSachTKKH.getModel();
         Connection cn=ModelAdmin.connectMSSQL();
         dtm.setNumRows(0);
-        String sql="""
-                    with BS_DBD(BS,ID) as
-                    (select DonBaoDuong.BienSo,XeMay.idChuSoHuu
-                    from XeMay, DonBaoDuong
-                    where  XeMay.BienSo=DonBaoDuong.BienSo)
-                    
-                    select KhachHang.id,KhachHang.Ten,KhachHang.SDT,KhachHang.GioiTinh,count(BS_DBD.ID) as SL
-                    from KhachHang,BS_DBD
-                    where KhachHang.id=BS_DBD.ID
-                    group by KhachHang.id,KhachHang.Ten,KhachHang.SDT,KhachHang.GioiTinh
-                    order by SL desc """;
+        String sql="with BS_DBD(BS,ID) as\n" + "(select DonBaoDuong.BienSo,XeMay.idChuSoHuu\n" + "from XeMay, DonBaoDuong\n" + "where  XeMay.BienSo=DonBaoDuong.BienSo)\n" + "\n" + "select KhachHang.id,KhachHang.Ten,KhachHang.SDT,KhachHang.GioiTinh,count(BS_DBD.ID) as SL\n" + "from KhachHang,BS_DBD\n" + "where KhachHang.id=BS_DBD.ID\n" + "group by KhachHang.id,KhachHang.Ten,KhachHang.SDT,KhachHang.GioiTinh\n" + "order by SL desc";
         Vector vt=null;
         try{
             PreparedStatement ps=cn.prepareStatement(sql);
@@ -179,17 +169,7 @@ public class JPanel_TKKhachHang extends javax.swing.JPanel {
         DefaultTableModel dtm= (DefaultTableModel) jTable_DanhSachTKKH.getModel();
         Connection cn=ModelAdmin.connectMSSQL();
         dtm.setNumRows(0);
-        String sql="""
-                    with BS_DBD(BS,ID) as
-                    (select DonBaoDuong.BienSo,XeMay.idChuSoHuu
-                    from XeMay, DonBaoDuong
-                    where  XeMay.BienSo=DonBaoDuong.BienSo)
-                    
-                    select KhachHang.id,KhachHang.Ten,KhachHang.SDT,KhachHang.GioiTinh,count(BS_DBD.ID) as SL
-                    from KhachHang,BS_DBD
-                    where KhachHang.id=BS_DBD.ID
-                    group by KhachHang.id,KhachHang.Ten,KhachHang.SDT,KhachHang.GioiTinh
-                    order by SL desc """;
+        String sql="with BS_DBD(BS,ID) as\n" + "(select DonBaoDuong.BienSo,XeMay.idChuSoHuu\n" + "from XeMay, DonBaoDuong\n" + "where  XeMay.BienSo=DonBaoDuong.BienSo)\n" + "\n" + "select KhachHang.id,KhachHang.Ten,KhachHang.SDT,KhachHang.GioiTinh,count(BS_DBD.ID) as SL\n" + "from KhachHang,BS_DBD\n" + "where KhachHang.id=BS_DBD.ID\n" + "group by KhachHang.id,KhachHang.Ten,KhachHang.SDT,KhachHang.GioiTinh\n" + "order by SL desc";
         Vector vt=null;
         try{
             PreparedStatement ps=cn.prepareStatement(sql);

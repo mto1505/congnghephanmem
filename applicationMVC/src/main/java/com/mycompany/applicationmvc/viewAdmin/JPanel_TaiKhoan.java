@@ -466,10 +466,8 @@ public class JPanel_TaiKhoan extends javax.swing.JPanel {
         DefaultTableModel dtm= (DefaultTableModel) jTable_DanhSachTK.getModel();
         dtm.setNumRows(0);
         Connection cn=ModelAdmin.connectMSSQL();
-        String sql="""
-                   select TK.TenTaiKhoan,TK.MatKhau,TK.idNhanVien,NV.Ten,TK.idQuyen,Q.Ten
-                   from TaiKhoan as TK,Quyen as Q,NhanVien as NV
-                   where tk.idNhanVien=Nv.id and tk.idQuyen=Q.id""";
+        String sql="select TK.TenTaiKhoan,TK.MatKhau,TK.idNhanVien,NV.Ten,TK.idQuyen,Q.Ten\n" +
+                "from TaiKhoan as TK,Quyen as Q,NhanVien as NV\n" + "where tk.idNhanVien=Nv.id and tk.idQuyen=Q.id";
         Vector vt=null;
         try{
             PreparedStatement ps=cn.prepareStatement(sql);
@@ -582,10 +580,7 @@ public class JPanel_TaiKhoan extends javax.swing.JPanel {
         DefaultTableModel dtm= (DefaultTableModel) jTable_DanhSachTK.getModel();
         dtm.setNumRows(0);
         Connection cn=ModelAdmin.connectMSSQL();
-        String sql="""
-                   select TK.TenTaiKhoan,TK.MatKhau,TK.idNhanVien,NV.Ten,TK.idQuyen,Q.Ten
-                   from TaiKhoan as TK,Quyen as Q,NhanVien as NV
-                   where tk.idNhanVien=Nv.id and tk.idQuyen=Q.id""";
+        String sql="select TK.TenTaiKhoan,TK.MatKhau,TK.idNhanVien,NV.Ten,TK.idQuyen,Q.Ten\n" + "from TaiKhoan as TK,Quyen as Q,NhanVien as NV\n" + "where tk.idNhanVien=Nv.id and tk.idQuyen=Q.id";
         Vector vt=null;
         try{
             PreparedStatement ps=cn.prepareStatement(sql);

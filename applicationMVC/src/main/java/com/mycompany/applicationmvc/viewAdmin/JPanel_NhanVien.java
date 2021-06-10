@@ -690,12 +690,7 @@ public class JPanel_NhanVien extends javax.swing.JPanel {
         Connection cn=ModelAdmin.connectMSSQL();
         dtm.setNumRows(0);
         String sql="select * from NhanVien order by id";
-        String sql1="""
-        select NhanVien.id,count(ChiTietDonBaoDuong.idNhanVienPhuTrach) As SoLan
-        From NhanVien,ChiTietDonBaoDuong
-        where NhanVien.id=ChiTietDonBaoDuong.idNhanVienPhuTrach
-        group by NhanVien.id
-        order by SoLan Desc """;
+        String sql1="select NhanVien.id,count(ChiTietDonBaoDuong.idNhanVienPhuTrach) As SoLan\n" + "From NhanVien,ChiTietDonBaoDuong\n" + "where NhanVien.id=ChiTietDonBaoDuong.idNhanVienPhuTrach\n" + "group by NhanVien.id\n" + "order by SoLan Desc";
         Vector vt=null;
         try{
             PreparedStatement ps=cn.prepareStatement(sql);
@@ -772,12 +767,7 @@ private void importDataTKNVPT(){
         Connection cn=ModelAdmin.connectMSSQL();
         dtm.setNumRows(0);
         String sql="select * from NhanVien order by id";
-        String sql1="""
-                   select NhanVien.id,count(ChiTietDonBaoDuong.idNhanVienPhuTrach) As SoLan
-                    From NhanVien,ChiTietDonBaoDuong
-                    where NhanVien.id=ChiTietDonBaoDuong.idNhanVienPhuTrach
-                    group by NhanVien.id
-                    order by SoLan Desc """;
+        String sql1="select NhanVien.id,count(ChiTietDonBaoDuong.idNhanVienPhuTrach) As SoLan\n" + " From NhanVien,ChiTietDonBaoDuong\n" + " where NhanVien.id=ChiTietDonBaoDuong.idNhanVienPhuTrach\n" + " group by NhanVien.id\n" + " order by SoLan Desc";
         Vector vt=null;
         try{
             PreparedStatement ps=cn.prepareStatement(sql);

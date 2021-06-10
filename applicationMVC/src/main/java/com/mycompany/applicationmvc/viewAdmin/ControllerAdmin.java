@@ -249,10 +249,7 @@ public class ControllerAdmin {
     public static long DT_Month(int m){
        long kt=0;
        Connection cn=ModelAdmin.connectMSSQL();
-       String sql="""
-                  select sum(dbd.TongTien)
-                  from DonBaoDuong as dbd
-                  where Month(NgayHoanThanh)="""+m+" and NgayBatDau<=NgayHoanThanh";
+       String sql="select sum(dbd.TongTien)\n" + "from DonBaoDuong as dbd\n" + "where Month(NgayHoanThanh)="+m+" and NgayBatDau<=NgayHoanThanh";
        try{
            PreparedStatement ps=cn.prepareStatement(sql);
            ResultSet rs=ps.executeQuery();
@@ -271,10 +268,7 @@ public class ControllerAdmin {
     public static int DBD_Month(int m){
        int kt=0;
        Connection cn=ModelAdmin.connectMSSQL();
-       String sql="""
-                  select count(dbd.id)
-                  from DonBaoDuong as dbd
-                  where Month(NgayHoanThanh)="""+m+" and NgayBatDau<=NgayHoanThanh";
+       String sql="select count(dbd.id)\n" + "from DonBaoDuong as dbd\n" + "where Month(NgayHoanThanh)="+m+" and NgayBatDau<=NgayHoanThanh";
        try{
            PreparedStatement ps=cn.prepareStatement(sql);
            ResultSet rs=ps.executeQuery();

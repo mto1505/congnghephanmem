@@ -528,9 +528,7 @@ public class JPanel_TKDBD extends javax.swing.JPanel {
         dtm.setNumRows(0);
         long dt=0;
         Connection cn=ModelAdmin.connectMSSQL();
-        String sql="""
-        select DonBaoDuong.id,BienSo,NgayBatDau,NgayHoanThanh,TrangThai,idNhanVienLapDon,Ten,TongTien from DonBaoDuong,NhanVien
-        Where DonBaoDuong.idNhanVienLapDon=NhanVien.id""";
+        String sql="select DonBaoDuong.id,BienSo,NgayBatDau,NgayHoanThanh,TrangThai,idNhanVienLapDon,Ten,TongTien from DonBaoDuong,NhanVien\n" + "Where DonBaoDuong.idNhanVienLapDon=NhanVien.id";
         Vector vt=null;
         try{
             PreparedStatement ps=cn.prepareStatement(sql);
@@ -582,15 +580,9 @@ public class JPanel_TKDBD extends javax.swing.JPanel {
         id_nv=id_nv1[0];
         int i=(int)jComboBox_IDNV1.getSelectedIndex();
         //---------------------Xử lý sắp xếp-------------------------
-        String sql="""
-                   select DonBaoDuong.id,BienSo,NgayBatDau,NgayHoanThanh,TrangThai,idNhanVienLapDon,Ten,TongTien from DonBaoDuong,NhanVien
-                   Where DonBaoDuong.idNhanVienLapDon=NhanVien.id""";
-        String sql1="""
-                    select DonBaoDuong.id,BienSo,NgayBatDau,NgayHoanThanh,TrangThai,idNhanVienLapDon,Ten,TongTien from DonBaoDuong,NhanVien 
-                    Where DonBaoDuong.idNhanVienLapDon=NhanVien.id Order by TongTien""";
-        String sql2="""
-                    select DonBaoDuong.id,BienSo,NgayBatDau,NgayHoanThanh,TrangThai,idNhanVienLapDon,Ten,TongTien from DonBaoDuong,NhanVien 
-                    Where DonBaoDuong.idNhanVienLapDon=NhanVien.id Order by TongTien desc""";
+        String sql="select DonBaoDuong.id,BienSo,NgayBatDau,NgayHoanThanh,TrangThai,idNhanVienLapDon,Ten,TongTien from DonBaoDuong,NhanVien\n" + "Where DonBaoDuong.idNhanVienLapDon=NhanVien.id";
+        String sql1="select DonBaoDuong.id,BienSo,NgayBatDau,NgayHoanThanh,TrangThai,idNhanVienLapDon,Ten,TongTien from DonBaoDuong,NhanVien\n" + "Where DonBaoDuong.idNhanVienLapDon=NhanVien.id Order by TongTien";
+        String sql2="select DonBaoDuong.id,BienSo,NgayBatDau,NgayHoanThanh,TrangThai,idNhanVienLapDon,Ten,TongTien from DonBaoDuong,NhanVien\n" + "Where DonBaoDuong.idNhanVienLapDon=NhanVien.id Order by TongTien desc";
         int i_sx=(int)jComboBox_SapXep.getSelectedIndex();
         if (i_sx==1) sql=sql1;
            else  if (i_sx==2) sql=sql2;

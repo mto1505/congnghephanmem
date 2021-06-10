@@ -324,20 +324,9 @@ public class JPanel_TKLinhKien extends javax.swing.JPanel {
         Connection cn=ModelAdmin.connectMSSQL();
         dtm.setNumRows(0);
         //---------------------Xử lý sắp xếp-------------------------
-        String sql="""
-        select LK.id,LK.TenLinhKien,LK.SoLuong,LK.Gia,LK.NhaCungCap,NCC.TenNhaCungCap,LK.NgayNhap
-        from LinhKien as LK, NhaCungCap as NCC
-        where LK.NhaCungCap=NCC.id""";
-        String sql1="""
-        select LK.id,LK.TenLinhKien,LK.SoLuong,LK.Gia,LK.NhaCungCap,NCC.TenNhaCungCap,LK.NgayNhap
-        from LinhKien as LK, NhaCungCap as NCC
-        where LK.NhaCungCap=NCC.id
-        order by Gia""";
-        String sql2="""
-        select LK.id,LK.TenLinhKien,LK.SoLuong,LK.Gia,LK.NhaCungCap,NCC.TenNhaCungCap,LK.NgayNhap
-        from LinhKien as LK, NhaCungCap as NCC
-        where LK.NhaCungCap=NCC.id
-        order by Gia DESC""";
+        String sql="select LK.id,LK.TenLinhKien,LK.SoLuong,LK.Gia,LK.NhaCungCap,NCC.TenNhaCungCap,LK.NgayNhap\n" + "from LinhKien as LK, NhaCungCap as NCC\n" + "where LK.NhaCungCap=NCC.id";
+        String sql1="select LK.id,LK.TenLinhKien,LK.SoLuong,LK.Gia,LK.NhaCungCap,NCC.TenNhaCungCap,LK.NgayNhap\n" + "from LinhKien as LK, NhaCungCap as NCC\n" + "where LK.NhaCungCap=NCC.id\n" + "order by Gia";
+        String sql2="select LK.id,LK.TenLinhKien,LK.SoLuong,LK.Gia,LK.NhaCungCap,NCC.TenNhaCungCap,LK.NgayNhap\n" + "from LinhKien as LK, NhaCungCap as NCC\n" + "where LK.NhaCungCap=NCC.id\n" + "order by Gia DESC";
         int i_sx=(int)jComboBox_SapXepLK.getSelectedIndex();
         if (i_sx==1) sql=sql1;
         else  if (i_sx==2) sql=sql2;
@@ -406,20 +395,9 @@ public class JPanel_TKLinhKien extends javax.swing.JPanel {
         Connection cn=ModelAdmin.connectMSSQL();
         dtm.setNumRows(0);
         //---------------------Xử lý sắp xếp-------------------------
-        String sql="""
-                   select LK.id,LK.TenLinhKien,LK.SoLuong,LK.Gia,LK.NhaCungCap,NCC.TenNhaCungCap,LK.NgayNhap
-                   from LinhKien as LK, NhaCungCap as NCC
-                   where LK.NhaCungCap=NCC.id""";
-        String sql1="""
-                    select LK.id,LK.TenLinhKien,LK.SoLuong,LK.Gia,LK.NhaCungCap,NCC.TenNhaCungCap,LK.NgayNhap
-                    from LinhKien as LK, NhaCungCap as NCC
-                    where LK.NhaCungCap=NCC.id
-                    order by Gia""";
-        String sql2="""
-                    select LK.id,LK.TenLinhKien,LK.SoLuong,LK.Gia,LK.NhaCungCap,NCC.TenNhaCungCap,LK.NgayNhap
-                    from LinhKien as LK, NhaCungCap as NCC
-                    where LK.NhaCungCap=NCC.id
-                    order by Gia DESC""";
+        String sql="select LK.id,LK.TenLinhKien,LK.SoLuong,LK.Gia,LK.NhaCungCap,NCC.TenNhaCungCap,LK.NgayNhap\n" + "from LinhKien as LK, NhaCungCap as NCC\n" + "where LK.NhaCungCap=NCC.id";
+        String sql1="select LK.id,LK.TenLinhKien,LK.SoLuong,LK.Gia,LK.NhaCungCap,NCC.TenNhaCungCap,LK.NgayNhap\n" + "from LinhKien as LK, NhaCungCap as NCC\n" + "where LK.NhaCungCap=NCC.id\n" + "order by Gia";
+        String sql2="select LK.id,LK.TenLinhKien,LK.SoLuong,LK.Gia,LK.NhaCungCap,NCC.TenNhaCungCap,LK.NgayNhap\n" + "from LinhKien as LK, NhaCungCap as NCC\n" + "where LK.NhaCungCap=NCC.id\n" + "order by Gia DESC";
         int i_sx=(int)jComboBox_SapXepLK.getSelectedIndex();
         if (i_sx==1) sql=sql1;
            else  if (i_sx==2) sql=sql2;

@@ -208,6 +208,7 @@ com\mycompany\applicationmvc\view\DonBaoDuong\DonBaoDuongPanel$20.class
 com\mycompany\applicationmvc\Utils\TableLinhKienModel.class
 com\mycompany\applicationmvc\view\DonBaoDuong\DonBaoDuongPanel$4.class
 com\mycompany\applicationmvc\view\LinhKienPanel$7.class
+com\mycompany\applicationmvc\daoImpl\ConfigDAO.class
 com\mycompany\applicationmvc\viewAdmin\JPanel_TaiKhoan$13.class
 com\mycompany\applicationmvc\controller\DichVuBaoDuongController$1.class
 com\mycompany\applicationmvc\view\DonBaoDuong\DonBaoDuongPanel$13.class
