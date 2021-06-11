@@ -100,8 +100,8 @@ public class DonBaoDuongController {
 
     }
 
-    private void loadDanhSachTrangThaiPhuTungTiepNhan() throws SQLException {
-        ArrayList<PhuTungModel> arl = (ArrayList<PhuTungModel>) phuTungService.layDanhSachPhuTungCanKiemTra();
+    private void loadDanhSachTrangThaiPhuTungTiepNhan() {
+        ArrayList<PhuTungModel> arl = (ArrayList<PhuTungModel>) phuTungService.layDanhSachPhuTungCanKiemTra(true);
         DefaultTableModel dftb = (DefaultTableModel) baoduongPanel.getDanhSachtrangThaiPhuTungTiepNhan().getModel();
         dftb.setNumRows(0);
         arl.forEach(pt -> {
@@ -109,7 +109,7 @@ public class DonBaoDuongController {
         });
     }
 
-    private void loadDanhSachLoaiXeComboBox() throws SQLException {
+    private void loadDanhSachLoaiXeComboBox() {
         ArrayList<LoaiXeModel> arl = (ArrayList<LoaiXeModel>) loaiXeService.findAll();;
         JComboBox<String> tb = baoduongPanel.getLoaiXeComboBox();
         tb.removeAllItems();
@@ -124,7 +124,7 @@ public class DonBaoDuongController {
         tb1.setSelectedIndex(0);
     }
 
-    private void loadDanhSachDichVuBaoDuonginDialog() throws SQLException {
+    private void loadDanhSachDichVuBaoDuonginDialog() {
         ArrayList<DichVuBaoDuongModel> arl = (ArrayList<DichVuBaoDuongModel>) dichVuBaoDuongService.layDanhSachDichVuBaoDuongMoiNhat(true);
         JComboBox<String> cb = baoduongPanel.getLoaiXeComboBox();
         DefaultTableModel dftb = (DefaultTableModel) baoduongPanel.getDanhSachDichVubaoDuongTB_ThemDichVuBaoDuongiDailog().getModel();
@@ -144,7 +144,7 @@ public class DonBaoDuongController {
 
     }
 
-    private void loadDanhSachLinhKieninDialog() throws SQLException {
+    private void loadDanhSachLinhKieninDialog() {
         ArrayList<LinhKienModel> arl = (ArrayList<LinhKienModel>) linhKienService.layDanhSachLinhKienMoiNhat();
         DefaultTableModel dftb = (DefaultTableModel) baoduongPanel.getDanhSachLinhKienThayTheTB_ThemLinhKienThayTheDailog().getModel();
         dftb.setNumRows(0);
@@ -156,23 +156,15 @@ public class DonBaoDuongController {
     private void themSuKienChoCacItem() {
         //Khi thay đổi loại xe thì sẽ load lại Danh sách dịch vụ bảo dưỡng cho phù hợp
         baoduongPanel.getLoaiXeComboBox().addItemListener((ItemEvent e) -> {
-            try {
-                loadDanhSachDichVuBaoDuonginDialog();
-                ((DefaultTableModel) baoduongPanel.getDanhSachDichVuBaoDuongTB().getModel()).setNumRows(0);
-            } catch (SQLException ex) {
-                Logger.getLogger(DonBaoDuongController.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            loadDanhSachDichVuBaoDuonginDialog();
+            ((DefaultTableModel) baoduongPanel.getDanhSachDichVuBaoDuongTB().getModel()).setNumRows(0);
         });
 
         //Khi gõ phím sẽ tự động tìm thông tin khách hàng dựa trên xe máy và tự động điền thông tin
         baoduongPanel.getBienSoXeTF().addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent e) {
-                try {
-                    loadKhachHangTrongHoaDon(baoduongPanel.getBienSoXeTF().getText());
-                } catch (SQLException ex) {
-                    Logger.getLogger(DonBaoDuongController.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                loadKhachHangTrongHoaDon(baoduongPanel.getBienSoXeTF().getText());
             }
         });
 
@@ -354,25 +346,20 @@ public class DonBaoDuongController {
         baoduongPanel.getTimKiemDichVuBaoDuongTF_ThemDichVuBaoDuongDailog().addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent e) {
-                try {
-                    ArrayList<DichVuBaoDuongModel> ar = (ArrayList<DichVuBaoDuongModel>) dichVuBaoDuongService.layDanhSachDichVuBaoDuongMoiNhat();
-                    String key = baoduongPanel.getTimKiemDichVuBaoDuongTF_ThemDichVuBaoDuongDailog().getText().trim();
-                    DefaultTableModel dm = (DefaultTableModel) baoduongPanel.getDanhSachDichVubaoDuongTB_ThemDichVuBaoDuongiDailog().getModel();
-                    if (!key.equalsIgnoreCase("")) {
-                        dm.setNumRows(0);
-                        for (DichVuBaoDuongModel dv : ar) {
-                            LoaiXeModel lx = loaiXeService.findOne(dv.getIdLoaiXe());
-                            if (Stringlib.isLikeString(key, dv.getTenDichVuBaoDuong()) >= 0.5
-                                    && baoduongPanel.getLoaiXeComboBox().getSelectedItem().toString().equalsIgnoreCase(lx.getTenLoaiXe())) {
-                                dm.addRow(new Object[]{dv.getId(), dv.getTenDichVuBaoDuong(), dv.getPhi(), lx.getTenLoaiXe()});
-                            }
+                ArrayList<DichVuBaoDuongModel> ar = (ArrayList<DichVuBaoDuongModel>) dichVuBaoDuongService.layDanhSachDichVuBaoDuongMoiNhat();
+                String key = baoduongPanel.getTimKiemDichVuBaoDuongTF_ThemDichVuBaoDuongDailog().getText().trim();
+                DefaultTableModel dm = (DefaultTableModel) baoduongPanel.getDanhSachDichVubaoDuongTB_ThemDichVuBaoDuongiDailog().getModel();
+                if (!key.equalsIgnoreCase("")) {
+                    dm.setNumRows(0);
+                    for (DichVuBaoDuongModel dv : ar) {
+                        LoaiXeModel lx = loaiXeService.findOne(dv.getIdLoaiXe());
+                        if (Stringlib.isLikeString(key, dv.getTenDichVuBaoDuong()) >= 0.5
+                                && baoduongPanel.getLoaiXeComboBox().getSelectedItem().toString().equalsIgnoreCase(lx.getTenLoaiXe())) {
+                            dm.addRow(new Object[]{dv.getId(), dv.getTenDichVuBaoDuong(), dv.getPhi(), lx.getTenLoaiXe()});
                         }
-                    } else {
-                        loadDanhSachDichVuBaoDuonginDialog();
                     }
-
-                } catch (SQLException ex) {
-                    Logger.getLogger(DonBaoDuongController.class.getName()).log(Level.SEVERE, null, ex);
+                } else {
+                    loadDanhSachDichVuBaoDuonginDialog();
                 }
             }
         });
@@ -380,23 +367,18 @@ public class DonBaoDuongController {
         baoduongPanel.getTimKiemLinhKienThayTheTF_ThemLinhKienThayTheDailog().addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent e) {
-                try {
-                    ArrayList<LinhKienModel> ar = (ArrayList<LinhKienModel>) linhKienService.layDanhSachLinhKienMoiNhat();
-                    String key = baoduongPanel.getTimKiemLinhKienThayTheTF_ThemLinhKienThayTheDailog().getText().trim();
-                    DefaultTableModel dm = (DefaultTableModel) baoduongPanel.getDanhSachLinhKienThayTheTB_ThemLinhKienThayTheDailog().getModel();
-                    if (!key.equalsIgnoreCase("")) {
-                        dm.setNumRows(0);
-                        for (LinhKienModel lk : ar) {
-                            if (Stringlib.isLikeString(key, lk.getTenLinhKien()) >= 0.5) {
-                                dm.addRow(new Object[]{lk.getId(), lk.getTenLinhKien(), lk.getGia(), lk.getNhaCungCap(), lk.getNgayNhapString(), lk.getSoLuong(), null});
-                            }
+                ArrayList<LinhKienModel> ar = (ArrayList<LinhKienModel>) linhKienService.layDanhSachLinhKienMoiNhat();
+                String key = baoduongPanel.getTimKiemLinhKienThayTheTF_ThemLinhKienThayTheDailog().getText().trim();
+                DefaultTableModel dm = (DefaultTableModel) baoduongPanel.getDanhSachLinhKienThayTheTB_ThemLinhKienThayTheDailog().getModel();
+                if (!key.equalsIgnoreCase("")) {
+                    dm.setNumRows(0);
+                    for (LinhKienModel lk : ar) {
+                        if (Stringlib.isLikeString(key, lk.getTenLinhKien()) >= 0.5) {
+                            dm.addRow(new Object[]{lk.getId(), lk.getTenLinhKien(), lk.getGia(), lk.getNhaCungCap(), lk.getNgayNhapString(), lk.getSoLuong(), null});
                         }
-                    } else {
-                        loadDanhSachLinhKieninDialog();
                     }
-
-                } catch (SQLException ex) {
-                    Logger.getLogger(DonBaoDuongController.class.getName()).log(Level.SEVERE, null, ex);
+                } else {
+                    loadDanhSachLinhKieninDialog();
                 }
             }
         });
@@ -539,11 +521,7 @@ public class DonBaoDuongController {
         baoduongPanel.getjButton_QuayLayDanhSachDonBaoDuong().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try {
-                    loadDanhSachDonBaoDuongChuaHoanThanh();
-                } catch (SQLException ex) {
-                    Logger.getLogger(DonBaoDuongController.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                loadDanhSachDonBaoDuongChuaHoanThanh();
                 baoduongPanel.getcardLayoutContainer().next(baoduongPanel.getContainer());
             }
         });
@@ -566,24 +544,20 @@ public class DonBaoDuongController {
         danhSachDonBaoDuongPanel.getjCheckBox_CheDoHienThiDanhSachHoaDon().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try {
-                    if (danhSachDonBaoDuongPanel.getjCheckBox_CheDoHienThiDanhSachHoaDon().isSelected()) {
-                        danhSachDonBaoDuongPanel.getjButton_XacNhanHoanThanhButton().setVisible(false);
-                        danhSachDonBaoDuongPanel.getjButton_SuaDonBaoDuong().setVisible(false);
-                        danhSachDonBaoDuongPanel.getjButton_XoaDonBaoDuong().setVisible(false);
-                        danhSachDonBaoDuongPanel.getjButton_XemDonBaoDuong().setVisible(true);
+                if (danhSachDonBaoDuongPanel.getjCheckBox_CheDoHienThiDanhSachHoaDon().isSelected()) {
+                    danhSachDonBaoDuongPanel.getjButton_XacNhanHoanThanhButton().setVisible(false);
+                    danhSachDonBaoDuongPanel.getjButton_SuaDonBaoDuong().setVisible(false);
+                    danhSachDonBaoDuongPanel.getjButton_XoaDonBaoDuong().setVisible(false);
+                    danhSachDonBaoDuongPanel.getjButton_XemDonBaoDuong().setVisible(true);
 
-                    } else {
-                        danhSachDonBaoDuongPanel.getjButton_XacNhanHoanThanhButton().setVisible(true);
-                        danhSachDonBaoDuongPanel.getjButton_SuaDonBaoDuong().setVisible(true);
-                        danhSachDonBaoDuongPanel.getjButton_XoaDonBaoDuong().setVisible(true);
-                        danhSachDonBaoDuongPanel.getjButton_XemDonBaoDuong().setVisible(false);
+                } else {
+                    danhSachDonBaoDuongPanel.getjButton_XacNhanHoanThanhButton().setVisible(true);
+                    danhSachDonBaoDuongPanel.getjButton_SuaDonBaoDuong().setVisible(true);
+                    danhSachDonBaoDuongPanel.getjButton_XoaDonBaoDuong().setVisible(true);
+                    danhSachDonBaoDuongPanel.getjButton_XemDonBaoDuong().setVisible(false);
 
-                    }
-                    loadDanhSachDonBaoDuongChuaHoanThanh();
-                } catch (SQLException ex) {
-                    Logger.getLogger(DonBaoDuongController.class.getName()).log(Level.SEVERE, null, ex);
                 }
+                loadDanhSachDonBaoDuongChuaHoanThanh();
             }
         });
 
@@ -591,16 +565,12 @@ public class DonBaoDuongController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int id = Integer.parseInt(danhSachDonBaoDuongPanel.getjTable_DanhSachDonBaoDuong().getValueAt(danhSachDonBaoDuongPanel.getjTable_DanhSachDonBaoDuong().getSelectedRow(), 0).toString());
-                try {
-                    DonBaoDuongModel temp = baoDuongService.timDonBaoDuong(id);
-                    System.out.println(temp.getTongTien());
-                    temp.setTrangThai("1");
-                    temp.setNgayHoanThanh(LocalDate.now().toString());
-                    baoDuongService.capNhatDonBaoDuong(temp);
-                    loadDanhSachDonBaoDuongChuaHoanThanh();
-                } catch (SQLException ex) {
-                    Logger.getLogger(DonBaoDuongController.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                DonBaoDuongModel temp = baoDuongService.timDonBaoDuong(id);
+                System.out.println(temp.getTongTien());
+                temp.setTrangThai("1");
+                temp.setNgayHoanThanh(LocalDate.now().toString());
+                baoDuongService.capNhatDonBaoDuong(temp);
+                loadDanhSachDonBaoDuongChuaHoanThanh();
             }
         });
 
@@ -613,9 +583,7 @@ public class DonBaoDuongController {
                     String id = danhSachDonBaoDuongPanel.getjTable_DanhSachDonBaoDuong().getValueAt(danhSachDonBaoDuongPanel.getjTable_DanhSachDonBaoDuong().getSelectedRow(), 0).toString();
                     try {
                         loadDonBaoDuong(id);
-                    } catch (SQLException ex) {
-                        Logger.getLogger(DonBaoDuongController.class.getName()).log(Level.SEVERE, null, ex);
-                    } catch (ParseException ex) {
+                    } catch (SQLException | ParseException ex) {
                         Logger.getLogger(DonBaoDuongController.class.getName()).log(Level.SEVERE, null, ex);
                     }
                     danhSachDonBaoDuongPanel.getCardLayoutContainer().next(danhSachDonBaoDuongPanel.getContainer());
@@ -640,12 +608,8 @@ public class DonBaoDuongController {
                 int srow = danhSachDonBaoDuongPanel.getjTable_DanhSachDonBaoDuong().getSelectedRow();
                 if (srow > -1) {
                     int id = (int) danhSachDonBaoDuongPanel.getjTable_DanhSachDonBaoDuong().getValueAt(srow, 0);
-                    try {
-                        baoDuongService.xoaDonBaoDuong(id);
-                        loadDanhSachDonBaoDuongChuaHoanThanh();
-                    } catch (SQLException ex) {
-                        Logger.getLogger(DonBaoDuongController.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+                    baoDuongService.xoaDonBaoDuong(id);
+                    loadDanhSachDonBaoDuongChuaHoanThanh();
                 }
                 danhSachDonBaoDuongPanel.getjDialog_XacNhanHuyDonBaoDuongTrongDanhSach().setVisible(false);
 
@@ -785,7 +749,7 @@ public class DonBaoDuongController {
         }
     }
 
-    private void luuThongTinXe() throws SQLException {
+    private void luuThongTinXe() {
         String bienSo = baoduongPanel.getBienSoXeTF().getText().toLowerCase();
         String loaiXe = baoduongPanel.getLoaiXeComboBox().getSelectedItem().toString();
         LoaiXeModel lx = loaiXeService.findOneByName(loaiXe);
@@ -797,7 +761,7 @@ public class DonBaoDuongController {
         }
     }
 
-    private void luuThongTinDichVuBaoDuong(int idDonBaoDuong) throws SQLException {
+    private void luuThongTinDichVuBaoDuong(int idDonBaoDuong) {
         DefaultTableModel dtm = (DefaultTableModel) baoduongPanel.getDanhSachDichVuBaoDuongTB().getModel();
         Vector<Vector> dataDichVuBaoDuong = dtm.getDataVector();
         for (Vector data : dataDichVuBaoDuong) {
@@ -821,7 +785,7 @@ public class DonBaoDuongController {
         }
     }
 
-    private void luuThongTinThayTheLinhKien(int idDonBaoDuong) throws SQLException {
+    private void luuThongTinThayTheLinhKien(int idDonBaoDuong) {
         DefaultTableModel dtm = (DefaultTableModel) baoduongPanel.getDanhSachLinhKienThayTheTB().getModel();
         Vector<Vector> dataLinhKien = dtm.getDataVector();
         for (Vector data : dataLinhKien) {
@@ -839,7 +803,7 @@ public class DonBaoDuongController {
         }
     }
 
-    private void luuThongTinTrangThaiNhanXe(int idDonBaoDuong) throws SQLException {
+    private void luuThongTinTrangThaiNhanXe(int idDonBaoDuong) {
         DefaultTableModel dtm = (DefaultTableModel) baoduongPanel.getDanhSachtrangThaiPhuTungTiepNhan().getModel();
         Vector<Vector> dataLinhKien = dtm.getDataVector();
         for (Vector data : dataLinhKien) {
@@ -976,7 +940,7 @@ public class DonBaoDuongController {
         capNhatDanhSachLinhKienToiDa();
     }
 
-    private void loadXeMay(String bienSo) throws SQLException {
+    private void loadXeMay(String bienSo) {
         XeModel xm = xeService.findOne(bienSo);
         if (xm == null) {
             System.out.println("Loi tim xe may");
@@ -988,7 +952,7 @@ public class DonBaoDuongController {
         }
     }
 
-    private void loadDanhSachDichVuBaoDuongTrongHoaDon(int id) throws SQLException {
+    private void loadDanhSachDichVuBaoDuongTrongHoaDon(int id) {
         DefaultTableModel dm = (DefaultTableModel) baoduongPanel.getDanhSachDichVuBaoDuongTB().getModel();
         dm.setNumRows(0);
         ArrayList<ChiTietDonBaoDuongModel> ds = (ArrayList<ChiTietDonBaoDuongModel>) baoDuongService.layDanhSachChiTietDonBaoDuong(id);
@@ -1012,7 +976,7 @@ public class DonBaoDuongController {
         }
     }
 
-    private void loadDanhSachLinhKienTrongHoaDon(int id) throws SQLException {
+    private void loadDanhSachLinhKienTrongHoaDon(int id) {
         DefaultTableModel dm = (DefaultTableModel) baoduongPanel.getDanhSachLinhKienThayTheTB().getModel();
         dm.setNumRows(0);
         List<ChiTietThayTheLinhKienModel> ds = baoDuongService.layDanhSachChiTietThayTheLinhKien(id);
@@ -1029,7 +993,7 @@ public class DonBaoDuongController {
         }
     }
 
-    private void loadKhachHangTrongHoaDon(String bienSo) throws SQLException {
+    private void loadKhachHangTrongHoaDon(String bienSo) {
         XeModel xm = xeService.findOne(bienSo);
         if (xm == null || xm.getKhachHang() == null || xm.getKhachHang().getMaKH() == 0) {
             baoduongPanel.getTenKhachHangTF().setText("Khách vãng lai");
@@ -1053,7 +1017,7 @@ public class DonBaoDuongController {
         }
     }
 
-    private void loadDanhSachTrangThaiPhuTungTiepNhanTrongHoaDon(int id) throws SQLException {
+    private void loadDanhSachTrangThaiPhuTungTiepNhanTrongHoaDon(int id) {
         ArrayList<TrangThaiXeModel> dsTrangThai = (ArrayList<TrangThaiXeModel>) baoDuongService.layDanhSachTrangThaiXeTrongHoaDon(id);
         ArrayList<PhuTungModel> dsPhuTung = (ArrayList<PhuTungModel>) phuTungService.layDanhSachPhuTungCanKiemTra();
         DefaultTableModel dftb = (DefaultTableModel) baoduongPanel.getDanhSachtrangThaiPhuTungTiepNhan().getModel();
@@ -1080,7 +1044,7 @@ public class DonBaoDuongController {
         baoduongPanel.getTongThanhToanTF().setText(String.valueOf(d.getTongTien()));
     }
 
-    private void loadDanhSachDonBaoDuongChuaHoanThanh() throws SQLException {
+    private void loadDanhSachDonBaoDuongChuaHoanThanh() {
         //mode = true neu chon nhung don da hoan thanh
         //mode = false neu chon nhung don chua hoan thanh
         capNhatDanhSachDonBaoDuongHienThi();
@@ -1131,27 +1095,20 @@ public class DonBaoDuongController {
 
                 donBaoDuongCurrent = taoHoaDonTam();
 
-                try {
-                    luuThongTinXe();
-                    donBaoDuongCurrent = baoDuongService.themDonBaoDuong(donBaoDuongCurrent);
-                } catch (SQLException ex) {
-                    Logger.getLogger(DonBaoDuongController.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                luuThongTinXe();
+                donBaoDuongCurrent = baoDuongService.themDonBaoDuong(donBaoDuongCurrent);
 
                 if (donBaoDuongCurrent == null || donBaoDuongCurrent.getId() == 0) {
                     System.err.println("Lỗi Nhap Don bao dưỡng");
                 } else {
-                    try {
-                        luuThongTinXe();
-                        luuThongTinDichVuBaoDuong(donBaoDuongCurrent.getId());
-                        luuThongTinThayTheLinhKien(donBaoDuongCurrent.getId());
-                        luuThongTinTrangThaiNhanXe(donBaoDuongCurrent.getId());
-                        loadDanhSachDichVuBaoDuonginDialog();
-                        loadDanhSachLinhKieninDialog();
 
-                    } catch (SQLException ex) {
-                        Logger.getLogger(DonBaoDuongController.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+                    luuThongTinXe();
+                    luuThongTinDichVuBaoDuong(donBaoDuongCurrent.getId());
+                    luuThongTinThayTheLinhKien(donBaoDuongCurrent.getId());
+                    luuThongTinTrangThaiNhanXe(donBaoDuongCurrent.getId());
+                    loadDanhSachDichVuBaoDuonginDialog();
+                    loadDanhSachLinhKieninDialog();
+
                 }
 
             } else {
@@ -1166,13 +1123,13 @@ public class DonBaoDuongController {
         }
     }
 
-    private void xoaThongTinVeChiTietDonBaoDuong(int id) throws SQLException {
+    private void xoaThongTinVeChiTietDonBaoDuong(int id) {
         baoDuongService.xoaToanBoChiTietDonBaoDuongTheoHoaDon(id);
         baoDuongService.xoaToanBoChiTietThayTheLinhKienTheoHoaDon(id);
         baoDuongService.xoaToanBoChiTietTrangThaiPhuTungKiemTraTheoHoaDon(id);
     }
 
-    private void capNhatDonBaoDuong() throws SQLException {
+    private void capNhatDonBaoDuong() {
         xoaThongTinVeChiTietDonBaoDuong(donBaoDuongCurrent.getId());
         luuThongTinDichVuBaoDuong(donBaoDuongCurrent.getId());
         luuThongTinThayTheLinhKien(donBaoDuongCurrent.getId());
