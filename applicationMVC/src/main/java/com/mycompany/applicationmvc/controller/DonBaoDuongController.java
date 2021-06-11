@@ -173,6 +173,8 @@ public class DonBaoDuongController {
             public void mouseClicked(MouseEvent e) {
                 baoduongPanel.getThemKhachHangMoiDailog().setVisible(true);
                 baoduongPanel.getThemKhachHangMoiDailog().setModal(true);
+                String lx = baoduongPanel.getLoaiXeComboBox().getSelectedItem().toString();
+                baoduongPanel.getLoaiXeComboBox_ThemKhachHangMoiDailog().setSelectedItem(lx);
             }
         });
 
@@ -197,7 +199,7 @@ public class DonBaoDuongController {
                                 baoduongPanel.getTenXeMayTF_ThemKhachHangMoiDailog().getText(),
                                 loaiXeService.findOneByName(baoduongPanel.getLoaiXeComboBox_ThemKhachHangMoiDailog().getSelectedItem().toString()),
                                 kh));
-                    } else if (xm.getKhachHang().getMaKH() == 0) {
+                    } else {
                         xm.setKhachHang(kh);
                         xeService.update(xm);
                     }
@@ -499,20 +501,14 @@ public class DonBaoDuongController {
             }
         });
 
-        danhSachDonBaoDuongPanel.getjButton_ChonDonBaoDuong().addActionListener(new ActionListener() {
+        danhSachDonBaoDuongPanel.getjButton_SuaDonBaoDuong().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (danhSachDonBaoDuongPanel.getjTable_DanhSachDonBaoDuong().getSelectedRow() > -1) {
                     voHieuHoaChucNang(true);
                     String id = danhSachDonBaoDuongPanel.getjTable_DanhSachDonBaoDuong().getValueAt(danhSachDonBaoDuongPanel.getjTable_DanhSachDonBaoDuong().getSelectedRow(), 0).toString();
-                    try {
-                        loadDonBaoDuong(id);
-                        System.out.println(".actionPerformed()" + id);
-                    } catch (SQLException ex) {
-                        Logger.getLogger(DonBaoDuongController.class.getName()).log(Level.SEVERE, null, ex);
-                    } catch (ParseException ex) {
-                        Logger.getLogger(DonBaoDuongController.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+                    loadDonBaoDuong(id);
+                    System.out.println(".actionPerformed()" + id);
                     danhSachDonBaoDuongPanel.getCardLayoutContainer().next(danhSachDonBaoDuongPanel.getContainer());
                 }
             }
@@ -581,11 +577,7 @@ public class DonBaoDuongController {
                 if (danhSachDonBaoDuongPanel.getjTable_DanhSachDonBaoDuong().getSelectedRow() > -1) {
                     voHieuHoaChucNang(false);
                     String id = danhSachDonBaoDuongPanel.getjTable_DanhSachDonBaoDuong().getValueAt(danhSachDonBaoDuongPanel.getjTable_DanhSachDonBaoDuong().getSelectedRow(), 0).toString();
-                    try {
-                        loadDonBaoDuong(id);
-                    } catch (SQLException | ParseException ex) {
-                        Logger.getLogger(DonBaoDuongController.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+                    loadDonBaoDuong(id);
                     danhSachDonBaoDuongPanel.getCardLayoutContainer().next(danhSachDonBaoDuongPanel.getContainer());
                 }
 
@@ -633,8 +625,6 @@ public class DonBaoDuongController {
                     try {
                         loadDonBaoDuong(id + "");
                         hienThiHoaDon();
-                    } catch (SQLException ex) {
-                        Logger.getLogger(DonBaoDuongController.class.getName()).log(Level.SEVERE, null, ex);
                     } catch (ParseException ex) {
                         Logger.getLogger(DonBaoDuongController.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -758,6 +748,11 @@ public class DonBaoDuongController {
             xe.setBienSo(bienSo);
             xe.setLoaixe(lx);
             xeService.save(xe);
+        }else {
+            XeModel xe = new XeModel();
+            xe.setBienSo(bienSo);
+            xe.setLoaixe(lx);
+            xeService.update(xe);
         }
     }
 
@@ -926,7 +921,7 @@ public class DonBaoDuongController {
         capNhatDanhSachLinhKienToiDa();
     }
 
-    public void loadDonBaoDuong(String idDonBaoDuong) throws SQLException, ParseException {
+    public void loadDonBaoDuong(String idDonBaoDuong) {
         donBaoDuongCurrent = baoDuongService.timDonBaoDuongTheoID(Integer.parseInt(idDonBaoDuong));
         loadXeMay(donBaoDuongCurrent.getBienSo());
         loadDanhSachDichVuBaoDuonginDialog();
@@ -935,7 +930,11 @@ public class DonBaoDuongController {
         loadDanhSachLinhKienTrongHoaDon(donBaoDuongCurrent.getId());
         loadKhachHangTrongHoaDon(donBaoDuongCurrent.getBienSo());
         loadDanhSachTrangThaiPhuTungTiepNhanTrongHoaDon(donBaoDuongCurrent.getId());
-        loadThongTin(donBaoDuongCurrent);
+        try {
+            loadThongTin(donBaoDuongCurrent);
+        } catch (ParseException ex) {
+            Logger.getLogger(DonBaoDuongController.class.getName()).log(Level.SEVERE, null, ex);
+        }
         capNhatNhatTinhTienTF();
         capNhatDanhSachLinhKienToiDa();
     }
@@ -1005,6 +1004,7 @@ public class DonBaoDuongController {
             baoduongPanel.getLoaiXeComboBox_ThemKhachHangMoiDailog().setSelectedItem(baoduongPanel.getLoaiXeComboBox().getSelectedItem().toString().trim());
             baoduongPanel.getBienSoXeMayTF_ThemKhachHangMoiDailog().setText(baoduongPanel.getBienSoXeTF().getText());
             baoduongPanel.getSoDienThoaiTF_ThemKhachHangMoiDialog().setText(baoduongPanel.getSoDienThoaiTF().getText().trim());
+            baoduongPanel.getThemKhachHangMoiBT().setVisible(true);
         } else {
             KhachHangModel kh = khachHangService.findOne(xm.getKhachHang().getMaKH());
             baoduongPanel.getTenKhachHangTF().setText(kh.getHoTen());
@@ -1013,6 +1013,7 @@ public class DonBaoDuongController {
             baoduongPanel.getSoDienThoaiTF().setEditable(false);
             baoduongPanel.getLoaiXeComboBox().setSelectedItem(xm.getLoaixe().getTenLoaiXe().trim());
             baoduongPanel.getLoaiXeComboBox().setEnabled(false);
+            baoduongPanel.getThemKhachHangMoiBT().setVisible(false);
             baoduongPanel.getThemKhachHangMoiBT().setVisible(false);
         }
     }

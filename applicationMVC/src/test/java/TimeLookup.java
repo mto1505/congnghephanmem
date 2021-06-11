@@ -21,8 +21,7 @@ import org.apache.commons.net.ntp.TimeInfo;
 
 public class TimeLookup {
 
-
-    public boolean isTimeSync(){
+    public boolean isTimeSync() {
         String TIME_SERVER = "1.asia.pool.ntp.org";
         NTPUDPClient timeClient = new NTPUDPClient();
         InetAddress inetAddress = null;
@@ -38,11 +37,11 @@ public class TimeLookup {
             Logger.getLogger(TimeLookup.class.getName()).log(Level.SEVERE, null, ex);
         }
         long returnTime = timeInfo.getReturnTime();
-        long localtime  = LocalDateTime.now().toEpochSecond(ZoneOffset.UTC);
-        System.out.println( returnTime/1000 - localtime +25200);
-        return Math.abs(returnTime/1000 - localtime +25200) < 60;
+        long localtime = LocalDateTime.now().toEpochSecond(ZoneOffset.UTC);
+        System.out.println(returnTime / 1000 - localtime + 25200);
+        return Math.abs(returnTime / 1000 - localtime + 25200) < 60;
     }
-    
+
     public static void main(String[] args) throws Exception {
         System.out.println((new TimeLookup()).isTimeSync());;
     }

@@ -81,7 +81,8 @@ public class LinhKienDAO extends AbstractDAO<LinhKienModel> implements ILinhKien
 
     public List<LinhKienModel> layDanhSachLinhKienMoiNhat() {
         String q = "WITH tempmax(id,ngay) AS (SELECT LinhKien.id,MAX(LinhKien.NgayNhap) FROM LinhKien GROUP BY LinhKien.id) "
-                + "SELECT LinhKien.* FROM LinhKien join tempmax ON LinhKien.id = tempmax.id AND LinhKien.NgayNhap = tempmax.ngay";
+                + "SELECT LinhKien.* FROM LinhKien join tempmax ON LinhKien.id = tempmax.id AND LinhKien.NgayNhap = tempmax.ngay "
+                + "WHERE LinhKien.TrangThai = 0 OR LinhKien.TrangThai IS NULL";
         return query(q, new LinhKienMapper());
     }
 

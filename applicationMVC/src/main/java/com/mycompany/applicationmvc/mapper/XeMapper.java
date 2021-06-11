@@ -28,10 +28,13 @@ public class XeMapper implements RowMapper<XeModel> {
 
             Xe.setBienSo(rs.getString("bienso"));
             Xe.setTenXe(rs.getString("tenxe"));
+            
             if (rs.getString("ten") != null && !rs.getString("ten").equalsIgnoreCase("")) {
                 Xe.getKhachHang().setHoTen(rs.getString("ten"));
                 Xe.getKhachHang().setSoDienThoai(rs.getString("sdt"));
                 Xe.getKhachHang().setGioiTinh(rs.getString("gioitinh"));
+            }else{
+                Xe.setKhachHang(null);
             }
 
             Xe.getLoaixe().setTenLoaiXe(rs.getString("tenloai"));
