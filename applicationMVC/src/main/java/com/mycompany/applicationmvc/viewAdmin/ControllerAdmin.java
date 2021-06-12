@@ -60,6 +60,31 @@ public class ControllerAdmin {
        }
         return kt;
     }
+     //lấy tên Nhân Viên + MÃ Quyền-start------------------
+     public static String layUser(String user){
+       String s="";
+       Connection cn=ModelAdmin.connectMSSQL();
+       String sql="select tk.idQuyen,nv.Ten\n" +
+                  "from TaiKhoan tk,NhanVien nv\n" +
+                  "where TenTaiKhoan=? and nv.id=tk.idNhanVien";
+       try{
+           PreparedStatement ps=cn.prepareStatement(sql);
+           ps.setString(1, user);
+           ResultSet rs=ps.executeQuery();
+           if(rs.next()){
+               s+=rs.getString(1)+"/"+rs.getString(2);
+           }
+           rs.close();
+           ps.close();
+           cn.close();
+       }
+       catch (SQLException ex){
+           ex.printStackTrace();
+       }
+        return s;
+    }
+          //lấy tên Nhân Viên + MÃ Quyền-end--------------------------------
+
     public static int ktKTrang(String s){
         int kt=s.length();
         s=s.replaceAll("\\s+","");

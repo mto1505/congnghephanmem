@@ -5,26 +5,15 @@
  */
 package com.mycompany.applicationmvc.viewMain;
 
-import com.mycompany.applicationmvc.controller.LoginTask;
 import com.mycompany.applicationmvc.viewAdmin.ControllerAdmin;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
-import java.io.File;
 import javax.swing.ImageIcon;
-import javax.swing.SwingWorker;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author dhmty
  */
 public class SignInForm extends javax.swing.JFrame {
-
-    public static final String userURL = System.getProperty("user.dir").concat("\\src\\main\\resource\\img\\user_30px.png");
-    public static final String iconuserURL = new File(userURL).toString();
-    public static final String keyURL = System.getProperty("user.dir").concat("\\src\\main\\resource\\img\\key_30px.png");
-    public static final String iconkeyURL = new File(keyURL).toString();
-    public static final String loadingURL = System.getProperty("user.dir").concat("\\src\\main\\resource\\img\\Spin-1s-35px.gif");
-    public static final String iconLoadingURL = new File(loadingURL).toString();
 
     /**
      * Creates new form SignInForm
@@ -45,38 +34,35 @@ public class SignInForm extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        dangNhapBtn = new javax.swing.JButton();
-        userNameField = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        jButton_DN = new javax.swing.JButton();
+        jTextField_TenDN = new javax.swing.JTextField();
         thoatBtn = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jLabel_Icon = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
-        labelLoading = new javax.swing.JLabel();
-        informationLoading = new javax.swing.JLabel();
+        jPasswordField_PassDN = new javax.swing.JPasswordField();
+        jCheckBox_KTPass = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(103, 128, 159));
 
-        dangNhapBtn.setText("Đăng Nhập");
-        dangNhapBtn.addActionListener(new java.awt.event.ActionListener() {
+        jButton_DN.setText("Đăng Nhập");
+        jButton_DN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dangNhapBtnActionPerformed(evt);
+                jButton_DNActionPerformed(evt);
             }
         });
 
-        userNameField.addActionListener(new java.awt.event.ActionListener() {
+        jTextField_TenDN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                userNameFieldActionPerformed(evt);
+                jTextField_TenDNActionPerformed(evt);
             }
         });
 
-        thoatBtn.setText("Quên Mật Khẩu");
+        thoatBtn.setText("Thoát");
         thoatBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 thoatBtnActionPerformed(evt);
@@ -99,7 +85,7 @@ public class SignInForm extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel_Icon, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -108,15 +94,15 @@ public class SignInForm extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel_Icon, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(24, 24, 24)
+                        .addComponent(jLabel7))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addComponent(jLabel7)))
+                        .addContainerGap()
+                        .addComponent(jLabel_Icon, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        ImageIcon imageIcon=ControllerAdmin.setIcon(70,70,"D:\\Desktop\\icon_dn.jpg");
+        ImageIcon imageIcon=ControllerAdmin.setIcon(70,70,"./src/img/icon_dn.jpg");
         jLabel_Icon.setIcon(imageIcon);
 
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -125,14 +111,14 @@ public class SignInForm extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Mật Khẩu");
 
-        labelLoading.setBackground(new java.awt.Color(153, 153, 153));
-        labelLoading.setForeground(new java.awt.Color(153, 153, 153));
-        labelLoading.setIcon(new javax.swing.ImageIcon(iconLoadingURL));
-        labelLoading.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        labelLoading.setVisible(false);
-
-        informationLoading.setText("Đang  tải");
-        informationLoading.setVisible(false);
+        jCheckBox_KTPass.setBackground(new java.awt.Color(103, 128, 159));
+        jCheckBox_KTPass.setForeground(new java.awt.Color(255, 255, 255));
+        jCheckBox_KTPass.setText("Hiển Thị Mật Khẩu");
+        jCheckBox_KTPass.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox_KTPassActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -141,57 +127,42 @@ public class SignInForm extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(127, 127, 127)
-                        .addComponent(dangNhapBtn)
-                        .addGap(34, 34, 34)
+                        .addGap(156, 156, 156)
+                        .addComponent(jButton_DN)
+                        .addGap(33, 33, 33)
                         .addComponent(thoatBtn))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(75, 75, 75)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addContainerGap(120, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
                             .addComponent(jLabel5))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(userNameField)
-                            .addComponent(jPasswordField1, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jTextField_TenDN)
+                            .addComponent(jPasswordField_PassDN, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
+                            .addComponent(jCheckBox_KTPass))))
+                .addContainerGap(96, Short.MAX_VALUE))
             .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(labelLoading)
-                .addGap(49, 49, 49)
-                .addComponent(informationLoading, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(132, 132, 132))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(4, 4, 4)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(informationLoading, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(labelLoading, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(53, 53, 53)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField_TenDN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(userNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel4))
-                    .addComponent(jLabel1))
+                    .addComponent(jPasswordField_PassDN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jCheckBox_KTPass)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel5)))
-                .addGap(20, 20, 20)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(dangNhapBtn)
+                    .addComponent(jButton_DN)
                     .addComponent(thoatBtn))
-                .addContainerGap(66, Short.MAX_VALUE))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -208,34 +179,56 @@ public class SignInForm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void dangNhapBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dangNhapBtnActionPerformed
-//        new com.mycompany.applicationmvc.viewMain.MainAdmin().setVisible(true);
-//        //hiển thị cái load file xong hiện rùi tắt
-//        this.dispose();
-        String pass = jPasswordField1.getText();
-        String user = userNameField.getText();
-        labelLoading.setVisible(true);
-        informationLoading.setVisible(true);
-        informationLoading.setText("Đang tải");
-        LoginTask loginTask = new LoginTask(user, pass, this, informationLoading);
-        loginTask.addPropertyChangeListener(new PropertyChangeListener() {
-            @Override
-            public void propertyChange(PropertyChangeEvent evt) {
-                if (evt.getPropertyName().equals("state") && SwingWorker.StateValue.DONE == evt.getNewValue()) {
-                    labelLoading.setVisible(false);
-                }
+    private void jButton_DNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_DNActionPerformed
+       boolean kt=true;
+        String user=jTextField_TenDN.getText().trim();
+        String pass=jPasswordField_PassDN.getText().trim();
+        if (user.matches("") || pass.matches("")){
+            kt=false;
+            JOptionPane.showMessageDialog(this, "Tên Đăng Nhập, Mật Khẩu Không Được Để Trống");
+        }
+        if( kt && ControllerAdmin.ktUser(user)==0){
+            kt=false;
+            JOptionPane.showMessageDialog(this, "Tên Đăng Nhập Không Tồn Tại");
+        }
+        if (kt){
+            if (ControllerAdmin.ktPassTK(user,pass)==0){
+                JOptionPane.showMessageDialog(this, "Mật Khẩu Không Chính Xác");
             }
-        });
-        loginTask.execute();
-    }//GEN-LAST:event_dangNhapBtnActionPerformed
+            else {
+              String s=ControllerAdmin.layUser(user);
+              String s1[]=s.split("/");
+              if (s1[0].equals("1")){
+                  new com.mycompany.applicationmvc.viewMain.MainAdmin(user,s1[1]).setVisible(true);
+              }
+              else if (s1[0].equals("2"))
+              {
+                  new com.mycompany.applicationmvc.viewMain.MainThuNgan(user,s1[1]).setVisible(true);
+              }
+              //hiển thị LOAD FILE
+              this.dispose();
+            }
+        }
+    }//GEN-LAST:event_jButton_DNActionPerformed
 
-    private void userNameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userNameFieldActionPerformed
+    private void jTextField_TenDNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_TenDNActionPerformed
 
-    }//GEN-LAST:event_userNameFieldActionPerformed
+    }//GEN-LAST:event_jTextField_TenDNActionPerformed
 
     private void thoatBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_thoatBtnActionPerformed
         // TODO add your handling code here:
+        this.dispose();
     }//GEN-LAST:event_thoatBtnActionPerformed
+
+    private void jCheckBox_KTPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox_KTPassActionPerformed
+        // TODO add your handling code here:
+        if (jCheckBox_KTPass.isSelected()){
+            jPasswordField_PassDN.setEchoChar((char)0);
+        }
+        else {
+            jPasswordField_PassDN.setEchoChar('\u25cf');
+        }
+    }//GEN-LAST:event_jCheckBox_KTPassActionPerformed
 
     /**
      * @param args the command line arguments
@@ -273,19 +266,16 @@ public class SignInForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton dangNhapBtn;
-    private javax.swing.JLabel informationLoading;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JButton jButton_DN;
+    private javax.swing.JCheckBox jCheckBox_KTPass;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel_Icon;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JLabel labelLoading;
+    private javax.swing.JPasswordField jPasswordField_PassDN;
+    private javax.swing.JTextField jTextField_TenDN;
     private javax.swing.JButton thoatBtn;
-    private javax.swing.JTextField userNameField;
     // End of variables declaration//GEN-END:variables
 }
