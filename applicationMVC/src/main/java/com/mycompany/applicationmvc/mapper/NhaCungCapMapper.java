@@ -15,22 +15,27 @@ import java.util.logging.Logger;
  *
  * @author MinhTo
  */
-public class NhaCungCapMapper implements RowMapper<NhaCungCapModel>{
+public class NhaCungCapMapper implements RowMapper<NhaCungCapModel> {
 
     @Override
     public NhaCungCapModel mapRow(ResultSet rs) {
-                    NhaCungCapModel nhaCungCap=new NhaCungCapModel();
+        NhaCungCapModel nhaCungCap = new NhaCungCapModel();
         try {
             nhaCungCap.setId(rs.getInt("id"));
             nhaCungCap.setTen(rs.getString("ten"));
-            nhaCungCap.setGhiChu(rs.getString("ghichu"));
-            nhaCungCap.setSoDienThoai(rs.getString("sodienthoai"));
+            try {
+                nhaCungCap.setGhiChu(rs.getString("ghichu"));
+                nhaCungCap.setSoDienThoai(rs.getString("sodienthoai"));
+            } catch (SQLException e) {
+                
+            }
+
             return nhaCungCap;
         } catch (SQLException ex) {
             Logger.getLogger(NhaCungCapMapper.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         }
-                   
-      }
-    
+
+    }
+
 }

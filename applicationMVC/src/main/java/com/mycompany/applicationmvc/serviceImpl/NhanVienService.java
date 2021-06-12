@@ -15,13 +15,14 @@ import java.util.List;
  *
  * @author MinhTo
  */
-public class NhanVienService implements INhanVienService{
+public class NhanVienService implements INhanVienService {
+
     NhanVienDAO nhanVienDAO;
 
     public NhanVienService() {
         this.nhanVienDAO = new NhanVienDAO();
     }
-    
+
     @Override
     public List<NhanVienModel> findByCategoryId(Long categoryId) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -54,7 +55,7 @@ public class NhanVienService implements INhanVienService{
 
     @Override
     public NhanVienModel findOne(long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return nhanVienDAO.findOne((int)id);
     }
-    
+
 }

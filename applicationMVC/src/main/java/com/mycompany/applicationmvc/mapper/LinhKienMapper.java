@@ -36,9 +36,11 @@ public class LinhKienMapper implements RowMapper<LinhKienModel> {
             nhaCungCap.setId(rs.getInt("nhacungcap"));
 
             linhKien.setNhaCungCap(nhaCungCap);
+
             date = formatter.parse((rs.getString("ngaynhap")));
             linhKien.setNgayNhapString(formatter.format(date));
             linhKien.setNgayNhap(date);
+
 
             try {
                 linhKien.setSoLuongTrongDonBaoDuong(rs.getInt("ctsl"));

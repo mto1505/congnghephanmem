@@ -8,6 +8,13 @@
     </Component>
   </NonVisualComponents>
   <Properties>
+    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+      <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+        <TitledBorder title="NH&#xc2;N VI&#xca;N">
+          <Font PropertyName="font" name="Segoe UI" size="14" style="1"/>
+        </TitledBorder>
+      </Border>
+    </Property>
     <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
       <Dimension value="[1152, 618]"/>
     </Property>
@@ -59,7 +66,7 @@
                       <Component id="jLabel29" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="179" max="32767" attributes="0"/>
+              <EmptySpace pref="169" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>

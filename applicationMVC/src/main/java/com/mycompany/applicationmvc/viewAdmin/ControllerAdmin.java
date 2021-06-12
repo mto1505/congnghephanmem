@@ -5,11 +5,13 @@
  */
 package com.mycompany.applicationmvc.viewAdmin;
 
+import java.awt.Image;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Calendar;
+import javax.swing.ImageIcon;
 import org.mindrot.jbcrypt.BCrypt;
 
 /**
@@ -249,10 +251,7 @@ public class ControllerAdmin {
     public static long DT_Month(int m){
        long kt=0;
        Connection cn=ModelAdmin.connectMSSQL();
-       String sql="""
-                  select sum(dbd.TongTien)
-                  from DonBaoDuong as dbd
-                  where Month(NgayHoanThanh)="""+m+" and NgayBatDau<=NgayHoanThanh";
+       String sql="select sum(dbd.TongTien)\n" + "from DonBaoDuong as dbd\n" + "where Month(NgayHoanThanh)="+m+" and NgayBatDau<=NgayHoanThanh";
        try{
            PreparedStatement ps=cn.prepareStatement(sql);
            ResultSet rs=ps.executeQuery();
@@ -271,10 +270,7 @@ public class ControllerAdmin {
     public static int DBD_Month(int m){
        int kt=0;
        Connection cn=ModelAdmin.connectMSSQL();
-       String sql="""
-                  select count(dbd.id)
-                  from DonBaoDuong as dbd
-                  where Month(NgayHoanThanh)="""+m+" and NgayBatDau<=NgayHoanThanh";
+       String sql="select count(dbd.id)\n" + "from DonBaoDuong as dbd\n" + "where Month(NgayHoanThanh)="+m+" and NgayBatDau<=NgayHoanThanh";
        try{
            PreparedStatement ps=cn.prepareStatement(sql);
            ResultSet rs=ps.executeQuery();
@@ -289,5 +285,12 @@ public class ControllerAdmin {
            ex.printStackTrace();
        }
         return kt;
+    }
+    public static ImageIcon setIcon(int width,int height,String url){
+        ImageIcon imageIcon = new ImageIcon(url); 
+        Image image = imageIcon.getImage(); 
+        Image newimg = image.getScaledInstance(width,height,java.awt.Image.SCALE_SMOOTH); 
+        imageIcon = new ImageIcon(newimg);
+        return imageIcon;
     }
 }

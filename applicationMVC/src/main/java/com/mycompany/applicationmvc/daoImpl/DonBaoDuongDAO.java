@@ -33,6 +33,7 @@ public class DonBaoDuongDAO extends AbstractDAO<DonBaoDuongModel> implements IDo
                     + "TongTien= ? "
  
                     + "where DonBaoDuong.id = ?";
+            System.out.println("com.mycompany.applicationmvc.daoImpl.DonBaoDuongDAO.capNhatDonBaoDuong()"+donBaoDuongModel.getTongTien());
             update(
                     q,
                     donBaoDuongModel.getBienSo(),
@@ -67,7 +68,7 @@ public class DonBaoDuongDAO extends AbstractDAO<DonBaoDuongModel> implements IDo
     }
 
     public void xoaDonBaoDuong(int idDonBaoDuong) {
-        String q = "DELETE FROM DonBaoDuong WHERE DonBaoDuong.idDonBaoDuong = ?";
+        String q = "DELETE FROM DonBaoDuong WHERE DonBaoDuong.id = ?";
         update(q, idDonBaoDuong);
     }
 

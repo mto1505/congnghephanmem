@@ -78,6 +78,7 @@ public class LinhKienService implements ILinhKienService {
         linhKienDAO.deleteByIDNhaCungCap(idNhaCungCap);
     }
 
+
     @Override
     public LinhKienModel save(LinhKienModel linhKienModel, boolean autoID) {
          SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -95,6 +96,16 @@ public class LinhKienService implements ILinhKienService {
     @Override
     public void deleteStatus(int id,String ngayNhap) {
         linhKienDAO.deleteStatus(id,ngayNhap);
+    }
+
+
+    
+    public List<LinhKienModel> layDanhSachLinhKienMoiNhat(){
+        return linhKienDAO.layDanhSachLinhKienMoiNhat();
+    }
+    
+    public LinhKienModel timLinhKienMoiNhatTheoID(int id){
+        return linhKienDAO.timLinhKienMoiNhatTheoID(id);
     }
 
 }

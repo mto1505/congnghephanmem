@@ -14,7 +14,7 @@ import java.util.List;
  */
 public interface INhanVienDAO extends GenericDAO<NhanVienModel> {
 
-    NhanVienModel findOne(Long id);
+    NhanVienModel findOne(int id);
 
     List<NhanVienModel> findByCategoryId(Long categoryId);
 
@@ -22,7 +22,7 @@ public interface INhanVienDAO extends GenericDAO<NhanVienModel> {
 
     void update(NhanVienModel updateNhanVien);
 
-    void delete(long id);
+    void delete(int id);
 
     List<NhanVienModel> findAll();
 

@@ -41,8 +41,10 @@ public class JPanel_TKKhachHang extends javax.swing.JPanel {
         jScrollPane4 = new javax.swing.JScrollPane();
         jTable_DanhSachTKKH = new javax.swing.JTable();
 
-        setMinimumSize(new java.awt.Dimension(1168, 534));
-        setPreferredSize(new java.awt.Dimension(1168, 618));
+        setBorder(javax.swing.BorderFactory.createTitledBorder("THỐNG KÊ KHÁCH HÀNG"));
+        setMaximumSize(new java.awt.Dimension(1300, 700));
+        setMinimumSize(new java.awt.Dimension(1300, 700));
+        setPreferredSize(new java.awt.Dimension(1300, 700));
 
         jLabel21.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
         jLabel21.setText("Tìm Kiếm Theo Mã Khách Hàng");
@@ -105,30 +107,30 @@ public class JPanel_TKKhachHang extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(218, 218, 218)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 738, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(349, 349, 349)
+                        .addGap(317, 317, 317)
                         .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(33, 33, 33)
-                        .addComponent(jTextField_FindID_KH, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(43, 43, 43)
+                        .addComponent(jTextField_FindID_KH, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(420, 420, 420)
-                        .addComponent(jLabel22)))
-                .addContainerGap(212, Short.MAX_VALUE))
+                        .addGap(407, 407, 407)
+                        .addComponent(jLabel22))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(180, 180, 180)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 738, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(372, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(64, 64, 64)
+                .addGap(58, 58, 58)
                 .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField_FindID_KH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
+                .addGap(33, 33, 33)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28))
+                .addContainerGap(160, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -138,17 +140,7 @@ public class JPanel_TKKhachHang extends javax.swing.JPanel {
         DefaultTableModel dtm= (DefaultTableModel) jTable_DanhSachTKKH.getModel();
         Connection cn=ModelAdmin.connectMSSQL();
         dtm.setNumRows(0);
-        String sql="""
-                    with BS_DBD(BS,ID) as
-                    (select DonBaoDuong.BienSo,XeMay.idChuSoHuu
-                    from XeMay, DonBaoDuong
-                    where  XeMay.BienSo=DonBaoDuong.BienSo)
-                    
-                    select KhachHang.id,KhachHang.Ten,KhachHang.SDT,KhachHang.GioiTinh,count(BS_DBD.ID) as SL
-                    from KhachHang,BS_DBD
-                    where KhachHang.id=BS_DBD.ID
-                    group by KhachHang.id,KhachHang.Ten,KhachHang.SDT,KhachHang.GioiTinh
-                    order by SL desc """;
+        String sql="with BS_DBD(BS,ID) as\n" + "(select DonBaoDuong.BienSo,XeMay.idChuSoHuu\n" + "from XeMay, DonBaoDuong\n" + "where  XeMay.BienSo=DonBaoDuong.BienSo)\n" + "\n" + "select KhachHang.id,KhachHang.Ten,KhachHang.SDT,KhachHang.GioiTinh,count(BS_DBD.ID) as SL\n" + "from KhachHang,BS_DBD\n" + "where KhachHang.id=BS_DBD.ID\n" + "group by KhachHang.id,KhachHang.Ten,KhachHang.SDT,KhachHang.GioiTinh\n" + "order by SL desc";
         Vector vt=null;
         try{
             PreparedStatement ps=cn.prepareStatement(sql);
@@ -179,17 +171,7 @@ public class JPanel_TKKhachHang extends javax.swing.JPanel {
         DefaultTableModel dtm= (DefaultTableModel) jTable_DanhSachTKKH.getModel();
         Connection cn=ModelAdmin.connectMSSQL();
         dtm.setNumRows(0);
-        String sql="""
-                    with BS_DBD(BS,ID) as
-                    (select DonBaoDuong.BienSo,XeMay.idChuSoHuu
-                    from XeMay, DonBaoDuong
-                    where  XeMay.BienSo=DonBaoDuong.BienSo)
-                    
-                    select KhachHang.id,KhachHang.Ten,KhachHang.SDT,KhachHang.GioiTinh,count(BS_DBD.ID) as SL
-                    from KhachHang,BS_DBD
-                    where KhachHang.id=BS_DBD.ID
-                    group by KhachHang.id,KhachHang.Ten,KhachHang.SDT,KhachHang.GioiTinh
-                    order by SL desc """;
+        String sql="with BS_DBD(BS,ID) as\n" + "(select DonBaoDuong.BienSo,XeMay.idChuSoHuu\n" + "from XeMay, DonBaoDuong\n" + "where  XeMay.BienSo=DonBaoDuong.BienSo)\n" + "\n" + "select KhachHang.id,KhachHang.Ten,KhachHang.SDT,KhachHang.GioiTinh,count(BS_DBD.ID) as SL\n" + "from KhachHang,BS_DBD\n" + "where KhachHang.id=BS_DBD.ID\n" + "group by KhachHang.id,KhachHang.Ten,KhachHang.SDT,KhachHang.GioiTinh\n" + "order by SL desc";
         Vector vt=null;
         try{
             PreparedStatement ps=cn.prepareStatement(sql);

@@ -75,6 +75,7 @@ public class JPanel_NhanVien extends javax.swing.JPanel {
         jScrollPane7 = new javax.swing.JScrollPane();
         jTable_DanhSachTKNV = new javax.swing.JTable();
 
+        setBorder(javax.swing.BorderFactory.createTitledBorder(null, "NHÂN VIÊN", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14))); // NOI18N
         setMinimumSize(new java.awt.Dimension(1152, 618));
 
         jLabel19.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -401,7 +402,7 @@ public class JPanel_NhanVien extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(478, 478, 478)
                         .addComponent(jLabel29)))
-                .addContainerGap(179, Short.MAX_VALUE))
+                .addContainerGap(169, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -690,12 +691,7 @@ public class JPanel_NhanVien extends javax.swing.JPanel {
         Connection cn=ModelAdmin.connectMSSQL();
         dtm.setNumRows(0);
         String sql="select * from NhanVien order by id";
-        String sql1="""
-        select NhanVien.id,count(ChiTietDonBaoDuong.idNhanVienPhuTrach) As SoLan
-        From NhanVien,ChiTietDonBaoDuong
-        where NhanVien.id=ChiTietDonBaoDuong.idNhanVienPhuTrach
-        group by NhanVien.id
-        order by SoLan Desc """;
+        String sql1="select NhanVien.id,count(ChiTietDonBaoDuong.idNhanVienPhuTrach) As SoLan\n" + "From NhanVien,ChiTietDonBaoDuong\n" + "where NhanVien.id=ChiTietDonBaoDuong.idNhanVienPhuTrach\n" + "group by NhanVien.id\n" + "order by SoLan Desc";
         Vector vt=null;
         try{
             PreparedStatement ps=cn.prepareStatement(sql);
@@ -772,12 +768,7 @@ private void importDataTKNVPT(){
         Connection cn=ModelAdmin.connectMSSQL();
         dtm.setNumRows(0);
         String sql="select * from NhanVien order by id";
-        String sql1="""
-                   select NhanVien.id,count(ChiTietDonBaoDuong.idNhanVienPhuTrach) As SoLan
-                    From NhanVien,ChiTietDonBaoDuong
-                    where NhanVien.id=ChiTietDonBaoDuong.idNhanVienPhuTrach
-                    group by NhanVien.id
-                    order by SoLan Desc """;
+        String sql1="select NhanVien.id,count(ChiTietDonBaoDuong.idNhanVienPhuTrach) As SoLan\n" + " From NhanVien,ChiTietDonBaoDuong\n" + " where NhanVien.id=ChiTietDonBaoDuong.idNhanVienPhuTrach\n" + " group by NhanVien.id\n" + " order by SoLan Desc";
         Vector vt=null;
         try{
             PreparedStatement ps=cn.prepareStatement(sql);

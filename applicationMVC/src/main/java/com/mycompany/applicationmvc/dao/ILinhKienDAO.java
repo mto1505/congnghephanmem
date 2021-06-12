@@ -38,4 +38,9 @@ public interface ILinhKienDAO extends GenericDAO<LinhKienModel> {
 
     LinhKienModel findOneByNameAndMaNhaCungCap(String name, int maNCC, String date);
 
+    List<LinhKienModel> layDanhSachLinhKienMoiNhat();
+
+     LinhKienModel findOne(int id, String ngay);
+
+     LinhKienModel timLinhKienMoiNhatTheoID(int id);
 }

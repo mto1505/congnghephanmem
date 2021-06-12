@@ -26,19 +26,23 @@ public class PhuTungService implements IPhuTungService {
         return phuTungDAO.layDanhSachTatCaPhuTung();
     }
 
-    public PhuTungModel timPhuTungKiemTraTheoTen(String t){
-        return phuTungDAO.timPhuTungTheoTen(t);
-        
+    public List<PhuTungModel> layDanhSachPhuTungCanKiemTra(boolean mode) {
+        return phuTungDAO.layDanhSachTatCaPhuTung(mode);
     }
 
-    public PhuTungModel timPhuTungKiemTraTheoID(int ID){
+    public PhuTungModel timPhuTungKiemTraTheoTen(String t) {
+        return phuTungDAO.timPhuTungTheoTen(t);
+
+    }
+
+    public PhuTungModel timPhuTungKiemTraTheoID(int ID) {
         return phuTungDAO.timPhuTungTheoID(ID);
     }
-    
-    public void capNhatPhuTung(PhuTungModel pt){
+
+    public void capNhatPhuTung(PhuTungModel pt) {
         phuTungDAO.capNhatPhuTung(pt);
     }
-    
+
     public void themPhuTung(PhuTungModel pt) {
         phuTungDAO.themPhuTung(pt);
     }

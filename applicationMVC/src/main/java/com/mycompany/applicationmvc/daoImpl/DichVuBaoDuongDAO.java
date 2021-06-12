@@ -7,7 +7,9 @@ package com.mycompany.applicationmvc.daoImpl;
 
 import com.mycompany.applicationmvc.dao.IDichVuBaoDuongDAO;
 import com.mycompany.applicationmvc.mapper.DichVuBaoDuongMapper;
+import com.mycompany.applicationmvc.mapper.DonBaoDuongMapper;
 import com.mycompany.applicationmvc.model.DichVuBaoDuongModel;
+import com.mycompany.applicationmvc.model.DonBaoDuongModel;
 import java.util.List;
 
 /**
@@ -65,6 +67,26 @@ public class DichVuBaoDuongDAO extends AbstractDAO<DichVuBaoDuongModel> implemen
         String q = "SELECT * FROM DichVuBaoDuong WHERE id = ? AND NgayCapNhat = ?";
         List<DichVuBaoDuongModel> temp = query(q, new DichVuBaoDuongMapper(), id, ngayCapNhat);
         if (temp.get(0) != null) {
+            return temp.get(0);
+        }
+        return null;
+    }
+
+    public List<DonBaoDuongModel> layDanhSachDonBaoDuongBiAnhHuongKHiCapNhatDVBD(int idDV) {
+        String q = "SELECT DonBaoDuong.* "
+                + "FROM DonBaoDuong join ChiTietDonBaoDuong on ChiTietDonBaoDuong.idDonBaoDuong = DonBaoDuong.id  "
+                + "JOIN DichVuBaoDuong on ChiTietDonBaoDuong.idDichVuBaoDuong = DichVuBaoDuong.id AND ChiTietDonBaoDuong.NgayCapNhatDichVuBaoDuong = DichVuBaoDuong.NgayCapNhat "
+                + "WHERE DonBaoDuong.NgayHoanThanh < '2010-01-01' AND DichVuBaoDuong.id = ?";
+
+        return query(q, new DonBaoDuongMapper(), idDV);
+    }
+
+    public DichVuBaoDuongModel timDichVuBaoDuongTheoTenVaLoaiXe(String ten, int idLoaiXe) {
+        String q = "SELECT * FROM DichVuBaoDuong "
+                + "WHERE DichVuBaoDuong.Ten = ?  AND DichVuBaoDuong.idLoaiXe = ? ;";
+
+        List<DichVuBaoDuongModel> temp = query(q, new DichVuBaoDuongMapper(), ten, idLoaiXe);
+        if (temp != null && temp.get(0) != null) {
             return temp.get(0);
         }
         return null;
