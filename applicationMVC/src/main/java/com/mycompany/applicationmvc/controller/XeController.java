@@ -360,10 +360,9 @@ public class XeController {
         tenXeMayField.setText(xe.getTenXe());
         chuSoHuuField.setText(xe.getKhachHang().getHoTen());
         soDienThoaiField.setText(xe.getKhachHang().getSoDienThoai());
-    
 
         if (xe.getLoaixe() == null) {
-           loaiXeCombobox.setSelectedItem("Loại xe không tồn tại");
+            loaiXeCombobox.setSelectedItem("Loại xe không tồn tại");
         } else {
             loaiXeCombobox.setSelectedItem(xe.getLoaixe().getTenLoaiXe());
         }
@@ -387,17 +386,16 @@ public class XeController {
     }
 
     public void setDataToTableModel() {
-       // them du lieu combobox Loai Xe 
-       List<LoaiXeModel> listLoaiXeCombobox=loaiXeService.findAll();
-       loaiXeCombobox.removeAllItems();
-         for (LoaiXeModel loaiXeModel : listLoaiXeCombobox) {
-          loaiXeCombobox.addItem(loaiXeModel.getTenLoaiXe());
+        // them du lieu combobox Loai Xe 
+        List<LoaiXeModel> listLoaiXeCombobox = loaiXeService.findAll();
+        loaiXeCombobox.removeAllItems();
+        for (LoaiXeModel loaiXeModel : listLoaiXeCombobox) {
+            loaiXeCombobox.addItem(loaiXeModel.getTenLoaiXe());
         }
-         
-         
+
         DefaultTableModel modelTable = (DefaultTableModel) xeMayTable.getModel();
         modelTable.setRowCount(0);
-        
+
         //Data Xe may
         List<XeModel> listXe = xeSevice.findAllMultiTable();
         modelTable = tableModelCustom.setTableData(listXe, modelTable);
@@ -540,12 +538,12 @@ public class XeController {
                         JOptionPane.showOptionDialog(jpanel, "Vui lòng điền đầy đủ thông tin", "Infomation", JOptionPane.OK_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
                     } else {
                         //kiem tra dinh dang
-                        if (loaiXeService.findOneByName(loaiXeCombobox.getSelectedItem().toString())==null) {
-                            
+                        if (loaiXeService.findOneByName(loaiXeCombobox.getSelectedItem().toString()) == null) {
+
                             ImageIcon img = new ImageIcon(iconErrorURL);
-                           
+
                             errorLoaiXe.setIcon(img);
-                            errorLoaiXe.setToolTipText("Loại xe không tồn tại");                   
+                            errorLoaiXe.setToolTipText("Loại xe không tồn tại");
                             errorLoaiXe.setVisible(true);
                             isInvalidFomat = true;
                         }
@@ -670,6 +668,7 @@ public class XeController {
                                     xe = xeSevice.save(xe);
                                     if (xe != null) {
                                         JOptionPane.showMessageDialog(jpanel, "Thêm xe thành công", "Lưu", 0);
+                                          setDataToTableModel();
                                     } else {
                                         JOptionPane.showMessageDialog(jpanel, "Thêm xe thất bại", "Lưu", 0);
                                     }
@@ -691,6 +690,7 @@ public class XeController {
                                 xe = xeSevice.save(xe);
                                 if (xe != null) {
                                     JOptionPane.showMessageDialog(jpanel, "Thêm xe thành công", "Lưu", 0);
+                                      setDataToTableModel();
                                 } else {
                                     JOptionPane.showMessageDialog(jpanel, "Thêm xe thất bại", "Lưu", 0);
                                 }
@@ -781,16 +781,16 @@ public class XeController {
                     JOptionPane.showOptionDialog(jpanel, "Vui lòng điền đầy đủ thông tin", "Infomation", JOptionPane.OK_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
                 } else {
                     //kiem tra dinh dang
-                     if (loaiXeCombobox.getSelectedIndex()== -1) {
-                          
-                            ImageIcon img = new ImageIcon(iconErrorURL);
-                            
-                            errorLoaiXe.setIcon(img);
-                            errorLoaiXe.setToolTipText("Loại xe không tồn tại");
-                            
-                            errorLoaiXe.setVisible(true);
-                            isInvalidFomat = true;
-                        }
+                    if (loaiXeCombobox.getSelectedIndex() == -1) {
+
+                        ImageIcon img = new ImageIcon(iconErrorURL);
+
+                        errorLoaiXe.setIcon(img);
+                        errorLoaiXe.setToolTipText("Loại xe không tồn tại");
+
+                        errorLoaiXe.setVisible(true);
+                        isInvalidFomat = true;
+                    }
                     //kiem tra so dien thoai
                     if (!ValidationRegEx.validationSDT(soDienThoaiField.getText())) {
                         ImageIcon imgError = new ImageIcon(iconErrorURL);
@@ -907,6 +907,7 @@ public class XeController {
                             xe = xeSevice.update(xe);
                             if (xe != null) {
                                 JOptionPane.showMessageDialog(jpanel, "Cập nhật xe thành công", "Lưu", 0);
+                                  setDataToTableModel();
                             } else {
                                 JOptionPane.showMessageDialog(jpanel, "Cập nhật xe thất bại", "Lưu", 0);
                             }
@@ -923,6 +924,7 @@ public class XeController {
                         XeModel xeNew = xeSevice.update(xe);
                         if (xeNew != null) {
                             JOptionPane.showMessageDialog(jpanel, "Cập nhật xe thành công", "Lưu", 0);
+                              setDataToTableModel();
                         } else {
                             JOptionPane.showMessageDialog(jpanel, "Cập nhật xe thất bại", "Lưu", 0);
                         }
@@ -943,9 +945,14 @@ public class XeController {
                 if (bienSo.isEmpty()) {
                     JOptionPane.showMessageDialog(jpanel, "Vui lòng chọn xe", "Thông tin", 0);
                 } else {
-                    //xoá Ràng buộc khoá ngoại 
-                    xeSevice.delete(bienSo);
-                    JOptionPane.showMessageDialog(jpanel, "Xoá thành công", "Xoá", 0);
+                    if (xeSevice.findOneInDonBaoDuong(bienSo) == null) {
+                        xeSevice.delete(bienSo);
+                        JOptionPane.showMessageDialog(jpanel, "Xoá thành công", "Xoá", 0);
+                        setDataToTableModel();
+                    } else {
+                        JOptionPane.showMessageDialog(jpanel, "Xoá thất bại", "Xoá", 0);
+                    }
+
                 }
             }
         }
@@ -1181,6 +1188,7 @@ public class XeController {
                         loaiXeModel = loaiXeService.save(loaiXeModel);
                         if (loaiXeModel != null) {
                             JOptionPane.showMessageDialog(jpanel, "Thêm loại xe thành công", "Đồng ý", 0);
+                                 setDataToTableModel();
                         } else {
                             JOptionPane.showMessageDialog(jpanel, "Thêm loại xe thất bại", "Đồng ý", 0);
                         }
@@ -1243,6 +1251,7 @@ public class XeController {
                                 loaiXeModel = loaiXeService.update(loaiXeModel);
                                 if (loaiXeModel != null) {
                                     JOptionPane.showMessageDialog(jpanel, "Sửa loại xe thành công", "Đồng ý", 0);
+                                      setDataToTableModel();
                                 } else {
                                     JOptionPane.showMessageDialog(jpanel, "Sửa loại xe thất bại", "Đồng ý", 0);
                                 }
@@ -1273,6 +1282,7 @@ public class XeController {
                     if (value == 1) {
                         loaiXeService.deleteStatus(maLoaiXe);
                         JOptionPane.showMessageDialog(jpanel, "Xoá thành công", "Thông tin", JOptionPane.INFORMATION_MESSAGE);
+                        setDataToTableModel();
                     } else {
                         JOptionPane.showMessageDialog(jpanel, "Xoá thất bại", "Thông tin", JOptionPane.INFORMATION_MESSAGE);
                     }

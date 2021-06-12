@@ -342,6 +342,11 @@ public class LinhKienPanel extends javax.swing.JPanel {
         btnXoaLinhKien.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         btnXoaLinhKien.setText("Xoá");
         btnXoaLinhKien.setPreferredSize(new java.awt.Dimension(70, 35));
+        btnXoaLinhKien.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXoaLinhKienActionPerformed(evt);
+            }
+        });
 
         maLinhKien.setEditable(false);
         maLinhKien.setBackground(new java.awt.Color(243, 243, 244));
@@ -642,6 +647,10 @@ public class LinhKienPanel extends javax.swing.JPanel {
     private void maNCCFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_maNCCFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_maNCCFieldActionPerformed
+
+    private void btnXoaLinhKienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaLinhKienActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnXoaLinhKienActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

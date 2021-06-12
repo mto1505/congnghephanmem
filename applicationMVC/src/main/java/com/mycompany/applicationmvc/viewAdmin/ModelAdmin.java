@@ -23,7 +23,7 @@ public class ModelAdmin {
         Connection cn=null;
         try{
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            cn=DriverManager.getConnection("jdbc:sqlserver://;databaseName=QuanLyBaoDuong", "sa", "doan675895");
+            cn=DriverManager.getConnection("jdbc:sqlserver://;databaseName=QuanLyBaoDuong", "minhto", "minhto123");
             System.out.println("Connect success");
         }
         catch (ClassNotFoundException | SQLException ex){

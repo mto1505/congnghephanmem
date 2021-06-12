@@ -105,4 +105,12 @@ public class KhachHangDAO extends AbstractDAO<KhachHangModel> implements IKhachH
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    @Override
+    public KhachHangModel findOneInXeMay(int id) {
+       String sql="select KhachHang.id, KhachHang.Ten,KhachHang.SDT,KhachHang.GioiTinh from KhachHang JOIN XeMay on KhachHang.id=? AND XeMay.idChuSoHuu=KhachHang.id";
+      List<KhachHangModel> khachHanglist = query(sql, new KhachHangMapper(), id);
+        //To change body of generated methods, choose Tools | Templates.
+        return khachHanglist.isEmpty() ? null : khachHanglist.get(0);
+    }
+
 }

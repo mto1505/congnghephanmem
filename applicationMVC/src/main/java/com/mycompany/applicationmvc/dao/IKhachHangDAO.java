@@ -16,7 +16,7 @@ import java.util.List;
 public interface IKhachHangDAO extends GenericDAO<KhachHangModel> {
 
     KhachHangModel findOne(int id);
-
+    KhachHangModel findOneInXeMay(int id);
     KhachHangModel findOneByCMND(String cmnd);
 
     KhachHangModel findOneByNameAndSDT(String name, String sdt);

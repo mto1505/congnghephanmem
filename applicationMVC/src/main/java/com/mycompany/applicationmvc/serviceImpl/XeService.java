@@ -71,6 +71,11 @@ public class XeService implements IXeService {
         return xeDao.findByMaChuSoHuu(maChuSoHuu);
     }
 
+    @Override
+    public XeModel findOneInDonBaoDuong(String bienso) {
+        return xeDao.findOneInDonBaoDuong(bienso);
+    }
+
    
 
    

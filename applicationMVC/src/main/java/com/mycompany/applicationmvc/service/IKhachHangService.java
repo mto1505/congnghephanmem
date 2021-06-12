@@ -22,6 +22,7 @@ public interface IKhachHangService {
 	List<KhachHangModel> findAll();
 	int getTotalItem();
 	KhachHangModel findOne(int id);
+        KhachHangModel findOneInXeMay(int id);
         KhachHangModel findOneByCMND(String cmnd);
           KhachHangModel findOneBySDT(String sdt);
         KhachHangModel findOneByNameAndSDT(String name,String sdt);

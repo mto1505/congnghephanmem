@@ -24,5 +24,6 @@ public interface IXeService {
         List<XeModel> findByMaChuSoHuu(int maChuSoHuu);
 	int getTotalItem();
 	XeModel findOne(String bienso);
+        XeModel findOneInDonBaoDuong(String bienso);
         void deleteByMaChuSoHuu(int idChuSoHuu);
 }

@@ -473,6 +473,7 @@ public class KhachHangController {
                             KhachHangModel newKhachHang = khachHangService.update(khachHang);
                             if (newKhachHang != null) {
                                 JOptionPane.showMessageDialog(panel, "Cập nhật thành công", "Thông báo", 0, null);
+                                setDataToTable();
                             }
                         } else {
 
@@ -480,8 +481,10 @@ public class KhachHangController {
                                 KhachHangModel newKhachHang = khachHangService.update(khachHang);
                                 if (newKhachHang != null) {
                                     JOptionPane.showMessageDialog(panel, "Cập nhật thành công", "Thông báo", 0, null);
+                                     setDataToTable();
                                 } else {
                                     JOptionPane.showMessageDialog(panel, "Cập nhật không thành công", "Thông báo", 0, null);
+                                    
                                 }
                             } else {
                                 JOptionPane.showMessageDialog(panel, "Số điện thoại khách hàng đã tồn tại", "Thông báo", 0, null);
@@ -597,6 +600,7 @@ public class KhachHangController {
                         KhachHangModel newKhachHang = khachHangService.save(khachHang);
                         if (newKhachHang != null) {
                             JOptionPane.showMessageDialog(panel, "Lưu thành công", "Thông báo", 0, null);
+                             setDataToTable();
                         } else {
                             JOptionPane.showMessageDialog(panel, "Lưu thất bại", "Thông báo", 0, null);
                         }
@@ -625,13 +629,18 @@ public class KhachHangController {
                     String op[] = {"Suy nghĩ lại", "Em đồng ý"};
                     int reply = JOptionPane.showOptionDialog(panel, message, "Xoá khách hàng", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, op, op[0]);
                     if (reply == 1) {
-                        //xoá Xe
+                       
                         //B1.Kiểm tra xe 
-                        if (xeService.findByMaChuSoHuu(Integer.parseInt(idKhachHang)) != null) {
-                            xeService.deleteByMaChuSoHuu(Integer.parseInt(idKhachHang));
-                        }
-                        khachHangService.delete(Integer.parseInt(idKhachHang));
+                        if(khachHangService.findOneInXeMay(Integer.parseInt(idKhachHang))==null)
+                            {
+                                  khachHangService.delete(Integer.parseInt(idKhachHang));
                         JOptionPane.showMessageDialog(panel, "Xoá thành công", "Thông báo", 1, null);
+                         setDataToTable();
+                            }
+                        else{
+                             JOptionPane.showMessageDialog(panel, "Xoá thất bại", "Thông báo", 1, null);
+                             
+                        }
                     }
 
                 } else {

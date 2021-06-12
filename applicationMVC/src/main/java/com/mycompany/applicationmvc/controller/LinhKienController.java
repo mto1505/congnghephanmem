@@ -181,7 +181,7 @@ public class LinhKienController {
 //        origiFormat = origiFormat.substring(0, origiFormat.indexOf('.'));
         String moneyFomart = ValidationRegEx.convertToMoneyFomart(bdec.toString());
         giaField.setText(moneyFomart);
-        
+
         if (linhKien.getNhaCungCap() == null) {
             tenNhaCungCapCombobox.setSelectedItem("Nhà cung cấp không tồn tại");
         } else {
@@ -533,7 +533,9 @@ public class LinhKienController {
 //                        } else 
                         {
                             if (linhKienService.save(linhKien) != null) {
+
                                 JOptionPane.showMessageDialog(panel, "Lưu thành công ", "Lưu", JOptionPane.INFORMATION_MESSAGE);
+                                setDataToTable();
                             } else {
                                 JOptionPane.showMessageDialog(panel, "Lưu thất bại", "Lưu", JOptionPane.INFORMATION_MESSAGE);
                             }
@@ -661,9 +663,10 @@ public class LinhKienController {
                             System.out.println("Them");
                             {
                                 if (linhKienService.save(linhKien2, false) != null) {
-                                    JOptionPane.showMessageDialog(panel, "Lưu thành công ", "Lưu", JOptionPane.INFORMATION_MESSAGE);
+                                    JOptionPane.showMessageDialog(panel, "Cập nhật thành công ", "Lưu", JOptionPane.INFORMATION_MESSAGE);
+                                    setDataToTable();
                                 } else {
-                                    JOptionPane.showMessageDialog(panel, "Lưu thất bại", "Lưu", JOptionPane.INFORMATION_MESSAGE);
+                                    JOptionPane.showMessageDialog(panel, "Cập nhật thất bại", "Lưu", JOptionPane.INFORMATION_MESSAGE);
                                 }
                             }
 
@@ -671,6 +674,8 @@ public class LinhKienController {
                             System.out.println("Sua");
                             if (linhKienService.update(linhKien2) != null) {
                                 JOptionPane.showMessageDialog(panel, "Cập nhật thành công ", "Lưu", JOptionPane.INFORMATION_MESSAGE);
+                                setDataToTable();
+
                             } else {
                                 JOptionPane.showMessageDialog(panel, "Cập nhật thất bại", "Lưu", JOptionPane.INFORMATION_MESSAGE);
                             }
@@ -693,6 +698,8 @@ public class LinhKienController {
                     if (value == 1) {
                         linhKienService.deleteStatus(Integer.parseInt(maLinhKienField.getText()), formatter.format(ngayNhapField.getDate()));
                         JOptionPane.showMessageDialog(panel, "Xoá thành công", "Thông tin", JOptionPane.INFORMATION_MESSAGE);
+                                                        setDataToTable();
+
                     } else {
                         JOptionPane.showMessageDialog(panel, "Xoá thất bại", "Thông tin", JOptionPane.INFORMATION_MESSAGE);
                     }
@@ -868,6 +875,7 @@ public class LinhKienController {
                     } else {
                         if (nhaCungCapService.save(nhaCungCap) != null) {
                             JOptionPane.showMessageDialog(panel, "Lưu thành công", "Thông tin", JOptionPane.INFORMATION_MESSAGE);
+                            setDataToTable();
                         } else {
                             JOptionPane.showMessageDialog(panel, "Lưu thất bại", "Thông tin", JOptionPane.INFORMATION_MESSAGE);
                         }
@@ -973,6 +981,7 @@ public class LinhKienController {
                             } else {
                                 if (nhaCungCapService.update(nhaCungCap) != null) {
                                     JOptionPane.showMessageDialog(panel, "Cập nhật thành công", "Thông tin", JOptionPane.INFORMATION_MESSAGE);
+                                    setDataToTable();
                                 } else {
                                     JOptionPane.showMessageDialog(panel, "Cập nhật thất bại", "Thông tin", JOptionPane.INFORMATION_MESSAGE);
                                 }
@@ -983,6 +992,7 @@ public class LinhKienController {
                             } else {
                                 if (nhaCungCapService.update(nhaCungCap) != null) {
                                     JOptionPane.showMessageDialog(panel, "Cập nhật thành công", "Thông tin", JOptionPane.INFORMATION_MESSAGE);
+                                    setDataToTable();
                                 } else {
                                     JOptionPane.showMessageDialog(panel, "Cập nhật thất bại", "Thông tin", JOptionPane.INFORMATION_MESSAGE);
                                 }
@@ -993,6 +1003,7 @@ public class LinhKienController {
                             } else {
                                 if (nhaCungCapService.update(nhaCungCap) != null) {
                                     JOptionPane.showMessageDialog(panel, "Cập nhật thành công", "Thông tin", JOptionPane.INFORMATION_MESSAGE);
+                                    setDataToTable();
                                 } else {
                                     JOptionPane.showMessageDialog(panel, "Cập nhật thất bại", "Thông tin", JOptionPane.INFORMATION_MESSAGE);
                                 }
@@ -1002,6 +1013,7 @@ public class LinhKienController {
                     } else {
                         if (nhaCungCapService.update(nhaCungCap) != null) {
                             JOptionPane.showMessageDialog(panel, "Cập nhật thành công", "Thông tin", JOptionPane.INFORMATION_MESSAGE);
+                            setDataToTable();
                         } else {
                             JOptionPane.showMessageDialog(panel, "Cập nhật thất bại", "Thông tin", JOptionPane.INFORMATION_MESSAGE);
                         }
@@ -1028,6 +1040,7 @@ public class LinhKienController {
                         if (value == 1) {
                             nhaCungCapService.deleteStatus(Integer.parseInt(maNCCField.getText()));
                             JOptionPane.showMessageDialog(panel, "Xoá thành công", "Thông tin", JOptionPane.INFORMATION_MESSAGE);
+                            setDataToTable();
                         } else {
                             JOptionPane.showMessageDialog(panel, "Xoá thất bại", "Thông tin", JOptionPane.INFORMATION_MESSAGE);
                         }
@@ -1053,10 +1066,9 @@ public class LinhKienController {
         for (NhaCungCapModel nhaCungCapModel : listNhaCungCap) {
             tenNhaCungCapCombobox.addItem(nhaCungCapModel.getTen());
         }
-        
+
         //set   date fomat string
         // ngayNhapField.setDateFormatString("dd-MM-yyyy");
-
         //set data to LinhKien  table
         List<LinhKienModel> listLinhKien = linhKienService.findAll();
         DefaultTableModel linhKienModelTable = (DefaultTableModel) linhKienTable.getModel();

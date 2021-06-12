@@ -705,6 +705,9 @@
                   <Dimension value="[70, 35]"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnXoaLinhKienActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="maLinhKien">
               <Properties>

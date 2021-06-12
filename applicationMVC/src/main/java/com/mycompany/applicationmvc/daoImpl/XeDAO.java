@@ -1,4 +1,4 @@
-/*
+    /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -98,6 +98,20 @@ public class XeDAO extends AbstractDAO<XeModel> implements IXeDAO {
         List<XeModel> xelist = query(sqlString, new XeMapper(), maChuSoHuu);
         //To change body of generated methods, choose Tools | Templates.
         return xelist;
+    }
+
+    @Override
+    public boolean deleteXe(String bienso) {
+        return false;
+       
+    }
+
+    @Override
+    public XeModel findOneInDonBaoDuong(String bienso) {
+     String sql= "select XeMay.BienSo,XeMay.TenXe,XeMay.idChuSoHuu,XeMay.idLoaiXe from XeMay join DonBaoDuong  on XeMay.BienSo='?' and XeMay.BienSo=DonBaoDuong.BienSo";
+      List<XeModel> xelist = query(sql, new XeMapper(), bienso);
+        //To change body of generated methods, choose Tools | Templates.
+        return xelist.isEmpty() ? null : xelist.get(0);
     }
 
 }

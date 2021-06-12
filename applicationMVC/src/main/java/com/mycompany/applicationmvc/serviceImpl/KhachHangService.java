@@ -124,4 +124,9 @@ public class KhachHangService implements IKhachHangService {
      
     }
 
+    @Override
+    public KhachHangModel findOneInXeMay(int id) {
+        return khachHangDao.findOneInXeMay(id);
+    }
+
 }
