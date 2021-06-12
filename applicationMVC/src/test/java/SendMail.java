@@ -23,20 +23,20 @@ public class SendMail {
     public static void main(String[] args) {
 
         // Recipient's email ID needs to be mentioned.
-        String to = "hesaclocon@gmail.com";
+        String to = "cnpmminh@outlook.com";
 
         // Sender's email ID needs to be mentioned
-        String from = "cnpmminh@pepisandbox.com";
+        String from = "hesaclocon@gmail.com";
 
         // Assuming you are sending email from through gmails smtp
-        String host = "smtp.netcorecloud.net";
+        String host = "smtp.elasticemail.com";
 
         // Get system properties
         Properties properties = System.getProperties();
 
         // Setup mail server
         properties.put("mail.smtp.host", host);
-        properties.put("mail.smtp.port", "25");
+        properties.put("mail.smtp.port", "2525");
         //properties.put("mail.smtp.starttls.enable", "true");
         //properties.put("mail.smtp.ssl.enable", "true");
         properties.put("mail.smtp.auth", "true");
@@ -46,7 +46,7 @@ public class SendMail {
 
             protected PasswordAuthentication getPasswordAuthentication() {
 
-                return new PasswordAuthentication("cnpmminh", "cnpmminh_72f09968a10eb28eb52ac06414ad4e15");
+                return new PasswordAuthentication("hesaclocon@gmail.com", "544039A58FFD1CBDBC5E588055B3274C17CD");
 
             }
 

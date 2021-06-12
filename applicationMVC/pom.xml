@@ -58,6 +58,14 @@
             <artifactId>javax.mail</artifactId>
             <version>1.6.2</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.glassfish.jersey/project -->
+        <dependency>
+            <groupId>org.glassfish.jersey</groupId>
+            <artifactId>project</artifactId>
+            <version>3.0.2</version>
+            <type>pom</type>
+        </dependency>
+
     </dependencies>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

@@ -36,7 +36,7 @@ public class XeMapper implements RowMapper<XeModel> {
             }else{
                 Xe.setKhachHang(null);
             }
-
+            
             Xe.getLoaixe().setTenLoaiXe(rs.getString("tenloai"));
             return Xe;
         } catch (SQLException ex) {

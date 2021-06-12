@@ -65,6 +65,10 @@ public class DonBaoDuongController {
     ArrayList<LinhKienModel> danhSachLinhKienTrongKho;
     ArrayList<LinhKienModel> danhSachLinhKienToiDa;
     ArrayList<DonBaoDuongModel> danhSachDonBaoDuongHienThi;
+    String noiDungHoaDon = "";
+    String noiDungDV = "";
+    String noiDungLK = "";
+    String noiDungTongcong = "";
 
     public DonBaoDuongController(DonBaoDuongContainerPanel baoDuongContainerPanel) {
         this.baoDuongContainerPanel = baoDuongContainerPanel;
@@ -194,6 +198,7 @@ public class DonBaoDuongController {
                     baoduongPanel.getSoDienThoaiTF().setText(kh.getSoDienThoai());
 
                     XeModel xm = xeService.findOne(baoduongPanel.getBienSoXeMayTF_ThemKhachHangMoiDailog().getText().toLowerCase());
+
                     if (xm == null) {
                         xeService.save(new XeModel(baoduongPanel.getBienSoXeMayTF_ThemKhachHangMoiDailog().getText().toLowerCase(),
                                 baoduongPanel.getTenXeMayTF_ThemKhachHangMoiDailog().getText(),
@@ -201,6 +206,8 @@ public class DonBaoDuongController {
                                 kh));
                     } else {
                         xm.setKhachHang(kh);
+                        LoaiXeModel lx = loaiXeService.findOneByName(xm.getLoaixe().getTenLoaiXe());
+                        xm.setLoaixe(lx);
                         xeService.update(xm);
                     }
                     baoduongPanel.getBienSoXeTF().setText(baoduongPanel.getBienSoXeMayTF_ThemKhachHangMoiDailog().getText());
@@ -623,7 +630,7 @@ public class DonBaoDuongController {
                 if (srow > -1) {
                     int id = (int) danhSachDonBaoDuongPanel.getjTable_DanhSachDonBaoDuong().getValueAt(srow, 0);
                     try {
-                        loadDonBaoDuong(id + "");
+                        loadDonBaoDuong(String.valueOf(id));
                         hienThiHoaDon();
                     } catch (ParseException ex) {
                         Logger.getLogger(DonBaoDuongController.class.getName()).log(Level.SEVERE, null, ex);
@@ -657,6 +664,27 @@ public class DonBaoDuongController {
                 }
             }
 
+        });
+
+        baoduongPanel.getjButton_GuiEmail().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String email = baoduongPanel.getjTextField_DiaChiEmail().getText().toLowerCase().trim();
+                System.out.println(noiDungHoaDon);
+                if (Stringlib.validateEmail(email)) {
+                    Thread t = new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            SendEmail.send(noiDungHoaDon, email);
+                            baoduongPanel.getjTextField_DiaChiEmail().setText("[Thành công]");
+                        }
+                    });
+                    t.start();
+
+                } else {
+                    baoduongPanel.getjTextField_DiaChiEmail().setText("[Không hợp lệ] " + email);
+                }
+            }
         });
     }
 
@@ -748,7 +776,7 @@ public class DonBaoDuongController {
             xe.setBienSo(bienSo);
             xe.setLoaixe(lx);
             xeService.save(xe);
-        }else {
+        } else {
             XeModel xe = new XeModel();
             xe.setBienSo(bienSo);
             xe.setLoaixe(lx);
@@ -838,7 +866,8 @@ public class DonBaoDuongController {
     private void hienThiHoaDon() throws ParseException {
         baoduongPanel.getXuatHoaDonTextArea().setText("");
         baoduongPanel.getXuatHoaDonTextArea().append(Config.TenCuaHang + "\n\n");
-        baoduongPanel.getXuatHoaDonTextArea().append("Ngày xuất hóa đơn: " + Stringlib.dinhDangNgayHienThitu_yyyyMMdd_Thanh_ddMMyyyy(LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE).toString()) + "\n");
+        String ngayTao = Stringlib.dinhDangNgayHienThitu_yyyyMMdd_Thanh_ddMMyyyy(LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE).toString());
+        baoduongPanel.getXuatHoaDonTextArea().append("Ngày xuất hóa đơn: " + ngayTao + "\n");
         baoduongPanel.getXuatHoaDonTextArea().append("Mã hóa đơn : " + donBaoDuongCurrent.getId() + "\n");
         baoduongPanel.getXuatHoaDonTextArea().append("------------------------------------------------------" + "\n");
         baoduongPanel.getXuatHoaDonTextArea().append("Tên khách hàng : " + baoduongPanel.getTenKhachHangTF().getText() + "\n");
@@ -851,12 +880,16 @@ public class DonBaoDuongController {
         if (dichVuData != null) {
             for (Vector row : dichVuData) {
                 String ten = Stringlib.suaTenDichVuKhiXuatHoaDon(row.get(1).toString());
+                int SL = Integer.parseInt(row.get(2).toString());
+                String donGia = Stringlib.dinhDangTienHienThi((long) Integer.parseInt(row.get(3).toString()));
+                long pp = (long) Integer.parseInt(row.get(4).toString());
+                String phuPhi = Stringlib.dinhDangTienHienThi((long) Integer.parseInt(row.get(4).toString()));
                 baoduongPanel.getXuatHoaDonTextArea().append(
                         "Mã: " + Integer.parseInt(row.get(0).toString()) + " "
                         + ten + ", "
-                        + "SL:" + Integer.parseInt(row.get(2).toString()) + ", "
-                        + "G/Đ:" + Stringlib.dinhDangTienHienThi((long) Integer.parseInt(row.get(3).toString())) + ", "
-                        + "Phụ phí:" + Stringlib.dinhDangTienHienThi((long) Integer.parseInt(row.get(4).toString())) + ", "
+                        + "SL:" + SL + ", "
+                        + "G/Đ:" + donGia + ", "
+                        + "Phụ phí:" + phuPhi + ", "
                         + "\n");
             }
         }
@@ -869,11 +902,13 @@ public class DonBaoDuongController {
         if (linhKienData != null) {
             for (Vector row : linhKienData) {
                 String ten = Stringlib.suaTenDichVuKhiXuatHoaDon(row.get(1).toString());
+                int SL = Integer.parseInt(row.get(2).toString());
+                String donGia = Stringlib.dinhDangTienHienThi((long) Integer.parseInt(row.get(3).toString()));
                 baoduongPanel.getXuatHoaDonTextArea().append(
                         "mã: " + Integer.parseInt(row.get(0).toString()) + " "
                         + ten + ", "
-                        + "SL:" + Integer.parseInt(row.get(2).toString()) + ", "
-                        + "G/Đ:" + Stringlib.dinhDangTienHienThi((long) Integer.parseInt(row.get(3).toString())) + ", "
+                        + "SL:" + SL + ", "
+                        + "G/Đ:" + donGia + ", "
                         + "\n");
             }
         }
@@ -882,11 +917,13 @@ public class DonBaoDuongController {
         baoduongPanel.getXuatHoaDonTextArea().append("------------------------------------------------------" + "\n");
         baoduongPanel.getXuatHoaDonTextArea().append("Tổng chí phí : " + Stringlib.dinhDangTienHienThi(baoduongPanel.getTongChiPhiTF().getText()) + "\n");
         baoduongPanel.getXuatHoaDonTextArea().append("Thuế VAT : " + Stringlib.dinhDangTienHienThi((long) (Long.parseLong(baoduongPanel.getTongChiPhiTF().getText()) * Config.VAT)) + "\n");
-        baoduongPanel.getXuatHoaDonTextArea().append("Thành tiền : " + Stringlib.dinhDangTienHienThi(((Long.parseLong(baoduongPanel.getTongChiPhiTF().getText()))
-                + (long) (Long.parseLong(baoduongPanel.getTongChiPhiTF().getText()) * Config.VAT))) + "\n");
+        long tong = ((Long.parseLong(baoduongPanel.getTongChiPhiTF().getText()))
+                + (long) (Long.parseLong(baoduongPanel.getTongChiPhiTF().getText()) * Config.VAT));
+        baoduongPanel.getXuatHoaDonTextArea().append("Thành tiền : " + Stringlib.dinhDangTienHienThi(tong) + "\n");
         baoduongPanel.getXuatHoaDonTextArea().append("------------------------------------------------------" + "\n");
         baoduongPanel.getXuatHoaDonTextArea().append("Cảm ơn quý khách" + "\n");
         baoduongPanel.getXuatHoaDon().setVisible(true);
+
     }
 
     public void taiLaiGiaoDien() throws SQLException, ParseException {
@@ -955,7 +992,7 @@ public class DonBaoDuongController {
         DefaultTableModel dm = (DefaultTableModel) baoduongPanel.getDanhSachDichVuBaoDuongTB().getModel();
         dm.setNumRows(0);
         ArrayList<ChiTietDonBaoDuongModel> ds = (ArrayList<ChiTietDonBaoDuongModel>) baoDuongService.layDanhSachChiTietDonBaoDuong(id);
-
+        noiDungDV = "";
         for (ChiTietDonBaoDuongModel c : ds) {
             DichVuBaoDuongModel d = dichVuBaoDuongService.timDichVuBaoDuongTheoIDVaNgayCapNhat(c.getIdDichVuBaoDuong(), c.getNgayCapNhatDichVuBaoDuong());
             NhanVienModel nv = nhanVienService.findOne(c.getIdNhanVienPhuTrach());
@@ -972,12 +1009,17 @@ public class DonBaoDuongController {
                 c.getPhuPhi(),
                 ten,
                 d.getNgayCapNhat()});
+            noiDungDV += SendEmail.createStringItem(ten, "(SL : " + c.getSoLuong() + ")" + d.getPhi());
+            if (c.getPhuPhi() > 0) {
+                noiDungDV += SendEmail.createStringItem("Phụ Phí : ", c.getPhuPhi() + "");
+            }
         }
     }
 
     private void loadDanhSachLinhKienTrongHoaDon(int id) {
         DefaultTableModel dm = (DefaultTableModel) baoduongPanel.getDanhSachLinhKienThayTheTB().getModel();
         dm.setNumRows(0);
+        noiDungLK = "";
         List<ChiTietThayTheLinhKienModel> ds = baoDuongService.layDanhSachChiTietThayTheLinhKien(id);
         for (ChiTietThayTheLinhKienModel c : ds) {
             LinhKienModel lk = linhKienService.timLinhKienMoiNhatTheoID(c.getIdLinkKien());
@@ -989,6 +1031,7 @@ public class DonBaoDuongController {
                     c.getGhiChu(),
                     lk.getNgayNhapString()});
             }
+            noiDungLK += SendEmail.createStringItem(lk.getTenLinhKien(), "(SL :" + c.getSoLuong() + ") " + lk.getGia());
         }
     }
 
@@ -1043,6 +1086,7 @@ public class DonBaoDuongController {
     private void loadThongTin(DonBaoDuongModel d) throws ParseException {
         baoduongPanel.getNgayThangNamTF().setText(Stringlib.dinhDangNgayHienThitu_yyyyMMdd_Thanh_ddMMyyyy(d.getNgayBatDau()));
         baoduongPanel.getTongThanhToanTF().setText(String.valueOf(d.getTongTien()));
+        noiDungTongcong = SendEmail.createStringTotal("(Đã bao gồm thuế)" + Stringlib.dinhDangTienHienThi(d.getTongTien()));
     }
 
     private void loadDanhSachDonBaoDuongChuaHoanThanh() {
