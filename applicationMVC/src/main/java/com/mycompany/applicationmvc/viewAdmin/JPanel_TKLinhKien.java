@@ -63,7 +63,9 @@ public class JPanel_TKLinhKien extends javax.swing.JPanel {
         jScrollPane_TKLK = new javax.swing.JScrollPane();
         jTable_DanhSachTKLK = new javax.swing.JTable();
 
-        setMinimumSize(new java.awt.Dimension(1023, 534));
+        setBorder(javax.swing.BorderFactory.createTitledBorder(null, "THỐNG KÊ LINH KIỆN", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14))); // NOI18N
+        setMaximumSize(new java.awt.Dimension(1300, 700));
+        setMinimumSize(new java.awt.Dimension(1300, 700));
 
         jPanel_NgayThang.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
@@ -234,6 +236,7 @@ public class JPanel_TKLinhKien extends javax.swing.JPanel {
             }
         });
 
+        jLabel25.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel25.setText("Tìm Kiếm Theo Mã Linh Kiện");
 
         jTable_DanhSachTKLK.setModel(new javax.swing.table.DefaultTableModel(
@@ -275,6 +278,7 @@ public class JPanel_TKLinhKien extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        jTable_DanhSachTKLK.setRowHeight(30);
         jScrollPane_TKLK.setViewportView(jTable_DanhSachTKLK);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -284,31 +288,29 @@ public class JPanel_TKLinhKien extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(350, 350, 350)
+                        .addGap(330, 330, 330)
                         .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(50, 50, 50)
-                        .addComponent(jTextField_FindID_LK, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jTextField_FindID_LK, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(131, 131, 131)
-                        .addComponent(jScrollPane_TKLK, javax.swing.GroupLayout.DEFAULT_SIZE, 842, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(142, 142, 142)
-                        .addComponent(jPanel_DKLK, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(11, 11, 11)))
-                .addGap(143, 143, 143))
+                        .addGap(158, 158, 158)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jPanel_DKLK, javax.swing.GroupLayout.PREFERRED_SIZE, 756, Short.MAX_VALUE)
+                            .addComponent(jScrollPane_TKLK))))
+                .addContainerGap(424, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addComponent(jPanel_DKLK, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel25)
                     .addComponent(jTextField_FindID_LK, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
-                .addComponent(jScrollPane_TKLK, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(14, 14, 14))
+                .addGap(21, 21, 21)
+                .addComponent(jScrollPane_TKLK, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(77, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -324,9 +326,9 @@ public class JPanel_TKLinhKien extends javax.swing.JPanel {
         Connection cn=ModelAdmin.connectMSSQL();
         dtm.setNumRows(0);
         //---------------------Xử lý sắp xếp-------------------------
-        String sql="select LK.id,LK.TenLinhKien,LK.SoLuong,LK.Gia,LK.NhaCungCap,NCC.TenNhaCungCap,LK.NgayNhap\n" + "from LinhKien as LK, NhaCungCap as NCC\n" + "where LK.NhaCungCap=NCC.id";
-        String sql1="select LK.id,LK.TenLinhKien,LK.SoLuong,LK.Gia,LK.NhaCungCap,NCC.TenNhaCungCap,LK.NgayNhap\n" + "from LinhKien as LK, NhaCungCap as NCC\n" + "where LK.NhaCungCap=NCC.id\n" + "order by Gia";
-        String sql2="select LK.id,LK.TenLinhKien,LK.SoLuong,LK.Gia,LK.NhaCungCap,NCC.TenNhaCungCap,LK.NgayNhap\n" + "from LinhKien as LK, NhaCungCap as NCC\n" + "where LK.NhaCungCap=NCC.id\n" + "order by Gia DESC";
+        String sql="select LK.id,LK.TenLinhKien,LK.SoLuong,LK.Gia,LK.NhaCungCap,NCC.Ten,LK.NgayNhap\n" + "from LinhKien as LK, NhaCungCap as NCC\n" + "where LK.NhaCungCap=NCC.id";
+        String sql1="select LK.id,LK.TenLinhKien,LK.SoLuong,LK.Gia,LK.NhaCungCap,NCC.Ten,LK.NgayNhap\n" + "from LinhKien as LK, NhaCungCap as NCC\n" + "where LK.NhaCungCap=NCC.id\n" + "order by Gia";
+        String sql2="select LK.id,LK.TenLinhKien,LK.SoLuong,LK.Gia,LK.NhaCungCap,NCC.Ten,LK.NgayNhap\n" + "from LinhKien as LK, NhaCungCap as NCC\n" + "where LK.NhaCungCap=NCC.id\n" + "order by Gia DESC";
         int i_sx=(int)jComboBox_SapXepLK.getSelectedIndex();
         if (i_sx==1) sql=sql1;
         else  if (i_sx==2) sql=sql2;
@@ -372,7 +374,9 @@ public class JPanel_TKLinhKien extends javax.swing.JPanel {
                     ControllerAdmin.Compare_Date(Integer.parseInt(D1[0]),Integer.parseInt(D1[1]),Integer.parseInt(D1[2]),
                         Integer.parseInt((String)jComboBox_NgayLK2.getSelectedItem()),Integer.parseInt((String)jComboBox_ThangLK2.getSelectedItem()),
                         Integer.parseInt((String)jComboBox_NamLK2.getSelectedItem()))!=1 ){
-                    vt.add(date1);
+                    SimpleDateFormat f1= new SimpleDateFormat("dd/MM/yyyy HH:mm:ss.SSS");
+                    String date=f1.format(rs.getTimestamp(7)); 
+                    vt.add(date);
                     System.out.println("oke");
                 }
                 else kt=false;
@@ -395,9 +399,9 @@ public class JPanel_TKLinhKien extends javax.swing.JPanel {
         Connection cn=ModelAdmin.connectMSSQL();
         dtm.setNumRows(0);
         //---------------------Xử lý sắp xếp-------------------------
-        String sql="select LK.id,LK.TenLinhKien,LK.SoLuong,LK.Gia,LK.NhaCungCap,NCC.TenNhaCungCap,LK.NgayNhap\n" + "from LinhKien as LK, NhaCungCap as NCC\n" + "where LK.NhaCungCap=NCC.id";
-        String sql1="select LK.id,LK.TenLinhKien,LK.SoLuong,LK.Gia,LK.NhaCungCap,NCC.TenNhaCungCap,LK.NgayNhap\n" + "from LinhKien as LK, NhaCungCap as NCC\n" + "where LK.NhaCungCap=NCC.id\n" + "order by Gia";
-        String sql2="select LK.id,LK.TenLinhKien,LK.SoLuong,LK.Gia,LK.NhaCungCap,NCC.TenNhaCungCap,LK.NgayNhap\n" + "from LinhKien as LK, NhaCungCap as NCC\n" + "where LK.NhaCungCap=NCC.id\n" + "order by Gia DESC";
+        String sql="select LK.id,LK.TenLinhKien,LK.SoLuong,LK.Gia,LK.NhaCungCap,NCC.Ten,LK.NgayNhap\n" + "from LinhKien as LK, NhaCungCap as NCC\n" + "where LK.NhaCungCap=NCC.id";
+        String sql1="select LK.id,LK.TenLinhKien,LK.SoLuong,LK.Gia,LK.NhaCungCap,NCC.Ten,LK.NgayNhap\n" + "from LinhKien as LK, NhaCungCap as NCC\n" + "where LK.NhaCungCap=NCC.id\n" + "order by Gia";
+        String sql2="select LK.id,LK.TenLinhKien,LK.SoLuong,LK.Gia,LK.NhaCungCap,NCC.Ten,LK.NgayNhap\n" + "from LinhKien as LK, NhaCungCap as NCC\n" + "where LK.NhaCungCap=NCC.id\n" + "order by Gia DESC";
         int i_sx=(int)jComboBox_SapXepLK.getSelectedIndex();
         if (i_sx==1) sql=sql1;
            else  if (i_sx==2) sql=sql2;
@@ -441,7 +445,9 @@ public class JPanel_TKLinhKien extends javax.swing.JPanel {
                     ControllerAdmin.Compare_Date(Integer.parseInt(D1[0]),Integer.parseInt(D1[1]),Integer.parseInt(D1[2]),
                         Integer.parseInt((String)jComboBox_NgayLK2.getSelectedItem()),Integer.parseInt((String)jComboBox_ThangLK2.getSelectedItem()),
                         Integer.parseInt((String)jComboBox_NamLK2.getSelectedItem()))!=1 ){
-                     vt.add(date1);
+                    SimpleDateFormat f1= new SimpleDateFormat("dd/MM/yyyy HH:mm:ss.SSS");
+                    String date=f1.format(rs.getTimestamp(7)); 
+                    vt.add(date);
                      //System.out.println("oke");
                  }
                 else kt=false;
@@ -459,7 +465,7 @@ public class JPanel_TKLinhKien extends javax.swing.JPanel {
       
     private void importDataNCCLK(){
        Connection cn=ModelAdmin.connectMSSQL();
-       String sql="select id,TenNhaCungCap from NhaCungCap";
+       String sql="select id,Ten from NhaCungCap";
        try{
            PreparedStatement ps=cn.prepareStatement(sql);
            ResultSet rs=ps.executeQuery();

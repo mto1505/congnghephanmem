@@ -95,7 +95,9 @@ public class XePanel extends javax.swing.JPanel {
         setPreferredSize(new java.awt.Dimension(1058, 677));
 
         jPanel1.setBackground(new java.awt.Color(204, 224, 253));
-        jPanel1.setPreferredSize(new java.awt.Dimension(1058, 660));
+        jPanel1.setMaximumSize(new java.awt.Dimension(1258, 660));
+        jPanel1.setMinimumSize(new java.awt.Dimension(1258, 660));
+        jPanel1.setPreferredSize(new java.awt.Dimension(1258, 660));
         jPanel1.setRequestFocusEnabled(false);
 
         jPanel3.setBackground(new java.awt.Color(193, 217, 252));
@@ -108,7 +110,7 @@ public class XePanel extends javax.swing.JPanel {
         jPanel3.add(jLabel1);
 
         jPanel5.setBackground(new java.awt.Color(243, 243, 244));
-        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 14), new java.awt.Color(0, 0, 153)), "Thông Tin", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 14), new java.awt.Color(14, 0, 96))); // NOI18N
+        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 14), new java.awt.Color(0, 0, 153)), "Thông Tin", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 14), new java.awt.Color(14, 0, 96))); // NOI18N
         jPanel5.setForeground(new java.awt.Color(14, 0, 96));
         jPanel5.setPreferredSize(new java.awt.Dimension(500, 500));
 
@@ -223,16 +225,6 @@ public class XePanel extends javax.swing.JPanel {
 
         jSeparator2.setBackground(new java.awt.Color(204, 0, 0));
         jSeparator2.setForeground(new java.awt.Color(204, 0, 0));
-
-        errorBienSo.setIcon(new javax.swing.ImageIcon("C:\\Users\\MinhTo\\Documents\\GitHub\\congnghephanmem\\applicationMVC\\src\\main\\resource\\img\\error_30px.png")); // NOI18N
-
-        errorTenXe.setIcon(new javax.swing.ImageIcon("C:\\Users\\MinhTo\\Documents\\GitHub\\congnghephanmem\\applicationMVC\\src\\main\\resource\\img\\error_30px.png")); // NOI18N
-
-        errorChuSoHuu.setIcon(new javax.swing.ImageIcon("C:\\Users\\MinhTo\\Documents\\GitHub\\congnghephanmem\\applicationMVC\\src\\main\\resource\\img\\error_30px.png")); // NOI18N
-
-        errorSoDienThoai.setIcon(new javax.swing.ImageIcon("C:\\Users\\MinhTo\\Documents\\GitHub\\congnghephanmem\\applicationMVC\\src\\main\\resource\\img\\error_30px.png")); // NOI18N
-
-        errorLoaiXe.setIcon(new javax.swing.ImageIcon("C:\\Users\\MinhTo\\Documents\\GitHub\\congnghephanmem\\applicationMVC\\src\\main\\resource\\img\\error_30px.png")); // NOI18N
 
         gioiTinh.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         gioiTinh.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -399,7 +391,7 @@ public class XePanel extends javax.swing.JPanel {
         );
 
         jPanel6.setBackground(new java.awt.Color(243, 243, 244));
-        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 14), new java.awt.Color(0, 0, 153)), "Thông Tin", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 14), new java.awt.Color(14, 0, 96))); // NOI18N
+        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 14), new java.awt.Color(0, 0, 153)), "Thông Tin", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 14), new java.awt.Color(14, 0, 96))); // NOI18N
         jPanel6.setForeground(new java.awt.Color(14, 0, 96));
         jPanel6.setPreferredSize(new java.awt.Dimension(500, 500));
 
@@ -504,10 +496,8 @@ public class XePanel extends javax.swing.JPanel {
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setIcon(new javax.swing.ImageIcon("E:\\BT-JAVA-WEB\\applicationMVC\\src\\main\\resource\\img\\xe1nho.png")); // NOI18N
 
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setIcon(new javax.swing.ImageIcon("E:\\BT-JAVA-WEB\\applicationMVC\\src\\main\\resource\\img\\xéh.png")); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -516,7 +506,7 @@ public class XePanel extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 359, Short.MAX_VALUE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -545,7 +535,7 @@ public class XePanel extends javax.swing.JPanel {
                         .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 863, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1046, Short.MAX_VALUE))
+                    .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1246, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -553,7 +543,7 @@ public class XePanel extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
-                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 415, Short.MAX_VALUE)
+                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 419, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -565,11 +555,11 @@ public class XePanel extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 677, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 677, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
     }// </editor-fold>//GEN-END:initComponents
 

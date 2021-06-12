@@ -75,6 +75,7 @@ public class JPanel_NhanVien extends javax.swing.JPanel {
         jScrollPane7 = new javax.swing.JScrollPane();
         jTable_DanhSachTKNV = new javax.swing.JTable();
 
+        setBorder(javax.swing.BorderFactory.createTitledBorder(null, "NHÂN VIÊN", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14))); // NOI18N
         setMinimumSize(new java.awt.Dimension(1152, 618));
 
         jLabel19.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -401,7 +402,7 @@ public class JPanel_NhanVien extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(478, 478, 478)
                         .addComponent(jLabel29)))
-                .addContainerGap(179, Short.MAX_VALUE))
+                .addContainerGap(169, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

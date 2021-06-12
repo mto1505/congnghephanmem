@@ -71,7 +71,11 @@ public class JPanel_TKDBD extends javax.swing.JPanel {
         jLabel18 = new javax.swing.JLabel();
         jTextField_TongDT = new javax.swing.JTextField();
 
-        setMinimumSize(new java.awt.Dimension(1168, 534));
+        setBorder(javax.swing.BorderFactory.createTitledBorder(null, "THỐNG KÊ ĐƠN BẢO DƯỠNG", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14))); // NOI18N
+        setMaximumSize(new java.awt.Dimension(1300, 720));
+        setMinimumSize(new java.awt.Dimension(1300, 720));
+        setName(""); // NOI18N
+        setPreferredSize(new java.awt.Dimension(1300, 720));
 
         jTable_DanhSachDBD.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -112,13 +116,14 @@ public class JPanel_TKDBD extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        jTable_DanhSachDBD.setRowHeight(30);
         jScrollPane1.setViewportView(jTable_DanhSachDBD);
         if (jTable_DanhSachDBD.getColumnModel().getColumnCount() > 0) {
             jTable_DanhSachDBD.getColumnModel().getColumn(0).setMaxWidth(70);
             jTable_DanhSachDBD.getColumnModel().getColumn(5).setMinWidth(70);
         }
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel4.setText("THỐNG KÊ HÓA ĐƠN BẢO DƯỠNG");
 
         jPanel12.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -297,7 +302,7 @@ public class JPanel_TKDBD extends javax.swing.JPanel {
         jPanel11Layout.setHorizontalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel11Layout.createSequentialGroup()
-                .addGap(99, 99, 99)
+                .addGap(87, 87, 87)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel11Layout.createSequentialGroup()
                         .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -328,11 +333,11 @@ public class JPanel_TKDBD extends javax.swing.JPanel {
             .addGroup(jPanel11Layout.createSequentialGroup()
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel11Layout.createSequentialGroup()
-                        .addGap(311, 311, 311)
-                        .addComponent(jLabel4))
-                    .addGroup(jPanel11Layout.createSequentialGroup()
                         .addGap(393, 393, 393)
-                        .addComponent(jButton_XNDBD, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jButton_XNDBD, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel11Layout.createSequentialGroup()
+                        .addGap(252, 252, 252)
+                        .addComponent(jLabel4)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel11Layout.setVerticalGroup(
@@ -387,22 +392,23 @@ public class JPanel_TKDBD extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(139, Short.MAX_VALUE)
+                .addContainerGap(201, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(34, 34, 34)
-                        .addComponent(jTextField_FindID, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(391, 391, 391))
+                        .addGap(32, 32, 32)
+                        .addComponent(jTextField_FindID, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(402, 402, 402))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, 876, Short.MAX_VALUE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jTextField_TongDT, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, 876, Short.MAX_VALUE)
                             .addComponent(jScrollPane1))
-                        .addGap(153, 153, 153))))
+                        .addGap(213, 213, 213))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTextField_TongDT, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(224, 224, 224))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -413,13 +419,13 @@ public class JPanel_TKDBD extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jTextField_FindID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(11, 11, 11)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(22, 22, 22)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel18)
                     .addComponent(jTextField_TongDT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                .addGap(92, 92, 92))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -523,38 +529,132 @@ public class JPanel_TKDBD extends javax.swing.JPanel {
     private void jTextField_FindIDKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_FindIDKeyReleased
         // TODO add your handling code here:
         String s=jTextField_FindID.getText();
-        System.out.println(s);
         DefaultTableModel dtm= (DefaultTableModel) jTable_DanhSachDBD.getModel();
         dtm.setNumRows(0);
         long dt=0;
         Connection cn=ModelAdmin.connectMSSQL();
-        String sql="select DonBaoDuong.id,BienSo,NgayBatDau,NgayHoanThanh,TrangThai,idNhanVienLapDon,Ten,TongTien from DonBaoDuong,NhanVien\n" + "Where DonBaoDuong.idNhanVienLapDon=NhanVien.id";
+        String id_nv=(String)jComboBox_IDNV1.getSelectedItem();
+        String id_nv1[]=id_nv.split("\\s");
+        id_nv=id_nv1[0];
+        int i=(int)jComboBox_IDNV1.getSelectedIndex();
+        //---------------------Xử lý sắp xếp-------------------------
+        String sql=
+                    "select DonBaoDuong.id,BienSo,NgayBatDau,NgayHoanThanh,idNhanVienLapDon,Ten,TongTien from DonBaoDuong,NhanVien\n"+
+                   "Where DonBaoDuong.idNhanVienLapDon=NhanVien.id";
+        String sql1=
+                    "select DonBaoDuong.id,BienSo,NgayBatDau,NgayHoanThanh,idNhanVienLapDon,Ten,TongTien from DonBaoDuong,NhanVien\n"+ 
+                    "Where DonBaoDuong.idNhanVienLapDon=NhanVien.id Order by TongTien";
+        String sql2=
+                    "select DonBaoDuong.id,BienSo,NgayBatDau,NgayHoanThanh,idNhanVienLapDon,Ten,TongTien from DonBaoDuong,NhanVien\n"+ 
+                    "Where DonBaoDuong.idNhanVienLapDon=NhanVien.id Order by TongTien desc";
+        int i_sx=(int)jComboBox_SapXep.getSelectedIndex();
+        if (i_sx==1) sql=sql1;
+           else  if (i_sx==2) sql=sql2;
+        //---------------------xử lý khoảng giá tiền------------------------------
+        String g1=jTextField_Gia1.getText();
+        String g2=jTextField_Gia2.getText();
+        long gia1=0,gia2=0;
+        //-----------------------Xử lý Trnạg thái đơn bao dưỡng-------------------------------------
+       // String tt=(String)jComboBox_TrangThai.getSelectedItem();
+        int i_tt=(int)jComboBox_TrangThai.getSelectedIndex();
+        
         Vector vt=null;
+        boolean kt=true;
         try{
             PreparedStatement ps=cn.prepareStatement(sql);
             ResultSet rs=ps.executeQuery();
             while (rs.next()){
                 vt=new Vector();
-                String a=rs.getString(1);
-                if (a.contains(s)){
-                    vt.add(a);
+                kt=true;
+                String aa=rs.getString(1);
+                if (aa.contains(s)){
+                    vt.add(aa);
                     vt.add(rs.getString(2));
-                    vt.add(rs.getString(3));
-                    vt.add(rs.getString(4));
-                    String a1=rs.getString(5);
-                    if (a1.equals("1")) vt.add("Hoàn Thành");
-                    else vt.add("Chưa Hoàn Thành");
-                    vt.add(rs.getString(6));
-                    vt.add(rs.getString(7));
-                    String a2=rs.getString(8);
-                    if (a1.equals("1")){
+                    //-----------Xử Lý So Sánh Ngày Tháng Năm---------
+                    SimpleDateFormat f= new SimpleDateFormat("dd/MM/yyyy");
+                    String date1=f.format(rs.getDate(3));
+                    String D1[]=date1.split("/");
+                    //System.out.println(date1);
+                    String date2=f.format(rs.getDate(4));
+                    if (ControllerAdmin.Compare_Date(Integer.parseInt(D1[0]),Integer.parseInt(D1[1]),Integer.parseInt(D1[2]),
+                            Integer.parseInt((String)jComboBox_Ngay1.getSelectedItem()),Integer.parseInt((String)jComboBox_Thang1.getSelectedItem()),
+                            Integer.parseInt((String)jComboBox_Nam1.getSelectedItem()))!=-1 &&
+                        ControllerAdmin.Compare_Date(Integer.parseInt(D1[0]),Integer.parseInt(D1[1]),Integer.parseInt(D1[2]),
+                            Integer.parseInt((String)jComboBox_Ngay2.getSelectedItem()),Integer.parseInt((String)jComboBox_Thang2.getSelectedItem()),
+                            Integer.parseInt((String)jComboBox_Nam2.getSelectedItem()))!=1 ){
+                         vt.add(date1);
+                         vt.add(date2);
+                        // System.out.println("oke");
+                     }
+                    else kt=false;
+                     //-----------Xử Lý So Sánh Ngày Tháng Năm---------end
+                    boolean kt_HT=true;
+                    String D2[]=date2.split("/");
+                    if ( (ControllerAdmin.Compare_Date(Integer.parseInt(D1[0]),Integer.parseInt(D1[1]),Integer.parseInt(D1[2]),
+                            Integer.parseInt(D2[0]),Integer.parseInt(D2[1]),Integer.parseInt(D2[2]) ))==1){
+                        kt_HT=false;
+                    }
+                    //System.out.println(a1);
+                    if ( (kt_HT && i_tt==1) || (!kt_HT && i_tt==2) || i_tt==0){
+                        if (kt_HT) vt.add("Hoàn Thành");
+                        else vt.add("Chưa Hoàn Thành");
+                    }
+                    else kt=false;
+                     //-----------Xử Lý Nhan Vien---------
+                    String a=rs.getString(5);
+                    String b=rs.getString(6);
+                    if (a.equals(id_nv) || i==0) {
+                        vt.add(a);
+                        vt.add(b);
+                    }
+                    else kt=false;
+                     //-----------Xử Lý Tong Tien---------
+                    String a2=rs.getString(7);
+                    if (kt_HT && kt){
+                        System.out.println(i_tt);
                         String b2=a2;
                         b2=b2.substring(0,b2.length()-5);
                         long gia=Long.parseLong(b2);
-                        dt+=gia;
+                        if (!g1.equals("") && !g2.equals("") )
+                        {
+                              gia1=Long.parseLong(g1);
+                              gia2=Long.parseLong(g2);
+                              if (gia>=gia1 && gia<=gia2) {
+                                  vt.add(a2);
+                                  dt+=gia;
+                              }
+                              else kt=false;
+                        }
+                        else if (g1.equals("") && !g2.equals("") ){
+                              gia2=Long.parseLong(g2);
+                              if (gia<=gia2) {
+                                  vt.add(a2);
+                                  dt+=gia;
+                              }
+                              else kt=false;
+                        }
+                        else if (!g1.equals("") && g2.equals("") ){
+                              gia1=Long.parseLong(g1);
+                              if (gia>=gia1){
+                                  vt.add(a2);
+                                  dt+=gia;
+                              }
+                              else kt=false;
+                        }
+                        else if (g1.equals("") && g2.equals("")) {
+                            vt.add(a2);
+                            dt+=gia;
+                        }
+                        //System.out.println(gia);
                     }
-                    vt.add(a2);
-                    dtm.addRow(vt);
+                    else if (!kt_HT && !(g1.equals("") && g2.equals(""))) {
+                        jTextField_TongDT.setText("");
+                        kt=false;
+                    }
+                    else if (i_tt==0 && kt_HT) vt.add(a2);
+                    else if (i_tt==0 && !kt_HT) vt.add("");
+                    //vt.add(rs.getString(7));
+                    if (kt) dtm.addRow(vt);
                 }
             }
             jTable_DanhSachDBD.setModel(dtm);
@@ -580,9 +680,15 @@ public class JPanel_TKDBD extends javax.swing.JPanel {
         id_nv=id_nv1[0];
         int i=(int)jComboBox_IDNV1.getSelectedIndex();
         //---------------------Xử lý sắp xếp-------------------------
-        String sql="select DonBaoDuong.id,BienSo,NgayBatDau,NgayHoanThanh,TrangThai,idNhanVienLapDon,Ten,TongTien from DonBaoDuong,NhanVien\n" + "Where DonBaoDuong.idNhanVienLapDon=NhanVien.id";
-        String sql1="select DonBaoDuong.id,BienSo,NgayBatDau,NgayHoanThanh,TrangThai,idNhanVienLapDon,Ten,TongTien from DonBaoDuong,NhanVien\n" + "Where DonBaoDuong.idNhanVienLapDon=NhanVien.id Order by TongTien";
-        String sql2="select DonBaoDuong.id,BienSo,NgayBatDau,NgayHoanThanh,TrangThai,idNhanVienLapDon,Ten,TongTien from DonBaoDuong,NhanVien\n" + "Where DonBaoDuong.idNhanVienLapDon=NhanVien.id Order by TongTien desc";
+        String sql=
+                    "select DonBaoDuong.id,BienSo,NgayBatDau,NgayHoanThanh,idNhanVienLapDon,Ten,TongTien from DonBaoDuong,NhanVien\n"+
+                   "Where DonBaoDuong.idNhanVienLapDon=NhanVien.id";
+        String sql1=
+                    "select DonBaoDuong.id,BienSo,NgayBatDau,NgayHoanThanh,idNhanVienLapDon,Ten,TongTien from DonBaoDuong,NhanVien\n"+ 
+                    "Where DonBaoDuong.idNhanVienLapDon=NhanVien.id Order by TongTien";
+        String sql2=
+                    "select DonBaoDuong.id,BienSo,NgayBatDau,NgayHoanThanh,idNhanVienLapDon,Ten,TongTien from DonBaoDuong,NhanVien\n"+ 
+                    "Where DonBaoDuong.idNhanVienLapDon=NhanVien.id Order by TongTien desc";
         int i_sx=(int)jComboBox_SapXep.getSelectedIndex();
         if (i_sx==1) sql=sql1;
            else  if (i_sx==2) sql=sql2;
@@ -626,25 +732,30 @@ public class JPanel_TKDBD extends javax.swing.JPanel {
                     // System.out.println("oke");
                  }
                 else kt=false;
-                 //-----------Xử Lý So Sánh Ngày Tháng Năm---------
-                String a1=rs.getString(5);
+                 //-----------Xử Lý So Sánh Ngày Tháng Năm---------end
+                boolean kt_HT=true;
+                String D2[]=date2.split("/");
+                if ( (ControllerAdmin.Compare_Date(Integer.parseInt(D1[0]),Integer.parseInt(D1[1]),Integer.parseInt(D1[2]),
+                        Integer.parseInt(D2[0]),Integer.parseInt(D2[1]),Integer.parseInt(D2[2]) ))==1){
+                    kt_HT=false;
+                }
                 //System.out.println(a1);
-                if ( (a1.equals("1") && i_tt==1) || (a1.equals("0") && i_tt==2) || i_tt==0){
-                    if (a1.equals("1")) vt.add("Hoàn Thành");
+                if ( (kt_HT && i_tt==1) || (!kt_HT && i_tt==2) || i_tt==0){
+                    if (kt_HT) vt.add("Hoàn Thành");
                     else vt.add("Chưa Hoàn Thành");
                 }
                 else kt=false;
                  //-----------Xử Lý Nhan Vien---------
-                String a=rs.getString(6);
-                String b=rs.getString(7);
+                String a=rs.getString(5);
+                String b=rs.getString(6);
                 if (a.equals(id_nv) || i==0) {
                     vt.add(a);
                     vt.add(b);
                 }
                 else kt=false;
                  //-----------Xử Lý Tong Tien---------
-                String a2=rs.getString(8);
-                if (a1.equals("1") && kt){
+                String a2=rs.getString(7);
+                if (kt_HT && kt){
                     System.out.println(i_tt);
                     String b2=a2;
                     b2=b2.substring(0,b2.length()-5);
@@ -681,11 +792,12 @@ public class JPanel_TKDBD extends javax.swing.JPanel {
                     }
                     //System.out.println(gia);
                 }
-                else if (a1.equals("0") && !(g1.equals("") && g2.equals(""))) {
+                else if (!kt_HT && !(g1.equals("") && g2.equals(""))) {
                     jTextField_TongDT.setText("");
                     kt=false;
                 }
-                else if (i_tt==0) vt.add(a2);
+                else if (i_tt==0 && kt_HT) vt.add(a2);
+                else if (i_tt==0 && !kt_HT) vt.add("");
                 //vt.add(rs.getString(7));
                 if (kt) dtm.addRow(vt);
             }

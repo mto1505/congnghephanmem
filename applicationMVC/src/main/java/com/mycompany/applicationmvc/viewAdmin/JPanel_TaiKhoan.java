@@ -56,15 +56,20 @@ public class JPanel_TaiKhoan extends javax.swing.JPanel {
         jLabel_TieuDe = new javax.swing.JLabel();
         jScrollPane_DSTK = new javax.swing.JScrollPane();
         jTable_DanhSachTK = new javax.swing.JTable();
-        jLabel32 = new javax.swing.JLabel();
-        jTextField_FindID_TK = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         jRadioButton_CDThem = new javax.swing.JRadioButton();
         jRadioButton_CDSua = new javax.swing.JRadioButton();
         jRadioButton_CDXoa = new javax.swing.JRadioButton();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel32 = new javax.swing.JLabel();
+        jTextField_FindID_TK = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        filler2 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 32767));
 
-        setMinimumSize(new java.awt.Dimension(1092, 573));
+        setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(null, "TÀI KHOẢN", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14))))); // NOI18N
+        setMaximumSize(new java.awt.Dimension(1300, 715));
+        setMinimumSize(new java.awt.Dimension(1300, 715));
+        setPreferredSize(new java.awt.Dimension(1300, 715));
 
         jButton_XacNhan.setText("THÊM TÀI KHOẢN");
         jButton_XacNhan.addActionListener(new java.awt.event.ActionListener() {
@@ -120,7 +125,7 @@ public class JPanel_TaiKhoan extends javax.swing.JPanel {
             }
         });
 
-        jLabel_TieuDe.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel_TieuDe.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel_TieuDe.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel_TieuDe.setText("NHẬP THÔNG TIN TÀI KHOẢN");
         jLabel_TieuDe.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -167,13 +172,12 @@ public class JPanel_TaiKhoan extends javax.swing.JPanel {
         jPanel_DKTKLayout.setVerticalGroup(
             jPanel_DKTKLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_DKTKLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel_TieuDe, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel_TieuDe, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel_DKTKLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel10)
                     .addGroup(jPanel_DKTKLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jTextField_tenTK, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextField_tenTK, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel12)
                         .addComponent(jComboBox_IDNV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
@@ -185,7 +189,7 @@ public class JPanel_TaiKhoan extends javax.swing.JPanel {
                     .addComponent(jLabel13))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jCheckBox_pass)
-                .addGap(0, 12, Short.MAX_VALUE)
+                .addGap(0, 29, Short.MAX_VALUE)
                 .addGroup(jPanel_DKTKLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton_XacNhan)
                     .addComponent(jButton_Reset))
@@ -209,6 +213,7 @@ public class JPanel_TaiKhoan extends javax.swing.JPanel {
             }
         });
         jTable_DanhSachTK.setOpaque(false);
+        jTable_DanhSachTK.setRowHeight(30);
         jTable_DanhSachTK.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jTable_DanhSachTK.addMouseWheelListener(new java.awt.event.MouseWheelListener() {
             public void mouseWheelMoved(java.awt.event.MouseWheelEvent evt) {
@@ -227,24 +232,6 @@ public class JPanel_TaiKhoan extends javax.swing.JPanel {
             jTable_DanhSachTK.getColumnModel().getColumn(4).setMinWidth(0);
             jTable_DanhSachTK.getColumnModel().getColumn(4).setMaxWidth(0);
         }
-
-        jLabel32.setText("Tìm Kiếm Theo Tên Đăng Nhập");
-
-        jTextField_FindID_TK.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField_FindID_TKActionPerformed(evt);
-            }
-        });
-        jTextField_FindID_TK.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextField_FindID_TKKeyReleased(evt);
-            }
-        });
-
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel3.setText("DANH SÁCH TÀI KHOẢN");
-        jLabel3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jLabel3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         jLabel19.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel19.setText("CHỌN CHẾ ĐỘ");
@@ -274,55 +261,94 @@ public class JPanel_TaiKhoan extends javax.swing.JPanel {
             }
         });
 
+        jLabel32.setText("Tìm Kiếm Theo Tên Đăng Nhập");
+
+        jTextField_FindID_TK.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField_FindID_TKActionPerformed(evt);
+            }
+        });
+        jTextField_FindID_TK.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField_FindID_TKKeyReleased(evt);
+            }
+        });
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel3.setText("DANH SÁCH TÀI KHOẢN");
+        jLabel3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jLabel3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(121, 121, 121)
+                        .addComponent(jLabel32, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(47, 47, 47)
+                        .addComponent(jTextField_FindID_TK, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(217, 217, 217)
+                        .addComponent(jLabel3)))
+                .addContainerGap(159, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel32, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField_FindID_TK, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(14, 14, 14))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(362, 362, 362)
-                .addComponent(jLabel32, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(46, 46, 46)
-                .addComponent(jTextField_FindID_TK, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(166, Short.MAX_VALUE)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel19)
-                                .addGap(32, 32, 32)
-                                .addComponent(jRadioButton_CDThem)
-                                .addGap(35, 35, 35)
-                                .addComponent(jRadioButton_CDSua)
-                                .addGap(50, 50, 50)
-                                .addComponent(jRadioButton_CDXoa))
-                            .addComponent(jScrollPane_DSTK, javax.swing.GroupLayout.PREFERRED_SIZE, 730, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanel_DKTK, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(196, 196, 196))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGap(436, 436, 436))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 240, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel19)
+                                    .addGap(32, 32, 32)
+                                    .addComponent(jRadioButton_CDThem)
+                                    .addGap(35, 35, 35)
+                                    .addComponent(jRadioButton_CDSua)
+                                    .addGap(50, 50, 50)
+                                    .addComponent(jRadioButton_CDXoa))
+                                .addComponent(jPanel_DKTK, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane_DSTK, javax.swing.GroupLayout.PREFERRED_SIZE, 730, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(314, 314, 314))
+                    .addComponent(filler2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(11, Short.MAX_VALUE)
+                .addComponent(filler2, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel19)
                     .addComponent(jRadioButton_CDThem)
                     .addComponent(jRadioButton_CDSua)
                     .addComponent(jRadioButton_CDXoa))
-                .addGap(18, 18, 18)
+                .addGap(30, 30, 30)
                 .addComponent(jPanel_DKTK, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel32, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField_FindID_TK, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane_DSTK, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane_DSTK, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -502,7 +528,9 @@ public class JPanel_TaiKhoan extends javax.swing.JPanel {
             jLabel_TieuDe.setText("NHẬP THÔNG TIN TÀI KHOẢN");
             jTextField_tenTK.setEditable(true);
             jPasswordField_nv.setEditable(true);
+            jCheckBox_pass.setEnabled(true);
             jCheckBox_pass.setVisible(true);
+            jCheckBox_pass.setSelected(false);
             jCheckBox_pass.setText("Hiển Thị Mật Khẩu");
             jButton_Reset.setEnabled(true);
             jComboBox_IDNV.setEnabled(true);
@@ -523,7 +551,9 @@ public class JPanel_TaiKhoan extends javax.swing.JPanel {
             //set cac gia tri
             jTextField_tenTK.setEditable(false);
             jPasswordField_nv.setEditable(false);
+            jCheckBox_pass.setEnabled(true);
             jCheckBox_pass.setVisible(true);
+            jCheckBox_pass.setSelected(false);
             jCheckBox_pass.setText("Đặt Lại Mật Khẩu");
             jButton_Reset.setEnabled(true);
             jComboBox_IDNV.setEnabled(true);
@@ -549,7 +579,8 @@ public class JPanel_TaiKhoan extends javax.swing.JPanel {
              jLabel_TieuDe.setText("XÓA TÀI KHOẢN - CHỌN 1 Ô TRONG BẢNG");
              //set cac gia tri
              jTextField_tenTK.setEditable(false);
-             jCheckBox_pass.setVisible(false);
+             jCheckBox_pass.setEnabled(false);
+             jCheckBox_pass.setSelected(false);
              jButton_Reset.setEnabled(false);
              jComboBox_IDNV.setEnabled(false);
              jComboBox_Quyen.setEnabled(false);
@@ -642,6 +673,7 @@ public class JPanel_TaiKhoan extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup_CheDo;
+    private javax.swing.Box.Filler filler2;
     private javax.swing.JButton jButton_Reset;
     private javax.swing.JButton jButton_XacNhan;
     private javax.swing.JCheckBox jCheckBox_pass;
@@ -655,6 +687,7 @@ public class JPanel_TaiKhoan extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel_TieuDe;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel_DKTK;
     private javax.swing.JPasswordField jPasswordField_nv;
     private javax.swing.JRadioButton jRadioButton_CDSua;

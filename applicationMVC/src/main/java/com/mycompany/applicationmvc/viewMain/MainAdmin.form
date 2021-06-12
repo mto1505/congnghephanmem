@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+<Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
   </Properties>
@@ -23,13 +23,222 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <EmptySpace min="0" pref="400" max="32767" attributes="0"/>
+          <Component id="jPanel_Admin" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <EmptySpace min="0" pref="300" max="32767" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <Component id="jPanel_Admin" min="-2" pref="749" max="-2" attributes="0"/>
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
   </Layout>
+  <SubComponents>
+    <Container class="javax.swing.JPanel" name="jPanel_Admin">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="cc" type="rgb"/>
+        </Property>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
+            <MatteColorBorder/>
+          </Border>
+        </Property>
+      </Properties>
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="jLabel_TenTG" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                  <Component id="jButton_XuatExcel" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="jButton_Thoat" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="105" max="-2" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jTabbedPane_QLAdmin" min="-2" pref="1424" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel_TenTG" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jButton_Thoat" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jButton_XuatExcel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="jTabbedPane_QLAdmin" min="-2" pref="729" max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Container class="javax.swing.JTabbedPane" name="jTabbedPane_QLAdmin">
+          <Properties>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                <LineBorder/>
+              </Border>
+            </Property>
+            <Property name="tabLayoutPolicy" type="int" value="1"/>
+            <Property name="tabPlacement" type="int" value="2"/>
+          </Properties>
+
+          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
+          <SubComponents>
+            <Container class="javax.swing.JPanel" name="jPanel_QuanLy">
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+                  <JTabbedPaneConstraints tabName="QU&#x1ea2;N L&#xdd;">
+                    <Property name="tabTitle" type="java.lang.String" value="QU&#x1ea2;N L&#xdd;"/>
+                  </JTabbedPaneConstraints>
+                </Constraint>
+              </Constraints>
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="jTabbedPane_QuanLy" min="-2" pref="1303" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="jTabbedPane_QuanLy" pref="721" max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
+              <SubComponents>
+                <Container class="javax.swing.JTabbedPane" name="jTabbedPane_QuanLy">
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jTabbedPane_QuanLy.addTab(&quot;T&#xc0;I KHO&#x1ea2;N&quot;, new com.mycompany.applicationmvc.viewAdmin.JPanel_TaiKhoan());&#xa;jTabbedPane_QuanLy.addTab(&quot;NH&#xc2;N VI&#xca;N&quot;, new com.mycompany.applicationmvc.viewAdmin.JPanel_NhanVien());&#xa;jTabbedPane_QuanLy.addTab(&quot;KH&#xc1;CH H&#xc0;NG&quot;, new com.mycompany.applicationmvc.view.KhachHangPanel(this));&#xa;jTabbedPane_QuanLy.addTab(&quot;XE M&#xc1;Y&quot;, new com.mycompany.applicationmvc.view.XePanel());"/>
+                  </AuxValues>
+
+                  <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
+                </Container>
+              </SubComponents>
+            </Container>
+            <Container class="javax.swing.JPanel" name="jPanel_ThongKe">
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+                  <JTabbedPaneConstraints tabName="TH&#x1ed0;NG K&#xca;">
+                    <Property name="tabTitle" type="java.lang.String" value="TH&#x1ed0;NG K&#xca;"/>
+                  </JTabbedPaneConstraints>
+                </Constraint>
+              </Constraints>
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="jTabbedPane_ThongKe" pref="1293" max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="jTabbedPane_ThongKe" pref="721" max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
+              <SubComponents>
+                <Container class="javax.swing.JTabbedPane" name="jTabbedPane_ThongKe">
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jTabbedPane_ThongKe.addTab(&quot;&#x110;&#x1a0;N B&#x1ea2;O D&#x1af;&#x1ee0;NG&quot;, new com.mycompany.applicationmvc.viewAdmin.JPanel_TKDBD());&#xa;jTabbedPane_ThongKe.addTab(&quot;LINH KI&#x1ec6;N&quot;, new com.mycompany.applicationmvc.viewAdmin.JPanel_TKLinhKien());&#xa;jTabbedPane_ThongKe.addTab(&quot;KH&#xc1;CH H&#xc0;NG&quot;, new com.mycompany.applicationmvc.viewAdmin.JPanel_TKKhachHang());&#xa;jTabbedPane_ThongKe.addTab(&quot;BI&#x1ec2;U &#x110;&#x1ed2;&quot;, new com.mycompany.applicationmvc.viewAdmin.JPanel_BieuDo());"/>
+                  </AuxValues>
+
+                  <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
+                </Container>
+              </SubComponents>
+            </Container>
+            <Container class="javax.swing.JPanel" name="jPanel_LapDBD">
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+                  <JTabbedPaneConstraints tabName="&#x110;&#x1a0;N B&#x1ea2;O D&#x1af;&#x1ee0;NG">
+                    <Property name="tabTitle" type="java.lang.String" value="&#x110;&#x1a0;N B&#x1ea2;O D&#x1af;&#x1ee0;NG"/>
+                  </JTabbedPaneConstraints>
+                </Constraint>
+              </Constraints>
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="jTabbedPane_DBD" min="-2" pref="1351" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="jTabbedPane_DBD" pref="721" max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
+              <SubComponents>
+                <Container class="javax.swing.JTabbedPane" name="jTabbedPane_DBD">
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="com.mycompany.applicationmvc.view.DonBaoDuong.DonBaoDuongContainerPanel node1 = new com.mycompany.applicationmvc.view.DonBaoDuong.DonBaoDuongContainerPanel();&#xa;        new com.mycompany.applicationmvc.controller.DonBaoDuongController((com.mycompany.applicationmvc.view.DonBaoDuong.DonBaoDuongContainerPanel) node1);&#xa;&#xa;        com.mycompany.applicationmvc.view.DichVubaoDuongPanel node2 = new com.mycompany.applicationmvc.view.DichVubaoDuongPanel();&#xa;        try {&#xa;            new com.mycompany.applicationmvc.controller.DichVuBaoDuongController((com.mycompany.applicationmvc.view.DichVubaoDuongPanel) node2);&#xa;        } catch (SQLException ex) {&#xa;            Logger.getLogger(MainAdmin.class.getName()).log(Level.SEVERE, null, ex);&#xa;        }&#xa;&#xa;        com.mycompany.applicationmvc.view.DanhSachPhuTungKiemTraPanel node3 = new com.mycompany.applicationmvc.view.DanhSachPhuTungKiemTraPanel();&#xa;        try {&#xa;            new com.mycompany.applicationmvc.controller.DanhSachPhuTungKiemTraController((com.mycompany.applicationmvc.view.DanhSachPhuTungKiemTraPanel) node3);&#xa;        } catch (SQLException ex) {&#xa;            Logger.getLogger(MainAdmin.class.getName()).log(Level.SEVERE, null, ex);&#xa;        }&#xa;jTabbedPane_DBD.addTab(&quot;L&#x1eac;P &#x110;&#x1a0;N B&#x1ea2;O D&#x1af;&#x1ee0;NG&quot;,node1);&#xa;jTabbedPane_DBD.addTab(&quot;D&#x1eca;CH V&#x1ee4; B&#x1ea2;O D&#x1af;&#x1ee0;NG&quot;,node2);&#xa;jTabbedPane_DBD.addTab(&quot;DANH S&#xc1;CH PH&#x1ee4; T&#xd9;NG KI&#x1ec2;M TRA&quot;,node3);"/>
+                  </AuxValues>
+
+                  <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
+                </Container>
+              </SubComponents>
+            </Container>
+          </SubComponents>
+        </Container>
+        <Component class="javax.swing.JLabel" name="jLabel1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="QU&#x1ea2;N L&#xdd;"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel_TenTG">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="T&#xca;N NH&#xc2;N VI&#xca;N QU&#x1ea2;N L&#xdd;"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="jButton_Thoat">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="THO&#xc1;T"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton_ThoatActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="jButton_XuatExcel">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Xu&#x1ea5;t FILE EXCEL"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton_XuatExcelActionPerformed"/>
+          </Events>
+        </Component>
+      </SubComponents>
+    </Container>
+  </SubComponents>
 </Form>

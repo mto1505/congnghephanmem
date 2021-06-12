@@ -81,7 +81,7 @@ public class JPanel_BieuDo extends javax.swing.JPanel {
          plot.setInteriorGap(0.05);  
         //xuất ra panel
         ChartPanel chartPanel = new ChartPanel(pieChart);
-        chartPanel.setPreferredSize(new Dimension(jpn.getWidth(), 321));
+        chartPanel.setPreferredSize(new Dimension(jpn.getWidth(), 600));
         
         jpn.removeAll();
         jpn.setLayout(new CardLayout());
@@ -116,7 +116,7 @@ public class JPanel_BieuDo extends javax.swing.JPanel {
     
         //xuất ra panel
         ChartPanel chartPanel = new ChartPanel(barChart);
-        chartPanel.setPreferredSize(new Dimension(jpn.getWidth(), 321));
+        chartPanel.setPreferredSize(new Dimension(jpn.getWidth(), 600));
         
         jpn.removeAll();
         jpn.setLayout(new CardLayout());
@@ -146,7 +146,7 @@ public class JPanel_BieuDo extends javax.swing.JPanel {
     
         //xuất ra panel
         ChartPanel chartPanel = new ChartPanel(lineChartObject);
-        chartPanel.setPreferredSize(new Dimension(jpn.getWidth(), 321));
+        chartPanel.setPreferredSize(new Dimension(jpn.getWidth(), 600));
         
         jpn.removeAll();
         jpn.setLayout(new CardLayout());
@@ -219,8 +219,8 @@ public class JPanel_BieuDo extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jTabbedPane_BieuDo)
-                .addContainerGap())
+                .addComponent(jTabbedPane_BieuDo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

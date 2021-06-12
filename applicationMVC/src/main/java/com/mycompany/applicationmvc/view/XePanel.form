@@ -25,12 +25,12 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
+          <Component id="jPanel1" alignment="0" min="-2" max="-2" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jPanel1" alignment="0" pref="677" max="32767" attributes="0"/>
+          <Component id="jPanel1" alignment="0" min="-2" pref="677" max="-2" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -40,8 +40,14 @@
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="fd" green="e0" red="cc" type="rgb"/>
         </Property>
+        <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[1258, 660]"/>
+        </Property>
+        <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[1258, 660]"/>
+        </Property>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-          <Dimension value="[1058, 660]"/>
+          <Dimension value="[1258, 660]"/>
         </Property>
         <Property name="requestFocusEnabled" type="boolean" value="false"/>
       </Properties>
@@ -62,7 +68,7 @@
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="jPanel6" min="-2" pref="863" max="-2" attributes="0"/>
                       </Group>
-                      <Component id="jPanel5" alignment="1" pref="1046" max="32767" attributes="0"/>
+                      <Component id="jPanel5" alignment="1" pref="1246" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -73,7 +79,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <Component id="jPanel3" min="-2" pref="40" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                  <Component id="jPanel5" pref="415" max="32767" attributes="0"/>
+                  <Component id="jPanel5" pref="419" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
@@ -556,39 +562,14 @@
             <Component class="javax.swing.JSeparator" name="jSeparator4">
             </Component>
             <Component class="javax.swing.JLabel" name="errorBienSo">
-              <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="C:\Users\MinhTo\Documents\GitHub\congnghephanmem\applicationMVC\src\main\resource\img\error_30px.png"/>
-                </Property>
-              </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="errorTenXe">
-              <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="C:\Users\MinhTo\Documents\GitHub\congnghephanmem\applicationMVC\src\main\resource\img\error_30px.png"/>
-                </Property>
-              </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="errorChuSoHuu">
-              <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="C:\Users\MinhTo\Documents\GitHub\congnghephanmem\applicationMVC\src\main\resource\img\error_30px.png"/>
-                </Property>
-              </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="errorSoDienThoai">
-              <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="C:\Users\MinhTo\Documents\GitHub\congnghephanmem\applicationMVC\src\main\resource\img\error_30px.png"/>
-                </Property>
-              </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="errorLoaiXe">
-              <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="C:\Users\MinhTo\Documents\GitHub\congnghephanmem\applicationMVC\src\main\resource\img\error_30px.png"/>
-                </Property>
-              </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="gioiTinh">
               <Properties>
@@ -835,7 +816,7 @@
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabel3" alignment="0" pref="159" max="32767" attributes="0"/>
+                          <Component id="jLabel3" alignment="0" pref="359" max="32767" attributes="0"/>
                           <Component id="jLabel2" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -858,17 +839,11 @@
             <Component class="javax.swing.JLabel" name="jLabel2">
               <Properties>
                 <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="E:\BT-JAVA-WEB\applicationMVC\src\main\resource\img\xe1nho.png"/>
-                </Property>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel3">
               <Properties>
                 <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="E:\BT-JAVA-WEB\applicationMVC\src\main\resource\img\x&#xe9;h.png"/>
-                </Property>
               </Properties>
             </Component>
           </SubComponents>

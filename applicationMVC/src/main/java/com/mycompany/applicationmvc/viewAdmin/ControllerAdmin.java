@@ -5,11 +5,13 @@
  */
 package com.mycompany.applicationmvc.viewAdmin;
 
+import java.awt.Image;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Calendar;
+import javax.swing.ImageIcon;
 import org.mindrot.jbcrypt.BCrypt;
 
 /**
@@ -283,5 +285,12 @@ public class ControllerAdmin {
            ex.printStackTrace();
        }
         return kt;
+    }
+    public static ImageIcon setIcon(int width,int height,String url){
+        ImageIcon imageIcon = new ImageIcon(url); 
+        Image image = imageIcon.getImage(); 
+        Image newimg = image.getScaledInstance(width,height,java.awt.Image.SCALE_SMOOTH); 
+        imageIcon = new ImageIcon(newimg);
+        return imageIcon;
     }
 }
