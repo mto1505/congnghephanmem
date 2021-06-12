@@ -10,6 +10,7 @@ import java.awt.Container;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -41,6 +42,13 @@ public class DichVubaoDuongPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jDialog_CanhBaoKHiCapNhatTrangThaiCuaDichVuBaoDuong = new javax.swing.JDialog();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jButton_XacNhanTrongDialogCanhBao = new javax.swing.JButton();
+        jDialog_CanhBaoTrungDichVuBaoDuong = new javax.swing.JDialog();
+        jLabel9 = new javax.swing.JLabel();
+        jButton_TatCanhBaoTrungDichVuBD = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jTextField_MaDichVuBaoDuong = new javax.swing.JTextField();
@@ -62,6 +70,89 @@ public class DichVubaoDuongPanel extends javax.swing.JPanel {
         jTable_DanhSachDichVuBaoDuong = new javax.swing.JTable();
         jTextField_TimKiemDichVuBaoDuong = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
+
+        jDialog_CanhBaoKHiCapNhatTrangThaiCuaDichVuBaoDuong.setMinimumSize(new java.awt.Dimension(549, 236));
+        jDialog_CanhBaoKHiCapNhatTrangThaiCuaDichVuBaoDuong.setModal(true);
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("Thay đổi trạng thái của dịch vụ này sẽ ảnh hưởng đến những hóa đơn chưa hoàn thành!!!");
+
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setText("Vui lòng  hoàn thành những hóa đơn trên để thực hiện thay đổi này");
+
+        jButton_XacNhanTrongDialogCanhBao.setText("Tắt");
+        jButton_XacNhanTrongDialogCanhBao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_XacNhanTrongDialogCanhBaoActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jDialog_CanhBaoKHiCapNhatTrangThaiCuaDichVuBaoDuongLayout = new javax.swing.GroupLayout(jDialog_CanhBaoKHiCapNhatTrangThaiCuaDichVuBaoDuong.getContentPane());
+        jDialog_CanhBaoKHiCapNhatTrangThaiCuaDichVuBaoDuong.getContentPane().setLayout(jDialog_CanhBaoKHiCapNhatTrangThaiCuaDichVuBaoDuongLayout);
+        jDialog_CanhBaoKHiCapNhatTrangThaiCuaDichVuBaoDuongLayout.setHorizontalGroup(
+            jDialog_CanhBaoKHiCapNhatTrangThaiCuaDichVuBaoDuongLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDialog_CanhBaoKHiCapNhatTrangThaiCuaDichVuBaoDuongLayout.createSequentialGroup()
+                .addGroup(jDialog_CanhBaoKHiCapNhatTrangThaiCuaDichVuBaoDuongLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jDialog_CanhBaoKHiCapNhatTrangThaiCuaDichVuBaoDuongLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 517, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jDialog_CanhBaoKHiCapNhatTrangThaiCuaDichVuBaoDuongLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 393, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jDialog_CanhBaoKHiCapNhatTrangThaiCuaDichVuBaoDuongLayout.createSequentialGroup()
+                        .addGap(220, 220, 220)
+                        .addComponent(jButton_XacNhanTrongDialogCanhBao, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(22, Short.MAX_VALUE))
+        );
+        jDialog_CanhBaoKHiCapNhatTrangThaiCuaDichVuBaoDuongLayout.setVerticalGroup(
+            jDialog_CanhBaoKHiCapNhatTrangThaiCuaDichVuBaoDuongLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDialog_CanhBaoKHiCapNhatTrangThaiCuaDichVuBaoDuongLayout.createSequentialGroup()
+                .addGap(42, 42, 42)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36)
+                .addComponent(jButton_XacNhanTrongDialogCanhBao)
+                .addContainerGap(60, Short.MAX_VALUE))
+        );
+
+        jDialog_CanhBaoTrungDichVuBaoDuong.setMinimumSize(new java.awt.Dimension(440, 224));
+        jDialog_CanhBaoTrungDichVuBaoDuong.setModal(true);
+
+        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel9.setText("Dịch vụ bảo dưỡng này đã bị trùng!!!");
+
+        jButton_TatCanhBaoTrungDichVuBD.setText("Tắt");
+        jButton_TatCanhBaoTrungDichVuBD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_TatCanhBaoTrungDichVuBDActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jDialog_CanhBaoTrungDichVuBaoDuongLayout = new javax.swing.GroupLayout(jDialog_CanhBaoTrungDichVuBaoDuong.getContentPane());
+        jDialog_CanhBaoTrungDichVuBaoDuong.getContentPane().setLayout(jDialog_CanhBaoTrungDichVuBaoDuongLayout);
+        jDialog_CanhBaoTrungDichVuBaoDuongLayout.setHorizontalGroup(
+            jDialog_CanhBaoTrungDichVuBaoDuongLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDialog_CanhBaoTrungDichVuBaoDuongLayout.createSequentialGroup()
+                .addGroup(jDialog_CanhBaoTrungDichVuBaoDuongLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jDialog_CanhBaoTrungDichVuBaoDuongLayout.createSequentialGroup()
+                        .addGap(105, 105, 105)
+                        .addComponent(jLabel9))
+                    .addGroup(jDialog_CanhBaoTrungDichVuBaoDuongLayout.createSequentialGroup()
+                        .addGap(170, 170, 170)
+                        .addComponent(jButton_TatCanhBaoTrungDichVuBD, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(106, Short.MAX_VALUE))
+        );
+        jDialog_CanhBaoTrungDichVuBaoDuongLayout.setVerticalGroup(
+            jDialog_CanhBaoTrungDichVuBaoDuongLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDialog_CanhBaoTrungDichVuBaoDuongLayout.createSequentialGroup()
+                .addGap(68, 68, 68)
+                .addComponent(jLabel9)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
+                .addComponent(jButton_TatCanhBaoTrungDichVuBD)
+                .addGap(42, 42, 42))
+        );
 
         setPreferredSize(new java.awt.Dimension(1920, 1080));
 
@@ -303,6 +394,14 @@ public class DichVubaoDuongPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField_PhiDichVuBaoDuongActionPerformed
 
+    private void jButton_XacNhanTrongDialogCanhBaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_XacNhanTrongDialogCanhBaoActionPerformed
+        jDialog_CanhBaoKHiCapNhatTrangThaiCuaDichVuBaoDuong.setVisible(false);
+    }//GEN-LAST:event_jButton_XacNhanTrongDialogCanhBaoActionPerformed
+
+    private void jButton_TatCanhBaoTrungDichVuBDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_TatCanhBaoTrungDichVuBDActionPerformed
+        jDialog_CanhBaoTrungDichVuBaoDuong.setVisible(false);
+    }//GEN-LAST:event_jButton_TatCanhBaoTrungDichVuBDActionPerformed
+
     public JLabel getjLabel10() {
         return jLabel10;
     }
@@ -333,6 +432,62 @@ public class DichVubaoDuongPanel extends javax.swing.JPanel {
 
     public void setjTextField_NgayCapNhat(JTextField jTextField_NgayCapNhat) {
         this.jTextField_NgayCapNhat = jTextField_NgayCapNhat;
+    }
+
+    public JButton getjButton_XacNhanTrongDialogCanhBao() {
+        return jButton_XacNhanTrongDialogCanhBao;
+    }
+
+    public void setjButton_XacNhanTrongDialogCanhBao(JButton jButton_XacNhanTrongDialogCanhBao) {
+        this.jButton_XacNhanTrongDialogCanhBao = jButton_XacNhanTrongDialogCanhBao;
+    }
+
+    public JDialog getjDialog_CanhBaoKHiCapNhatTrangThaiCuaDichVuBaoDuong() {
+        return jDialog_CanhBaoKHiCapNhatTrangThaiCuaDichVuBaoDuong;
+    }
+
+    public void setjDialog_CanhBaoKHiCapNhatTrangThaiCuaDichVuBaoDuong(JDialog jDialog_CanhBaoKHiCapNhatTrangThaiCuaDichVuBaoDuong) {
+        this.jDialog_CanhBaoKHiCapNhatTrangThaiCuaDichVuBaoDuong = jDialog_CanhBaoKHiCapNhatTrangThaiCuaDichVuBaoDuong;
+    }
+
+    public JLabel getjLabel4() {
+        return jLabel4;
+    }
+
+    public JButton getjButton_TatCanhBaoTrungDichVuBD() {
+        return jButton_TatCanhBaoTrungDichVuBD;
+    }
+
+    public void setjButton_TatCanhBaoTrungDichVuBD(JButton jButton_TatCanhBaoTrungDichVuBD) {
+        this.jButton_TatCanhBaoTrungDichVuBD = jButton_TatCanhBaoTrungDichVuBD;
+    }
+
+    public JDialog getjDialog_CanhBaoTrungDichVuBaoDuong() {
+        return jDialog_CanhBaoTrungDichVuBaoDuong;
+    }
+
+    public void setjDialog_CanhBaoTrungDichVuBaoDuong(JDialog jDialog_CanhBaoTrungDichVuBaoDuong) {
+        this.jDialog_CanhBaoTrungDichVuBaoDuong = jDialog_CanhBaoTrungDichVuBaoDuong;
+    }
+
+    public JLabel getjLabel9() {
+        return jLabel9;
+    }
+
+    public void setjLabel9(JLabel jLabel9) {
+        this.jLabel9 = jLabel9;
+    }
+
+    public void setjLabel4(JLabel jLabel4) {
+        this.jLabel4 = jLabel4;
+    }
+
+    public JLabel getjLabel7() {
+        return jLabel7;
+    }
+
+    public void setjLabel7(JLabel jLabel7) {
+        this.jLabel7 = jLabel7;
     }
 
 
@@ -497,16 +652,23 @@ public class DichVubaoDuongPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton_LuuDichVuBaoDuong;
+    private javax.swing.JButton jButton_TatCanhBaoTrungDichVuBD;
     private javax.swing.JLabel jButton_ThemDichVubaoDUongMoi;
+    private javax.swing.JButton jButton_XacNhanTrongDialogCanhBao;
     private javax.swing.JCheckBox jCheckBox_TrangThaiSuDungDichVuBaoDuong;
     private javax.swing.JComboBox<String> jComboBox_LoaiXe;
+    private javax.swing.JDialog jDialog_CanhBaoKHiCapNhatTrangThaiCuaDichVuBaoDuong;
+    private javax.swing.JDialog jDialog_CanhBaoTrungDichVuBaoDuong;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

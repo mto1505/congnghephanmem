@@ -66,5 +66,11 @@ public class LinhKienService implements ILinhKienService{
         linhKienDAO.deleteByIDNhaCungCap(idNhaCungCap);
     }
     
+    public List<LinhKienModel> layDanhSachLinhKienMoiNhat(){
+        return linhKienDAO.layDanhSachLinhKienMoiNhat();
+    }
     
+    public LinhKienModel timLinhKienMoiNhatTheoID(int id){
+        return linhKienDAO.timLinhKienMoiNhatTheoID(id);
+    }
 }

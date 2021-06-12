@@ -8,6 +8,8 @@ package com.mycompany.applicationmvc.Utils;
 import java.text.ParseException;
 import java.util.Date;
 import java.text.SimpleDateFormat;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  *
@@ -31,7 +33,7 @@ public class Stringlib {
     public static boolean kiemTraChuoiBienSoXe(String st) {
         return st.matches("^[0-9]{2}[a-zA-Z]{1}[0-9]{4,7}$");
     }
-    
+
     public static boolean kiemTraSDT(String st) {
         return st.matches("^[0-9]{6,11}$");
     }
@@ -60,12 +62,12 @@ public class Stringlib {
         StringBuilder str = new StringBuilder(rs);
         return str.reverse().toString();
     }
-    
-    public static String dinhDangTienHienThi(Long n){
+
+    public static String dinhDangTienHienThi(Long n) {
         String st = Long.toString(n);
         return dinhDangTienHienThi(st);
     }
-    
+
     public static String dinhDangNgayHienThitu_yyyyMMdd_Thanh_ddMMyyyy(String date) {
         Date d;
         try {
@@ -75,8 +77,8 @@ public class Stringlib {
         }
         return new SimpleDateFormat("dd/MM/yyyy").format(d);
     }
-    
-    public static String dinhDangNgayHienThitu_ddMMyyyy_Thanh_yyyyMMdd(String date){
+
+    public static String dinhDangNgayHienThitu_ddMMyyyy_Thanh_yyyyMMdd(String date) {
         Date d;
         try {
             d = new SimpleDateFormat("dd/MM/yyyy").parse(date);
@@ -84,6 +86,14 @@ public class Stringlib {
             return date;
         }
         return new SimpleDateFormat("yyyy-MM-dd").format(d);
-        
+
+    }
+
+    public static final Pattern VALID_EMAIL_ADDRESS_REGEX
+            = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
+
+    public static boolean validateEmail(String emailStr) {
+        Matcher matcher = VALID_EMAIL_ADDRESS_REGEX.matcher(emailStr);
+        return matcher.find();
     }
 }

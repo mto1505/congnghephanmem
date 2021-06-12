@@ -68,7 +68,7 @@ public class DonBaoDuongDAO extends AbstractDAO<DonBaoDuongModel> implements IDo
     }
 
     public void xoaDonBaoDuong(int idDonBaoDuong) {
-        String q = "DELETE FROM DonBaoDuong WHERE DonBaoDuong.idDonBaoDuong = ?";
+        String q = "DELETE FROM DonBaoDuong WHERE DonBaoDuong.id = ?";
         update(q, idDonBaoDuong);
     }
 

@@ -90,6 +90,9 @@ public class DonBaoDuongPanel extends javax.swing.JPanel {
         jScrollPane6 = new javax.swing.JScrollPane();
         XuatHoaDonTextArea = new javax.swing.JTextArea();
         XuatHoaDonButton = new javax.swing.JButton();
+        jTextField_DiaChiEmail = new javax.swing.JTextField();
+        jButton_GuiEmail = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
         XacNhanHuyHoaDon = new javax.swing.JDialog();
         XacNhanCoHuyHoaDonBT = new javax.swing.JButton();
         XacNhanKhongHuyHoaDonBT = new javax.swing.JButton();
@@ -389,7 +392,7 @@ public class DonBaoDuongPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Mã", "Tên ", "Giá", "Nhà cung cấp", "Ngày nhập", "Số lượng", "Chọn "
+                "Mã", "Tên ", "Giá", "Nhà cung cấp", "Ngày nhập", "Số lượng còn lại", "Chọn "
             }
         ) {
             Class[] types = new Class [] {
@@ -532,7 +535,7 @@ public class DonBaoDuongPanel extends javax.swing.JPanel {
         );
 
         XuatHoaDon.setLocation(new java.awt.Point(600, 200));
-        XuatHoaDon.setMinimumSize(new java.awt.Dimension(500, 600));
+        XuatHoaDon.setMinimumSize(new java.awt.Dimension(458, 601));
         XuatHoaDon.setModal(true);
 
         XuatHoaDonTextArea.setColumns(20);
@@ -543,23 +546,41 @@ public class DonBaoDuongPanel extends javax.swing.JPanel {
 
         XuatHoaDonButton.setText("Hóa đơn mới");
 
+        jButton_GuiEmail.setText("Gửi hóa đơn");
+
+        jLabel4.setText("Email:");
+
         javax.swing.GroupLayout XuatHoaDonLayout = new javax.swing.GroupLayout(XuatHoaDon.getContentPane());
         XuatHoaDon.getContentPane().setLayout(XuatHoaDonLayout);
         XuatHoaDonLayout.setHorizontalGroup(
             XuatHoaDonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(XuatHoaDonLayout.createSequentialGroup()
-                .addGap(138, 138, 138)
-                .addComponent(XuatHoaDonButton, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(154, Short.MAX_VALUE))
-            .addComponent(jScrollPane6)
+            .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 458, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, XuatHoaDonLayout.createSequentialGroup()
+                .addGroup(XuatHoaDonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(XuatHoaDonLayout.createSequentialGroup()
+                        .addContainerGap(257, Short.MAX_VALUE)
+                        .addComponent(jButton_GuiEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(XuatHoaDonLayout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addComponent(XuatHoaDonButton, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTextField_DiaChiEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(37, 37, 37))
         );
         XuatHoaDonLayout.setVerticalGroup(
             XuatHoaDonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(XuatHoaDonLayout.createSequentialGroup()
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 520, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(XuatHoaDonButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addGroup(XuatHoaDonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(XuatHoaDonButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField_DiaChiEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton_GuiEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         XacNhanHuyHoaDon.setMinimumSize(new java.awt.Dimension(406, 153));
@@ -704,7 +725,7 @@ public class DonBaoDuongPanel extends javax.swing.JPanel {
                 .addComponent(ThemDichVuBaoDuongBT, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(XoaDichVuBaoDuongBT, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 191, Short.MAX_VALUE)
                 .addComponent(jLabel12)
                 .addGap(27, 27, 27)
                 .addComponent(ThanhTienDichVuBaoDuongTF, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -968,9 +989,16 @@ public class DonBaoDuongPanel extends javax.swing.JPanel {
                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(loaiXeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE)
+<<<<<<< HEAD
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(ThemKhachHangMoiBT, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())))
+=======
+                        .addGap(125, 125, 125)
+                        .addComponent(ThemKhachHangMoiBT, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(BienSoKhongHopLeMainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(254, Short.MAX_VALUE))
+>>>>>>> 25d7f978f62ca976b03a6781a8999b28210542c2
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1152,10 +1180,25 @@ public class DonBaoDuongPanel extends javax.swing.JPanel {
                                 .addComponent(XuatDonBaoDuongBT, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(TrangThaiDonBaoDuongCheckBox)))
                     .addGroup(jPanel6Layout.createSequentialGroup()
+<<<<<<< HEAD
                         .addGap(137, 137, 137)
                         .addComponent(HuyDonBaoDuongBT, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(26, 26, 26)
                         .addComponent(LuuDonBaoDuongBT, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
+=======
+                        .addGap(147, 147, 147)
+                        .addComponent(TrangThaiDonBaoDuongCheckBox))
+                    .addComponent(TongChiPhiTF, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ThueVATTF, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(jPanel6Layout.createSequentialGroup()
+                            .addComponent(HuyDonBaoDuongBT, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(52, 52, 52)
+                            .addComponent(LuuDonBaoDuongBT, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(XuatDonBaoDuongBT, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(TongThanhToanTF, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE)))
+>>>>>>> 25d7f978f62ca976b03a6781a8999b28210542c2
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
@@ -1203,6 +1246,7 @@ public class DonBaoDuongPanel extends javax.swing.JPanel {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+<<<<<<< HEAD
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1224,6 +1268,22 @@ public class DonBaoDuongPanel extends javax.swing.JPanel {
                                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(159, 159, 159))
+=======
+            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jToolBar1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addGap(83, 83, 83)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(43, 43, 43))
+>>>>>>> 25d7f978f62ca976b03a6781a8999b28210542c2
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1252,8 +1312,13 @@ public class DonBaoDuongPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+<<<<<<< HEAD
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 1169, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(9, Short.MAX_VALUE))
+=======
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+>>>>>>> 25d7f978f62ca976b03a6781a8999b28210542c2
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1435,6 +1500,22 @@ public class DonBaoDuongPanel extends javax.swing.JPanel {
 
     public JDialog getThongBaoDialog() {
         return ThongBaoDialog;
+    }
+
+    public JButton getjButton_GuiEmail() {
+        return jButton_GuiEmail;
+    }
+
+    public void setjButton_GuiEmail(JButton jButton_GuiEmail) {
+        this.jButton_GuiEmail = jButton_GuiEmail;
+    }
+
+    public JTextField getjTextField_DiaChiEmail() {
+        return jTextField_DiaChiEmail;
+    }
+
+    public void setjTextField_DiaChiEmail(JTextField jTextField_DiaChiEmail) {
+        this.jTextField_DiaChiEmail = jTextField_DiaChiEmail;
     }
 
     public JLabel getXuatDonBaoDuongBT() {
@@ -2487,6 +2568,7 @@ public class DonBaoDuongPanel extends javax.swing.JPanel {
     private javax.swing.JButton XuatHoaDonButton;
     private javax.swing.JTextArea XuatHoaDonTextArea;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton_GuiEmail;
     private javax.swing.JButton jButton_QuayLayDanhSachDonBaoDuong;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -2505,6 +2587,7 @@ public class DonBaoDuongPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -2524,6 +2607,7 @@ public class DonBaoDuongPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JTextField jTextField_DiaChiEmail;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JComboBox<String> loaiXeComboBox;
     private javax.swing.JTextField soDienThoaiTF_ThemKhachHangMoiDialog;

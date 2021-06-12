@@ -394,7 +394,7 @@ public class JPanel_TKLinhKien extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jTextField_FindID_LKKeyReleased
 
-    private void importDataTKLK(){
+     private void importDataTKLK(){
         DefaultTableModel dtm= (DefaultTableModel) jTable_DanhSachTKLK.getModel();
         Connection cn=ModelAdmin.connectMSSQL();
         dtm.setNumRows(0);
