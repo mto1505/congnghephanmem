@@ -25,7 +25,7 @@ public class LoginTask extends SwingWorker<TaiKhoanModel, String> {
     private String userName;
     private String password;
     private JFrame frameLogin;
-        private JLabel label;
+    private JLabel label;
 
     public LoginTask(String userName, String password, JFrame frameLogin, JLabel label) {
         this.userName = userName;
@@ -33,9 +33,7 @@ public class LoginTask extends SwingWorker<TaiKhoanModel, String> {
         this.frameLogin = frameLogin;
         this.label = label;
     }
-    
 
-        
     @Override
     protected TaiKhoanModel doInBackground() throws Exception {
         String pass = password;
@@ -45,29 +43,24 @@ public class LoginTask extends SwingWorker<TaiKhoanModel, String> {
         TaiKhoanModel model = new TaiKhoanModel();
         publish("Đang kiểm tra tài khoản");
         model = taiKhoanService.findOne(user);
-       
+
         if (model != null) {
-             
             publish("Đang kiểm tra mật khẩu");
             if (model.getMatKhau().equals(pass)) {
-
-//                SessionUtil.putValue(user, model);
-//                new MenuFrame(model).setVisible(true);
-//                setVisible(false);
                 Thread.sleep(1000);
                 return model;
             }
         }
-  
+
         return null;
 
     }
 
     @Override
     protected void process(List<String> chunks) {
-         //To change body of generated methods, choose Tools | Templates.
-         for (String chunk : chunks) {
-           label.setText(chunk);       
+        //To change body of generated methods, choose Tools | Templates.
+        for (String chunk : chunks) {
+            label.setText(chunk);
         }
     }
 

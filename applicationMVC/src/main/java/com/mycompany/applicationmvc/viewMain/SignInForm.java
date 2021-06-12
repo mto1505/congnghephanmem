@@ -5,14 +5,26 @@
  */
 package com.mycompany.applicationmvc.viewMain;
 
+import com.mycompany.applicationmvc.controller.LoginTask;
 import com.mycompany.applicationmvc.viewAdmin.ControllerAdmin;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.io.File;
 import javax.swing.ImageIcon;
+import javax.swing.SwingWorker;
 
 /**
  *
  * @author dhmty
  */
 public class SignInForm extends javax.swing.JFrame {
+
+    public static final String userURL = System.getProperty("user.dir").concat("\\src\\main\\resource\\img\\user_30px.png");
+    public static final String iconuserURL = new File(userURL).toString();
+    public static final String keyURL = System.getProperty("user.dir").concat("\\src\\main\\resource\\img\\key_30px.png");
+    public static final String iconkeyURL = new File(keyURL).toString();
+    public static final String loadingURL = System.getProperty("user.dir").concat("\\src\\main\\resource\\img\\Spin-1s-35px.gif");
+    public static final String iconLoadingURL = new File(loadingURL).toString();
 
     /**
      * Creates new form SignInForm
@@ -44,6 +56,8 @@ public class SignInForm extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jPasswordField1 = new javax.swing.JPasswordField();
+        labelLoading = new javax.swing.JLabel();
+        informationLoading = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -111,6 +125,15 @@ public class SignInForm extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Mật Khẩu");
 
+        labelLoading.setBackground(new java.awt.Color(153, 153, 153));
+        labelLoading.setForeground(new java.awt.Color(153, 153, 153));
+        labelLoading.setIcon(new javax.swing.ImageIcon(iconLoadingURL));
+        labelLoading.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        labelLoading.setVisible(false);
+
+        informationLoading.setText("Đang  tải");
+        informationLoading.setVisible(false);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -137,12 +160,22 @@ public class SignInForm extends javax.swing.JFrame {
                             .addComponent(jPasswordField1, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(labelLoading)
+                .addGap(49, 49, 49)
+                .addComponent(informationLoading, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(132, 132, 132))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(53, 53, 53)
+                .addGap(4, 4, 4)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(informationLoading, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelLoading, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(userNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -176,9 +209,24 @@ public class SignInForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void dangNhapBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dangNhapBtnActionPerformed
-        new com.mycompany.applicationmvc.viewMain.MainAdmin().setVisible(true);
-        //hiển thị cái load file xong hiện rùi tắt
-        this.dispose();
+//        new com.mycompany.applicationmvc.viewMain.MainAdmin().setVisible(true);
+//        //hiển thị cái load file xong hiện rùi tắt
+//        this.dispose();
+        String pass = jPasswordField1.getText();
+        String user = userNameField.getText();
+        labelLoading.setVisible(true);
+        informationLoading.setVisible(true);
+        informationLoading.setText("Đang tải");
+        LoginTask loginTask = new LoginTask(user, pass, this, informationLoading);
+        loginTask.addPropertyChangeListener(new PropertyChangeListener() {
+            @Override
+            public void propertyChange(PropertyChangeEvent evt) {
+                if (evt.getPropertyName().equals("state") && SwingWorker.StateValue.DONE == evt.getNewValue()) {
+                    labelLoading.setVisible(false);
+                }
+            }
+        });
+        loginTask.execute();
     }//GEN-LAST:event_dangNhapBtnActionPerformed
 
     private void userNameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userNameFieldActionPerformed
@@ -226,6 +274,7 @@ public class SignInForm extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton dangNhapBtn;
+    private javax.swing.JLabel informationLoading;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
@@ -235,6 +284,7 @@ public class SignInForm extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPasswordField jPasswordField1;
+    private javax.swing.JLabel labelLoading;
     private javax.swing.JButton thoatBtn;
     private javax.swing.JTextField userNameField;
     // End of variables declaration//GEN-END:variables

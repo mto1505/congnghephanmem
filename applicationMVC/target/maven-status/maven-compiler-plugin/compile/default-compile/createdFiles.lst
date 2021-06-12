@@ -205,6 +205,7 @@ com\mycompany\applicationmvc\service\IPhuTungService.class
 com\mycompany\applicationmvc\mapper\NhaCungCapMapper.class
 com\mycompany\applicationmvc\controller\DonBaoDuongController$31.class
 com\mycompany\applicationmvc\view\SigninForm$5.class
+com\mycompany\applicationmvc\viewMain\SignInForm$5.class
 com\mycompany\applicationmvc\controller\KhachHangController$6.class
 com\mycompany\applicationmvc\controller\XeController$8.class
 com\mycompany\applicationmvc\dao\GenericDAO.class
