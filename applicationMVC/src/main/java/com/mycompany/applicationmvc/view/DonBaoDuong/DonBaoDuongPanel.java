@@ -33,15 +33,13 @@ public class DonBaoDuongPanel extends javax.swing.JPanel {
     public DonBaoDuongPanel(CardLayout cardLayout, javax.swing.JPanel donBaoDuongContainerPanel) {
         this.cardLayoutContainer = cardLayout;
         this.container = donBaoDuongContainerPanel;
-        
+
         initCustom();
         initComponents();
 
         setBackground(Color.pink);
         this.setLayout(new GridLayout(1, 2));
     }
-    
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -145,7 +143,6 @@ public class DonBaoDuongPanel extends javax.swing.JPanel {
         jLabel9 = new javax.swing.JLabel();
         TongThanhToanTF = new javax.swing.JTextField();
         XuatDonBaoDuongBT = new javax.swing.JLabel();
-        jSeparator1 = new javax.swing.JSeparator();
 
         ThemKhachHangMoiDailog.setSize(200, 100);
         ThemKhachHangMoiDailog.setTitle("Thêm khách hàng mới");
@@ -642,7 +639,6 @@ public class DonBaoDuongPanel extends javax.swing.JPanel {
         );
 
         jDialog_XacNhanLuuHoaDonThanhCong.setMinimumSize(new java.awt.Dimension(400, 200));
-        jDialog_XacNhanLuuHoaDonThanhCong.setPreferredSize(new java.awt.Dimension(400, 200));
         jDialog_XacNhanLuuHoaDonThanhCong.setLocationRelativeTo(null);
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -688,7 +684,7 @@ public class DonBaoDuongPanel extends javax.swing.JPanel {
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true), "Danh Sách Dịch Vụ Yêu Cầu", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14))); // NOI18N
 
         DanhSachDichVuBaoDuongTB.setBackground(new java.awt.Color(248, 245, 241));
-        DanhSachDichVuBaoDuongTB.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        DanhSachDichVuBaoDuongTB.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         DanhSachDichVuBaoDuongTB.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -698,7 +694,7 @@ public class DonBaoDuongPanel extends javax.swing.JPanel {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Long.class, java.lang.Long.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, true, false, true, true, false
@@ -722,7 +718,8 @@ public class DonBaoDuongPanel extends javax.swing.JPanel {
         jScrollPane1.setViewportView(DanhSachDichVuBaoDuongTB);
         DanhSachDichVuBaoDuongTB.setShowGrid(true);
         if (DanhSachDichVuBaoDuongTB.getColumnModel().getColumnCount() > 0) {
-            DanhSachDichVuBaoDuongTB.getColumnModel().getColumn(0).setPreferredWidth(5);
+            DanhSachDichVuBaoDuongTB.getColumnModel().getColumn(0).setMaxWidth(100);
+            DanhSachDichVuBaoDuongTB.getColumnModel().getColumn(1).setMinWidth(200);
             DanhSachDichVuBaoDuongTB.getColumnModel().getColumn(6).setMaxWidth(0);
         }
 
@@ -807,7 +804,7 @@ public class DonBaoDuongPanel extends javax.swing.JPanel {
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true), "Danh Sách Linh Kiện Thay Thế", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14))); // NOI18N
 
         DanhSachLinhKienThayTheTB.setBackground(new java.awt.Color(248, 245, 241));
-        DanhSachLinhKienThayTheTB.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        DanhSachLinhKienThayTheTB.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         DanhSachLinhKienThayTheTB.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -817,7 +814,7 @@ public class DonBaoDuongPanel extends javax.swing.JPanel {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Long.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, true, false, true, false
@@ -840,6 +837,8 @@ public class DonBaoDuongPanel extends javax.swing.JPanel {
         DanhSachLinhKienThayTheTB.getTableHeader().setReorderingAllowed(false);
         jScrollPane2.setViewportView(DanhSachLinhKienThayTheTB);
         if (DanhSachLinhKienThayTheTB.getColumnModel().getColumnCount() > 0) {
+            DanhSachLinhKienThayTheTB.getColumnModel().getColumn(0).setMaxWidth(100);
+            DanhSachLinhKienThayTheTB.getColumnModel().getColumn(1).setMinWidth(200);
             DanhSachLinhKienThayTheTB.getColumnModel().getColumn(5).setMaxWidth(0);
         }
 
@@ -1275,8 +1274,6 @@ public class DonBaoDuongPanel extends javax.swing.JPanel {
                 .addGap(6, 6, 6))
         );
 
-        jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
-
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -1284,21 +1281,18 @@ public class DonBaoDuongPanel extends javax.swing.JPanel {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(286, 286, 286)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel3Layout.createSequentialGroup()
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 359, Short.MAX_VALUE))
+                .addGap(0, 367, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1306,18 +1300,15 @@ public class DonBaoDuongPanel extends javax.swing.JPanel {
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(9, 9, 9)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 626, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(30, Short.MAX_VALUE))
+                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(9, 9, 9)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -1412,7 +1403,7 @@ public class DonBaoDuongPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void LuuDonBaoDuongBTMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LuuDonBaoDuongBTMouseExited
-        LuuDonBaoDuongBT.setBackground(new Color(204,204,255));
+        LuuDonBaoDuongBT.setBackground(new Color(204, 204, 255));
     }//GEN-LAST:event_LuuDonBaoDuongBTMouseExited
 
     private void LuuDonBaoDuongBTMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LuuDonBaoDuongBTMouseEntered
@@ -1476,7 +1467,7 @@ public class DonBaoDuongPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_SoDienThoaiTFActionPerformed
 
     private void HuyDonBaoDuongBTMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HuyDonBaoDuongBTMouseExited
-        HuyDonBaoDuongBT.setBackground(new Color(204,204,255));
+        HuyDonBaoDuongBT.setBackground(new Color(204, 204, 255));
     }//GEN-LAST:event_HuyDonBaoDuongBTMouseExited
 
     private void HuyDonBaoDuongBTMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HuyDonBaoDuongBTMouseEntered
@@ -1504,7 +1495,7 @@ public class DonBaoDuongPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_XuatDonBaoDuongBTMouseEntered
 
     private void XuatDonBaoDuongBTMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_XuatDonBaoDuongBTMouseExited
-        XuatDonBaoDuongBT.setBackground(new Color(204,204,255));
+        XuatDonBaoDuongBT.setBackground(new Color(204, 204, 255));
     }//GEN-LAST:event_XuatDonBaoDuongBTMouseExited
 
     private void XuatHoaDonButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_XuatHoaDonButtonActionPerformed
@@ -2071,8 +2062,6 @@ public class DonBaoDuongPanel extends javax.swing.JPanel {
         return DanhSachDichVuBaoDuongTB;
     }
 
-
-
     public void setDanhSachDichVuBaoDuongTB(JTable DanhSachDichVuBaoDuongTB) {
         this.DanhSachDichVuBaoDuongTB = DanhSachDichVuBaoDuongTB;
     }
@@ -2092,7 +2081,6 @@ public class DonBaoDuongPanel extends javax.swing.JPanel {
     public void setDanhSachLinhKienThayTheTB(JTable DanhSachLinhKienThayTheTB) {
         this.DanhSachLinhKienThayTheTB = DanhSachLinhKienThayTheTB;
     }
-
 
     public JTable getDanhSachLinhKienThayTheTB_ThemLinhKienThayTheDailog() {
         return DanhSachLinhKienThayTheTB_ThemLinhKienThayTheDailog;
@@ -2510,14 +2498,6 @@ public class DonBaoDuongPanel extends javax.swing.JPanel {
         this.jScrollPane6 = jScrollPane6;
     }
 
-    public JSeparator getjSeparator1() {
-        return jSeparator1;
-    }
-
-    public void setjSeparator1(JSeparator jSeparator1) {
-        this.jSeparator1 = jSeparator1;
-    }
-
     public JButton getjButton_QuayLayDanhSachDonBaoDuong() {
         return jButton_QuayLayDanhSachDonBaoDuong;
     }
@@ -2633,7 +2613,6 @@ public class DonBaoDuongPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
-    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTextField jTextField_DiaChiEmail;
     private javax.swing.JToolBar jToolBar1;
@@ -2642,7 +2621,7 @@ public class DonBaoDuongPanel extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
     private CardLayout cardLayoutContainer;
     private javax.swing.JPanel container;
-    
+
     private void initCustom() {
 
         SoLuongComboBox = new JComboBox<>();

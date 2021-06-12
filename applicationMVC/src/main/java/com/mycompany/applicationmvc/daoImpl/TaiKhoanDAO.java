@@ -18,7 +18,7 @@ public class TaiKhoanDAO extends AbstractDAO<TaiKhoanModel> implements ITaiKhoan
     
     @Override
     public TaiKhoanModel findOne(String tenTaiKhoan) {
-        String queryStr = "select tentaikhoan,matkhau,nv.ten,q.ten from TaiKhoan as tk"
+        String queryStr = "select tentaikhoan,matkhau,nv.ten as tennv,q.ten as tenquyen from TaiKhoan as tk"
                 + " join Quyen as q on q.id=tk.idQuyen and tk.tentaikhoan=?"
                 + " join NhanVien as nv on nv.id=tk.idNhanVien";
         List<TaiKhoanModel> listTaiKhoan = query(queryStr, new TaiKhoanMapper(), tenTaiKhoan);

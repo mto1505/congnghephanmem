@@ -6,7 +6,6 @@
 package com.mycompany.applicationmvc.view.DonBaoDuong;
 
 import java.awt.CardLayout;
-import java.awt.Container;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JDialog;
@@ -15,6 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableCellRenderer;
 
 /**
  *
@@ -186,20 +186,20 @@ public class DanhSachDonBaoDuongPanel extends javax.swing.JPanel {
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Danh sách các hóa đơn"));
 
-        jTable_DanhSachDonBaoDuong.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jTable_DanhSachDonBaoDuong.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jTable_DanhSachDonBaoDuong.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Mã hóa đơn", "Biển số xe", "Khách hàng", "Số điện thoại", "Tổng chi phí sửa chữa", "Trạng thái"
+                "Mã hóa đơn", "Biển số xe", "Khách hàng", "Số điện thoại", "Tổng chi phí sửa chữa", "Ngày hoàn thành", "Nhân viên"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Long.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Long.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -210,20 +210,21 @@ public class DanhSachDonBaoDuongPanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment( JLabel.CENTER );
+        jTable_DanhSachDonBaoDuong.setDefaultRenderer(String.class, centerRenderer);
         jTable_DanhSachDonBaoDuong.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jTable_DanhSachDonBaoDuong.setRowHeight(40);
+        jTable_DanhSachDonBaoDuong.setRowHeight(30);
+        jTable_DanhSachDonBaoDuong.setSelectionBackground(new java.awt.Color(153, 153, 255));
         jTable_DanhSachDonBaoDuong.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jTable_DanhSachDonBaoDuong.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jTable_DanhSachDonBaoDuong.setShowGrid(true);
+        jTable_DanhSachDonBaoDuong.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jTable_DanhSachDonBaoDuong);
         if (jTable_DanhSachDonBaoDuong.getColumnModel().getColumnCount() > 0) {
             jTable_DanhSachDonBaoDuong.getColumnModel().getColumn(0).setMinWidth(100);
             jTable_DanhSachDonBaoDuong.getColumnModel().getColumn(0).setPreferredWidth(100);
             jTable_DanhSachDonBaoDuong.getColumnModel().getColumn(0).setMaxWidth(100);
-            jTable_DanhSachDonBaoDuong.getColumnModel().getColumn(1).setResizable(false);
-            jTable_DanhSachDonBaoDuong.getColumnModel().getColumn(2).setResizable(false);
-            jTable_DanhSachDonBaoDuong.getColumnModel().getColumn(3).setResizable(false);
-            jTable_DanhSachDonBaoDuong.getColumnModel().getColumn(4).setResizable(false);
             jTable_DanhSachDonBaoDuong.getColumnModel().getColumn(5).setResizable(false);
         }
 

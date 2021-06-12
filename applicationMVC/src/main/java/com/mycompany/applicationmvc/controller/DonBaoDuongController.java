@@ -659,11 +659,17 @@ public class DonBaoDuongController {
                             tenKhachHang = xe.getKhachHang().getHoTen();
                             sdtKhachHang = xe.getKhachHang().getSoDienThoai();
                         }
-                        String t = "Đang sửa";
+                        String t = "Chưa xong";
                         if (d.getTrangThai().equalsIgnoreCase("1")) {
-                            t = "Đã sửa xong";
+                            t = Stringlib.dinhDangNgayHienThitu_yyyyMMdd_Thanh_ddMMyyyy(d.getNgayHoanThanh());
                         }
-                        dm.addRow(new Object[]{d.getId(), d.getBienSo(), tenKhachHang, sdtKhachHang, Stringlib.dinhDangTienHienThi(d.getTongTien()), t});
+                        NhanVienModel nv = nhanVienService.findOne(d.getIdNhanVienLapDon());
+                        if (nv == null) {
+                            nv = new NhanVienModel();
+                            nv.setTenNhanVien("Lỗi truy vấn");
+                        }
+                        
+                        dm.addRow(new Object[]{d.getId(), d.getBienSo(), tenKhachHang, sdtKhachHang, Stringlib.dinhDangTienHienThi(d.getTongTien()), t, nv.getTenNhanVien()});
                     }
                 }
             }
@@ -680,7 +686,7 @@ public class DonBaoDuongController {
                         @Override
                         public void run() {
                             String ngayTao = Stringlib.dinhDangNgayHienThitu_yyyyMMdd_Thanh_ddMMyyyy(LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE).toString());
-                            noiDungHoaDon = SendEmail.contextBillTemplate(donBaoDuongCurrent.getId()+"",ngayTao , noiDungDV, noiDungLK, noiDungTongcong);
+                            noiDungHoaDon = SendEmail.contextBillTemplate(donBaoDuongCurrent.getId() + "", ngayTao, noiDungDV, noiDungLK, noiDungTongcong);
                             SendEmail.send(noiDungHoaDon, email);
                             baoduongPanel.getjTextField_DiaChiEmail().setText("[Thành công]");
                         }
@@ -794,7 +800,7 @@ public class DonBaoDuongController {
         DefaultTableModel dtm = (DefaultTableModel) baoduongPanel.getDanhSachDichVuBaoDuongTB().getModel();
         Vector<Vector> dataDichVuBaoDuong = dtm.getDataVector();
         for (Vector data : dataDichVuBaoDuong) {
-            String idNV = layIDNhanVienLapDon()+"";
+            String idNV = layIDNhanVienLapDon() + "";
             if (data.get(5) != null) {
                 for (String str : data.get(5).toString().split("\\(")) {
                     idNV = str.substring(0, str.length() - 1);
@@ -1032,7 +1038,7 @@ public class DonBaoDuongController {
         noiDungLK = "";
         List<ChiTietThayTheLinhKienModel> ds = baoDuongService.layDanhSachChiTietThayTheLinhKien(id);
         for (ChiTietThayTheLinhKienModel c : ds) {
-            LinhKienModel lk = linhKienService.findOneByIdAndDate(c.getIdLinkKien(),c.getNgayNhapLinhKien(),false);
+            LinhKienModel lk = linhKienService.findOneByIdAndDate(c.getIdLinkKien(), c.getNgayNhapLinhKien(), false);
             if (lk != null) {
                 dm.addRow(new Object[]{lk.getId(),
                     lk.getTenLinhKien(),
@@ -1042,7 +1048,7 @@ public class DonBaoDuongController {
                     lk.getNgayNhapString()});
                 noiDungLK += SendEmail.createStringItem(lk.getTenLinhKien(), "(SL :" + c.getSoLuong() + ") " + lk.getGia());
             }
-            
+
         }
     }
 
@@ -1114,11 +1120,22 @@ public class DonBaoDuongController {
                 tenKhachHang = xe.getKhachHang().getHoTen();
                 sdtKhachHang = xe.getKhachHang().getSoDienThoai();
             }
-            String t = "Đang sửa";
-            if (d.getTrangThai().equalsIgnoreCase("1")) {
-                t = "Đã sửa xong";
+            String t = "Chưa xong";
+            if (d.getTrangThai().equalsIgnoreCase("1") && d.getNgayHoanThanh() != null) {
+                try {
+                    t = Stringlib.dinhDangNgayHienThitu_yyyyMMdd_Thanh_ddMMyyyy(d.getNgayHoanThanh());
+                } catch (Exception e) {
+                    t = "Lỗi hiển thị";
+                }
+                
             }
-            dm.addRow(new Object[]{d.getId(), d.getBienSo(), tenKhachHang, sdtKhachHang, Stringlib.dinhDangTienHienThi(d.getTongTien()), t});
+            NhanVienModel nv = nhanVienService.findOne(d.getIdNhanVienLapDon());
+            if (nv == null) {
+                nv = new NhanVienModel();
+                nv.setTenNhanVien("Lỗi truy vấn");
+            }
+            
+            dm.addRow(new Object[]{d.getId(), d.getBienSo(), tenKhachHang, sdtKhachHang, Stringlib.dinhDangTienHienThi(d.getTongTien()), t, nv.getTenNhanVien()});
         }
     }
 
