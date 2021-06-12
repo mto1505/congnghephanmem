@@ -23,11 +23,11 @@ public class DBConnectUtil {
     private static ThreadLocal<Connection> tl = new ThreadLocal<>();
     private static PropertiseUtil propertiesUtil = new PropertiseUtil();
 
-    private static String url = propertiesUtil.getValue("url", "jdbc:sqlserver://;databaseName=QuanLyBaoDuongMain1");
+    private static String url = propertiesUtil.getValue("url", ConfigReader.getStringDataBaseUrl());
     private static String driver = propertiesUtil.getValue("driver", "com.microsoft.sqlserver.jdbc.SQLServerDriver");
 
-    private static String username = propertiesUtil.getValue("username", "minhto");
-    private static String password = propertiesUtil.getValue("password", "minhto123");
+    private static String username = propertiesUtil.getValue("username", ConfigReader.getAdminUserDataBase());
+    private static String password = propertiesUtil.getValue("password", ConfigReader.getPassWordDataBase());
 
 
     static {
