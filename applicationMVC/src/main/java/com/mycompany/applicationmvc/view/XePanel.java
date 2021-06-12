@@ -124,13 +124,6 @@ public class XePanel extends javax.swing.JPanel {
         xoaXeBtn.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         xoaXeBtn.setText("Xoá");
         xoaXeBtn.setPreferredSize(new java.awt.Dimension(70, 35));
-        if(MenuFrame.taiKhoanModel.getQuyen()!="Quản Lý")
-        {
-            xoaXeBtn.setVisible(false);
-        }
-        else{
-            xoaXeBtn.setVisible(true);
-        }
 
         bienSoField.setBackground(new java.awt.Color(243, 243, 244));
         bienSoField.setText("86-C1 21565");
@@ -187,13 +180,6 @@ public class XePanel extends javax.swing.JPanel {
         suaXeBtn.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         suaXeBtn.setText("Sữa");
         suaXeBtn.setPreferredSize(new java.awt.Dimension(70, 35));
-        if(MenuFrame.taiKhoanModel.getQuyen()!="Quản Lý")
-        {
-            suaXeBtn.setVisible(false);
-        }
-        else{
-            suaXeBtn.setVisible(true);
-        }
         suaXeBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 suaXeBtnActionPerformed(evt);
@@ -429,13 +415,6 @@ public class XePanel extends javax.swing.JPanel {
         xoaLoaiXeBtn.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         xoaLoaiXeBtn.setText("Xoá");
         xoaLoaiXeBtn.setPreferredSize(new java.awt.Dimension(70, 35));
-        if(MenuFrame.taiKhoanModel.getQuyen()!="Quản Lý")
-        {
-            xoaLoaiXeBtn.setVisible(false);
-        }
-        else{
-            xoaLoaiXeBtn.setVisible(true);
-        }
 
         maLoaiXeField.setBackground(new java.awt.Color(243, 243, 244));
         maLoaiXeField.setBorder(javax.swing.BorderFactory.createCompoundBorder());
@@ -462,13 +441,6 @@ public class XePanel extends javax.swing.JPanel {
         suaLoaiXeBtn.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         suaLoaiXeBtn.setText("Sữa");
         suaLoaiXeBtn.setPreferredSize(new java.awt.Dimension(70, 35));
-        if(MenuFrame.taiKhoanModel.getQuyen()!="Quản Lý")
-        {
-            suaLoaiXeBtn.setVisible(false);
-        }
-        else{
-            suaLoaiXeBtn.setVisible(true);
-        }
 
         tableMaLoaiXe.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
