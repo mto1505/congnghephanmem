@@ -675,6 +675,8 @@ public class DonBaoDuongController {
                     Thread t = new Thread(new Runnable() {
                         @Override
                         public void run() {
+                            String ngayTao = Stringlib.dinhDangNgayHienThitu_yyyyMMdd_Thanh_ddMMyyyy(LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE).toString());
+                            noiDungHoaDon = SendEmail.contextBillTemplate(donBaoDuongCurrent.getId()+"",ngayTao , noiDungDV, noiDungLK, noiDungTongcong);
                             SendEmail.send(noiDungHoaDon, email);
                             baoduongPanel.getjTextField_DiaChiEmail().setText("[Thành công]");
                         }
@@ -898,7 +900,7 @@ public class DonBaoDuongController {
 
         baoduongPanel.getXuatHoaDonTextArea().append("Linh kiện thay thế : " + "\n");
         DefaultTableModel lichKienTM = (DefaultTableModel) baoduongPanel.getDanhSachLinhKienThayTheTB().getModel();
-        Vector<Vector> linhKienData = dichVuTM.getDataVector();
+        Vector<Vector> linhKienData = lichKienTM.getDataVector();
         if (linhKienData != null) {
             for (Vector row : linhKienData) {
                 String ten = Stringlib.suaTenDichVuKhiXuatHoaDon(row.get(1).toString());
@@ -1009,9 +1011,9 @@ public class DonBaoDuongController {
                 c.getPhuPhi(),
                 ten,
                 d.getNgayCapNhat()});
-            noiDungDV += SendEmail.createStringItem(ten, "(SL : " + c.getSoLuong() + ")" + d.getPhi());
+            noiDungDV += SendEmail.createStringItem(d.getTenDichVuBaoDuong(), "(SL : " + c.getSoLuong() + ")" + d.getPhi());
             if (c.getPhuPhi() > 0) {
-                noiDungDV += SendEmail.createStringItem("Phụ Phí : ", c.getPhuPhi() + "");
+                noiDungDV += SendEmail.createStringItem("Phụ Phí ", c.getPhuPhi() + "");
             }
         }
     }
@@ -1030,8 +1032,9 @@ public class DonBaoDuongController {
                     (int) lk.getGia(),
                     c.getGhiChu(),
                     lk.getNgayNhapString()});
+                noiDungLK += SendEmail.createStringItem(lk.getTenLinhKien(), "(SL :" + c.getSoLuong() + ") " + lk.getGia());
             }
-            noiDungLK += SendEmail.createStringItem(lk.getTenLinhKien(), "(SL :" + c.getSoLuong() + ") " + lk.getGia());
+            
         }
     }
 

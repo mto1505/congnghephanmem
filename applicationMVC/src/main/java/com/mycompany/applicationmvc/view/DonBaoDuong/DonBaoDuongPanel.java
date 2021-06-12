@@ -535,16 +535,24 @@ public class DonBaoDuongPanel extends javax.swing.JPanel {
         );
 
         XuatHoaDon.setLocation(new java.awt.Point(600, 200));
-        XuatHoaDon.setMinimumSize(new java.awt.Dimension(458, 601));
+        XuatHoaDon.setMinimumSize(new java.awt.Dimension(615, 700));
         XuatHoaDon.setModal(true);
+        XuatHoaDon.setPreferredSize(new java.awt.Dimension(615, 700));
 
+        XuatHoaDonTextArea.setEditable(false);
         XuatHoaDonTextArea.setColumns(20);
         XuatHoaDonTextArea.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         XuatHoaDonTextArea.setLineWrap(true);
         XuatHoaDonTextArea.setRows(5);
+        XuatHoaDonTextArea.setMinimumSize(new java.awt.Dimension(615, 400));
         jScrollPane6.setViewportView(XuatHoaDonTextArea);
 
         XuatHoaDonButton.setText("Hóa đơn mới");
+        XuatHoaDonButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                XuatHoaDonButtonActionPerformed(evt);
+            }
+        });
 
         jButton_GuiEmail.setText("Gửi hóa đơn");
 
@@ -554,33 +562,33 @@ public class DonBaoDuongPanel extends javax.swing.JPanel {
         XuatHoaDon.getContentPane().setLayout(XuatHoaDonLayout);
         XuatHoaDonLayout.setHorizontalGroup(
             XuatHoaDonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 458, Short.MAX_VALUE)
+            .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 615, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, XuatHoaDonLayout.createSequentialGroup()
-                .addGroup(XuatHoaDonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(XuatHoaDonLayout.createSequentialGroup()
-                        .addContainerGap(257, Short.MAX_VALUE)
-                        .addComponent(jButton_GuiEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(XuatHoaDonLayout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addComponent(XuatHoaDonButton, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(66, 66, 66)
+                .addComponent(XuatHoaDonButton, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(XuatHoaDonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, XuatHoaDonLayout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField_DiaChiEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(37, 37, 37))
+                        .addComponent(jTextField_DiaChiEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton_GuiEmail, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(75, 75, 75))
         );
         XuatHoaDonLayout.setVerticalGroup(
             XuatHoaDonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(XuatHoaDonLayout.createSequentialGroup()
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 520, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(XuatHoaDonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(XuatHoaDonButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField_DiaChiEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton_GuiEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(XuatHoaDonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(XuatHoaDonLayout.createSequentialGroup()
+                        .addGroup(XuatHoaDonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextField_DiaChiEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton_GuiEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(XuatHoaDonButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         XacNhanHuyHoaDon.setMinimumSize(new java.awt.Dimension(406, 153));
@@ -1497,6 +1505,10 @@ public class DonBaoDuongPanel extends javax.swing.JPanel {
     private void XuatDonBaoDuongBTMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_XuatDonBaoDuongBTMouseExited
         XuatDonBaoDuongBT.setBackground(new Color(204,204,255));
     }//GEN-LAST:event_XuatDonBaoDuongBTMouseExited
+
+    private void XuatHoaDonButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_XuatHoaDonButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_XuatHoaDonButtonActionPerformed
 
     public JDialog getThongBaoDialog() {
         return ThongBaoDialog;
