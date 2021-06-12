@@ -18,6 +18,7 @@ public interface IKhachHangService {
 	KhachHangModel save(KhachHangModel KhachHangModel);
 	KhachHangModel update(KhachHangModel updateModel);
 	void delete(int id);
+        void deleteStatus(int id);
 	List<KhachHangModel> findAll();
 	int getTotalItem();
 	KhachHangModel findOne(int id);

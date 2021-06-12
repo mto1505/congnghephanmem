@@ -6,18 +6,30 @@
 package com.mycompany.applicationmvc.view;
 
 import com.mycompany.applicationmvc.Utils.SessionUtil;
+import com.mycompany.applicationmvc.controller.LoginTask;
 import com.mycompany.applicationmvc.model.TaiKhoanModel;
 import com.mycompany.applicationmvc.serviceImpl.TaiKhoanService;
 import java.awt.BorderLayout;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.io.File;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.SwingWorker;
 
 /**
  *
  * @author MinhTo
  */
 public class SigninForm extends javax.swing.JFrame {
+
+    public static final String userURL = System.getProperty("user.dir").concat("\\src\\main\\resource\\img\\user_30px.png");
+    public static final String iconuserURL = new File(userURL).toString();
+    public static final String keyURL = System.getProperty("user.dir").concat("\\src\\main\\resource\\img\\key_30px.png");
+    public static final String iconkeyURL = new File(keyURL).toString();
+    public static final String loadingURL = System.getProperty("user.dir").concat("\\src\\main\\resource\\img\\Spin-1s-35px.gif");
+    public static final String iconLoadingURL = new File(loadingURL).toString();
 
     /**
      * Creates new form SignupForm
@@ -47,6 +59,8 @@ public class SigninForm extends javax.swing.JFrame {
         thoatBtn = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
+        labelLoading = new javax.swing.JLabel();
+        informationLoading = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -69,9 +83,10 @@ public class SigninForm extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setIcon(new javax.swing.ImageIcon("E:\\BT-JAVA-WEB\\applicationMVC\\src\\main\\resource\\img\\key_30px.png")); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(keyURL));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("E:\\BT-JAVA-WEB\\applicationMVC\\src\\main\\resource\\img\\user_30px.png")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(userURL)); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon("E:\\BT-JAVA-WEB\\congnghephanmem\\applicationMVC\\src\\main\\java\\com\\mycompany\\applicationmvc\\img\\user_30px.png"));
 
         thoatBtn.setText("Thoát");
         thoatBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -83,24 +98,48 @@ public class SigninForm extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jLabel3.setText("Đăng Nhập");
 
+        labelLoading.setBackground(new java.awt.Color(153, 153, 153));
+        labelLoading.setForeground(new java.awt.Color(153, 153, 153));
+        labelLoading.setIcon(new javax.swing.ImageIcon(iconLoadingURL));
+        labelLoading.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        labelLoading.setVisible(false);
+
+        informationLoading.setText("Đang  tải");
+        informationLoading.setVisible(false);
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(151, Short.MAX_VALUE)
                 .addComponent(jLabel3)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(152, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(labelLoading)
+                .addGap(18, 18, 18)
+                .addComponent(informationLoading, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
+                .addGap(10, 10, 10)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(informationLoading, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
+                    .addComponent(labelLoading, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(75, 75, 75)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -114,17 +153,14 @@ public class SigninForm extends javax.swing.JFrame {
                         .addComponent(thoatBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(userNameField, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
                     .addComponent(passWordField))
-                .addContainerGap(99, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(39, 39, 39)
+                .addGap(34, 34, 34)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(userNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
@@ -136,7 +172,7 @@ public class SigninForm extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(dangNhapBtn)
                     .addComponent(thoatBtn))
-                .addContainerGap(99, Short.MAX_VALUE))
+                .addContainerGap(100, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -169,24 +205,21 @@ public class SigninForm extends javax.swing.JFrame {
     }//GEN-LAST:event_passWordFieldActionPerformed
 
     private void dangNhapBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dangNhapBtnActionPerformed
-//        // TODO add your handling code here:
-//        String pass = passWordField.getText();
-//        String user = userNameField.getText();
-//        TaiKhoanService taiKhoanService = new TaiKhoanService();
-//        //lay ra ten tài khoan
-//        TaiKhoanModel model = new TaiKhoanModel();
-//        model = taiKhoanService.findOne(user);
-//
-//        if (model != null) {
-//            if (model.getMatKhau().equalsIgnoreCase(pass)) {
-//                SessionUtil.putValue(user, model);
-//                new MenuFrame(model).setVisible(true);
-//                setVisible(false);
-//            }
-//        }
-
-        new MenuFrame(new TaiKhoanModel("", "", "", "")).setVisible(true);
-        setVisible(false);
+        String pass = passWordField.getText();
+        String user = userNameField.getText();
+        labelLoading.setVisible(true);
+        informationLoading.setVisible(true);
+        informationLoading.setText("Đang tải");
+        LoginTask loginTask = new LoginTask(user, pass, this, informationLoading);
+        loginTask.addPropertyChangeListener(new PropertyChangeListener() {
+            @Override
+            public void propertyChange(PropertyChangeEvent evt) {
+                if (evt.getPropertyName().equals("state") && SwingWorker.StateValue.DONE == evt.getNewValue()) {
+                    labelLoading.setVisible(false);
+                }
+            }
+        });
+        loginTask.execute();
 
 //        JButton click = new JButton("click!");
 //          JTextField content = new JTextField (30);
@@ -258,11 +291,13 @@ public class SigninForm extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton dangNhapBtn;
+    private javax.swing.JLabel informationLoading;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel labelLoading;
     private javax.swing.JTextField passWordField;
     private javax.swing.JButton thoatBtn;
     private javax.swing.JTextField userNameField;

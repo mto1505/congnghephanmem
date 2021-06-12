@@ -14,7 +14,6 @@ com\mycompany\applicationmvc\viewAdmin\JPanel_TKLinhKien.class
 com\mycompany\applicationmvc\controller\DonBaoDuongController$29.class
 com\mycompany\applicationmvc\viewAdmin\ChangePass_JPanel$2.class
 com\mycompany\applicationmvc\controller\LinhKienController$14.class
-com\mycompany\applicationmvc\service\IPhuTungService.class
 com\mycompany\applicationmvc\mapper\NhaCungCapMapper.class
 com\mycompany\applicationmvc\view\DonBaoDuong\DonBaoDuongPanel$23.class
 com\mycompany\applicationmvc\controller\DonBaoDuongController$31.class
@@ -37,11 +36,8 @@ com\mycompany\applicationmvc\viewAdmin\JPanel_TaiKhoan$4.class
 com\mycompany\applicationmvc\viewAdmin\JPanel_NhanVien$8.class
 com\mycompany\applicationmvc\viewAdmin\JPanel_NhanVien$11.class
 com\mycompany\applicationmvc\viewAdmin\JPanel_TKDBD$8.class
-com\mycompany\applicationmvc\mapper\PhuTungMapper.class
 com\mycompany\applicationmvc\viewAdmin\JPanel_TKDBD$12.class
 com\mycompany\applicationmvc\serviceImpl\NhaCungCapService.class
-com\mycompany\applicationmvc\dao\IKhachHangDAO.class
-com\mycompany\applicationmvc\dao\IPhuTungDAO.class
 com\mycompany\applicationmvc\DTO\LinhKienDTO.class
 com\mycompany\applicationmvc\mapper\DonBaoDuongMapper.class
 com\mycompany\applicationmvc\viewAdmin\JPanel_NhanVien$2.class
@@ -54,6 +50,7 @@ com\mycompany\applicationmvc\controller\XeController$7.class
 com\mycompany\applicationmvc\controller\DonBaoDuongController$17.class
 com\mycompany\applicationmvc\view\MenuFrame$1.class
 com\mycompany\applicationmvc\view\HomePanel.class
+com\mycompany\applicationmvc\view\TestHome$9.class
 com\mycompany\applicationmvc\daoImpl\NhaCungCapDAO.class
 com\mycompany\applicationmvc\viewAdmin\ChangePass_JPanel$1.class
 com\mycompany\applicationmvc\dao\IDonBaoDuongDAO.class
@@ -62,7 +59,6 @@ com\mycompany\applicationmvc\view\LinhKienPanel$9.class
 com\mycompany\applicationmvc\controller\DonBaoDuongController.class
 com\mycompany\applicationmvc\controller\DonBaoDuongController$23.class
 com\mycompany\applicationmvc\viewAdmin\JPanel_TaiKhoan$5.class
-com\mycompany\applicationmvc\serviceImpl\PhuTungService.class
 com\mycompany\applicationmvc\view\TestHome$2.class
 com\mycompany\applicationmvc\viewAdmin\JPanel_TKDBD$2.class
 View\HomeJPanel.class
@@ -80,13 +76,15 @@ com\mycompany\applicationmvc\controller\LinhKienController$3.class
 com\mycompany\applicationmvc\viewAdmin\ViewAdmin$1.class
 com\mycompany\applicationmvc\view\DonBaoDuong\DonBaoDuongPanel$16.class
 com\mycompany\applicationmvc\viewAdmin\JPanel_NhanVien$3.class
+com\mycompany\applicationmvc\view\XePanel$10.class
 com\mycompany\applicationmvc\viewAdmin\JPanel_TKDBD$13.class
 com\mycompany\applicationmvc\controller\DonBaoDuongController$28.class
-com\mycompany\applicationmvc\dao\ILinhKienDAO.class
+com\mycompany\applicationmvc\view\TestHome$8.class
 com\mycompany\applicationmvc\view\XePanel$3.class
 com\mycompany\applicationmvc\viewAdmin\JPanel_NhanVien.class
 com\mycompany\applicationmvc\viewAdmin\JPanel_TKDBD$3.class
 com\mycompany\applicationmvc\service\IDonBaoDuongService.class
+com\mycompany\applicationmvc\view\SigninForm$6.class
 com\mycompany\applicationmvc\view\TestHome.class
 com\mycompany\applicationmvc\controller\KhachHangController$10.class
 com\mycompany\applicationmvc\service\ILoaiXeService.class
@@ -96,6 +94,7 @@ com\mycompany\applicationmvc\view\ChangePassWordDialog$1.class
 com\mycompany\applicationmvc\controller\DangNhapController.class
 com\mycompany\applicationmvc\serviceImpl\DichVuBaoDuongService.class
 com\mycompany\applicationmvc\mapper\RowMapper.class
+com\mycompany\applicationmvc\controller\XeController$12.class
 com\mycompany\applicationmvc\mapper\DichVuBaoDuongMapper.class
 com\mycompany\applicationmvc\Utils\TableNhaCungCapModel.class
 com\mycompany\applicationmvc\viewMain\MainThuNgan$1.class
@@ -113,7 +112,6 @@ com\mycompany\applicationmvc\view\DichVubaoDuongPanel$3.class
 com\mycompany\applicationmvc\daoImpl\XeDAO.class
 com\mycompany\applicationmvc\viewAdmin\JPanel_NhanVien$12.class
 com\mycompany\applicationmvc\viewAdmin\JPanel_TKDBD$4.class
-com\mycompany\applicationmvc\model\PhuTungModel.class
 com\mycompany\applicationmvc\view\MenuFrame$2.class
 com\mycompany\applicationmvc\view\SigninForm$4.class
 com\mycompany\applicationmvc\dao\INhaCungCapDAO.class
@@ -169,7 +167,6 @@ com\mycompany\applicationmvc\viewAdmin\JPanel_NhanVien$6.class
 com\mycompany\applicationmvc\controller\DanhSachPhuTungKiemTraController$1.class
 com\mycompany\applicationmvc\view\XePanel$6.class
 com\mycompany\applicationmvc\Bean\DanhMucBean.class
-com\mycompany\applicationmvc\daoImpl\KhachHangDAO.class
 com\mycompany\applicationmvc\controller\KhachHangController$4.class
 com\mycompany\applicationmvc\dao\ITaiKhoanDAO.class
 com\mycompany\applicationmvc\viewAdmin\JPanel_TaiKhoan$9.class
@@ -205,7 +202,6 @@ com\mycompany\applicationmvc\Utils\TableKhachHangModel.class
 com\mycompany\applicationmvc\controller\LinhKienController$17.class
 com\mycompany\applicationmvc\model\TaiKhoanModel.class
 com\mycompany\applicationmvc\view\DonBaoDuong\DonBaoDuongPanel$20.class
-com\mycompany\applicationmvc\Utils\TableLinhKienModel.class
 com\mycompany\applicationmvc\view\DonBaoDuong\DonBaoDuongPanel$4.class
 com\mycompany\applicationmvc\view\LinhKienPanel$7.class
 com\mycompany\applicationmvc\viewAdmin\JPanel_TaiKhoan$13.class
@@ -224,6 +220,7 @@ com\mycompany\applicationmvc\viewAdmin\JPanel_NhanVien$14.class
 com\mycompany\applicationmvc\viewAdmin\ModelAdmin.class
 com\mycompany\applicationmvc\controller\LinhKienController$11.class
 com\mycompany\applicationmvc\viewAdmin\JPanel_TaiKhoan$7.class
+com\mycompany\applicationmvc\controller\XeController$13.class
 com\mycompany\applicationmvc\view\XePanel$1.class
 com\mycompany\applicationmvc\controller\SwitchController$LabelEvent.class
 com\mycompany\applicationmvc\viewAdmin\JPanel_TKKhachHang$1.class
@@ -245,6 +242,7 @@ com\mycompany\applicationmvc\daoImpl\LinhKienDAO.class
 com\mycompany\applicationmvc\view\DanhSachPhuTungKiemTraPanel$2.class
 com\mycompany\applicationmvc\mapper\LinhKienMapper.class
 com\mycompany\applicationmvc\Utils\ValidationRegEx.class
+com\mycompany\applicationmvc\view\XePanel$11.class
 com\mycompany\applicationmvc\view\XePanel$2.class
 com\mycompany\applicationmvc\daoImpl\PersonDaoImpl.class
 com\mycompany\applicationmvc\view\DonBaoDuong\DonBaoDuongPanel$21.class
@@ -262,6 +260,7 @@ com\mycompany\applicationmvc\controller\DichVuBaoDuongController$2.class
 com\mycompany\applicationmvc\controller\DonBaoDuongController$8.class
 com\mycompany\applicationmvc\Utils\SessionUtil.class
 com\mycompany\applicationmvc\view\XePanel.class
+com\mycompany\applicationmvc\controller\XeController$14.class
 com\mycompany\applicationmvc\viewAdmin\JPanel_TKKhachHang$2.class
 com\mycompany\applicationmvc\controller\DonBaoDuongController$2.class
 com\mycompany\applicationmvc\view\LinhKienPanel$8.class
@@ -285,17 +284,20 @@ com\mycompany\applicationmvc\viewAdmin\ChangePass_JPanel$6.class
 com\mycompany\applicationmvc\viewAdmin\JPanel_TaiKhoan$3.class
 com\mycompany\applicationmvc\controller\KhachHangController$7.class
 com\mycompany\applicationmvc\view\DonBaoDuong\DonBaoDuongPanel$8.class
+com\mycompany\applicationmvc\controller\XeController$15.class
 com\mycompany\applicationmvc\view\MenuFrame$7.class
 com\mycompany\applicationmvc\viewAdmin\JPanel_NhanVien$1.class
 com\mycompany\applicationmvc\controller\DonBaoDuongController$6.class
 com\mycompany\applicationmvc\view\KhachHangPanel$9.class
 com\mycompany\applicationmvc\controller\KhachHangController$11.class
 com\mycompany\applicationmvc\view\DonBaoDuong\DonBaoDuongPanel.class
+com\mycompany\applicationmvc\view\TestHome$7.class
 com\mycompany\applicationmvc\view\DanhSachPhuTungKiemTraPanel$1.class
 com\mycompany\applicationmvc\controller\DonBaoDuongController$18.class
 com\mycompany\applicationmvc\controller\LinhKienController$8.class
 com\mycompany\applicationmvc\controller\DonBaoDuongController$3.class
 com\mycompany\applicationmvc\daoImpl\TaiKhoanDAO.class
+com\mycompany\applicationmvc\controller\LoginTask.class
 com\mycompany\applicationmvc\viewAdmin\JPanel_TaiKhoan$12.class
 com\mycompany\applicationmvc\dao\ILoaiXeDao.class
 com\mycompany\applicationmvc\view\DonBaoDuong\DonBaoDuongPanel$22.class
@@ -329,6 +331,7 @@ com\mycompany\applicationmvc\viewMain\MainThuNgan.class
 com\mycompany\applicationmvc\controller\KhachHangController$9.class
 com\mycompany\applicationmvc\viewAdmin\ChangePass_JPanel$4.class
 com\mycompany\applicationmvc\model\ChiTietDonBaoDuongModel.class
+com\mycompany\applicationmvc\controller\LinhKienController$19.class
 com\mycompany\applicationmvc\mapper\ChiTietThayTheLinhKienMapper.class
 com\mycompany\applicationmvc\viewAdmin\JPanel_TaiKhoan$10.class
 com\mycompany\applicationmvc\viewAdmin\JPanel_TaiKhoan$2.class

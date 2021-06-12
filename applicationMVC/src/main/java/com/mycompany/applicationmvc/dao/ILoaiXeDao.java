@@ -17,12 +17,13 @@ public interface ILoaiXeDao {
     
     LoaiXeModel findOne(int id);
    LoaiXeModel findOneByName(String tenloai);
-   
+   LoaiXeModel findOneByCode(int idMaLoaiXe);
    int save(LoaiXeModel xeModel);
 
     void update(LoaiXeModel updateNhanVien);
 
     void delete(int id);
+    void deleteStatus(int id);
 
     List<LoaiXeModel> findAll();
 

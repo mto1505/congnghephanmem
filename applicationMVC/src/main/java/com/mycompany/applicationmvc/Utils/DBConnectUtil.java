@@ -25,8 +25,8 @@ public class DBConnectUtil {
 
     private static String url = propertiesUtil.getValue("url", "jdbc:sqlserver://;databaseName=QuanLyBaoDuong");
     private static String driver = propertiesUtil.getValue("driver", "com.microsoft.sqlserver.jdbc.SQLServerDriver");
-    private static String username = propertiesUtil.getValue("username", "sa");
-    private static String password = propertiesUtil.getValue("password", "123");
+    private static String username = propertiesUtil.getValue("username", "minhto");
+    private static String password = propertiesUtil.getValue("password", "minhto123");
 
     static {
         try {

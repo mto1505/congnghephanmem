@@ -10,35 +10,47 @@ import com.mycompany.applicationmvc.daoImpl.LinhKienDAO;
 import com.mycompany.applicationmvc.model.LinhKienModel;
 import com.mycompany.applicationmvc.service.ILinhKienService;
 import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 
 /**
  *
  * @author MinhTo
  */
-public class LinhKienService implements ILinhKienService{
-    private ILinhKienDAO linhKienDAO=new LinhKienDAO();
+public class LinhKienService implements ILinhKienService {
+
+    private ILinhKienDAO linhKienDAO = new LinhKienDAO();
+
     @Override
     public LinhKienModel save(LinhKienModel linhKienModel) {
-        int id=linhKienDAO.insert(linhKienModel);
-        return  linhKienDAO.findOne(id);
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        linhKienModel.setNgayNhapString(formatter.format(linhKienModel.getNgayNhap()));
+        int id = linhKienDAO.insert(linhKienModel);
+        return linhKienDAO.findOne(id);
+
     }
 
     @Override
     public LinhKienModel update(LinhKienModel updateModel) {
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        updateModel.setNgayNhapString(formatter.format(updateModel.getNgayNhap()));
         linhKienDAO.update(updateModel);
         return linhKienDAO.findOne(updateModel.getId());
-                
+
     }
 
     @Override
     public void delete(int id) {
-       linhKienDAO.delete(id);
+        linhKienDAO.delete(id);
     }
 
     @Override
     public List<LinhKienModel> findAll() {
-       return  linhKienDAO.findAll();
+        return linhKienDAO.findAll();
     }
 
     @Override
@@ -48,7 +60,7 @@ public class LinhKienService implements ILinhKienService{
 
     @Override
     public LinhKienModel findOne(int id) {
-       return  linhKienDAO.findOne(id);
+        return linhKienDAO.findOne(id);
     }
 
     @Override
@@ -57,14 +69,32 @@ public class LinhKienService implements ILinhKienService{
     }
 
     @Override
-    public LinhKienModel findOneByNameAndMaNhaCungCap(String name, int maNCC,Date ngayNhap) {
-            return linhKienDAO.findOneByNameAndMaNhaCungCap(name, maNCC,ngayNhap);
+    public LinhKienModel findOneByNameAndMaNhaCungCap(String name, int maNCC, String ngayNhap) {
+        return linhKienDAO.findOneByNameAndMaNhaCungCap(name, maNCC, ngayNhap);
     }
 
     @Override
     public void deleteByIDNhaCungCap(int idNhaCungCap) {
         linhKienDAO.deleteByIDNhaCungCap(idNhaCungCap);
     }
-    
-    
+
+    @Override
+    public LinhKienModel save(LinhKienModel linhKienModel, boolean autoID) {
+         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        linhKienModel.setNgayNhapString(formatter.format(linhKienModel.getNgayNhap()));
+        int id = linhKienDAO.insert(linhKienModel,false);
+        return linhKienDAO.findOne(id);
+
+    }
+
+    @Override
+    public LinhKienModel findOneByIdAndDate(int id, String ngayNhap) {
+        return linhKienDAO.findOneByIdAndDate(id, ngayNhap);
+    }
+
+    @Override
+    public void deleteStatus(int id,String ngayNhap) {
+        linhKienDAO.deleteStatus(id,ngayNhap);
+    }
+
 }

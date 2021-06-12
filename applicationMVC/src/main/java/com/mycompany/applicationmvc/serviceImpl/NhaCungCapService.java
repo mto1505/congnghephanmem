@@ -65,5 +65,10 @@ public class NhaCungCapService implements  INhaCungCapService{
     public NhaCungCapModel findOneByNameAndSDT(String name, String sdt) {
        return nhaCungCapDAO.findOneByNameAndSDT(name, sdt);
     }
+
+    @Override
+    public void deleteStatus(int id) {
+        nhaCungCapDAO.deleteStatus(id);
+    }
     
 }

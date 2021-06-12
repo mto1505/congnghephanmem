@@ -20,15 +20,22 @@ public interface ILinhKienDAO extends GenericDAO<LinhKienModel> {
     void delete(int id);
 
     void deleteByIDNhaCungCap(int idNhaCungCap);
-
+    
+    
+      void deleteStatus(int id,String ngayNhap);
+      
     int insert(LinhKienModel linhKien);
+
+    int insert(LinhKienModel linhKien, boolean autoId);
 
     List<LinhKienModel> findAll();
 
     LinhKienModel findOne(int id);
+    
+    LinhKienModel findOneByIdAndDate(int id,String date);
 
     LinhKienModel findOneByName(String ten);
 
-    LinhKienModel findOneByNameAndMaNhaCungCap(String name, int maNCC, Date ngayNhap);
+    LinhKienModel findOneByNameAndMaNhaCungCap(String name, int maNCC, String date);
 
 }

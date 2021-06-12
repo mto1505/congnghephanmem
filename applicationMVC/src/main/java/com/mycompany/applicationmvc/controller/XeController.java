@@ -30,6 +30,8 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
+import java.text.ParseException;
 import java.util.List;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
@@ -59,8 +61,10 @@ import javax.swing.table.TableRowSorter;
  */
 public class XeController {
 
-    public static final String iconErrorURL = "C:\\Users\\MinhTo\\Documents\\GitHub\\congnghephanmem\\applicationMVC\\src\\main\\resource\\img\\error_30px.png";
-    public static final String iconImportantURL = "C:\\Users\\MinhTo\\Documents\\GitHub\\congnghephanmem\\applicationMVC\\src\\main\\resource\\img\\high_priority_30px.png";
+    public static final String errorURL = System.getProperty("user.dir").concat("\\src\\main\\resource\\img\\error_30px.png");
+    public static final String iconErrorURL = new File(errorURL).toString();
+    public static final String ImportantURL = System.getProperty("user.dir").concat("\\src\\main\\resource\\img\\high_priority_30px.png");
+    public static final String iconImportantURL = new File(ImportantURL).toString();
     private javax.swing.JTextField bienSoField;
     private javax.swing.JLabel chuSoHuu;
     private javax.swing.JTextField chuSoHuuField;
@@ -69,6 +73,7 @@ public class XeController {
     private javax.swing.JLabel errorLoaiXe;
     private javax.swing.JLabel errorSoDienThoai;
     private javax.swing.JLabel errorTenXe;
+    private javax.swing.JLabel errorTenLoaiXe;
 
     private javax.swing.JLabel lbHoTen;
     private javax.swing.JLabel lbMaKhachHang;
@@ -303,7 +308,7 @@ public class XeController {
         this.themXeBtn = themXeBtn;
     }
 
-    public XeController(JTextField bienSoField, JLabel chuSoHuu, JTextField chuSoHuuField, JLabel errorBienSo, JLabel errorChuSoHuu, JLabel errorLoaiXe, JLabel errorSoDienThoai, JLabel errorTenXe, JLabel lbHoTen, JLabel lbMaKhachHang, JLabel loaiXe, JComboBox<String> loaiXeCombobox, JLabel maLoaiXe, JTextField maLoaiXeField, JLabel soDienThoai, JTextField soDienThoaiField, JButton suaLoaiXeBtn, JButton suaXeBtn, JTable tableMaLoaiXe, JLabel tenLoaiXe, JTextField tenLoaiXeField, JTextField tenXeMayField, JButton themLoaiXeBtn, JButton themXeBtn, JTextField timKiemXeField, JLabel timKiemXeLbl, JTable xeMayTable, JButton xoaLoaiXeBtn, JButton xoaXeBtn, JRadioButton radioNam, JRadioButton radioNu, JPanel jpanel) {
+    public XeController(JTextField bienSoField, JLabel chuSoHuu, JTextField chuSoHuuField, JLabel errorBienSo, JLabel errorChuSoHuu, JLabel errorLoaiXe, JLabel errorSoDienThoai, JLabel errorTenXe, JLabel errorTenLoaiXe, JLabel lbHoTen, JLabel lbMaKhachHang, JLabel loaiXe, JComboBox<String> loaiXeCombobox, JLabel maLoaiXe, JTextField maLoaiXeField, JLabel soDienThoai, JTextField soDienThoaiField, JButton suaLoaiXeBtn, JButton suaXeBtn, JTable tableMaLoaiXe, JLabel tenLoaiXe, JTextField tenLoaiXeField, JTextField tenXeMayField, JButton themLoaiXeBtn, JButton themXeBtn, JTextField timKiemXeField, JLabel timKiemXeLbl, JTable xeMayTable, JButton xoaLoaiXeBtn, JButton xoaXeBtn, JRadioButton radioNam, JRadioButton radioNu, JPanel jpanel) {
         this.bienSoField = bienSoField;
         this.chuSoHuu = chuSoHuu;
         this.chuSoHuuField = chuSoHuuField;
@@ -312,6 +317,7 @@ public class XeController {
         this.errorLoaiXe = errorLoaiXe;
         this.errorSoDienThoai = errorSoDienThoai;
         this.errorTenXe = errorTenXe;
+        this.errorTenLoaiXe = errorTenLoaiXe;
         this.lbHoTen = lbHoTen;
         this.lbMaKhachHang = lbMaKhachHang;
         this.loaiXe = loaiXe;
@@ -342,24 +348,25 @@ public class XeController {
 
 //   tableModelCustom = new TableXeModel();
 //        tableLoaiXeCustom = new TableLoaiXeModel();
-    public void setView(XeModel xe, List<LoaiXeModel> listLoaiXeCombobox) {
+    public void setView(XeModel xe) {
         this.errorTenXe.setVisible(false);
         this.errorBienSo.setVisible(false);
         this.errorChuSoHuu.setVisible(false);
         this.errorSoDienThoai.setVisible(false);
         this.errorLoaiXe.setVisible(false);
-        
-        this.getBienSoField().setText(xe.getBienSo());
-        this.getTenXeMayField().setText(xe.getTenXe());
-        this.getChuSoHuuField().setText(xe.getKhachHang().getHoTen());
-        this.getSoDienThoaiField().setText(xe.getKhachHang().getSoDienThoai());
-        this.getLoaiXeCombobox().setModel(new DefaultComboBoxModel<String>()); //thêm dữ liệu cho combobox
+        this.errorTenLoaiXe.setVisible(false);
 
-        for (LoaiXeModel loaiXeModel : listLoaiXeCombobox) {
-            this.getLoaiXeCombobox().addItem(loaiXeModel.getTenLoaiXe());
+        bienSoField.setText(xe.getBienSo());
+        tenXeMayField.setText(xe.getTenXe());
+        chuSoHuuField.setText(xe.getKhachHang().getHoTen());
+        soDienThoaiField.setText(xe.getKhachHang().getSoDienThoai());
+    
+
+        if (xe.getLoaixe() == null) {
+           loaiXeCombobox.setSelectedItem("Loại xe không tồn tại");
+        } else {
+            loaiXeCombobox.setSelectedItem(xe.getLoaixe().getTenLoaiXe());
         }
-        this.getLoaiXeCombobox().setSelectedItem(xe.getLoaixe().getTenLoaiXe());
-
         if (xe.getKhachHang().getGioiTinh().equals("Nam")) {
             radioNam.setSelected(true);
         } else {
@@ -380,8 +387,17 @@ public class XeController {
     }
 
     public void setDataToTableModel() {
+       // them du lieu combobox Loai Xe 
+       List<LoaiXeModel> listLoaiXeCombobox=loaiXeService.findAll();
+       loaiXeCombobox.removeAllItems();
+         for (LoaiXeModel loaiXeModel : listLoaiXeCombobox) {
+          loaiXeCombobox.addItem(loaiXeModel.getTenLoaiXe());
+        }
+         
+         
         DefaultTableModel modelTable = (DefaultTableModel) xeMayTable.getModel();
         modelTable.setRowCount(0);
+        
         //Data Xe may
         List<XeModel> listXe = xeSevice.findAllMultiTable();
         modelTable = tableModelCustom.setTableData(listXe, modelTable);
@@ -434,11 +450,11 @@ public class XeController {
 
                 xe.setBienSo(xeMayTable.getValueAt(rowSelected, 0).toString());
                 xe.setTenXe(xeMayTable.getValueAt(rowSelected, 1).toString());
-                xe.getLoaixe().setTenLoaiXe(xeMayTable.getValueAt(rowSelected, 2).toString());
+                xe.setLoaixe(loaiXeService.findOneByName(xeMayTable.getValueAt(rowSelected, 2).toString()));
                 xe.getKhachHang().setHoTen(xeMayTable.getValueAt(rowSelected, 3).toString());
                 xe.getKhachHang().setSoDienThoai(xeMayTable.getValueAt(rowSelected, 4).toString());
                 xe.getKhachHang().setGioiTinh(xeMayTable.getValueAt(rowSelected, 5).toString());
-                setView(xe, loaiXeService.findAll());
+                setView(xe);
 
             }
 
@@ -460,11 +476,13 @@ public class XeController {
     }
 
     public void setEvent() {
+        //sự kiện Xe
         this.errorTenXe.setVisible(false);
         this.errorBienSo.setVisible(false);
         this.errorChuSoHuu.setVisible(false);
         this.errorSoDienThoai.setVisible(false);
         this.errorLoaiXe.setVisible(false);
+        this.errorTenLoaiXe.setVisible(false);
         themXeBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -522,7 +540,16 @@ public class XeController {
                         JOptionPane.showOptionDialog(jpanel, "Vui lòng điền đầy đủ thông tin", "Infomation", JOptionPane.OK_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
                     } else {
                         //kiem tra dinh dang
-                        //kiem tra so dien thoai
+                        if (loaiXeService.findOneByName(loaiXeCombobox.getSelectedItem().toString())==null) {
+                            
+                            ImageIcon img = new ImageIcon(iconErrorURL);
+                           
+                            errorLoaiXe.setIcon(img);
+                            errorLoaiXe.setToolTipText("Loại xe không tồn tại");                   
+                            errorLoaiXe.setVisible(true);
+                            isInvalidFomat = true;
+                        }
+                        // so dien thoai
                         if (!ValidationRegEx.validationSDT(soDienThoaiField.getText())) {
                             ImageIcon imgError = new ImageIcon(iconErrorURL);
                             //errorChuSoHuu.setText("");
@@ -532,15 +559,25 @@ public class XeController {
                             errorSoDienThoai.setVisible(true);
                             isInvalidFomat = true;
                         }
-                        //kiem tra dinh dang ten
-                        if (!ValidationRegEx.validationTextRegex(tenXeMayField.getText())) {
+                        //kiem tra dinh dang ten xe
+                        if (!ValidationRegEx.validationTextAndNumRegex(tenXeMayField.getText())) {
                             ImageIcon imgError = new ImageIcon(iconErrorURL);
-                            //errorChuSoHuu.setText("");
+
                             errorTenXe.setIcon(imgError);
                             errorTenXe.revalidate();
                             errorTenXe.repaint();
                             errorTenXe.setVisible(true);
+                            System.out.println("Sai định dạng(Giữa 2 từ chỉ có 1 khoảng trắng và không chứa các kí tự đặc biệt");
+                            errorTenXe.setToolTipText("* Sai định dạng(Giữa 2 từ chỉ có 1 khoảng trắng và không chứa các kí tự đặc biệt)");
                             isInvalidFomat = true;
+                        } else if (ValidationRegEx.validationTextAndNumRegex(tenXeMayField.getText())) {
+                            if (tenXeMayField.getText().length() > 50) {
+                                System.out.println("* Tên quá dài(lon hon 50 ki tu) vui lòng nhập lại");
+                                errorTenXe.setToolTipText("* Tên quá dài(lon hon 50 ki tu) vui lòng nhập lại");
+                                errorTenXe.setVisible(true);
+                                isInvalidFomat = true;
+                            }
+
                         }
 
                         //kiem tra dinh dang chu so huu
@@ -550,9 +587,22 @@ public class XeController {
                             errorChuSoHuu.setIcon(imgError);
                             errorChuSoHuu.revalidate();
                             errorChuSoHuu.repaint();
+
+                            errorChuSoHuu.setToolTipText("* Sai định dạng(Giữa 2 từ chỉ có 1 khoảng trắng và chỉ chưa các chữ cái");
                             errorChuSoHuu.setVisible(true);
+                            System.out.println("Sai định dạng(Giữa 2 từ chỉ có 1 khoảng trắng và chỉ chưa các chữ cái");
                             isInvalidFomat = true;
+                        } else if (ValidationRegEx.validationTextRegex(chuSoHuuField.getText())) {
+                            if (chuSoHuuField.getText().length() >= 25) {
+                                System.out.println("* Tên quá dài(lon hon 25 ki tu) vui lòng nhập lại");
+                                errorChuSoHuu.setToolTipText("* Tên quá dài(lon hon 25 ki tu) vui lòng nhập lại");
+                                ImageIcon imgError = new ImageIcon(iconErrorURL);
+                                //errorChuSoHuu.setText("");
+                                errorChuSoHuu.setIcon(imgError);
+                                errorChuSoHuu.setVisible(true);
+                            }
                         }
+
                         //kiem tra dinh dang BIEN SO
                         if (!ValidationRegEx.validationBienSo(bienSoField.getText())) {
                             ImageIcon imgError = new ImageIcon(iconErrorURL);
@@ -599,7 +649,7 @@ public class XeController {
                         khachHang = khachHangService.findOneByNameAndSDT(chuSoHuu, soDienThoai);
 
                         if (khachHang == null) {
-                            JOptionPane.showMessageDialog(jpanel, "Khách hàng không tồn tại ", "Not Found", 0);
+                            // JOptionPane.showMessageDialog(jpanel, "Khách hàng không tồn tại ", "Not Found", 0);
                             //them khach hang
                             khachHang = new KhachHangModel();
                             khachHang.setHoTen(chuSoHuu);
@@ -659,15 +709,25 @@ public class XeController {
                     themXeBtn.setText("Thêm");
                     bienSoField.setEnabled(true);
                     radioNam.setEnabled(true);
+
                     radioNu.setEnabled(true);
+                    errorTenXe.setVisible(false);
+                    errorBienSo.setVisible(false);
+                    errorChuSoHuu.setVisible(false);
+                    errorSoDienThoai.setVisible(false);
+                    errorLoaiXe.setVisible(false);
+                    errorTenLoaiXe.setVisible(false);
 
                 }
             }
 
-        });
-        suaXeBtn.addActionListener(new ActionListener() {
+        }
+        );
+        suaXeBtn.addActionListener(
+                new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e
+            ) {
                 //kiểm tra thông tin rỗng 
                 boolean isEmpty = false;
                 boolean isInvalidFomat = false;
@@ -721,6 +781,16 @@ public class XeController {
                     JOptionPane.showOptionDialog(jpanel, "Vui lòng điền đầy đủ thông tin", "Infomation", JOptionPane.OK_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
                 } else {
                     //kiem tra dinh dang
+                     if (loaiXeCombobox.getSelectedIndex()== -1) {
+                          
+                            ImageIcon img = new ImageIcon(iconErrorURL);
+                            
+                            errorLoaiXe.setIcon(img);
+                            errorLoaiXe.setToolTipText("Loại xe không tồn tại");
+                            
+                            errorLoaiXe.setVisible(true);
+                            isInvalidFomat = true;
+                        }
                     //kiem tra so dien thoai
                     if (!ValidationRegEx.validationSDT(soDienThoaiField.getText())) {
                         ImageIcon imgError = new ImageIcon(iconErrorURL);
@@ -731,15 +801,25 @@ public class XeController {
                         errorSoDienThoai.setVisible(true);
                         isInvalidFomat = true;
                     }
-                    //kiem tra dinh dang ten
-                    if (!ValidationRegEx.validationTextRegex(tenXeMayField.getText())) {
+                    //kiem tra dinh dang ten xe
+                    if (!ValidationRegEx.validationTextAndNumRegex(tenXeMayField.getText())) {
                         ImageIcon imgError = new ImageIcon(iconErrorURL);
                         //errorChuSoHuu.setText("");
                         errorTenXe.setIcon(imgError);
                         errorTenXe.revalidate();
                         errorTenXe.repaint();
                         errorTenXe.setVisible(true);
+                        System.out.println("Sai định dạng(Giữa 2 từ chỉ có 1 khoảng trắng và không chứa các kí tự đặc biệt");
+                        errorTenXe.setToolTipText("* Sai định dạng(Giữa 2 từ chỉ có 1 khoảng trắng và không chứa các kí tự đặc biệt)");
                         isInvalidFomat = true;
+                    } else if (ValidationRegEx.validationTextAndNumRegex(tenXeMayField.getText())) {
+                        if (tenXeMayField.getText().length() > 50) {
+                            System.out.println("* Tên quá dài(lon hon 50 ki tu) vui lòng nhập lại");
+                            errorTenXe.setToolTipText("* Tên quá dài(lon hon 50 ki tu) vui lòng nhập lại");
+                            errorTenXe.setVisible(true);
+                            isInvalidFomat = true;
+                        }
+
                     }
 
                     //kiem tra dinh dang chu so huu
@@ -749,9 +829,19 @@ public class XeController {
                         errorChuSoHuu.setIcon(imgError);
                         errorChuSoHuu.revalidate();
                         errorChuSoHuu.repaint();
+
+                        errorChuSoHuu.setToolTipText("* Sai định dạng(Giữa 2 từ chỉ có 1 khoảng trắng và chỉ chưa các chữ cái");
                         errorChuSoHuu.setVisible(true);
+                        System.out.println("Sai định dạng(Giữa 2 từ chỉ có 1 khoảng trắng và chỉ chưa các chữ cái");
                         isInvalidFomat = true;
+                    } else if (ValidationRegEx.validationTextRegex(chuSoHuuField.getText())) {
+                        if (chuSoHuuField.getText().length() >= 25) {
+                            System.out.println("* Tên quá dài(lon hon 25 ki tu) vui lòng nhập lại");
+                            errorChuSoHuu.setToolTipText("* Tên quá dài(lon hon 25 ki tu) vui lòng nhập lại");
+                            errorChuSoHuu.setVisible(true);
+                        }
                     }
+
                     //kiem tra dinh dang BIEN SO
                     if (!ValidationRegEx.validationBienSo(bienSoField.getText())) {
                         ImageIcon imgError = new ImageIcon(iconErrorURL);
@@ -841,10 +931,13 @@ public class XeController {
 
             }
 
-        });
-        xoaXeBtn.addActionListener(new ActionListener() {
+        }
+        );
+        xoaXeBtn.addActionListener(
+                new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e
+            ) {
                 //kiem tra thong tin xe can xoa
                 String bienSo = bienSoField.getText();
                 if (bienSo.isEmpty()) {
@@ -855,11 +948,14 @@ public class XeController {
                     JOptionPane.showMessageDialog(jpanel, "Xoá thành công", "Xoá", 0);
                 }
             }
-        });
+        }
+        );
         //kiem tra bien so
-        bienSoField.addFocusListener(new FocusAdapter() {
+        bienSoField.addFocusListener(
+                new FocusAdapter() {
             @Override
-            public void focusLost(FocusEvent e) {
+            public void focusLost(FocusEvent e
+            ) {
                 if (bienSoField.getText().isEmpty()) {    //FIELD EMPTY
                     ImageIcon img = new ImageIcon(iconImportantURL);
                     //  errorBienSo.setText("");
@@ -886,14 +982,18 @@ public class XeController {
             }
 
             @Override
-            public void focusGained(FocusEvent e) {
+            public void focusGained(FocusEvent e
+            ) {
                 errorBienSo.setVisible(false);
             }
-        });
+        }
+        );
         // kiem tra ten xe
-        tenXeMayField.addFocusListener(new FocusAdapter() {
+        tenXeMayField.addFocusListener(
+                new FocusAdapter() {
             @Override
-            public void focusLost(FocusEvent e) {
+            public void focusLost(FocusEvent e
+            ) {
                 if (tenXeMayField.getText().isEmpty()) {    //FIELD EMPTY
                     ImageIcon imgImportane = new ImageIcon(iconImportantURL);
                     //  errorBienSo.setText("");
@@ -918,13 +1018,18 @@ public class XeController {
             }
 
             @Override
-            public void focusGained(FocusEvent e) {
+            public void focusGained(FocusEvent e
+            ) {
                 errorTenXe.setVisible(false);
+                errorTenXe.setToolTipText(null);
             }
-        });
-        chuSoHuuField.addFocusListener(new FocusAdapter() {
+        }
+        );
+        chuSoHuuField.addFocusListener(
+                new FocusAdapter() {
             @Override
-            public void focusLost(FocusEvent e) {
+            public void focusLost(FocusEvent e
+            ) {
                 if (chuSoHuuField.getText().isEmpty()) {    //FIELD EMPTY
                     ImageIcon imgImportane = new ImageIcon(iconImportantURL);
                     //  errorBienSo.setText("");
@@ -949,13 +1054,18 @@ public class XeController {
             }
 
             @Override
-            public void focusGained(FocusEvent e) {
+            public void focusGained(FocusEvent e
+            ) {
                 errorChuSoHuu.setVisible(false);
+                errorChuSoHuu.setToolTipText(null);
             }
-        });
-        soDienThoaiField.addFocusListener(new FocusAdapter() {
+        }
+        );
+        soDienThoaiField.addFocusListener(
+                new FocusAdapter() {
             @Override
-            public void focusLost(FocusEvent e) {
+            public void focusLost(FocusEvent e
+            ) {
                 if (soDienThoaiField.getText().isEmpty()) {    //FIELD EMPTY
                     ImageIcon imgImportane = new ImageIcon(iconImportantURL);
                     //  errorBienSo.setText("");
@@ -980,14 +1090,18 @@ public class XeController {
             }
 
             @Override
-            public void focusGained(FocusEvent e) {
+            public void focusGained(FocusEvent e
+            ) {
                 errorSoDienThoai.setVisible(false);
             }
-        });
+        }
+        );
 
-        loaiXeCombobox.addFocusListener(new FocusAdapter() {
+        loaiXeCombobox.addFocusListener(
+                new FocusAdapter() {
             @Override
-            public void focusLost(FocusEvent e) {
+            public void focusLost(FocusEvent e
+            ) {
                 if (loaiXeCombobox.getSelectedItem() == null) {    //FIELD EMPTY
                     ImageIcon imgImportane = new ImageIcon(iconImportantURL);
                     //  errorBienSo.setText("");
@@ -1012,11 +1126,197 @@ public class XeController {
             }
 
             @Override
-            public void focusGained(FocusEvent e) {
+            public void focusGained(FocusEvent e
+            ) {
                 errorLoaiXe.setVisible(false);
             }
-        });
+        }
+        );
 
+        // Sự kiện loại xe
+        themLoaiXeBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                boolean isEmpty = false;
+                boolean isInvalidFomat = false;
+                if (tenLoaiXeField.getText().isEmpty()) {
+                    isEmpty = true;
+                    ImageIcon img = new ImageIcon(iconImportantURL);
+                    //  errorBienSo.setText("");
+                    errorTenLoaiXe.setIcon(img);
+                    errorTenLoaiXe.revalidate();
+                    errorTenLoaiXe.repaint();
+                    errorTenLoaiXe.setVisible(true);
+                } else {
+                    if (!ValidationRegEx.validationTextRegex(tenLoaiXeField.getText())) {
+                        ImageIcon imgError = new ImageIcon(iconErrorURL);
+
+                        errorTenLoaiXe.setIcon(imgError);
+                        errorTenLoaiXe.revalidate();
+                        errorTenLoaiXe.repaint();
+                        errorTenLoaiXe.setVisible(true);
+                        System.out.println("Sai định dạng(Giữa 2 từ chỉ có 1 khoảng trắng và không chứa các kí tự đặc biệt");
+                        errorTenLoaiXe.setToolTipText("* Sai định dạng(Giữa 2 từ chỉ có 1 khoảng trắng và không chứa các kí tự đặc biệt)");
+                        isInvalidFomat = true;
+                    } else if (ValidationRegEx.validationTextRegex(tenLoaiXeField.getText())) {
+                        if (tenLoaiXeField.getText().length() > 50) {
+                            System.out.println("* Tên quá dài(lon hon 50 ki tu) vui lòng nhập lại");
+                            errorTenLoaiXe.setToolTipText("* Tên quá dài(lon hon 50 ki tu) vui lòng nhập lại");
+                            errorTenLoaiXe.setVisible(true);
+                            isInvalidFomat = true;
+                        }
+
+                    }
+                }
+
+                if (isEmpty == false && isInvalidFomat == false) {
+                    String loaiXe = tenLoaiXeField.getText();
+                    LoaiXeModel loaiXeModel = new LoaiXeModel();
+
+                    loaiXeModel = loaiXeService.findOneByName(loaiXe);
+
+                    if (loaiXeModel == null) {
+                        loaiXeModel = new LoaiXeModel();
+                        loaiXeModel.setTenLoaiXe(loaiXe);
+                        loaiXeModel = loaiXeService.save(loaiXeModel);
+                        if (loaiXeModel != null) {
+                            JOptionPane.showMessageDialog(jpanel, "Thêm loại xe thành công", "Đồng ý", 0);
+                        } else {
+                            JOptionPane.showMessageDialog(jpanel, "Thêm loại xe thất bại", "Đồng ý", 0);
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(jpanel, "Thêm loại xe thất bại", "Đồng ý", 0);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(jpanel, "Thêm loại xe thất bại", "Đồng ý", 0);
+                }
+            }
+        });
+        suaLoaiXeBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                boolean isEmpty = false;
+                boolean isInvalidFomat = false;
+                if (tenLoaiXeField.getText().isEmpty()) {
+                    isEmpty = true;
+                    ImageIcon img = new ImageIcon(iconImportantURL);
+                    //  errorBienSo.setText("");
+                    errorTenLoaiXe.setIcon(img);
+                    errorTenLoaiXe.revalidate();
+                    errorTenLoaiXe.repaint();
+                    errorTenLoaiXe.setVisible(true);
+                } else {
+                    if (!ValidationRegEx.validationTextRegex(tenLoaiXeField.getText())) {
+                        ImageIcon imgError = new ImageIcon(iconErrorURL);
+                        errorTenLoaiXe.setIcon(imgError);
+                        errorTenLoaiXe.revalidate();
+                        errorTenLoaiXe.repaint();
+                        errorTenLoaiXe.setVisible(true);
+                        System.out.println("Sai định dạng(Giữa 2 từ chỉ có 1 khoảng trắng và không chứa các kí tự đặc biệt");
+                        errorTenLoaiXe.setToolTipText("* Sai định dạng(Giữa 2 từ chỉ có 1 khoảng trắng và không chứa các kí tự đặc biệt)");
+                        isInvalidFomat = true;
+                    } else if (ValidationRegEx.validationTextRegex(tenLoaiXeField.getText())) {
+                        if (tenLoaiXeField.getText().length() > 50) {
+                            System.out.println("* Tên quá dài(lon hon 50 ki tu) vui lòng nhập lại");
+                            errorTenLoaiXe.setToolTipText("* Tên quá dài(lon hon 50 ki tu) vui lòng nhập lại");
+                            errorTenLoaiXe.setVisible(true);
+                            isInvalidFomat = true;
+                        }
+                    }
+                }
+                //thực hiện sửa loại xe 
+                if (isEmpty == false && isInvalidFomat == false) {
+                    //lấy ra id loại xe
+                    String idLoaiXe = maLoaiXeField.getText();
+                    try {
+                        int idLoaiXeInt = Integer.parseInt(idLoaiXe);
+                        String loaiXe = tenLoaiXeField.getText();
+                        LoaiXeModel loaiXeModel = new LoaiXeModel();
+                        loaiXeModel = loaiXeService.findOneByCode(idLoaiXeInt);
+
+                        if (loaiXeModel != null && !loaiXeModel.getTenLoaiXe().equals(loaiXe)) { //xe phải có trong db và không có tên loại xe trung
+                            if (loaiXeService.findOneByName(loaiXe) == null) //kiểm tra tên loai xe
+                            {
+                                loaiXeModel = new LoaiXeModel();
+                                loaiXeModel.setTenLoaiXe(loaiXe);
+                                loaiXeModel.setMaLoaiXe(idLoaiXeInt);
+                                loaiXeModel = loaiXeService.update(loaiXeModel);
+                                if (loaiXeModel != null) {
+                                    JOptionPane.showMessageDialog(jpanel, "Sửa loại xe thành công", "Đồng ý", 0);
+                                } else {
+                                    JOptionPane.showMessageDialog(jpanel, "Sửa loại xe thất bại", "Đồng ý", 0);
+                                }
+                            } else {
+                                JOptionPane.showMessageDialog(jpanel, "Sửa loại xe thất bại", "Đồng ý", 0);
+                            }
+                        } else {
+                            JOptionPane.showMessageDialog(jpanel, "Sửa loại xe thất bại", "Đồng ý", 0);
+                        }
+                    } catch (NumberFormatException ex) {
+                        JOptionPane.showMessageDialog(jpanel, "Sửa loại xe thất bại", "Đồng ý", 0);
+                    }
+
+                } else {
+                    JOptionPane.showMessageDialog(jpanel, "Sửa loại xe thất bại", "Đồng ý", 0);
+                }
+            }
+
+        });
+        //xoá loại xe
+        xoaLoaiXeBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (!maLoaiXeField.getText().isEmpty()) {
+                    int maLoaiXe = Integer.parseInt(maLoaiXeField.getText());
+                    String op[] = {"Suy nghĩ lại", "Đồng ý"};
+                    int value = JOptionPane.showOptionDialog(jpanel, "Bạn chắc chắn muốn xoá", "Xoá loai xe", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, op, op[0]);
+                    if (value == 1) {
+                        loaiXeService.deleteStatus(maLoaiXe);
+                        JOptionPane.showMessageDialog(jpanel, "Xoá thành công", "Thông tin", JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        JOptionPane.showMessageDialog(jpanel, "Xoá thất bại", "Thông tin", JOptionPane.INFORMATION_MESSAGE);
+                    }
+
+                }
+
+            }
+        });
+        tenLoaiXeField.addFocusListener(
+                new FocusAdapter() {
+            @Override
+            public void focusLost(FocusEvent e
+            ) {
+                if (tenLoaiXeField.getText().isEmpty()) {    //FIELD EMPTY
+                    ImageIcon imgImportane = new ImageIcon(iconImportantURL);
+                    //  errorBienSo.setText("");
+                    errorTenLoaiXe.setIcon(imgImportane);
+                    errorTenLoaiXe.revalidate();
+                    errorTenLoaiXe.repaint();
+                    errorTenLoaiXe.setVisible(true);
+                } else {
+                    //INVALID FORMAT
+
+                    if (ValidationRegEx.validationTextRegex(tenLoaiXeField.getText())) {
+                        errorTenLoaiXe.setVisible(false);
+                    } else {
+                        ImageIcon imgError = new ImageIcon(iconErrorURL);
+                        //errorTenLoaiXe.setText("");
+                        errorTenLoaiXe.setIcon(imgError);
+                        errorTenLoaiXe.revalidate();
+                        errorTenLoaiXe.repaint();
+                        errorTenLoaiXe.setVisible(true);
+                    }
+                }
+            }
+
+            @Override
+            public void focusGained(FocusEvent e
+            ) {
+                errorTenLoaiXe.setVisible(false);
+                errorTenLoaiXe.setToolTipText(null);
+            }
+        }
+        );
     }
 
     public void setDataToCombobox() {

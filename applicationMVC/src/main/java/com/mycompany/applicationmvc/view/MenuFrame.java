@@ -7,38 +7,20 @@ package com.mycompany.applicationmvc.view;
 
 import com.mycompany.applicationmvc.Bean.DanhMucBean;
 import com.mycompany.applicationmvc.Utils.SessionUtil;
-import com.mycompany.applicationmvc.controller.PersonController;
 import com.mycompany.applicationmvc.controller.SwitchController;
 import com.mycompany.applicationmvc.model.TaiKhoanModel;
-import com.mycompany.applicationmvc.service.PersonService;
-import com.mycompany.applicationmvc.serviceImpl.PersonServiceImpl;
-import java.awt.BorderLayout;
-import java.awt.CardLayout;
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.List;
-import javax.accessibility.AccessibleContext;
-import javax.swing.JButton;
-import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JRootPane;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.JTextField;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
 
 /**
  *
  * @author MinhTo
  */
 public class MenuFrame extends javax.swing.JFrame {
-      private TaiKhoanModel taiKhoanModel;
+      public static TaiKhoanModel taiKhoanModel;
     
     
     /**

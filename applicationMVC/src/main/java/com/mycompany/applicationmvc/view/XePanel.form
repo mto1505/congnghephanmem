@@ -473,6 +473,9 @@
                   <Dimension value="[70, 35]"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="suaXeBtnActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="loaiXe">
               <Properties>
@@ -488,6 +491,7 @@
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="f4" green="f3" red="f3" type="rgb"/>
                 </Property>
+                <Property name="editable" type="boolean" value="true"/>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="4">
                     <StringItem index="0" value="Item 1"/>
@@ -496,7 +500,6 @@
                     <StringItem index="3" value="Item 4"/>
                   </StringArray>
                 </Property>
-                <Property name="selectedIndex" type="int" value="-1"/>
               </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
@@ -522,6 +525,9 @@
                       </Table>
                     </Property>
                     <Property name="showGrid" type="boolean" value="true"/>
+                    <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                      <TableHeader reorderingAllowed="false" resizingAllowed="false"/>
+                    </Property>
                   </Properties>
                 </Component>
               </SubComponents>
@@ -557,16 +563,20 @@
             </Component>
             <Component class="javax.swing.JLabel" name="errorBienSo">
               <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="C:\Users\MinhTo\Documents\GitHub\congnghephanmem\applicationMVC\src\main\resource\img\error_30px.png"/>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="new javax.swing.ImageIcon(LinhKienController.iconErrorURL)" type="code"/>
                 </Property>
               </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_DeclarationPost" type="java.lang.String" value="public static final String errorURL = System.getProperty(&quot;user.dir&quot;).concat(&quot;\\src\\main\\resource\\img\\error_30px.png&quot;);&#xa;    public static final String iconErrorURL = new File(errorURL).toString();"/>
+              </AuxValues>
             </Component>
             <Component class="javax.swing.JLabel" name="errorTenXe">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="2" name="C:\Users\MinhTo\Documents\GitHub\congnghephanmem\applicationMVC\src\main\resource\img\error_30px.png"/>
                 </Property>
+                <Property name="toolTipText" type="java.lang.String" value="Sai &#x111;&#x1ecb;nh d&#x1ea1;ng(Gi&#x1eef;a 2 t&#x1eeb; ch&#x1ec9; c&#xf3; 1 kho&#x1ea3;ng tr&#x1eaf;ng v&#xe0; ch&#x1ec9; ch&#x1b0;a c&#xe1;c ch&#x1eef; c&#xe1;i"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="errorChuSoHuu">
@@ -574,6 +584,7 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="2" name="C:\Users\MinhTo\Documents\GitHub\congnghephanmem\applicationMVC\src\main\resource\img\error_30px.png"/>
                 </Property>
+                <Property name="toolTipText" type="java.lang.String" value="Sai &#x111;&#x1ecb;nh d&#x1ea1;ng(Gi&#x1eef;a 2 t&#x1eeb; ch&#x1ec9; c&#xf3; 1 kho&#x1ea3;ng tr&#x1eaf;ng v&#xe0; kh&#xf4;ng ch&#x1ee9;a c&#xe1;c k&#xed; t&#x1ef1; &#x111;&#x1eb7;c bi&#x1ec7;t"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="errorSoDienThoai">
@@ -667,6 +678,8 @@
                               <Component id="tenLoaiXe" min="-2" pref="70" max="-2" attributes="0"/>
                               <EmptySpace min="9" pref="9" max="-2" attributes="0"/>
                               <Component id="tenLoaiXeField" min="-2" pref="210" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="errorTenLoaiXe" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <EmptySpace min="80" pref="80" max="-2" attributes="0"/>
@@ -703,7 +716,10 @@
                                       <EmptySpace min="1" pref="1" max="-2" attributes="0"/>
                                       <Component id="tenLoaiXe" min="-2" pref="20" max="-2" attributes="0"/>
                                   </Group>
-                                  <Component id="tenLoaiXeField" min="-2" pref="20" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="tenLoaiXeField" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                                      <Component id="errorTenLoaiXe" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
                               <Component id="jSeparator7" min="-2" pref="10" max="-2" attributes="0"/>
                               <EmptySpace min="20" pref="20" max="-2" attributes="0"/>
@@ -741,6 +757,7 @@
                     <CompoundBorder/>
                   </Border>
                 </Property>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="tenLoaiXeField">
@@ -816,10 +833,15 @@
                       </Table>
                     </Property>
                     <Property name="showGrid" type="boolean" value="true"/>
+                    <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                      <TableHeader reorderingAllowed="false" resizingAllowed="false"/>
+                    </Property>
                   </Properties>
                 </Component>
               </SubComponents>
             </Container>
+            <Component class="javax.swing.JLabel" name="errorTenLoaiXe">
+            </Component>
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="jPanel2">

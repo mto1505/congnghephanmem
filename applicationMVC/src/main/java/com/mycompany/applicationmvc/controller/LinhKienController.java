@@ -29,11 +29,18 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.io.File;
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.InputVerifier;
 import javax.swing.JButton;
@@ -51,15 +58,16 @@ import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 
-
 /**
  *
  * @author MinhTo
  */
 public class LinhKienController {
 
-    public static final String iconErrorURL = "C:\\Users\\MinhTo\\Documents\\GitHub\\congnghephanmem\\applicationMVC\\src\\main\\resource\\img\\error_30px.png";
-    public static final String iconImportantURL = "C:\\Users\\MinhTo\\Documents\\GitHub\\congnghephanmem\\applicationMVC\\src\\main\\resource\\img\\high_priority_30px.png";
+    public static final String errorURL = System.getProperty("user.dir").concat("\\src\\main\\resource\\img\\error_30px.png");
+    public static final String iconErrorURL = new File(errorURL).toString();
+    public static final String ImportantURL = System.getProperty("user.dir").concat("\\src\\main\\resource\\img\\high_priority_30px.png");
+    public static final String iconImportantURL = new File(ImportantURL).toString();
     private javax.swing.JButton btnSuaNhaCungCap;
     private javax.swing.JButton btnSuaLinhKien;
     private javax.swing.JButton btnThemLinhKien;
@@ -173,9 +181,24 @@ public class LinhKienController {
 //        origiFormat = origiFormat.substring(0, origiFormat.indexOf('.'));
         String moneyFomart = ValidationRegEx.convertToMoneyFomart(bdec.toString());
         giaField.setText(moneyFomart);
+        
+        if (linhKien.getNhaCungCap() == null) {
+            tenNhaCungCapCombobox.setSelectedItem("Nhà cung cấp không tồn tại");
+        } else {
+            tenNhaCungCapCombobox.setSelectedItem(linhKien.getNhaCungCap().getTen());
+        }//SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-        tenNhaCungCapCombobox.setSelectedItem(linhKien.getNhaCungCap().getTen());
-        ngayNhapField.setDate(linhKien.getNgayNhap());
+        ngayNhapField.getDateEditor().setDateFormatString("yyyy-MM-dd HH:mm:ss");
+
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        java.util.Date date;
+        try {
+            date = formatter.parse(linhKien.getNgayNhapString());
+            ngayNhapField.setDate(date);
+        } catch (ParseException ex) {
+            Logger.getLogger(LinhKienController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
         ngayNhapField.setEnabled(false);
         maLinhKienField.setEnabled(false);
         btnThemLinhKien.setText("Khôi phục");
@@ -191,7 +214,6 @@ public class LinhKienController {
         errorSoLuong.setVisible(false);
         errorNhaCungCapComBoBox.setVisible(false);
 
-
         maNCCField.setText(Integer.toString(nhaCungCapModel.getId()));
         tenNCCField.setText(nhaCungCapModel.getTen());
         soDienThoaiField.setText(nhaCungCapModel.getSoDienThoai());
@@ -202,7 +224,7 @@ public class LinhKienController {
     }
 
     public void setEvent() {
-           errorTenNhaCC.setVisible(false);
+        errorTenNhaCC.setVisible(false);
         errorSoDienThoai.setVisible(false);
         errorGia.setVisible(false);
         errorMaLinhKien.setVisible(false);
@@ -217,16 +239,17 @@ public class LinhKienController {
                 int rowSelected = linhKienTable.getSelectedRow();
 
                 LinhKienModel linhKien = new LinhKienModel();
-                linhKien.setId(Integer.parseInt(linhKienTableModel.getValueAt(rowSelected, 0).toString()));
-                linhKien.setTenLinhKien(linhKienTableModel.getValueAt(rowSelected, 1).toString());
-                linhKien.setSoLuong(Integer.parseInt(linhKienTableModel.getValueAt(rowSelected, 2).toString()));
-                linhKien.setGia(Double.parseDouble(linhKienTableModel.getValueAt(rowSelected, 3).toString()));
+                linhKien.setId(Integer.parseInt(linhKienTable.getValueAt(rowSelected, 0).toString()));
+                linhKien.setTenLinhKien(linhKienTable.getValueAt(rowSelected, 1).toString());
+                linhKien.setSoLuong(Integer.parseInt(linhKienTable.getValueAt(rowSelected, 2).toString()));
+                linhKien.setGia(Double.parseDouble(linhKienTable.getValueAt(rowSelected, 3).toString()));
 
-                linhKien.setNhaCungCap(nhaCungCapService.findOne(Integer.parseInt(linhKienTableModel.getValueAt(rowSelected, 4).toString())));
+                linhKien.setNhaCungCap(nhaCungCapService.findOne(Integer.parseInt(linhKienTable.getValueAt(rowSelected, 4).toString())));
                 Date date = new Date();
-                date = FomaterDate.convertStringToDate(linhKienTableModel.getValueAt(rowSelected, 5).toString());
-
+                date = FomaterDate.convertStringToDate(linhKienTable.getValueAt(rowSelected, 5).toString());
+                linhKien.setNgayNhapString(linhKienTable.getValueAt(rowSelected, 5).toString());
                 linhKien.setNgayNhap(date);
+
                 setViewLinhKien(linhKien);
 
             }
@@ -248,7 +271,6 @@ public class LinhKienController {
                 }
                 setViewNhaCungCap(nhaCungCapModel);
             }
-
         });
 
         //  THUOC TINH CỦA LINH KIEN         
@@ -259,24 +281,20 @@ public class LinhKienController {
                     errorTenLinhKien.setIcon(new ImageIcon(iconImportantURL));
                     errorTenLinhKien.setVisible(true);
                 } else {
-
                     //kiểm tra  đinh dạng
                     if (!ValidationRegEx.validationTextRegex(tenLinhKienField.getText())) {   //không đúng đinh dạng
                         errorTenLinhKien.setIcon(new ImageIcon(iconErrorURL));
                         errorTenLinhKien.setVisible(true);
-
                     } else {
                         errorTenLinhKien.setVisible(false);
                     }
                 }
-
             }
 
             @Override
             public void focusGained(FocusEvent e) {
                 errorTenLinhKien.setVisible(false);
             }
-
         });
         //set soLuongField khi nhập số mới cho los
 //       soLuongField.setInputVerifier(new InputVerifier() {
@@ -292,7 +310,6 @@ public class LinhKienController {
 //                    }
 //            }
 //       });
-
         soLuongField.addFocusListener(new FocusAdapter() {
             @Override
             public void focusLost(FocusEvent e) {
@@ -305,19 +322,18 @@ public class LinhKienController {
                     if (!ValidationRegEx.validationNumber(soLuongField.getText())) {   //không đúng đinh dạng
                         errorSoLuong.setIcon(new ImageIcon(iconErrorURL));
                         errorSoLuong.setVisible(true);
+                        // errorSoLuong.setToolTipText("Không đúng định dạng(chỉ chứa các chữ số) và tối đa 999");
 
                     } else {
                         errorSoLuong.setVisible(false);
                     }
                 }
-
             }
 
             @Override
             public void focusGained(FocusEvent e) {
                 errorSoLuong.setVisible(false);
             }
-
         });
         giaField.addKeyListener(new KeyAdapter() {
             @Override
@@ -339,6 +355,7 @@ public class LinhKienController {
                 String originFormatMoneyString = giaField.getText().replaceAll("\\,", "");
                 if (!ValidationRegEx.validationMoneyRegex(originFormatMoneyString)) {   //không đúng đinh dạng
                     errorGia.setIcon(new ImageIcon(iconErrorURL));
+                    // errorGia.setToolTipText("Không đúng định dạng tiền(chỉ chứa các chữ số), hoặc số tiền quá lớn (lơn hơn 100 triệu)");
                     errorGia.setVisible(true);
 
                 } else {
@@ -449,39 +466,47 @@ public class LinhKienController {
                         errorNhaCungCapComBoBox.setVisible(true);
                         hasFieldEmpty = true;
                     }
-                    if (ngayNhapField.getDate() == null) {
-                        errorNgayNhap.setIcon(new ImageIcon(iconImportantURL));
-                        errorNgayNhap.setVisible(true);
-                        hasFieldEmpty = true;
-                    }
+//                    if (ngayNhapField.getDate() == null) {
+//                        errorNgayNhap.setIcon(new ImageIcon(iconImportantURL));
+//                        errorNgayNhap.setVisible(true);
+//                        hasFieldEmpty = true;
+//                    }
                     if (hasFieldEmpty == true) {
                         JOptionPane.showMessageDialog(panel, "Xin vui lòng nhập đầy đủ thông tin", "Thông tin", JOptionPane.INFORMATION_MESSAGE);
                         isValid = false;
                     } else {
                         //kiểm tra đinh dạng
 
+                        if (nhaCungCapService.findOneByName(tenNhaCungCapCombobox.getSelectedItem().toString()) == null) {
+                            errorNhaCungCapComBoBox.setIcon(new ImageIcon(iconErrorURL));
+                            errorNhaCungCapComBoBox.setToolTipText("Nhà cung cấp không tồn tại");
+                            errorNhaCungCapComBoBox.setVisible(true);
+                            isNotFormated = true;
+                        }
                         if (!ValidationRegEx.validationTextRegex(tenLinhKienField.getText())) {
-                            errorTenLinhKien.setIcon(new ImageIcon(iconImportantURL));
+                            errorTenLinhKien.setIcon(new ImageIcon(iconErrorURL));
                             errorTenLinhKien.setVisible(true);
                             isNotFormated = true;
                         }
                         if (!ValidationRegEx.validationNumber(soLuongField.getText())) {
-                            errorSoLuong.setIcon(new ImageIcon(iconImportantURL));
+                            errorSoLuong.setIcon(new ImageIcon(iconErrorURL));
                             errorSoLuong.setVisible(true);
+                            errorSoLuong.setToolTipText("Không đúng định dạng(chỉ chứa các chữ số) và tối đa 999");
                             isNotFormated = true;
                         }
                         String originFormatMoney = giaField.getText().replaceAll("\\,", "");
                         if (!ValidationRegEx.validationMoneyRegex(originFormatMoney)) {
-                            errorGia.setIcon(new ImageIcon(iconImportantURL));
+                            errorGia.setIcon(new ImageIcon(iconErrorURL));
                             errorGia.setVisible(true);
+                            errorGia.setToolTipText("Không đúng định dạng tiền(chỉ chứa các chữ số), hoặc số tiền quá lớn (lơn hơn 100 triệu)");
                             isNotFormated = true;
                         }
 
-                        if (ngayNhapField.getDateEditor().getDate() == null) {
-                            errorNgayNhap.setIcon(new ImageIcon(iconImportantURL));
-                            errorNgayNhap.setVisible(true);
-                            isNotFormated = true;
-                        }
+//                        if (ngayNhapField.getDateEditor().getDate() == null) {
+//                            errorNgayNhap.setIcon(new ImageIcon(iconImportantURL));
+//                            errorNgayNhap.setVisible(true);
+//                            isNotFormated = true;
+//                        }
                         if (isNotFormated) {
                             JOptionPane.showMessageDialog(panel, "Thông tin sai định dạng, vui lòng nhập lại", "Thông tin", JOptionPane.INFORMATION_MESSAGE);
                             isValid = false;
@@ -496,15 +521,17 @@ public class LinhKienController {
                         String originFormatMoney = giaField.getText().replaceAll("\\,", "");
                         double gia = Double.parseDouble(originFormatMoney);
                         NhaCungCapModel nhaCungCap = nhaCungCapService.findOneByName(tenNhaCungCapCombobox.getSelectedItem().toString());
-                        Date ngayNhap = ngayNhapField.getDate();
+
+                        Date ngayNhap = new Date();
+                        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
                         System.out.println("Them");
                         LinhKienModel linhKien = new LinhKienModel(0, tenLinhKien, soLuong, gia, nhaCungCap, ngayNhap);
                         //kiểm tra tồn tại
-                        if (linhKienService.findOneByNameAndMaNhaCungCap(tenLinhKien, nhaCungCap.getId(), new java.sql.Date(ngayNhapField.getDate().getTime())) != null) {
-                            JOptionPane.showMessageDialog(panel, "Tên linh kiện,nhà sản xuất,ngày nhập không được trùng", "Lưu", JOptionPane.INFORMATION_MESSAGE);
-                        } else {
-
+//                        if (linhKienService.findOneByIdAndDate(l, formatter.format(ngayNhap)) != null) {
+//                            JOptionPane.showMessageDialog(panel, "Tên linh kiện,nhà sản xuất,ngày nhập không được trùng", "Lưu", JOptionPane.INFORMATION_MESSAGE);
+//                        } else 
+                        {
                             if (linhKienService.save(linhKien) != null) {
                                 JOptionPane.showMessageDialog(panel, "Lưu thành công ", "Lưu", JOptionPane.INFORMATION_MESSAGE);
                             } else {
@@ -536,7 +563,11 @@ public class LinhKienController {
                 boolean isValid = true;
                 boolean hasFieldEmpty = false;
                 boolean isNotFormated = false;
-
+                if (maLinhKienField.getText().isEmpty()) {
+                    errorTenLinhKien.setIcon(new ImageIcon(iconImportantURL));
+                    errorTenLinhKien.setVisible(true);
+                    hasFieldEmpty = true;
+                }
                 if (tenLinhKienField.getText().isEmpty()) {
                     errorTenLinhKien.setIcon(new ImageIcon(iconImportantURL));
                     errorTenLinhKien.setVisible(true);
@@ -573,21 +604,28 @@ public class LinhKienController {
                     isValid = false;
                 } else {
                     //kiểm tra đinh dạng
-
+                    if (nhaCungCapService.findOneByName(tenNhaCungCapCombobox.getSelectedItem().toString()) == null) {
+                        errorNhaCungCapComBoBox.setIcon(new ImageIcon(iconErrorURL));
+                        errorNhaCungCapComBoBox.setToolTipText("Nhà cung cấp không tồn tại");
+                        errorNhaCungCapComBoBox.setVisible(true);
+                        isNotFormated = true;
+                    }
                     if (!ValidationRegEx.validationTextRegex(tenLinhKienField.getText())) {
-                        errorTenLinhKien.setIcon(new ImageIcon(iconImportantURL));
+                        errorTenLinhKien.setIcon(new ImageIcon(iconErrorURL));
                         errorTenLinhKien.setVisible(true);
                         isNotFormated = true;
                     }
                     if (!ValidationRegEx.validationNumber(soLuongField.getText())) {
-                        errorSoLuong.setIcon(new ImageIcon(iconImportantURL));
+                        errorSoLuong.setIcon(new ImageIcon(iconErrorURL));
                         errorSoLuong.setVisible(true);
+                        errorSoLuong.setToolTipText("Không đúng định dạng(chỉ chứa các chữ số) và tối đa 999");
                         isNotFormated = true;
                     }
                     String originFormatMoney = giaField.getText().replaceAll("\\,", "");
                     if (!ValidationRegEx.validationMoneyRegex(originFormatMoney)) {
-                        errorGia.setIcon(new ImageIcon(iconImportantURL));
+                        errorGia.setIcon(new ImageIcon(iconErrorURL));
                         errorGia.setVisible(true);
+                        errorGia.setToolTipText("Không đúng định dạng tiền(chỉ chứa các chữ số), hoặc số tiền quá lớn (lơn hơn 100 triệu)");
                         isNotFormated = true;
                     }
 
@@ -603,36 +641,61 @@ public class LinhKienController {
 
                 }
                 if (isValid) {
-                    //them
+                    //sửa   //cập mới linh kiện với giá thay đổi'
+
                     int maLinhKien = Integer.parseInt(maLinhKienField.getText());
                     String tenLinhKien = tenLinhKienField.getText();
                     int soLuong = Integer.parseInt(soLuongField.getText());
                     String originFormatMoney = giaField.getText().replaceAll("\\,", "");
                     double gia = Double.parseDouble(originFormatMoney);
                     NhaCungCapModel nhaCungCap = nhaCungCapService.findOneByName(tenNhaCungCapCombobox.getSelectedItem().toString());
+
                     Date ngayNhap = ngayNhapField.getDate();
+                    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-                    LinhKienModel linhKien = new LinhKienModel(maLinhKien, tenLinhKien, soLuong, gia, nhaCungCap, ngayNhap);
-                    //kiểm tra tồn tại
-                    LinhKienModel linhKienCu = linhKienService.findOne(maLinhKien);
-                    if (linhKienCu.getTenLinhKien() != tenLinhKien || linhKienCu.getNhaCungCap().getTen() != nhaCungCap.getTen()) {
+                    // LinhKienModel linhKien = new LinhKienModel(maLinhKien, tenLinhKien, soLuong, gia, nhaCungCap, ngayNhap);
+                    LinhKienModel linhKienCu = linhKienService.findOneByIdAndDate(maLinhKien, formatter.format(ngayNhap));
+                    if (linhKienCu != null) {
+                        LinhKienModel linhKien2 = new LinhKienModel(maLinhKien, tenLinhKien, soLuong, gia, nhaCungCap, new Date());
+                        if (linhKienCu.getGia() != gia) {
+                            System.out.println("Them");
+                            {
+                                if (linhKienService.save(linhKien2, false) != null) {
+                                    JOptionPane.showMessageDialog(panel, "Lưu thành công ", "Lưu", JOptionPane.INFORMATION_MESSAGE);
+                                } else {
+                                    JOptionPane.showMessageDialog(panel, "Lưu thất bại", "Lưu", JOptionPane.INFORMATION_MESSAGE);
+                                }
+                            }
 
-                        if (linhKienService.update(linhKien) != null) {
-                            JOptionPane.showMessageDialog(panel, "Cập nhật thành công ", "Lưu", JOptionPane.INFORMATION_MESSAGE);
                         } else {
-                            JOptionPane.showMessageDialog(panel, "Cập nhật thất bại", "Lưu", JOptionPane.INFORMATION_MESSAGE);
+                            System.out.println("Sua");
+                            if (linhKienService.update(linhKien2) != null) {
+                                JOptionPane.showMessageDialog(panel, "Cập nhật thành công ", "Lưu", JOptionPane.INFORMATION_MESSAGE);
+                            } else {
+                                JOptionPane.showMessageDialog(panel, "Cập nhật thất bại", "Lưu", JOptionPane.INFORMATION_MESSAGE);
+                            }
                         }
+                    } else {
+                        JOptionPane.showMessageDialog(panel, "Cập nhật thất bại", "Lưu", JOptionPane.INFORMATION_MESSAGE);
                     }
                 }
+
             }
         });
         //Xoá Linh Kiện
         btnXoaLinhKien.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 if (!maLinhKienField.getText().isEmpty() && ngayNhapField.getDate() != null) {
-                    linhKienService.delete(Integer.parseInt(maLinhKienField.getText()));
-                    JOptionPane.showMessageDialog(panel, "Xoá thành công", "Thông tin", JOptionPane.INFORMATION_MESSAGE);
+                    String op[] = {"Suy nghĩ lại", "Đồng ý"};
+                    int value = JOptionPane.showOptionDialog(panel, "Bạn chắc chắn muốn xoá", "Xoá linh kiện", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, op, op[0]);
+                    if (value == 1) {
+                        linhKienService.deleteStatus(Integer.parseInt(maLinhKienField.getText()), formatter.format(ngayNhapField.getDate()));
+                        JOptionPane.showMessageDialog(panel, "Xoá thành công", "Thông tin", JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        JOptionPane.showMessageDialog(panel, "Xoá thất bại", "Thông tin", JOptionPane.INFORMATION_MESSAGE);
+                    }
                 }
             }
         });
@@ -650,6 +713,7 @@ public class LinhKienController {
                     if (!ValidationRegEx.validationTextRegex(tenNCCField.getText())) {   //không đúng đinh dạng
                         errorTenNhaCC.setIcon(new ImageIcon(iconErrorURL));
                         errorTenNhaCC.setVisible(true);
+                        errorTenNhaCC.setToolTipText("* Sai định dạng(Giữa 2 từ chỉ có 1 khoảng trắng và chỉ bao gồm chữ cái");
                     } else {
                         errorTenNhaCC.setVisible(false);
                     }
@@ -674,6 +738,7 @@ public class LinhKienController {
                     //kiểm tra  đinh dạng
                     if (!ValidationRegEx.validationSDT(soDienThoaiField.getText())) {   //không đúng đinh dạng
                         errorSoDienThoai.setIcon(new ImageIcon(iconErrorURL));
+                        errorSoDienThoai.setToolTipText("Không đúng định dạng số điện thoại");
                         errorSoDienThoai.setVisible(true);
 
                     } else {
@@ -688,6 +753,32 @@ public class LinhKienController {
                 errorSoDienThoai.setVisible(false);
             }
 
+        });
+        ghiChuTextArea.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (ghiChuTextArea.getText().isEmpty()) {
+                    ghiChu.setIcon(new ImageIcon(iconImportantURL));
+                    ghiChu.setVisible(true);
+                } else {
+
+                    //kiểm tra  đinh dạng
+                    if (!ValidationRegEx.validationTextAndNumRegex(ghiChuTextArea.getText())) {   //không đúng đinh dạng
+                        ghiChu.setIcon(new ImageIcon(iconErrorURL));
+                        ghiChu.setToolTipText("* Sai định dạng(Giữa 2 từ chỉ có 1 khoảng trắng va chỉ bao gồm chữ số và chữ cái");
+                        ghiChu.setVisible(true);
+
+                    } else {
+                        ghiChu.setVisible(false);
+                    }
+                }
+
+            }
+
+            @Override
+            public void focusGained(FocusEvent e) {
+                ghiChu.setVisible(false);
+            }
         });
 
         //thêm nhà cung cap
@@ -716,14 +807,44 @@ public class LinhKienController {
                     isValid = false;
                 } else {
                     //kiểm tra đinh dạng
-
+                    //ten nha cung cap
                     if (!ValidationRegEx.validationTextRegex(tenNCCField.getText())) {
-                        errorTenNhaCC.setIcon(new ImageIcon(iconImportantURL));
+                        errorTenNhaCC.setIcon(new ImageIcon(iconErrorURL));
                         errorTenNhaCC.setVisible(true);
+                        errorTenNhaCC.setToolTipText("* Sai định dạng(Giữa 2 từ chỉ có 1 khoảng trắng và chỉ bao gồm chữ cái");
                         isNotFormated = true;
                     }
+                    // ten nha cung cap
+                    if (ValidationRegEx.validationTextRegex(tenNCCField.getText())) {
+                        if (tenNCCField.getText().length() > 25) {
+                            errorTenNhaCC.setIcon(new ImageIcon(iconErrorURL));
+                            errorTenNhaCC.setToolTipText("* Tên quá dài(lon hon 25 ki tu) vui lòng nhập lại");
+                            errorTenNhaCC.setVisible(true);
+                            isNotFormated = true;
+                        }
+                    }
+                    //ghi chu
+                    if (ValidationRegEx.validationTextAndNumRegex(ghiChuTextArea.getText())) {
+                        if (ghiChuTextArea.getText().length() > 100) {
+                            ghiChu.setIcon(new ImageIcon(iconErrorURL));
+                            ghiChu.setToolTipText("* Nội dung quá dài(lớn hơn 10 ki tu) vui lòng nhập lại");
+                            ghiChu.setVisible(true);
+                            isNotFormated = true;
+
+                        }
+                    }
+                    if (!ghiChuTextArea.getText().isEmpty()) {
+                        if (!ValidationRegEx.validationTextAndNumRegex(ghiChuTextArea.getText())) {
+                            ghiChu.setIcon(new ImageIcon(iconErrorURL));
+                            ghiChu.setToolTipText("* Sai định dạng(Giữa 2 từ chỉ có 1 khoảng trắng va chỉ bao gồm chữ số và chữ cái");
+                            ghiChu.setVisible(true);
+                            isNotFormated = true;
+                        }
+                    }
+
                     if (!ValidationRegEx.validationSDT(soDienThoaiField.getText())) {
-                        errorSoDienThoai.setIcon(new ImageIcon(iconImportantURL));
+                        errorSoDienThoai.setIcon(new ImageIcon(iconErrorURL));
+                        errorSoDienThoai.setToolTipText("Không đúng định dạng số điện thoại");
                         errorSoDienThoai.setVisible(true);
                         isNotFormated = true;
                     }
@@ -785,13 +906,44 @@ public class LinhKienController {
                 } else {
                     //kiểm tra đinh dạng
 
+                    //kiểm tra đinh dạng
+                    //ten nha cung cap
                     if (!ValidationRegEx.validationTextRegex(tenNCCField.getText())) {
-                        errorTenNhaCC.setIcon(new ImageIcon(iconImportantURL));
+                        errorTenNhaCC.setIcon(new ImageIcon(iconErrorURL));
                         errorTenNhaCC.setVisible(true);
+                        errorTenNhaCC.setToolTipText("* Sai định dạng(Giữa 2 từ chỉ có 1 khoảng trắng và chỉ bao gồm chữ cái");
                         isNotFormated = true;
                     }
+                    // ten nha cung cap
+                    if (ValidationRegEx.validationTextRegex(tenNCCField.getText())) {
+                        if (tenNCCField.getText().length() > 25) {
+                            errorTenNhaCC.setIcon(new ImageIcon(iconErrorURL));
+                            errorTenNhaCC.setToolTipText("* Tên quá dài(lon hon 25 ki tu) vui lòng nhập lại");
+                            errorTenNhaCC.setVisible(true);
+                            isNotFormated = true;
+                        }
+                    }
+                    //ghi chu
+                    if (ValidationRegEx.validationTextAndNumRegex(ghiChuTextArea.getText())) {
+                        if (ghiChuTextArea.getText().length() > 100) {
+                            ghiChu.setIcon(new ImageIcon(iconErrorURL));
+                            ghiChu.setToolTipText("* Nội dung quá dài(lớn hơn 10 ki tu) vui lòng nhập lại");
+                            ghiChu.setVisible(true);
+                            isNotFormated = true;
+
+                        }
+                    }
+                    if (!ghiChuTextArea.getText().isEmpty()) {
+                        if (!ValidationRegEx.validationTextAndNumRegex(ghiChuTextArea.getText())) {
+                            ghiChu.setIcon(new ImageIcon(iconErrorURL));
+                            ghiChu.setToolTipText("* Sai định dạng(Giữa 2 từ chỉ có 1 khoảng trắng va chỉ bao gồm chữ số và chữ cái");
+                            ghiChu.setVisible(true);
+                            isNotFormated = true;
+                        }
+                    }
+
                     if (!ValidationRegEx.validationSDT(soDienThoaiField.getText())) {
-                        errorSoDienThoai.setIcon(new ImageIcon(iconImportantURL));
+                        errorSoDienThoai.setIcon(new ImageIcon(iconErrorURL));
                         errorSoDienThoai.setVisible(true);
                         isNotFormated = true;
                     }
@@ -863,11 +1015,23 @@ public class LinhKienController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (!maNCCField.getText().isEmpty()) {
-                    //xoa Linh kien 
-                    linhKienService.deleteByIDNhaCungCap(Integer.parseInt(maNCCField.getText()));
-                    //Xoá dịch vụ bảo dưỡng
 
-                    //Xoá chi tiết thây thế Linh Kiện
+                    {
+//                    //xoa Linh kien 
+//                    linhKienService.deleteByIDNhaCungCap(Integer.parseInt(maNCCField.getText()));
+//                    //Xoá dịch vụ bảo dưỡng
+//                    //Xoá chi tiết thây thế Linh Kiện
+
+                        // Xác nhận xoá hay không
+                        String op[] = {"Suy nghĩ lại", "Đồng ý"};
+                        int value = JOptionPane.showOptionDialog(panel, "Bạn chắc chắn muốn xoá", "Xoá Nhà cung cấp", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, op, op[0]);
+                        if (value == 1) {
+                            nhaCungCapService.deleteStatus(Integer.parseInt(maNCCField.getText()));
+                            JOptionPane.showMessageDialog(panel, "Xoá thành công", "Thông tin", JOptionPane.INFORMATION_MESSAGE);
+                        } else {
+                            JOptionPane.showMessageDialog(panel, "Xoá thất bại", "Thông tin", JOptionPane.INFORMATION_MESSAGE);
+                        }
+                    }
                 } else {
                     JOptionPane.showMessageDialog(panel, "Vui lòng chọn Nhà cung cấp cần xoá", "Thông tin", JOptionPane.INFORMATION_MESSAGE);
                 }
@@ -889,8 +1053,9 @@ public class LinhKienController {
         for (NhaCungCapModel nhaCungCapModel : listNhaCungCap) {
             tenNhaCungCapCombobox.addItem(nhaCungCapModel.getTen());
         }
+        
         //set   date fomat string
-        ngayNhapField.setDateFormatString("dd-MM-yyyy");
+        // ngayNhapField.setDateFormatString("dd-MM-yyyy");
 
         //set data to LinhKien  table
         List<LinhKienModel> listLinhKien = linhKienService.findAll();

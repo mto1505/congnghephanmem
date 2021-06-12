@@ -20,7 +20,7 @@ public interface INhaCungCapService {
     NhaCungCapModel update(NhaCungCapModel updateModel);
 
     void delete(int id);
-
+    void deleteStatus(int id);
     List<NhaCungCapModel> findAll();
 
     int getTotalItem();

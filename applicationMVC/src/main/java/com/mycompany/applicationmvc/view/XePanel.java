@@ -5,10 +5,9 @@
  */
 package com.mycompany.applicationmvc.view;
 
-import com.mycompany.applicationmvc.Utils.CustomRenderTable;
-import com.mycompany.applicationmvc.Utils.TableColumnUtil;
-import com.mycompany.applicationmvc.controller.PersonController;
+import com.mycompany.applicationmvc.controller.LinhKienController;
 import com.mycompany.applicationmvc.controller.XeController;
+import java.io.File;
 
 /**
  *
@@ -26,7 +25,7 @@ public class XePanel extends javax.swing.JPanel {
 //        linhKienTable.getTableHeader().setDefaultRenderer(new CustomRenderTable());
 //        TableColumnUtil.setTableColumnSize(linhKienTable, linhKienTable.getPreferredSize().getWidth(), 20,30,20,20,10);
 //        XeController xeController=new XeController(bienSoField, chuSoHuu, chuSoHuuField, errorBienSo, errorChuSoHuu, errorLoaiXe, errorSoDienThoai, errorTenXe, lbHoTen, lbMaKhachHang, loaiXe, loaiXeCombobox, maLoaiXe, maLoaiXeField, soDienThoai, soDienThoaiField, suaLoaiXeBtn, suaXeBtn, tableMaLoaiXe, tenLoaiXe, tenLoaiXeField, tenXeMayField, themLoaiXeBtn, themXeBtn, timKiemXeField, timKiemXeLbl, xeMayTable, xoaLoaiXeBtn, xoaXeBtn, jPanel1);
-            XeController xeController=new XeController(bienSoField, chuSoHuu, chuSoHuuField, errorBienSo, errorChuSoHuu, errorLoaiXe, errorSoDienThoai, errorTenXe, lbHoTen, lbMaKhachHang, loaiXe, loaiXeCombobox, maLoaiXe, maLoaiXeField, soDienThoai, soDienThoaiField, suaLoaiXeBtn, suaXeBtn, tableMaLoaiXe, tenLoaiXe, tenLoaiXeField, tenXeMayField, themLoaiXeBtn, themXeBtn, timKiemXeField, timKiemXeLbl, xeMayTable, xoaLoaiXeBtn, xoaXeBtn, radioNam, radioNu, jPanel1);
+            XeController xeController=new XeController(bienSoField, chuSoHuu, chuSoHuuField, errorBienSo, errorChuSoHuu, errorLoaiXe, errorSoDienThoai, errorTenXe,errorTenLoaiXe, lbHoTen, lbMaKhachHang, loaiXe, loaiXeCombobox, maLoaiXe, maLoaiXeField, soDienThoai, soDienThoaiField, suaLoaiXeBtn, suaXeBtn, tableMaLoaiXe, tenLoaiXe, tenLoaiXeField, tenXeMayField, themLoaiXeBtn, themXeBtn, timKiemXeField, timKiemXeLbl, xeMayTable, xoaLoaiXeBtn, xoaXeBtn, radioNam, radioNu, jPanel1);
         xeController.setDataToCombobox();
         xeController.setDataToTableModel();
             xeController.setEvent();
@@ -88,6 +87,7 @@ public class XePanel extends javax.swing.JPanel {
         jSeparator7 = new javax.swing.JSeparator();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableMaLoaiXe = new javax.swing.JTable();
+        errorTenLoaiXe = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -180,14 +180,19 @@ public class XePanel extends javax.swing.JPanel {
         suaXeBtn.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         suaXeBtn.setText("Sữa");
         suaXeBtn.setPreferredSize(new java.awt.Dimension(70, 35));
+        suaXeBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                suaXeBtnActionPerformed(evt);
+            }
+        });
 
         loaiXe.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         loaiXe.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         loaiXe.setText("Loại Xe");
 
         loaiXeCombobox.setBackground(new java.awt.Color(243, 243, 244));
+        loaiXeCombobox.setEditable(true);
         loaiXeCombobox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        loaiXeCombobox.setSelectedIndex(-1);
 
         xeMayTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -210,6 +215,8 @@ public class XePanel extends javax.swing.JPanel {
             }
         });
         xeMayTable.setShowGrid(true);
+        xeMayTable.getTableHeader().setResizingAllowed(false);
+        xeMayTable.getTableHeader().setReorderingAllowed(false);
         jScrollPane2.setViewportView(xeMayTable);
 
         timKiemXeField.addActionListener(new java.awt.event.ActionListener() {
@@ -224,11 +231,13 @@ public class XePanel extends javax.swing.JPanel {
         jSeparator2.setBackground(new java.awt.Color(204, 0, 0));
         jSeparator2.setForeground(new java.awt.Color(204, 0, 0));
 
-        errorBienSo.setIcon(new javax.swing.ImageIcon("C:\\Users\\MinhTo\\Documents\\GitHub\\congnghephanmem\\applicationMVC\\src\\main\\resource\\img\\error_30px.png")); // NOI18N
+        errorBienSo.setIcon(new javax.swing.ImageIcon(LinhKienController.iconErrorURL));
 
         errorTenXe.setIcon(new javax.swing.ImageIcon("C:\\Users\\MinhTo\\Documents\\GitHub\\congnghephanmem\\applicationMVC\\src\\main\\resource\\img\\error_30px.png")); // NOI18N
+        errorTenXe.setToolTipText("Sai định dạng(Giữa 2 từ chỉ có 1 khoảng trắng và chỉ chưa các chữ cái");
 
         errorChuSoHuu.setIcon(new javax.swing.ImageIcon("C:\\Users\\MinhTo\\Documents\\GitHub\\congnghephanmem\\applicationMVC\\src\\main\\resource\\img\\error_30px.png")); // NOI18N
+        errorChuSoHuu.setToolTipText("Sai định dạng(Giữa 2 từ chỉ có 1 khoảng trắng và không chứa các kí tự đặc biệt");
 
         errorSoDienThoai.setIcon(new javax.swing.ImageIcon("C:\\Users\\MinhTo\\Documents\\GitHub\\congnghephanmem\\applicationMVC\\src\\main\\resource\\img\\error_30px.png")); // NOI18N
 
@@ -409,6 +418,7 @@ public class XePanel extends javax.swing.JPanel {
 
         maLoaiXeField.setBackground(new java.awt.Color(243, 243, 244));
         maLoaiXeField.setBorder(javax.swing.BorderFactory.createCompoundBorder());
+        maLoaiXeField.setEnabled(false);
 
         tenLoaiXeField.setBackground(new java.awt.Color(243, 243, 244));
         tenLoaiXeField.setBorder(javax.swing.BorderFactory.createCompoundBorder());
@@ -443,6 +453,8 @@ public class XePanel extends javax.swing.JPanel {
             }
         ));
         tableMaLoaiXe.setShowGrid(true);
+        tableMaLoaiXe.getTableHeader().setResizingAllowed(false);
+        tableMaLoaiXe.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tableMaLoaiXe);
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
@@ -462,7 +474,9 @@ public class XePanel extends javax.swing.JPanel {
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(tenLoaiXe, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(9, 9, 9)
-                        .addComponent(tenLoaiXeField, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(tenLoaiXeField, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(errorTenLoaiXe))
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGap(80, 80, 80)
                         .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -491,7 +505,9 @@ public class XePanel extends javax.swing.JPanel {
                             .addGroup(jPanel6Layout.createSequentialGroup()
                                 .addGap(1, 1, 1)
                                 .addComponent(tenLoaiXe, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(tenLoaiXeField, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(tenLoaiXeField, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(errorTenLoaiXe)))
                         .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(20, 20, 20)
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -605,6 +621,40 @@ public class XePanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_soDienThoaiFieldActionPerformed
 
+    private void suaXeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_suaXeBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_suaXeBtnActionPerformed
+  public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(SigninForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(SigninForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(SigninForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(SigninForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+        //</editor-fold>
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new XePanel().setVisible(true);
+            }
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField bienSoField;
@@ -612,9 +662,12 @@ public class XePanel extends javax.swing.JPanel {
     private javax.swing.JLabel chuSoHuu;
     private javax.swing.JTextField chuSoHuuField;
     private javax.swing.JLabel errorBienSo;
+    public static final String errorURL = System.getProperty("user.dir").concat("\\src\\main\\resource\\img\\error_30px.png");
+    public static final String iconErrorURL = new File(errorURL).toString();
     private javax.swing.JLabel errorChuSoHuu;
     private javax.swing.JLabel errorLoaiXe;
     private javax.swing.JLabel errorSoDienThoai;
+    private javax.swing.JLabel errorTenLoaiXe;
     private javax.swing.JLabel errorTenXe;
     private javax.swing.JLabel gioiTinh;
     private javax.swing.JLabel jLabel1;

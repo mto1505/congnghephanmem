@@ -17,7 +17,7 @@ public class LoaiXeModel {
 
     public LoaiXeModel() {
     }
-
+    
     public LoaiXeModel(int maLoaiXe, String tenLoaiXe) {
         this.maLoaiXe = maLoaiXe;
         this.tenLoaiXe = tenLoaiXe;

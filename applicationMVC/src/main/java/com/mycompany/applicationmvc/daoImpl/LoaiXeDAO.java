@@ -20,28 +20,35 @@ public class LoaiXeDAO extends AbstractDAO<LoaiXeModel> implements ILoaiXeDao{
    
     @Override
     public LoaiXeModel findOne(int id) {
-        String sql=new String("select * from LoaiXe where id=?");
+        String sql=new String("select * from LoaiXe where id=? and trangthai=0");
        List<LoaiXeModel> xelist=query(sql, new LoaiXeMapper(), id);
         return xelist.isEmpty() ? null:xelist.get(0);
     }
 
     @Override
     public LoaiXeModel findOneByName(String tenloai) {
-        String sql=new String("select * from LoaiXe where tenloai=?");
+        String sql=new String("select * from LoaiXe where tenloai=? and trangthai=0");
        List<LoaiXeModel> xelist=query(sql, new LoaiXeMapper(), tenloai);
         return xelist.isEmpty() ? null:xelist.get(0);
     }
 
     @Override
+    public LoaiXeModel findOneByCode(int idMaLoaiXe) {
+          String sql=new String("select * from LoaiXe where id=? and trangthai=0");
+       List<LoaiXeModel> xelist=query(sql, new LoaiXeMapper(), idMaLoaiXe);
+        return xelist.isEmpty() ? null:xelist.get(0);
+    }
+
+    @Override
     public int save(LoaiXeModel loaiXe) {
-       String sql=new String("insert into LoaiXe (id,tenloai) values (?,?)");
-      return insert(sql,loaiXe.getMaLoaiXe(),loaiXe.getTenLoaiXe());
+       String sql=new String("insert into LoaiXe (tenloai) values (?)");
+      return insert(sql,loaiXe.getTenLoaiXe());
       
     }
 
     @Override
     public void update(LoaiXeModel loaiXe) {
-        String sql=new String("update  LoaiXe set tenxe=? where id=?");
+        String sql=new String("update  LoaiXe set tenloai=? where id=?");
         update(sql, loaiXe.getTenLoaiXe(),loaiXe.getMaLoaiXe());
     }
 
@@ -53,13 +60,19 @@ public class LoaiXeDAO extends AbstractDAO<LoaiXeModel> implements ILoaiXeDao{
 
     @Override
     public List<LoaiXeModel> findAll() {
-          String sql=new String("select * from  LoaiXe");
+          String sql=new String("select * from  LoaiXe where trangthai=0");
         return  query(sql, new LoaiXeMapper());
     }
 
     @Override
     public int getTotalItem() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void deleteStatus(int id) {
+       String sql="update LoaiXe set trangthai=1 where id=?";
+        update(sql,id);
     }
     
 }

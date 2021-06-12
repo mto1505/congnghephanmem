@@ -10,8 +10,10 @@ import com.mycompany.applicationmvc.model.KhachHangModel;
 import com.mycompany.applicationmvc.service.IKhachHangService;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
@@ -34,15 +36,23 @@ public class KhachHangService implements IKhachHangService {
         // kiểm tra dữ liệu trược khi nhập
 //        //chuyển thành định dạng yyyy-MM-dd Để lưu vô DB
 
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat formatter = new SimpleDateFormat("YYYY-MM-dd");
 
         java.util.Date date = new java.util.Date();
         if (khachHangModel.getNgaySinh() != null) {
             String dateString = formatter.format(khachHangModel.getNgaySinh());
             try {
                 date = formatter.parse(dateString);
+                
                 //LocalDate dateLocal = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-                khachHangModel.setNgaySinh(date);
+                Instant instant = date.toInstant();
+                ZonedDateTime zone = instant.atZone(ZoneId.systemDefault());
+                LocalDate givenDate = zone.toLocalDate();
+                if (givenDate.getYear() == 1970) {
+                    khachHangModel.setNgaySinh(null);
+                } else {
+                    khachHangModel.setNgaySinh(date);
+                }
             } catch (ParseException ex) {
                 Logger.getLogger(KhachHangService.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -59,7 +69,9 @@ public class KhachHangService implements IKhachHangService {
 
         if (updateModel.getNgaySinh() != null) {
             try {
+
                 String dateString = formatter.format(updateModel.getNgaySinh());
+
                 date = formatter.parse(dateString);
                 //LocalDate dateLocal = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
                 updateModel.setNgaySinh(date);
@@ -94,17 +106,22 @@ public class KhachHangService implements IKhachHangService {
 
     @Override
     public KhachHangModel findOneByCMND(String cmnd) {
-          return khachHangDao.findOneByCMND(cmnd);
+        return khachHangDao.findOneByCMND(cmnd);
     }
 
     @Override
     public KhachHangModel findOneByNameAndSDT(String name, String sdt) {
-       return khachHangDao.findOneByNameAndSDT(name, sdt);
+        return khachHangDao.findOneByNameAndSDT(name, sdt);
     }
 
     @Override
     public KhachHangModel findOneBySDT(String sdt) {
         return khachHangDao.findOneBySDT(sdt);
     }
-    
+
+    @Override
+    public void deleteStatus(int id) {
+     
+    }
+
 }

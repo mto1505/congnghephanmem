@@ -6,20 +6,10 @@
 package com.mycompany.applicationmvc.serviceImpl;
 
 import com.mycompany.applicationmvc.dao.IXeDAO;
-import com.mycompany.applicationmvc.daoImpl.KhachHangDAO;
 import com.mycompany.applicationmvc.daoImpl.XeDAO;
-import com.mycompany.applicationmvc.model.KhachHangModel;
 import com.mycompany.applicationmvc.model.XeModel;
-import com.mycompany.applicationmvc.service.IKhachHangService;
 import com.mycompany.applicationmvc.service.IXeService;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.Date;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *

@@ -47,12 +47,22 @@ public class LoaiXeService implements ILoaiXeService {
     }
 
     @Override
+    public LoaiXeModel findOneByCode(int idMaloaixe) {
+        return loaiXeDao.findOneByCode(idMaloaixe);
+    }
+
+    @Override
     public int getTotalItem() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public LoaiXeModel findOne(int id){
         return loaiXeDao.findOne(id);
+    }
+
+    @Override
+    public void deleteStatus(int id) {
+        loaiXeDao.deleteStatus(id);
     }
     
 }

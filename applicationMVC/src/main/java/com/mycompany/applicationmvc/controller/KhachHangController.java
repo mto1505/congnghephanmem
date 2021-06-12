@@ -9,7 +9,6 @@ import com.mycompany.applicationmvc.Utils.FomaterDate;
 import com.mycompany.applicationmvc.Utils.TableKhachHangModel;
 import com.mycompany.applicationmvc.Utils.TableModelCustom;
 import com.mycompany.applicationmvc.Utils.ValidationRegEx;
-import com.mycompany.applicationmvc.dao.IXeDAO;
 import com.mycompany.applicationmvc.model.KhachHangModel;
 import com.mycompany.applicationmvc.service.IKhachHangService;
 import com.mycompany.applicationmvc.service.IXeService;
@@ -28,13 +27,15 @@ import java.awt.event.MouseEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.sql.Date;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.List;
 
 import javax.swing.ButtonGroup;
-import javax.swing.ButtonModel;
-import javax.swing.DefaultButtonModel;
 import javax.swing.JButton;
-import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -45,9 +46,7 @@ import javax.swing.RowFilter;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
-
 
 /**
  *
@@ -122,7 +121,6 @@ public class KhachHangController {
         this.errorHoVaTen.setVisible(false);
         this.errorNgaySinh.setVisible(false);
         this.errorGioiTinh.setVisible(false);
-       
 
         maKHField.setText(String.valueOf(khachHang.getMaKH()));
         hoTenField.setText(khachHang.getHoTen());
@@ -141,26 +139,26 @@ public class KhachHangController {
     public void setEvent() {
 
         this.errorSoDienThoai.setVisible(false);
-     
+
         this.errorHoVaTen.setVisible(false);
         this.errorNgaySinh.setVisible(false);
         this.errorGioiTinh.setVisible(false);
         timkiemSDTField.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                    if(e.getClickCount()==2)
-                        {
-                            timkiemSDTField.setText("");
-                        }
+                if (e.getClickCount() == 2) {
+                    timkiemSDTField.setText("");
+                }
             }
-            
+
         });
-        
+
         tableKhachHang.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 //To change body of generated methods, choose Tools | Templates.
                 DefaultTableModel modelTable = (DefaultTableModel) tableKhachHang.getModel();
+
                 int indexSelectedRow = tableKhachHang.getSelectedRow();
 
                 KhachHangModel khachHang = new KhachHangModel();
@@ -193,11 +191,17 @@ public class KhachHangController {
                     errorHoVaTen.setText("* Vui lòng nhập trường này");
                     errorHoVaTen.setVisible(true);
                 } else {
-                    if (!ValidationRegEx.validationTextRegex(hoTenField.getText())) {
-                        errorHoVaTen.setText("*Sai định dạng(Giữa 2 từ chỉ có 1 khoảng trắng)");
-                        errorHoVaTen.setVisible(true);
+                    if (ValidationRegEx.validationTextRegex(hoTenField.getText())) {
+                        if (hoTenField.getText().length() > 25) {
+                            errorHoVaTen.setText("* Tên quá dài(lon hon 25 ki tu) vui lòng nhập lại");
+                            errorHoVaTen.setVisible(true);
+                        } 
+                        else{
+                             errorHoVaTen.setVisible(false);
+                        }
                     } else {
-                        errorHoVaTen.setVisible(false);
+                         errorHoVaTen.setText("* Sai định dạng(Giữa 2 từ chỉ có 1 khoảng trắng va chi bao gom chu)");
+                            errorHoVaTen.setVisible(true);
                     }
                 }
             }
@@ -285,15 +289,20 @@ public class KhachHangController {
             }
         });
         //ngaySinhJchooseDateField.getDateEditor().setEnabled(false);
+
         ngaySinhJchooseDateField.getDateEditor().addPropertyChangeListener(new PropertyChangeListener() {
             @Override
             public void propertyChange(PropertyChangeEvent evt) {
-
-                if (ngaySinhJchooseDateField.getDate() != null) {
-                    errorNgaySinh.setVisible(false);
-                   // System.out.println(" value " + ngaySinhJchooseDateField.getDate().toString());
-                }
-
+//                System.out.println("evt.getPropertyName()"+evt.getPropertyName());
+//                   System.out.println(evt.getNewValue());
+//                if (evt.getPropertyName().equals("value")) {
+//                    System.out.println(evt.getNewValue());
+//                    System.out.println(ngaySinhJchooseDateField.getDateEditor().getDate());
+//                    if (ngaySinhJchooseDateField.getDate()!= null) {
+//                        errorNgaySinh.setVisible(false);
+//                         System.out.println(" value " + ngaySinhJchooseDateField.getDate().toString());
+//                    } 
+//                }
             }
         });
 
@@ -314,7 +323,6 @@ public class KhachHangController {
                     } else {
                         errorSoDienThoai.setText("*Không đúng định dạng vui lòng nhập lại");
                         errorSoDienThoai.setVisible(true);
-
                     }
                 } else {
                     errorSoDienThoai.setText("* Vui lòng nhập trường này");
@@ -380,16 +388,54 @@ public class KhachHangController {
                     isValid = false;
                 } // không có thuoc tính rỗng kiểm tra định dạng
                 else {
+                    //so dien thoai
                     if (!ValidationRegEx.validationSDT(soDienThoaiField.getText())) {
-                        errorSoDienThoai.setText("*Không đúng định dạng vui lòng nhập lại");
+                        errorSoDienThoai.setText("* Không đúng định dạng vui lòng nhập lại");
                         errorSoDienThoai.setVisible(true);
                         isNotFormated = true;
                     }
-                    if (!ValidationRegEx.validationTextRegex(hoTenField.getText())) {
-                        errorSoDienThoai.setText("*Không đúng định dạng vui lòng nhập lại");
-                        errorSoDienThoai.setVisible(true);
-                        isNotFormated = true;
+                    //ho ten
+                    //hợp lệ thì kiểm tra độ dài tên
+                    if (ValidationRegEx.validationTextRegex(hoTenField.getText())) {
+                        if (hoTenField.getText().length() > 25) {
+                            errorHoVaTen.setText("* Tên quá dài(lon hon 25 ki tu) vui lòng nhập lại");
+                            errorHoVaTen.setVisible(true);
+                            isNotFormated = true;
+                        }
+                      
                     }
+                    //không hợp lệ
+                    if(!ValidationRegEx.validationTextRegex(hoTenField.getText()))
+                        {
+                              errorHoVaTen.setText("* Sai định dạng(Giữa 2 từ chỉ có 1 khoảng trắng va chi bao gom chu)");
+                            errorHoVaTen.setVisible(true);
+                        }
+                    //ngay sinh
+//                    if (ngaySinhJchooseDateField.getDateEditor().getDate() == null) {
+//                        errorNgaySinh.setText("* Không đúng định dạng vui lòng nhập lại");
+//                        errorNgaySinh.setVisible(true);
+//                        isNotFormated = true;
+//                    }
+                    
+                    if (ngaySinhJchooseDateField.getDateEditor().getDate() != null) {
+                        java.util.Date date = ngaySinhJchooseDateField.getDateEditor().getDate();
+                        Instant instant = date.toInstant();
+                        ZonedDateTime zone = instant.atZone(ZoneId.systemDefault());
+                        LocalDate givenDate = zone.toLocalDate();
+                       
+                        //tính toán sự khác nhau giữa ngày chỉ dinh va ngày hiện tại
+                        Period period = Period.between(givenDate, LocalDate.now());
+                        if ((period.getYears() <= 14 && period.getYears() >= 0) || period.getYears() >= 110) {
+                            errorNgaySinh.setText("* Tuổi phải lớn hơn hoặc bằng 14 và nhỏ hơn 110");
+                            errorNgaySinh.setVisible(true);
+                            isNotFormated = true;
+                        } else if (period.getYears() < 0) {
+                            errorNgaySinh.setText("* Tuổi không hợp lệ");
+                            errorNgaySinh.setVisible(true);
+                            isNotFormated = true;
+                        }
+                    }
+                    
 
 //                    if (!ValidationRegEx.validationCMND(soCMTField.getText())) {
 //                        errorCMND.setText("Không đúng định dạng vui lòng thử lại");
@@ -404,7 +450,7 @@ public class KhachHangController {
                 if (isNotFormated != true && hasFieldEmpty != true) {
                     String maKH = maKHField.getText();
                     String hoTen = hoTenField.getText();
-                    String soCMND = soCMTField.getText();
+
                     String gioiTinh = null;
                     if (radioNam.isSelected()) {
                         gioiTinh = radioNam.getText();
@@ -413,7 +459,8 @@ public class KhachHangController {
                     }
 
                     java.util.Date ngaySinh = new java.util.Date();
-                    ngaySinh = ngaySinhJchooseDateField.getDate();
+                    ngaySinh = ngaySinhJchooseDateField.getDateEditor().getDate();
+                    
                     String soDienThoai = null;
                     soDienThoai = soDienThoaiField.getText();
                     //khoi tạo đối tượng
@@ -486,14 +533,20 @@ public class KhachHangController {
                 } // không có thuoc tính rỗng kiểm tra định dạng
                 else {
                     if (!ValidationRegEx.validationSDT(soDienThoaiField.getText())) {
-                        errorSoDienThoai.setText("*Không đúng định dạng vui lòng nhập lại");
+                        errorSoDienThoai.setText("* Không đúng định dạng vui lòng nhập lại");
                         errorSoDienThoai.setVisible(true);
                         isNotFormated = true;
                     }
-                    if (hoTenField.getText().isEmpty()) {
-                        errorHoVaTen.setText("* Vui lòng nhập trường này");
-                        errorHoVaTen.setVisible(true);
-                        hasFieldEmpty = true;
+
+                    if (!ValidationRegEx.validationTextRegex(hoTenField.getText())) {
+                        if (hoTenField.getText().length() > 25) {
+                            errorHoVaTen.setText("* Tên quá dài(lon hon 25 ki tu) vui lòng nhập lại");
+                            errorHoVaTen.setVisible(true);
+                        } else {
+                            errorHoVaTen.setText("* Sai định dạng(Giữa 2 từ chỉ có 1 khoảng trắng va chi bao gom chu");
+                            errorHoVaTen.setVisible(true);
+                        }
+                        isNotFormated = true;
                     }
 
 //                    if (!ValidationRegEx.validationCMND(soCMTField.getText())) {
@@ -501,6 +554,23 @@ public class KhachHangController {
 //                        errorCMND.setVisible(true);
 //                        isNotFormated = true;
 //                    }
+                    if (ngaySinhJchooseDateField.getDateEditor().getDate() != null) {
+                        java.util.Date date = ngaySinhJchooseDateField.getDateEditor().getDate();
+                        Instant instant = date.toInstant();
+                        ZonedDateTime zone = instant.atZone(ZoneId.systemDefault());
+                        LocalDate givenDate = zone.toLocalDate();
+                        //tính toán sự khác nhau giữa ngày chỉ dinh va ngày hiện tại
+                        Period period = Period.between(givenDate, LocalDate.now());
+                        if ((period.getYears() <= 14 && period.getYears() >= 0) || period.getYears() >= 110) {
+                            errorNgaySinh.setText("* Tuổi phải lớn hơn hoặc bằng 14");
+                            errorNgaySinh.setVisible(true);
+                            isNotFormated = true;
+                        } else if (period.getYears() < 0) {
+                            errorNgaySinh.setText("* Tuổi không hợp lệ");
+                            errorNgaySinh.setVisible(true);
+                            isNotFormated = true;
+                        }
+                    }
                     if (isNotFormated == true) {
                         JOptionPane.showOptionDialog(panel, "Thông tin sai định dạng", "Infomation", JOptionPane.OK_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
                     }
@@ -508,7 +578,7 @@ public class KhachHangController {
 
                 if (isNotFormated != true && hasFieldEmpty != true) {
                     String hoTen = hoTenField.getText();
-                    String soCMND = soCMTField.getText();
+
                     String gioiTinh = null;
                     if (radioNam.isSelected()) {
                         gioiTinh = radioNam.getText();
@@ -579,6 +649,7 @@ public class KhachHangController {
         modelTable.setRowCount(0);
         List<KhachHangModel> listKhachHang = khachHangService.findAll();
         modelTable = tableModelCustom.setTableData(listKhachHang, modelTable);
+        
         TableRowSorter<DefaultTableModel> rowSorter = new TableRowSorter<>(modelTable);
         tableKhachHang.setRowSorter(rowSorter);
         timkiemSDTField.getDocument().addDocumentListener(new DocumentListener() {
@@ -591,9 +662,7 @@ public class KhachHangController {
                     rf = RowFilter.regexFilter(timkiemSDTField.getText(), 0);
                     rowSorter.setRowFilter(rf);
                 }
-
             }
-
             @Override
             public void removeUpdate(DocumentEvent e) {
                 RowFilter<DefaultTableModel, Object> rf = null;

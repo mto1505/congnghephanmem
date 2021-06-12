@@ -17,7 +17,10 @@ public interface ILoaiXeService {
         LoaiXeModel save(LoaiXeModel LoaiXeModel);
 	LoaiXeModel update(LoaiXeModel updateModel);
         LoaiXeModel findOneByName(String ten);
+                LoaiXeModel findOneByCode(int  idMaloaixe);
+
 	void delete(int id);
+        void deleteStatus(int id);
 	List<LoaiXeModel> findAll();
 	int getTotalItem();
 	

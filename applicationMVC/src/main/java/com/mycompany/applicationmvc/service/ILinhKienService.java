@@ -16,13 +16,16 @@ import java.util.List;
  */
 public interface ILinhKienService {
         LinhKienModel save(LinhKienModel linhKienModel);
+        LinhKienModel save(LinhKienModel linhKienModel,boolean autoID);
 	LinhKienModel update(LinhKienModel updateModel);
 	void delete(int id);
-          void deleteByIDNhaCungCap(int idNhaCungCap );
+        void deleteStatus(int id,String ngayNhap);
+        void deleteByIDNhaCungCap(int idNhaCungCap );
 	List<LinhKienModel> findAll();
 	int getTotalItem();
 	LinhKienModel findOne(int id);
+        LinhKienModel findOneByIdAndDate(int id,String ngayNhap);
         LinhKienModel findOneByName(String name);
-        LinhKienModel findOneByNameAndMaNhaCungCap(String name,int maNCC,Date ngayNhap);
+        LinhKienModel findOneByNameAndMaNhaCungCap(String name,int maNCC,String ngayNhap);
    
 }

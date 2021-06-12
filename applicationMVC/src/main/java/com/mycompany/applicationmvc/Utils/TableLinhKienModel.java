@@ -25,7 +25,7 @@ public class TableLinhKienModel implements TableModelCustom<LinhKienModel>{
                 ob.add(linhKienModel.getSoLuong());
                 ob.add(linhKienModel.getGia());
                 ob.add(linhKienModel.getNhaCungCap().getId());
-                ob.add(linhKienModel.getNgayNhap());
+                ob.add(linhKienModel.getNgayNhapString());
                 defaultTableModel.addRow(ob);
                 
             
