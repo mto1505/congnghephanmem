@@ -73,6 +73,7 @@ public class DichVubaoDuongPanel extends javax.swing.JPanel {
 
         jDialog_CanhBaoKHiCapNhatTrangThaiCuaDichVuBaoDuong.setMinimumSize(new java.awt.Dimension(549, 236));
         jDialog_CanhBaoKHiCapNhatTrangThaiCuaDichVuBaoDuong.setModal(true);
+        jDialog_CanhBaoKHiCapNhatTrangThaiCuaDichVuBaoDuong.setLocationRelativeTo(null);
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -119,6 +120,7 @@ public class DichVubaoDuongPanel extends javax.swing.JPanel {
 
         jDialog_CanhBaoTrungDichVuBaoDuong.setMinimumSize(new java.awt.Dimension(440, 224));
         jDialog_CanhBaoTrungDichVuBaoDuong.setModal(true);
+        jDialog_CanhBaoTrungDichVuBaoDuong.setLocationRelativeTo(null);
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel9.setText("Dịch vụ bảo dưỡng này đã bị trùng!!!");
@@ -241,7 +243,7 @@ public class DichVubaoDuongPanel extends javax.swing.JPanel {
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(jCheckBox_TrangThaiSuDungDichVuBaoDuong, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jTextField_NgayCapNhat, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)))
-                .addContainerGap(10, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(68, 68, 68)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -368,7 +370,7 @@ public class DichVubaoDuongPanel extends javax.swing.JPanel {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 645, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);

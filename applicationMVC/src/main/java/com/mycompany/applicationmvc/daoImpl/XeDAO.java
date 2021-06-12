@@ -55,8 +55,14 @@ public class XeDAO extends AbstractDAO<XeModel> implements IXeDAO {
 
     @Override
     public void update(XeModel xe) {
-        String sqlString = new String("update XeMay set tenxe=?, idChuSoHuu=?,idLoaiXe=? where bienso=?");
+        if(xe.getKhachHang() != null){
+            String sqlString = new String("update XeMay set tenxe=?, idChuSoHuu=?,idLoaiXe=? where bienso=?");
         update(sqlString, xe.getTenXe(), xe.getKhachHang().getMaKH(), xe.getLoaixe().getMaLoaiXe(), xe.getBienSo());
+        }else{
+            String sqlString = new String("update XeMay set tenxe=?, idLoaiXe=? where bienso=?");
+            update(sqlString, xe.getTenXe(), xe.getLoaixe().getMaLoaiXe(), xe.getBienSo());
+        }
+        
     }
 
     @Override

@@ -28,4 +28,9 @@ public interface ILoaiXeDao {
     List<LoaiXeModel> findAll();
 
     int getTotalItem();
+    
+    //true: tim tất cả
+    LoaiXeModel findOne(int id,boolean mode);
+   LoaiXeModel findOneByName(String tenloai,boolean mode);
+   List<LoaiXeModel> findAll(boolean mode);
 }

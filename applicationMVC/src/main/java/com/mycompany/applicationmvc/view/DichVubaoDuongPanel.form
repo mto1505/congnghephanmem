@@ -9,6 +9,9 @@
         </Property>
         <Property name="modal" type="boolean" value="true"/>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jDialog_CanhBaoKHiCapNhatTrangThaiCuaDichVuBaoDuong.setLocationRelativeTo(null);"/>
+      </AuxValues>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -79,6 +82,9 @@
         </Property>
         <Property name="modal" type="boolean" value="true"/>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jDialog_CanhBaoTrungDichVuBaoDuong.setLocationRelativeTo(null);"/>
+      </AuxValues>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -198,7 +204,7 @@
                           <Component id="jPanel3" min="-2" pref="645" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace pref="37" max="32767" attributes="0"/>
+                  <EmptySpace pref="32" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -257,7 +263,7 @@
                               <Component id="jTextField_NgayCapNhat" alignment="0" pref="176" max="32767" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="10" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>

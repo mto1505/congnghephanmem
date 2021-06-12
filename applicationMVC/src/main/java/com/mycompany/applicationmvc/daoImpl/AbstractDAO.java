@@ -80,7 +80,7 @@ public class AbstractDAO<T> implements GenericDAO<T> {
 
     private void setParameter(PreparedStatement statement, Object... parameters) {
         try {
-            System.out.println("parameters.length +" + parameters.length);
+            
             for (int i = 0; i < parameters.length; i++) {
                 Object parameter = parameters[i];
                 int index = i + 1;

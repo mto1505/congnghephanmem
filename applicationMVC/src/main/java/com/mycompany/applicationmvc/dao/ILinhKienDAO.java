@@ -33,6 +33,8 @@ public interface ILinhKienDAO extends GenericDAO<LinhKienModel> {
     LinhKienModel findOne(int id);
     
     LinhKienModel findOneByIdAndDate(int id,String date);
+    
+    LinhKienModel findOneByIdAndDate(int id,String date,boolean mode);
 
     LinhKienModel findOneByName(String ten);
 

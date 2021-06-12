@@ -78,12 +78,11 @@ public class LinhKienService implements ILinhKienService {
         linhKienDAO.deleteByIDNhaCungCap(idNhaCungCap);
     }
 
-
     @Override
     public LinhKienModel save(LinhKienModel linhKienModel, boolean autoID) {
-         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         linhKienModel.setNgayNhapString(formatter.format(linhKienModel.getNgayNhap()));
-        int id = linhKienDAO.insert(linhKienModel,false);
+        int id = linhKienDAO.insert(linhKienModel, false);
         return linhKienDAO.findOne(id);
 
     }
@@ -94,17 +93,19 @@ public class LinhKienService implements ILinhKienService {
     }
 
     @Override
-    public void deleteStatus(int id,String ngayNhap) {
-        linhKienDAO.deleteStatus(id,ngayNhap);
+    public void deleteStatus(int id, String ngayNhap) {
+        linhKienDAO.deleteStatus(id, ngayNhap);
     }
 
+    public LinhKienModel findOneByIdAndDate(int id, String ngaynhap, boolean mode) {
+        return linhKienDAO.findOneByIdAndDate(id, ngaynhap, mode);
+    }
 
-    
-    public List<LinhKienModel> layDanhSachLinhKienMoiNhat(){
+    public List<LinhKienModel> layDanhSachLinhKienMoiNhat() {
         return linhKienDAO.layDanhSachLinhKienMoiNhat();
     }
-    
-    public LinhKienModel timLinhKienMoiNhatTheoID(int id){
+
+    public LinhKienModel timLinhKienMoiNhatTheoID(int id) {
         return linhKienDAO.timLinhKienMoiNhatTheoID(id);
     }
 

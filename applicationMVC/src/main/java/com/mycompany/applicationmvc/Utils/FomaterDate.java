@@ -32,12 +32,12 @@ public class FomaterDate {
         return date;
 
     }
-    public static void main(String[] args) throws ParseException {
-        String ns="2000-02-30 5:30:30";
-        Date date=null;
-        date=FomaterDate.convertStringToDate(ns);
-        JDateChooser dateChooser=new JDateChooser(date);
-        System.out.println(dateChooser.getDate());
-        
-        }
+//    public static void main(String[] args) throws ParseException {
+//        String ns="2000-02-30 5:30:30";
+//        Date date=null;
+//        date=FomaterDate.convertStringToDate(ns);
+//        JDateChooser dateChooser=new JDateChooser(date);
+//        System.out.println(dateChooser.getDate());
+//        
+//        }
 }

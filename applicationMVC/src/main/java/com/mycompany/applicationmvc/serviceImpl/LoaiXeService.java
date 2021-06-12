@@ -40,10 +40,18 @@ public class LoaiXeService implements ILoaiXeService {
     public List<LoaiXeModel> findAll() {
         return loaiXeDao.findAll();
     }
+    
+    public List<LoaiXeModel> findAll(boolean mode) {
+        return loaiXeDao.findAll(mode);
+    }
 
     @Override
     public LoaiXeModel findOneByName(String ten) {
         return loaiXeDao.findOneByName(ten);
+    }
+    
+    public LoaiXeModel findOneByName(String ten,boolean mode) {
+        return loaiXeDao.findOneByName(ten,mode);
     }
 
     @Override
@@ -59,10 +67,15 @@ public class LoaiXeService implements ILoaiXeService {
     public LoaiXeModel findOne(int id){
         return loaiXeDao.findOne(id);
     }
+    
+    public LoaiXeModel findOne(int id,boolean mode){
+        return loaiXeDao.findOne(id,mode);
+    }
 
     @Override
     public void deleteStatus(int id) {
         loaiXeDao.deleteStatus(id);
     }
+    
     
 }

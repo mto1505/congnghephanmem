@@ -5,12 +5,15 @@
  */
 package com.mycompany.applicationmvc.viewAdmin;
 
+import com.mycompany.applicationmvc.Utils.DBConnectUtil;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 /**
@@ -20,22 +23,17 @@ import java.text.SimpleDateFormat;
 public class ModelAdmin {
     // Connect database
      public static Connection connectMSSQL(){
-        Connection cn=null;
-        try{
-            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            cn=DriverManager.getConnection("jdbc:sqlserver://;databaseName=QuanLyBaoDuong", "minhto", "minhto123");
-            System.out.println("Connect success");
-        }
-        catch (ClassNotFoundException | SQLException ex){
-            System.out.println("Can't connect");
-            ex.printStackTrace();
-        }
-        return cn;
+         try {
+             return DBConnectUtil.getConnection();
+         } catch (SQLException ex) {
+             Logger.getLogger(ModelAdmin.class.getName()).log(Level.SEVERE, null, ex);
+         }
+         return null;
     }
     //Thử database        
-    public static void main(String args[]) {
-        Connection cn=ModelAdmin.connectMSSQL();
-    }
+//    public static void main(String args[]) {
+//        Connection cn=ModelAdmin.connectMSSQL();
+//    }
     
     //Thêm TK trên database 
     public static void themTK(String user,String pass,int id_nv,int id_quyen) {

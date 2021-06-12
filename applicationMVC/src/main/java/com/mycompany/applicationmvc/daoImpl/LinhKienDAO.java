@@ -70,7 +70,7 @@ public class LinhKienDAO extends AbstractDAO<LinhKienModel> implements ILinhKien
     @Override
     public List<LinhKienModel> findAll() {
 
-        String sql = "select  * from LinhKien  where trangthai=0";
+        String sql = "select  * from LinhKien  where (trangthai=0 OR trangthai IS NULL)";
 
         return query(sql, new LinhKienMapper());
     }
@@ -78,7 +78,7 @@ public class LinhKienDAO extends AbstractDAO<LinhKienModel> implements ILinhKien
     @Override
     public LinhKienModel findOne(int id) {
 
-        String sql = "select  * from LinhKien where id=?  and trangthai=0";
+        String sql = "select  * from LinhKien where id=?  and (trangthai=0 OR trangthai IS NULL)";
 
         List<LinhKienModel> listLinhKien = query(sql, new LinhKienMapper(), id);
         return listLinhKien.isEmpty() ? null : listLinhKien.get(0);
@@ -87,7 +87,7 @@ public class LinhKienDAO extends AbstractDAO<LinhKienModel> implements ILinhKien
     @Override
     public LinhKienModel findOneByName(String ten) {
 
-        String sql = "select  * from LinhKien where tenlinhkien=? where trangthai=0";
+        String sql = "select  * from LinhKien where tenlinhkien=? where (trangthai=0 OR trangthai IS NULL)";
 
         List<LinhKienModel> listLinhKien = query(sql, new LinhKienMapper(), ten);
         return listLinhKien.isEmpty() ? null : listLinhKien.get(0);
@@ -96,7 +96,7 @@ public class LinhKienDAO extends AbstractDAO<LinhKienModel> implements ILinhKien
     @Override
 
     public LinhKienModel findOneByNameAndMaNhaCungCap(String name, int maNCC, String ngayNhap) {
-        String sql = "select * from LinhKien where tenlinhkien=? and nhacungcap=? and ngaynhap=? and trangthai=0";
+        String sql = "select * from LinhKien where tenlinhkien=? and nhacungcap=? and ngaynhap=? and (trangthai=0 OR trangthai IS NULL)";
 
         List<LinhKienModel> listLinhKien = query(sql, new LinhKienMapper(), name, maNCC, ngayNhap);
         return listLinhKien.isEmpty() ? null : listLinhKien.get(0);
@@ -110,7 +110,17 @@ public class LinhKienDAO extends AbstractDAO<LinhKienModel> implements ILinhKien
 
     @Override
     public LinhKienModel findOneByIdAndDate(int id, String ngaynhap) {
-        String sql = "select  * from LinhKien where id=? and ngaynhap=? and trangthai=0";
+        String sql = "select  * from LinhKien where id=? and ngaynhap=? and (trangthai=0 OR trangthai IS NULL)";
+        List<LinhKienModel> listLinhKien = query(sql, new LinhKienMapper(), id, ngaynhap);
+        return listLinhKien.isEmpty() ? null : listLinhKien.get(0);
+    }
+
+    @Override
+    public LinhKienModel findOneByIdAndDate(int id, String ngaynhap, boolean mode) {
+        String sql = "select  * from LinhKien where id=? and ngaynhap=? ";
+        if(mode){
+            sql+="and (trangthai=0 OR trangthai IS NULL)";
+        }
         List<LinhKienModel> listLinhKien = query(sql, new LinhKienMapper(), id, ngaynhap);
         return listLinhKien.isEmpty() ? null : listLinhKien.get(0);
     }

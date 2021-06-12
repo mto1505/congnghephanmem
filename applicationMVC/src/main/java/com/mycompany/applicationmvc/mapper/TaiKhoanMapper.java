@@ -25,7 +25,7 @@ public class TaiKhoanMapper implements RowMapper<TaiKhoanModel>{
             taiKhoanModel.setTenTaiKhoan(rs.getString("tentaikhoan"));
             taiKhoanModel.setMatKhau(rs.getString("matkhau"));
             taiKhoanModel.setQuyen(rs.getString("tenquyen"));
-            taiKhoanModel.setTenNhanVien(rs.getString("ten"));
+            taiKhoanModel.setTenNhanVien(rs.getString("tennv"));
             return taiKhoanModel;
             
         } catch (SQLException ex) {
