@@ -51,21 +51,29 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
-                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="jLabel_TenTG" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                  <Component id="jButton_XuatExcel" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
-                  <Component id="jButton_Thoat" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="105" max="-2" attributes="0"/>
-              </Group>
-              <Group type="102" alignment="0" attributes="0">
+              <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jTabbedPane_QLAdmin" min="-2" pref="1424" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
+                          <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="jLabel_TenTG" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
+                          <Component id="jLabel_TenTK" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
+                          <Component id="jButton_XuatExcel" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="jButton_CTK" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+                          <Component id="jButton_Thoat" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="105" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="jTabbedPane_QLAdmin" min="-2" pref="1424" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
               </Group>
           </Group>
         </DimensionLayout>
@@ -78,6 +86,8 @@
                       <Component id="jLabel_TenTG" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jButton_Thoat" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jButton_XuatExcel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel_TenTK" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jButton_CTK" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
                   <Component id="jTabbedPane_QLAdmin" min="-2" pref="729" max="-2" attributes="0"/>
@@ -214,6 +224,9 @@
         </Container>
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="18" style="1"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="QU&#x1ea2;N L&#xdd;"/>
           </Properties>
         </Component>
@@ -236,6 +249,19 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton_XuatExcelActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel_TenTK">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="T&#xca;N T&#xc0;I KHO&#x1ea2;N"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="jButton_CTK">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="&#x110;&#x1ed4;I T&#xc0;I KHO&#x1ea2;N"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton_CTKActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

@@ -26,8 +26,12 @@ public class MainAdmin extends javax.swing.JFrame {
         this.setTitle("Quản Lý");
     }
     //set tieue de
-    public MainAdmin(String id) {
+    public MainAdmin(String id,String ten) {
         initComponents();
+        this.setLocationRelativeTo(null);
+        this.setTitle("Quản Lý");
+        this.jLabel_TenTK.setText("Username : "+id);
+        this.jLabel_TenTG.setText(ten);
     }
 
     /**
@@ -51,6 +55,8 @@ public class MainAdmin extends javax.swing.JFrame {
         jLabel_TenTG = new javax.swing.JLabel();
         jButton_Thoat = new javax.swing.JButton();
         jButton_XuatExcel = new javax.swing.JButton();
+        jLabel_TenTK = new javax.swing.JLabel();
+        jButton_CTK = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -142,6 +148,7 @@ public class MainAdmin extends javax.swing.JFrame {
 
         jTabbedPane_QLAdmin.addTab("ĐƠN BẢO DƯỠNG", jPanel_LapDBD);
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setText("QUẢN LÝ");
 
         jLabel_TenTG.setText("TÊN NHÂN VIÊN QUẢN LÝ");
@@ -160,24 +167,39 @@ public class MainAdmin extends javax.swing.JFrame {
             }
         });
 
+        jLabel_TenTK.setText("TÊN TÀI KHOẢN");
+
+        jButton_CTK.setText("ĐỔI TÀI KHOẢN");
+        jButton_CTK.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_CTKActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel_AdminLayout = new javax.swing.GroupLayout(jPanel_Admin);
         jPanel_Admin.setLayout(jPanel_AdminLayout);
         jPanel_AdminLayout.setHorizontalGroup(
             jPanel_AdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel_AdminLayout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel_TenTG)
-                .addGap(28, 28, 28)
-                .addComponent(jButton_XuatExcel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton_Thoat)
-                .addGap(105, 105, 105))
-            .addGroup(jPanel_AdminLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane_QLAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 1424, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel_AdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel_AdminLayout.createSequentialGroup()
+                        .addGap(11, 11, 11)
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel_TenTG)
+                        .addGap(44, 44, 44)
+                        .addComponent(jLabel_TenTK)
+                        .addGap(65, 65, 65)
+                        .addComponent(jButton_XuatExcel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton_CTK)
+                        .addGap(50, 50, 50)
+                        .addComponent(jButton_Thoat)
+                        .addGap(105, 105, 105))
+                    .addGroup(jPanel_AdminLayout.createSequentialGroup()
+                        .addComponent(jTabbedPane_QLAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 1424, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel_AdminLayout.setVerticalGroup(
             jPanel_AdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -187,7 +209,9 @@ public class MainAdmin extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addComponent(jLabel_TenTG)
                     .addComponent(jButton_Thoat)
-                    .addComponent(jButton_XuatExcel))
+                    .addComponent(jButton_XuatExcel)
+                    .addComponent(jLabel_TenTK)
+                    .addComponent(jButton_CTK))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jTabbedPane_QLAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 729, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -223,6 +247,12 @@ public class MainAdmin extends javax.swing.JFrame {
         }
         JOptionPane.showMessageDialog(this,"Xuất File EXEL Thành Công. Vị Trí : Source Project");
     }//GEN-LAST:event_jButton_XuatExcelActionPerformed
+
+    private void jButton_CTKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CTKActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        new com.mycompany.applicationmvc.viewMain.SignInForm().setVisible(true);
+    }//GEN-LAST:event_jButton_CTKActionPerformed
 
     /**
      * @param args the command line arguments
@@ -260,10 +290,12 @@ public class MainAdmin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton_CTK;
     private javax.swing.JButton jButton_Thoat;
     private javax.swing.JButton jButton_XuatExcel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel_TenTG;
+    private javax.swing.JLabel jLabel_TenTK;
     private javax.swing.JPanel jPanel_Admin;
     private javax.swing.JPanel jPanel_LapDBD;
     private javax.swing.JPanel jPanel_QuanLy;
