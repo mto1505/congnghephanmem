@@ -668,7 +668,7 @@ public class XeController {
                                     xe = xeSevice.save(xe);
                                     if (xe != null) {
                                         JOptionPane.showMessageDialog(jpanel, "Thêm xe thành công", "Lưu", 0);
-                                          setDataToTableModel();
+                                        setDataToTableModel();
                                     } else {
                                         JOptionPane.showMessageDialog(jpanel, "Thêm xe thất bại", "Lưu", 0);
                                     }
@@ -690,7 +690,7 @@ public class XeController {
                                 xe = xeSevice.save(xe);
                                 if (xe != null) {
                                     JOptionPane.showMessageDialog(jpanel, "Thêm xe thành công", "Lưu", 0);
-                                      setDataToTableModel();
+                                    setDataToTableModel();
                                 } else {
                                     JOptionPane.showMessageDialog(jpanel, "Thêm xe thất bại", "Lưu", 0);
                                 }
@@ -907,7 +907,7 @@ public class XeController {
                             xe = xeSevice.update(xe);
                             if (xe != null) {
                                 JOptionPane.showMessageDialog(jpanel, "Cập nhật xe thành công", "Lưu", 0);
-                                  setDataToTableModel();
+                                setDataToTableModel();
                             } else {
                                 JOptionPane.showMessageDialog(jpanel, "Cập nhật xe thất bại", "Lưu", 0);
                             }
@@ -924,7 +924,7 @@ public class XeController {
                         XeModel xeNew = xeSevice.update(xe);
                         if (xeNew != null) {
                             JOptionPane.showMessageDialog(jpanel, "Cập nhật xe thành công", "Lưu", 0);
-                              setDataToTableModel();
+                            setDataToTableModel();
                         } else {
                             JOptionPane.showMessageDialog(jpanel, "Cập nhật xe thất bại", "Lưu", 0);
                         }
@@ -1188,7 +1188,7 @@ public class XeController {
                         loaiXeModel = loaiXeService.save(loaiXeModel);
                         if (loaiXeModel != null) {
                             JOptionPane.showMessageDialog(jpanel, "Thêm loại xe thành công", "Đồng ý", 0);
-                                 setDataToTableModel();
+                            setDataToTableModel();
                         } else {
                             JOptionPane.showMessageDialog(jpanel, "Thêm loại xe thất bại", "Đồng ý", 0);
                         }
@@ -1251,7 +1251,7 @@ public class XeController {
                                 loaiXeModel = loaiXeService.update(loaiXeModel);
                                 if (loaiXeModel != null) {
                                     JOptionPane.showMessageDialog(jpanel, "Sửa loại xe thành công", "Đồng ý", 0);
-                                      setDataToTableModel();
+                                    setDataToTableModel();
                                 } else {
                                     JOptionPane.showMessageDialog(jpanel, "Sửa loại xe thất bại", "Đồng ý", 0);
                                 }
@@ -1277,7 +1277,7 @@ public class XeController {
             public void actionPerformed(ActionEvent e) {
                 if (!maLoaiXeField.getText().isEmpty()) {
                     int maLoaiXe = Integer.parseInt(maLoaiXeField.getText());
-                    String op[] = {"Suy nghĩ lại", "Đồng ý"};
+                    String op[] = {"Huỷ", "Đồng ý"};
                     int value = JOptionPane.showOptionDialog(jpanel, "Bạn chắc chắn muốn xoá", "Xoá loai xe", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, op, op[0]);
                     if (value == 1) {
                         loaiXeService.deleteStatus(maLoaiXe);

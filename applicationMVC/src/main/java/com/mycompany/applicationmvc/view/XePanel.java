@@ -96,7 +96,7 @@ public class XePanel extends javax.swing.JPanel {
 
         jPanel1.setMaximumSize(new java.awt.Dimension(1258, 660));
         jPanel1.setMinimumSize(new java.awt.Dimension(1258, 660));
-        jPanel1.setPreferredSize(new java.awt.Dimension(1258, 660));
+        jPanel1.setPreferredSize(new java.awt.Dimension(1058, 660));
         jPanel1.setRequestFocusEnabled(false);
 
         jPanel3.setBackground(new java.awt.Color(204, 255, 255));
@@ -179,7 +179,7 @@ public class XePanel extends javax.swing.JPanel {
         });
 
         suaXeBtn.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        suaXeBtn.setText("Sữa");
+        suaXeBtn.setText("Sửa");
         suaXeBtn.setPreferredSize(new java.awt.Dimension(70, 35));
         suaXeBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -234,15 +234,9 @@ public class XePanel extends javax.swing.JPanel {
 
         errorBienSo.setIcon(new javax.swing.ImageIcon(LinhKienController.iconErrorURL));
 
-        errorTenXe.setIcon(new javax.swing.ImageIcon("C:\\Users\\MinhTo\\Documents\\GitHub\\congnghephanmem\\applicationMVC\\src\\main\\resource\\img\\error_30px.png")); // NOI18N
         errorTenXe.setToolTipText("Sai định dạng(Giữa 2 từ chỉ có 1 khoảng trắng và chỉ chưa các chữ cái");
 
-        errorChuSoHuu.setIcon(new javax.swing.ImageIcon("C:\\Users\\MinhTo\\Documents\\GitHub\\congnghephanmem\\applicationMVC\\src\\main\\resource\\img\\error_30px.png")); // NOI18N
         errorChuSoHuu.setToolTipText("Sai định dạng(Giữa 2 từ chỉ có 1 khoảng trắng và không chứa các kí tự đặc biệt");
-
-        errorSoDienThoai.setIcon(new javax.swing.ImageIcon("C:\\Users\\MinhTo\\Documents\\GitHub\\congnghephanmem\\applicationMVC\\src\\main\\resource\\img\\error_30px.png")); // NOI18N
-
-        errorLoaiXe.setIcon(new javax.swing.ImageIcon("C:\\Users\\MinhTo\\Documents\\GitHub\\congnghephanmem\\applicationMVC\\src\\main\\resource\\img\\error_30px.png")); // NOI18N
 
         gioiTinh.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         gioiTinh.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -440,7 +434,7 @@ public class XePanel extends javax.swing.JPanel {
         });
 
         suaLoaiXeBtn.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        suaLoaiXeBtn.setText("Sữa");
+        suaLoaiXeBtn.setText("Sửa");
         suaLoaiXeBtn.setPreferredSize(new java.awt.Dimension(70, 35));
 
         tableMaLoaiXe.setModel(new javax.swing.table.DefaultTableModel(
@@ -521,10 +515,8 @@ public class XePanel extends javax.swing.JPanel {
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setIcon(new javax.swing.ImageIcon("E:\\BT-JAVA-WEB\\applicationMVC\\src\\main\\resource\\img\\xe1nho.png")); // NOI18N
 
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setIcon(new javax.swing.ImageIcon("E:\\BT-JAVA-WEB\\applicationMVC\\src\\main\\resource\\img\\xéh.png")); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -562,7 +554,7 @@ public class XePanel extends javax.swing.JPanel {
                         .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 863, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1046, Short.MAX_VALUE))
+                    .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1246, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -570,7 +562,7 @@ public class XePanel extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
-                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 415, Short.MAX_VALUE)
+                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 419, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -582,7 +574,7 @@ public class XePanel extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1258, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

@@ -16,7 +16,8 @@ public class ValidationRegEx {
 
     private static final String SDTRegex = "^(0?)(3[2-9]|5[6|8|9]|7[0|6-9]|8[0-6|8|9]|9[0-4|6-9])[0-9]{7}$";
     private static final String CMNDRegex = "(\\d{12}|\\d{9})*";
-    private static final String bienSoRegex = "(?<vung>[1-9]\\d{1})\\-[\\w]\\d{1}\\s(\\d{4,5})";
+    private static final String bienSoRegex = "(?<vung>[1-9]\\d{1})[\\w]d{1}(\\d{4,5})";
+       private static final String bienSoRegex2 = "[0-9]{2}[a-zA-Z]{1}[0-9]{4,7}$";
     private static final String textRegex = "^\\w+( +\\w+)*$";
     private static final String textAndNumRegex = "^[\\w\\d]+( +[\\w\\d]+)*$";
     private static final String textAndNumRegex2 = "([aàảãáạăằẳẵắặâầẩẫấậbcdđeèẻẽéẹêềểễếệfghiìỉĩíịjklmnoòỏõóọôồổỗốộơờởỡớợpqrstuùủũúụưừửữứựvwxyỳỷỹýỵz0-9_AĂÂÁẮẤÀẰẦẢẲẨÃẴẪẠẶẬĐEÊÉẾÈỀẺỂẼỄẸỆIÍÌỈĨỊOÔƠÓỐỚÒỒỜỎỔỞÕỖỠỌỘỢUƯÚỨÙỪỦỬŨỮỤỰYÝỲỶỸỴAĂÂÁẮẤÀẰẦẢẲẨÃẴẪẠẶẬĐEÊÉẾÈỀẺỂẼỄẸỆIÍÌỈĨỊOÔƠÓỐỚÒỒỜỎỔỞÕỖỠỌỘỢUƯÚỨÙỪỦỬŨỮỤỰYÝỲỶỸỴAĂÂÁẮẤÀẰẦẢẲẨÃẴẪẠẶẬĐEÊÉẾÈỀẺỂẼỄẸỆIÍÌỈĨỊOÔƠÓỐỚÒỒỜỎỔỞÕỖỠỌỘỢUƯÚỨÙỪỦỬŨỮỤỰYÝỲỶỸỴAĂÂÁẮẤÀẰẦẢẲẨÃẴẪẠẶẬĐEÊÉẾÈỀẺỂẼỄẸỆIÍÌỈĨỊOÔƠÓỐỚÒỒỜỎỔỞÕỖỠỌỘỢUƯÚỨÙỪỦỬŨỮỤỰYÝỲỶỸỴAĂÂÁẮẤÀẰẦẢẲẨÃẴẪẠẶẬĐEÊÉẾÈỀẺỂẼỄẸỆIÍÌỈĨỊOÔƠÓỐỚÒỒỜỎỔỞÕỖỠỌỘỢUƯÚỨÙỪỦỬŨỮỤỰYÝỲỶỸỴAĂÂÁẮẤÀẰẦẢẲẨÃẴẪẠẶẬĐEÊÉẾÈỀẺỂẼỄẸỆIÍÌỈĨỊOÔƠÓỐỚÒỒỜỎỔỞÕỖỠỌỘỢUƯÚỨÙỪỦỬŨỮỤỰYÝỲỶỸỴA-Z]+\\s?)+";
@@ -39,7 +40,7 @@ public class ValidationRegEx {
     }
 
     public static boolean validationBienSo(String bienso) {
-        Pattern pattern = Pattern.compile(bienSoRegex);
+        Pattern pattern = Pattern.compile(bienSoRegex2);
         Matcher matcher = pattern.matcher(bienso);
         return matcher.matches();
     }

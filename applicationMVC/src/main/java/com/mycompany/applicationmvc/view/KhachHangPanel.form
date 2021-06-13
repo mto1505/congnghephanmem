@@ -408,7 +408,7 @@
             </Component>
             <Component class="javax.swing.JButton" name="suaBtn">
               <Properties>
-                <Property name="text" type="java.lang.String" value="S&#x1eef;a"/>
+                <Property name="text" type="java.lang.String" value="S&#x1eed;a"/>
                 <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[70, 35]"/>
                 </Property>

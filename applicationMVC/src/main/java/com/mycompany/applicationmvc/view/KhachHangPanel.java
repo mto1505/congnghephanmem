@@ -160,7 +160,7 @@ public class KhachHangPanel extends javax.swing.JPanel {
         jPanel3.add(jLabel1);
 
         jPanel5.setBackground(new java.awt.Color(243, 243, 244));
-        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 14), new java.awt.Color(0, 0, 153)), "Thông Tin", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 14), new java.awt.Color(14, 0, 96))); // NOI18N
+        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 14), new java.awt.Color(0, 0, 153)), "Thông Tin", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 14), new java.awt.Color(14, 0, 96))); // NOI18N
 
         xoaBtn.setText("Xoá");
         xoaBtn.setPreferredSize(new java.awt.Dimension(70, 35));
@@ -207,7 +207,7 @@ public class KhachHangPanel extends javax.swing.JPanel {
             }
         });
 
-        suaBtn.setText("Sữa");
+        suaBtn.setText("Sửa");
         suaBtn.setPreferredSize(new java.awt.Dimension(70, 35));
 
         errorHoVaTen.setForeground(new java.awt.Color(255, 0, 0));
