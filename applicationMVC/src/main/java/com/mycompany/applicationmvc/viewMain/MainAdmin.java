@@ -120,6 +120,7 @@ public class MainAdmin extends javax.swing.JFrame {
         jTabbedPane_QuanLy.addTab("NHÂN VIÊN",img_nv, new com.mycompany.applicationmvc.viewAdmin.JPanel_NhanVien());
         jTabbedPane_QuanLy.addTab("KHÁCH HÀNG",img_kh, new com.mycompany.applicationmvc.view.KhachHangPanel(this));
         jTabbedPane_QuanLy.addTab("XE MÁY",img_xm, new com.mycompany.applicationmvc.view.XePanel());
+        jTabbedPane_QuanLy.addTab("LINH KIỆN + NHÀ SẢN XUẤT",img_lk, new com.mycompany.applicationmvc.view.LinhKienPanel());
 
         jTabbedPane_QLAdmin.addTab("QUẢN LÝ", jPanel_QuanLy);
 

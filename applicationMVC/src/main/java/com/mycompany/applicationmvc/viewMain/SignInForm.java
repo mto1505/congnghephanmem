@@ -291,6 +291,10 @@ public class SignInForm extends javax.swing.JFrame {
             kt=false;
             JOptionPane.showMessageDialog(this, "Tên Đăng Nhập Không Tồn Tại");
         }
+        if( kt && ControllerAdmin.ktUser(user)==-1){
+            kt=false;
+            JOptionPane.showMessageDialog(this, "Không Thể Kết Nối Với Database");
+        }
         if (kt){
             if (ControllerAdmin.ktPassTK(user,pass)==0){
                 JOptionPane.showMessageDialog(this, "Mật Khẩu Không Chính Xác");

@@ -27,6 +27,7 @@ public class ControllerAdmin {
     public static int ktUser(String user){
        int kt=0;
        Connection cn=ModelAdmin.connectMSSQL();
+       if (cn==null) return -1;
        String sql="select TenTaiKhoan from TaiKhoan where TenTaiKhoan=?";
        try{
            PreparedStatement ps=cn.prepareStatement(sql);

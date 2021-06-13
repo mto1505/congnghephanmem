@@ -324,6 +324,8 @@ public class MainThuNgan extends javax.swing.JFrame {
         );
 
         //jTabbedPane_NhapKho.addTab("Linh Kiện",new com.mycompany.applicationmvc.view.LinhKienPanel());
+        ImageIcon img_lk=ControllerAdmin.setIcon(20,20,"./src/img/helmet.png");
+        jTabbedPane_NhapKho.addTab("LINH KIỆN + NHÀ SẢN XUẤT", img_lk,new com.mycompany.applicationmvc.view.LinhKienPanel());
 
         jTabbedPane_QLThuNgan.addTab("QUẢN LÝ KHO", jPanel_NhapKho);
 
