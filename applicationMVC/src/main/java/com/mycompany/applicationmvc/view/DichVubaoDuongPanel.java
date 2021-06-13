@@ -170,7 +170,7 @@ public class DichVubaoDuongPanel extends javax.swing.JPanel {
         });
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel12.setText("Tên không hợp lệ hoặc Số tiền bận nhập không hợp lệ!!");
+        jLabel12.setText("Tên không hợp lệ hoặc Số tiền bạn nhập không hợp lệ!!");
 
         javax.swing.GroupLayout jDialog_CanhBaoLoiSoTienLayout = new javax.swing.GroupLayout(jDialog_CanhBaoLoiSoTien.getContentPane());
         jDialog_CanhBaoLoiSoTien.getContentPane().setLayout(jDialog_CanhBaoLoiSoTienLayout);
