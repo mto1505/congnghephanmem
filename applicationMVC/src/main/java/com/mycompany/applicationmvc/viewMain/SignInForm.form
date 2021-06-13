@@ -130,9 +130,6 @@
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextField_TenDN">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField_TenDNActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="thoatBtn">
           <Properties>
@@ -223,6 +220,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JPasswordField" name="jPasswordField_PassDN">
+          <Events>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jPasswordField_PassDNKeyPressed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JCheckBox" name="jCheckBox_KTPass">
           <Properties>

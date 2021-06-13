@@ -8,6 +8,7 @@ package com.mycompany.applicationmvc.viewMain;
 import com.mycompany.applicationmvc.viewAdmin.ControllerAdmin;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import javax.swing.Timer;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -68,12 +69,6 @@ public class SignInForm extends javax.swing.JFrame {
             }
         });
 
-        jTextField_TenDN.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField_TenDNActionPerformed(evt);
-            }
-        });
-
         thoatBtn.setText("Thoát");
         thoatBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -122,6 +117,12 @@ public class SignInForm extends javax.swing.JFrame {
 
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Mật Khẩu");
+
+        jPasswordField_PassDN.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jPasswordField_PassDNKeyPressed(evt);
+            }
+        });
 
         jCheckBox_KTPass.setBackground(new java.awt.Color(103, 128, 159));
         jCheckBox_KTPass.setForeground(new java.awt.Color(255, 255, 255));
@@ -220,34 +221,8 @@ public class SignInForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton_DNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_DNActionPerformed
-        boolean kt=true;
-        user=jTextField_TenDN.getText().trim();
-        String pass=jPasswordField_PassDN.getText().trim();
-        if (user.matches("") || pass.matches("")){
-            kt=false;
-            JOptionPane.showMessageDialog(this, "Tên Đăng Nhập, Mật Khẩu Không Được Để Trống");
-        }
-        if( kt && ControllerAdmin.ktUser(user)==0){
-            kt=false;
-            JOptionPane.showMessageDialog(this, "Tên Đăng Nhập Không Tồn Tại");
-        }
-        if (kt){
-            if (ControllerAdmin.ktPassTK(user,pass)==0){
-                JOptionPane.showMessageDialog(this, "Mật Khẩu Không Chính Xác");
-            }
-            else {
-              count=-1;
-              jProgressBar_Loading.setValue(0);
-              jProgressBar_Loading.setStringPainted(true);
-              t=new Timer(n,new TimerListener());
-              t.start();
-            }
-        }
+        DN();
     }//GEN-LAST:event_jButton_DNActionPerformed
-
-    private void jTextField_TenDNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_TenDNActionPerformed
-
-    }//GEN-LAST:event_jTextField_TenDNActionPerformed
 
     private void thoatBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_thoatBtnActionPerformed
         // TODO add your handling code here:
@@ -263,6 +238,12 @@ public class SignInForm extends javax.swing.JFrame {
             jPasswordField_PassDN.setEchoChar('\u25cf');
         }
     }//GEN-LAST:event_jCheckBox_KTPassActionPerformed
+    private void jPasswordField_PassDNKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPasswordField_PassDNKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode()==KeyEvent.VK_ENTER){
+            DN();
+        }
+    }//GEN-LAST:event_jPasswordField_PassDNKeyPressed
     
     /**
      * @param args the command line arguments
@@ -297,7 +278,32 @@ public class SignInForm extends javax.swing.JFrame {
             }
         });
     }
-
+    
+    public void DN(){
+        boolean kt=true;
+        user=jTextField_TenDN.getText().trim();
+        String pass=jPasswordField_PassDN.getText().trim();
+        if (user.matches("") || pass.matches("")){
+            kt=false;
+            JOptionPane.showMessageDialog(this, "Tên Đăng Nhập, Mật Khẩu Không Được Để Trống");
+        }
+        if( kt && ControllerAdmin.ktUser(user)==0){
+            kt=false;
+            JOptionPane.showMessageDialog(this, "Tên Đăng Nhập Không Tồn Tại");
+        }
+        if (kt){
+            if (ControllerAdmin.ktPassTK(user,pass)==0){
+                JOptionPane.showMessageDialog(this, "Mật Khẩu Không Chính Xác");
+            }
+            else {
+              count=-1;
+              jProgressBar_Loading.setValue(0);
+              jProgressBar_Loading.setStringPainted(true);
+              t=new Timer(n,new TimerListener());
+              t.start();
+            }
+        }
+    }
     public class TimerListener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
