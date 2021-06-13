@@ -201,7 +201,7 @@ public class DichVubaoDuongPanel extends javax.swing.JPanel {
         jPanel1.setMaximumSize(new java.awt.Dimension(1366, 750));
         jPanel1.setPreferredSize(new java.awt.Dimension(1920, 1080));
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Danh sách dịch vụ bảo dưỡng", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Các chức năng", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
 
         jTextField_MaDichVuBaoDuong.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextField_MaDichVuBaoDuong.setEditable(false);
@@ -328,7 +328,7 @@ public class DichVubaoDuongPanel extends javax.swing.JPanel {
                 .addGap(53, 53, 53))
         );
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Danh sách các loại xe", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Danh sách dịch vụ bảo dưỡng", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
 
         jTable_DanhSachDichVuBaoDuong.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

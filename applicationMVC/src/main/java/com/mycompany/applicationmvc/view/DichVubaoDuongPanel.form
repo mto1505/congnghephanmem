@@ -270,7 +270,7 @@
           <Properties>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                <TitledBorder title="Danh s&#xe1;ch d&#x1ecb;ch v&#x1ee5; b&#x1ea3;o d&#x1b0;&#x1ee1;ng">
+                <TitledBorder title="C&#xe1;c ch&#x1ee9;c n&#x103;ng">
                   <Border PropertyName="innerBorder" info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                     <LineBorder/>
                   </Border>
@@ -505,7 +505,7 @@
           <Properties>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                <TitledBorder title="Danh s&#xe1;ch c&#xe1;c lo&#x1ea1;i xe">
+                <TitledBorder title="Danh s&#xe1;ch d&#x1ecb;ch v&#x1ee5; b&#x1ea3;o d&#x1b0;&#x1ee1;ng">
                   <Border PropertyName="innerBorder" info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                     <LineBorder/>
                   </Border>
