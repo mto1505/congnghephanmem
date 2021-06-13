@@ -105,7 +105,6 @@ public class KhachHangPanel extends javax.swing.JPanel {
 
         setPreferredSize(new java.awt.Dimension(990, 669));
 
-        panelKhachHang.setBackground(new java.awt.Color(204, 224, 253));
         panelKhachHang.setForeground(new java.awt.Color(0, 0, 255));
         panelKhachHang.setPreferredSize(new java.awt.Dimension(650, 650));
 
@@ -151,7 +150,7 @@ public class KhachHangPanel extends javax.swing.JPanel {
         tableKhachHang.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tableKhachHang);
 
-        jPanel3.setBackground(new java.awt.Color(193, 217, 252));
+        jPanel3.setBackground(new java.awt.Color(204, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel3.setForeground(new java.awt.Color(0, 0, 153));
 
@@ -161,7 +160,7 @@ public class KhachHangPanel extends javax.swing.JPanel {
         jPanel3.add(jLabel1);
 
         jPanel5.setBackground(new java.awt.Color(243, 243, 244));
-        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 14), new java.awt.Color(0, 0, 153)), "Thông Tin", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 14), new java.awt.Color(14, 0, 96))); // NOI18N
+        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 14), new java.awt.Color(0, 0, 153)), "Thông Tin", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 14), new java.awt.Color(14, 0, 96))); // NOI18N
 
         xoaBtn.setText("Xoá");
         xoaBtn.setPreferredSize(new java.awt.Dimension(70, 35));
