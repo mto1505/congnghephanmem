@@ -30,10 +30,10 @@ public class DichVuBaoDuongDAO extends AbstractDAO<DichVuBaoDuongModel> implemen
     public void capNhatDichVuBaoDuong(DichVuBaoDuongModel d) {
         String q = " SET IDENTITY_INSERT DichVuBaoDuong ON ;"
                 + "INSERT INTO DichVuBaoDuong(id,Ten,Phi,idLoaiXe,TrangThai)"
-                + "VALUES (?,?,?,?,?,?)";
+                + "VALUES (?,?,?,?,?)";
 
         int tt = d.isTrangThai() ? 0 : 1;
-        update(q, d.getId(), d.getTenDichVuBaoDuong(), d.getPhi(), d.getIdLoaiXe(), tt, d.getNgayCapNhat());
+        update(q, d.getId(), d.getTenDichVuBaoDuong(), d.getPhi(), d.getIdLoaiXe(), tt);
     }
 
     @Override

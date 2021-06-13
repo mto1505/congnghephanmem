@@ -19,6 +19,7 @@ import javax.swing.JComboBox;
 import com.mycompany.applicationmvc.Utils.*;
 import com.mycompany.applicationmvc.serviceImpl.LoaiXeService;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  *
@@ -121,40 +122,48 @@ public class DichVuBaoDuongController {
         });
 
         dichVuPanel.getjButton_LuuDichVuBaoDuong().addActionListener((e) -> {
-            boolean tt = dichVuPanel.getjCheckBox_TrangThaiSuDungDichVuBaoDuong().isSelected();
+            if (Stringlib.kiemtraDInhDangSo(dichVuPanel.getjTextField_PhiDichVuBaoDuong().getText().trim())) {
+                boolean tt = dichVuPanel.getjCheckBox_TrangThaiSuDungDichVuBaoDuong().isSelected();
 
-            DichVuBaoDuongModel dv = new DichVuBaoDuongModel(
-                    Integer.parseInt(dichVuPanel.getjTextField_MaDichVuBaoDuong().getText().trim()),
-                    dichVuPanel.getjTextField_TenDichVuBaoDuong().getText().trim(),
-                    Long.parseLong(dichVuPanel.getjTextField_PhiDichVuBaoDuong().getText().trim()),
-                    loaiXeService.findOneByName(dichVuPanel.getjComboBox_LoaiXe().getSelectedItem().toString()).getMaLoaiXe(),
-                    tt,
-                    dichVuPanel.getjTextField_NgayCapNhat().getText().trim());
-            if (dichVuPanel.getjTextField_MaDichVuBaoDuong().getText().trim().equalsIgnoreCase("[Tự động tạo]")) {
-                DichVuBaoDuongModel tempdv = dichVuBaoDuongService.timDichVuBaoDuongTheoTenVaLoaiXe(dv.getTenDichVuBaoDuong(), dv.getIdLoaiXe());
-                if (tempdv == null) {
-                    dichVuBaoDuongService.themDichVuBaoDuong(dv);
+                DichVuBaoDuongModel dv = new DichVuBaoDuongModel(
+                        Integer.parseInt(dichVuPanel.getjTextField_MaDichVuBaoDuong().getText().trim()),
+                        dichVuPanel.getjTextField_TenDichVuBaoDuong().getText().trim(),
+                        Long.parseLong(dichVuPanel.getjTextField_PhiDichVuBaoDuong().getText().trim()),
+                        loaiXeService.findOneByName(dichVuPanel.getjComboBox_LoaiXe().getSelectedItem().toString()).getMaLoaiXe(),
+                        tt,
+                        dichVuPanel.getjTextField_NgayCapNhat().getText().trim());
+                if (dichVuPanel.getjTextField_MaDichVuBaoDuong().getText().trim().equalsIgnoreCase("[Tự động tạo]")) {
+                    DichVuBaoDuongModel tempdv = dichVuBaoDuongService.timDichVuBaoDuongTheoTenVaLoaiXe(dv.getTenDichVuBaoDuong(), dv.getIdLoaiXe());
+                    if (tempdv == null) {
+                        dichVuBaoDuongService.themDichVuBaoDuong(dv);
+                    } else {
+                        dichVuPanel.getjDialog_CanhBaoTrungDichVuBaoDuong().setVisible(true);
+                    }
                 } else {
-                    dichVuPanel.getjDialog_CanhBaoTrungDichVuBaoDuong().setVisible(true);
-                }
-            } else {
-                boolean done = true;
-                DichVuBaoDuongModel tempdv = dichVuBaoDuongService.timDichVuBaoDuongTheoIDVaNgayCapNhat(dv.getId(), dv.getNgayCapNhat());
-                if (tempdv.isTrangThai() != dv.isTrangThai()) {
-                    ArrayList<DonBaoDuongModel> ds = (ArrayList<DonBaoDuongModel>) dichVuBaoDuongService.layDanhSachDonBaoDuongBiAnhHuongKHiCapNhatDVBD(dv.getId());
-                    if (!(ds == null || ds.isEmpty() || ds.get(0) == null)) {
-                        dichVuPanel.getjDialog_CanhBaoKHiCapNhatTrangThaiCuaDichVuBaoDuong().setVisible(true);
-                        done = false;
-                    } 
+                    boolean done = true;
+                    DichVuBaoDuongModel tempdv = dichVuBaoDuongService.timDichVuBaoDuongTheoIDVaNgayCapNhat(dv.getId(), dv.getNgayCapNhat());
+                    if (tempdv.isTrangThai() != dv.isTrangThai()) {
+                        ArrayList<DonBaoDuongModel> ds = (ArrayList<DonBaoDuongModel>) dichVuBaoDuongService.layDanhSachDonBaoDuongBiAnhHuongKHiCapNhatDVBD(dv.getId());
+                        if (!(ds == null || ds.isEmpty() || ds.get(0) == null)) {
+                            dichVuPanel.getjDialog_CanhBaoKHiCapNhatTrangThaiCuaDichVuBaoDuong().setVisible(true);
+                            done = false;
+                        }
 
-                } 
-                if(done){
-                    dv.setNgayCapNhat(LocalDateTime.now().toString());
-                    dichVuBaoDuongService.capNhatDichVuBaoDuong(dv);
-                }
+                    }
+                    if (done) {
 
+                        if (tempdv.isTrangThai() != dv.isTrangThai()
+                                || tempdv.getPhi() != dv.getPhi()
+                                || !tempdv.getTenDichVuBaoDuong().equalsIgnoreCase(dv.getTenDichVuBaoDuong())) {
+                            dichVuBaoDuongService.capNhatDichVuBaoDuong(dv);
+                        }
+                    }
+
+                }
+                loadDanhSachDichVuBaoDuong();
+            }else{
+                dichVuPanel.getjDialog_CanhBaoLoiSoTien().setVisible(true);
             }
-            loadDanhSachDichVuBaoDuong();
         });
 
         dichVuPanel.getjButton_ThemDichVubaoDUongMoi().addMouseListener(new MouseAdapter() {
