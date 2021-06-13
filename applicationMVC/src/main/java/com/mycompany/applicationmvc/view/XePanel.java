@@ -94,13 +94,12 @@ public class XePanel extends javax.swing.JPanel {
 
         setPreferredSize(new java.awt.Dimension(1058, 677));
 
-        jPanel1.setBackground(new java.awt.Color(204, 224, 253));
         jPanel1.setMaximumSize(new java.awt.Dimension(1258, 660));
         jPanel1.setMinimumSize(new java.awt.Dimension(1258, 660));
         jPanel1.setPreferredSize(new java.awt.Dimension(1258, 660));
         jPanel1.setRequestFocusEnabled(false);
 
-        jPanel3.setBackground(new java.awt.Color(193, 217, 252));
+        jPanel3.setBackground(new java.awt.Color(204, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel3.setForeground(new java.awt.Color(0, 0, 153));
 

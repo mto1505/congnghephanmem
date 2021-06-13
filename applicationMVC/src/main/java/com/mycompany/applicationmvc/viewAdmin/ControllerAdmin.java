@@ -6,11 +6,15 @@
 package com.mycompany.applicationmvc.viewAdmin;
 
 import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Calendar;
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import org.mindrot.jbcrypt.BCrypt;
 
@@ -311,11 +315,20 @@ public class ControllerAdmin {
        }
         return kt;
     }
+    //set icon
     public static ImageIcon setIcon(int width,int height,String url){
         ImageIcon imageIcon = new ImageIcon(url); 
         Image image = imageIcon.getImage(); 
         Image newimg = image.getScaledInstance(width,height,java.awt.Image.SCALE_SMOOTH); 
         imageIcon = new ImageIcon(newimg);
         return imageIcon;
+    }
+    public static BufferedImage readFileBufferedImage(String path) {
+        try {
+            return ImageIO.read(new File(path));
+        } catch (IOException ex) {
+            
+        }
+        return null;
     }
 }

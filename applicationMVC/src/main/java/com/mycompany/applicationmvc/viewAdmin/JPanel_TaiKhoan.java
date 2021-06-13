@@ -71,6 +71,8 @@ public class JPanel_TaiKhoan extends javax.swing.JPanel {
         setMinimumSize(new java.awt.Dimension(1300, 715));
         setPreferredSize(new java.awt.Dimension(1300, 715));
 
+        jPanel_DKTK.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+
         jButton_XacNhan.setText("THÊM TÀI KHOẢN");
         jButton_XacNhan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

@@ -10,8 +10,8 @@ import com.mycompany.applicationmvc.viewAdmin.ModelAdmin;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import org.mindrot.jbcrypt.BCrypt;
 
 /**
@@ -52,7 +52,8 @@ public class MainThuNgan extends javax.swing.JFrame {
      public MainThuNgan(String id,String ten) {
         initComponents();
         this.setLocationRelativeTo(null);
-        this.setTitle("Thu Ngân");
+        setIconImage(ControllerAdmin.readFileBufferedImage("./src/img/maintenance.png"));
+        this.setTitle("QUẢN LÝ BẢO DƯỠNG XE MÁY");
         this.jLabel_TenTK.setText("Username : "+id);
         this.jLabel_TenTG.setText(ten);
         jTextField_TKhoan.setText(id);
@@ -268,6 +269,7 @@ public class MainThuNgan extends javax.swing.JFrame {
         jTabbedPane_QLThuNgan.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jTabbedPane_QLThuNgan.setTabLayoutPolicy(javax.swing.JTabbedPane.SCROLL_TAB_LAYOUT);
         jTabbedPane_QLThuNgan.setTabPlacement(javax.swing.JTabbedPane.LEFT);
+        jTabbedPane_QLThuNgan.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         javax.swing.GroupLayout jPanel_LapDBDLayout = new javax.swing.GroupLayout(jPanel_LapDBD);
         jPanel_LapDBD.setLayout(jPanel_LapDBDLayout);
@@ -301,10 +303,12 @@ public class MainThuNgan extends javax.swing.JFrame {
             Logger.getLogger(MainThuNgan.class.getName()).log(Level.SEVERE, null, ex);
         }
         jTabbedPane_DBD.addTab("LẬP ĐƠN BẢO DƯỠNG",node1);
-        jTabbedPane_DBD.addTab("DỊCH VỤ BẢO DƯỠNG",node2);
-        jTabbedPane_DBD.addTab("DANH SÁCH PHỤ TÙNG KIỂM TRA",node3);
+        //jTabbedPane_DBD.addTab("DỊCH VỤ BẢO DƯỠNG",node2);
+        //jTabbedPane_DBD.addTab("DANH SÁCH PHỤ TÙNG KIỂM TRA",node3);
+        ImageIcon img_hd=ControllerAdmin.setIcon(20,20,"./src/img/invoice1.png");
+        jTabbedPane_DBD.setIconAt(0, img_hd);
 
-        jTabbedPane_QLThuNgan.addTab("ĐƠN BẢO DƯỠNG", jPanel_LapDBD);
+        jTabbedPane_QLThuNgan.addTab("HÓA ĐƠN", null, jPanel_LapDBD, "");
 
         javax.swing.GroupLayout jPanel_NhapKhoLayout = new javax.swing.GroupLayout(jPanel_NhapKho);
         jPanel_NhapKho.setLayout(jPanel_NhapKhoLayout);
@@ -312,7 +316,7 @@ public class MainThuNgan extends javax.swing.JFrame {
             jPanel_NhapKhoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel_NhapKhoLayout.createSequentialGroup()
                 .addComponent(jTabbedPane_NhapKho, javax.swing.GroupLayout.PREFERRED_SIZE, 1258, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 41, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel_NhapKhoLayout.setVerticalGroup(
             jPanel_NhapKhoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -321,7 +325,7 @@ public class MainThuNgan extends javax.swing.JFrame {
 
         //jTabbedPane_NhapKho.addTab("Linh Kiện",new com.mycompany.applicationmvc.view.LinhKienPanel());
 
-        jTabbedPane_QLThuNgan.addTab("NHẬP KHO", jPanel_NhapKho);
+        jTabbedPane_QLThuNgan.addTab("QUẢN LÝ KHO", jPanel_NhapKho);
 
         javax.swing.GroupLayout jPanel_TTKHLayout = new javax.swing.GroupLayout(jPanel_TTKH);
         jPanel_TTKH.setLayout(jPanel_TTKHLayout);
@@ -338,12 +342,17 @@ public class MainThuNgan extends javax.swing.JFrame {
 
         jTabbedPane_TTKH.addTab("Khách Hàng",new com.mycompany.applicationmvc.view.KhachHangPanel(this));
         jTabbedPane_TTKH.addTab("Xe Máy",new com.mycompany.applicationmvc.view.XePanel());
+        ImageIcon img_kh=ControllerAdmin.setIcon(20,20,"./src/img/customer1.png");
+        jTabbedPane_TTKH.setIconAt(0, img_kh);
+        ImageIcon img_xm=ControllerAdmin.setIcon(20,20,"./src/img/scooter.png");
+        jTabbedPane_TTKH.setIconAt(1, img_xm);
 
         jTabbedPane_QLThuNgan.addTab("KHÁCH HÀNG", jPanel_TTKH);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setText("THU NGÂN");
 
+        jLabel_TenTG.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel_TenTG.setText("TÊN NHÂN VIÊN THU NGÂN");
 
         jButton_Thoat.setText("THOÁT");
@@ -360,6 +369,7 @@ public class MainThuNgan extends javax.swing.JFrame {
             }
         });
 
+        jLabel_TenTK.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel_TenTK.setText("TÊN TÀI KHOẢN");
 
         jButton_CTK.setText("ĐỔI TÀI KHOẢN");
@@ -382,15 +392,14 @@ public class MainThuNgan extends javax.swing.JFrame {
                 .addComponent(jLabel_TenTK)
                 .addGap(18, 18, 18)
                 .addComponent(jButton_CPass)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 519, Short.MAX_VALUE)
                 .addComponent(jButton_CTK)
                 .addGap(34, 34, 34)
                 .addComponent(jButton_Thoat)
                 .addGap(105, 105, 105))
             .addGroup(jPanel_ThuNganLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jTabbedPane_QLThuNgan, javax.swing.GroupLayout.PREFERRED_SIZE, 1424, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jTabbedPane_QLThuNgan, javax.swing.GroupLayout.PREFERRED_SIZE, 1430, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel_ThuNganLayout.setVerticalGroup(
             jPanel_ThuNganLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -406,6 +415,13 @@ public class MainThuNgan extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jTabbedPane_QLThuNgan, javax.swing.GroupLayout.PREFERRED_SIZE, 729, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
+
+        ImageIcon imageIcon1=ControllerAdmin.setIcon(70,70,"./src/img/invoice.png");
+        ImageIcon imageIcon2=ControllerAdmin.setIcon(70,70,"./src/img/inventory.png");
+        ImageIcon imageIcon3=ControllerAdmin.setIcon(70,70,"./src/img/kyc.png");
+        jTabbedPane_QLThuNgan.setIconAt(0, imageIcon1);
+        jTabbedPane_QLThuNgan.setIconAt(1, imageIcon2);
+        jTabbedPane_QLThuNgan.setIconAt(2, imageIcon3);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

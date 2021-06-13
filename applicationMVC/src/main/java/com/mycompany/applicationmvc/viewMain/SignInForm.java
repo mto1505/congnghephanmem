@@ -6,7 +6,11 @@
 package com.mycompany.applicationmvc.viewMain;
 
 import com.mycompany.applicationmvc.viewAdmin.ControllerAdmin;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.Timer;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
@@ -14,12 +18,17 @@ import javax.swing.JOptionPane;
  * @author dhmty
  */
 public class SignInForm extends javax.swing.JFrame {
-
+    private Timer t;
+    private String user;
+    int count;
+    JFrame jf=this;
+    public final static int n=30;
     /**
      * Creates new form SignInForm
      */
     public SignInForm() {
         initComponents();
+        setIconImage(ControllerAdmin.readFileBufferedImage("./src/img/maintenance.png"));
         setTitle("ĐĂNG NHẬP");
         setLocationRelativeTo(null);
     }
@@ -44,6 +53,9 @@ public class SignInForm extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jPasswordField_PassDN = new javax.swing.JPasswordField();
         jCheckBox_KTPass = new javax.swing.JCheckBox();
+        jLabel_icon1 = new javax.swing.JLabel();
+        jProgressBar_Loading = new javax.swing.JProgressBar();
+        jLabel_tt = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -102,7 +114,7 @@ public class SignInForm extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        ImageIcon imageIcon=ControllerAdmin.setIcon(70,70,"./src/img/icon_dn.jpg");
+        ImageIcon imageIcon=ControllerAdmin.setIcon(70,70,"./src/img/sign-in.png");
         jLabel_Icon.setIcon(imageIcon);
 
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -120,6 +132,13 @@ public class SignInForm extends javax.swing.JFrame {
             }
         });
 
+        jLabel_icon1.setMaximumSize(new java.awt.Dimension(90, 90));
+        jLabel_icon1.setMinimumSize(new java.awt.Dimension(90, 90));
+
+        jProgressBar_Loading.setBackground(new java.awt.Color(204, 204, 204));
+
+        jLabel_tt.setForeground(new java.awt.Color(255, 255, 255));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -127,61 +146,82 @@ public class SignInForm extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(156, 156, 156)
-                        .addComponent(jButton_DN)
-                        .addGap(33, 33, 33)
-                        .addComponent(thoatBtn))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(120, Short.MAX_VALUE)
+                        .addGap(27, 27, 27)
+                        .addComponent(jLabel_icon1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
                             .addComponent(jLabel5))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField_TenDN)
-                            .addComponent(jPasswordField_PassDN, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
-                            .addComponent(jCheckBox_KTPass))))
-                .addContainerGap(96, Short.MAX_VALUE))
+                        .addGap(18, 18, 18))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(147, 147, 147)
+                        .addComponent(jButton_DN)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(thoatBtn)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jTextField_TenDN)
+                        .addComponent(jPasswordField_PassDN, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
+                        .addComponent(jCheckBox_KTPass)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel_tt)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jProgressBar_Loading, javax.swing.GroupLayout.PREFERRED_SIZE, 540, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(53, 53, 53)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField_TenDN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPasswordField_PassDN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCheckBox_KTPass)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(53, 53, 53)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextField_TenDN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jPasswordField_PassDN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jCheckBox_KTPass))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(jLabel_icon1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton_DN)
                     .addComponent(thoatBtn))
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                .addComponent(jLabel_tt)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jProgressBar_Loading, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
+
+        ImageIcon imageIcon1=ControllerAdmin.setIcon(90,90,"./src/img/user.png");
+        jLabel_icon1.setIcon(imageIcon1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 534, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton_DNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_DNActionPerformed
-       boolean kt=true;
-        String user=jTextField_TenDN.getText().trim();
+        boolean kt=true;
+        user=jTextField_TenDN.getText().trim();
         String pass=jPasswordField_PassDN.getText().trim();
         if (user.matches("") || pass.matches("")){
             kt=false;
@@ -196,17 +236,11 @@ public class SignInForm extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Mật Khẩu Không Chính Xác");
             }
             else {
-              String s=ControllerAdmin.layUser(user);
-              String s1[]=s.split("/");
-              if (s1[0].equals("1")){
-                  new com.mycompany.applicationmvc.viewMain.MainAdmin(user,s1[1]).setVisible(true);
-              }
-              else if (s1[0].equals("2"))
-              {
-                  new com.mycompany.applicationmvc.viewMain.MainThuNgan(user,s1[1]).setVisible(true);
-              }
-              //hiển thị LOAD FILE
-              this.dispose();
+              count=-1;
+              jProgressBar_Loading.setValue(0);
+              jProgressBar_Loading.setStringPainted(true);
+              t=new Timer(n,new TimerListener());
+              t.start();
             }
         }
     }//GEN-LAST:event_jButton_DNActionPerformed
@@ -229,7 +263,7 @@ public class SignInForm extends javax.swing.JFrame {
             jPasswordField_PassDN.setEchoChar('\u25cf');
         }
     }//GEN-LAST:event_jCheckBox_KTPassActionPerformed
-
+    
     /**
      * @param args the command line arguments
      */
@@ -256,7 +290,6 @@ public class SignInForm extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(SignInForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -265,6 +298,40 @@ public class SignInForm extends javax.swing.JFrame {
         });
     }
 
+    public class TimerListener implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            count++;
+            jProgressBar_Loading.setValue(count);
+            if (jProgressBar_Loading.getValue()==1){
+                 jLabel_tt.setText("Đang Khởi Động...");
+              }
+            if (jProgressBar_Loading.getValue()==35){
+                 jLabel_tt.setText("Đang Tải Dữ Liệu...");
+              }
+            if (jProgressBar_Loading.getValue()==70){
+                 jLabel_tt.setText("Đang Kết Nối Với CSDL...");
+              }
+            if (jProgressBar_Loading.getValue()==99){
+                 jLabel_tt.setText("Đang Hoàn Tất...");
+              }
+            if (count==100){
+                jLabel_tt.setText("Hoàn Tất");
+                t.stop();
+                String s=ControllerAdmin.layUser(user);
+                String s1[]=s.split("/");
+                if (s1[0].equals("1")){
+                    new com.mycompany.applicationmvc.viewMain.MainAdmin(user,s1[1]).setVisible(true);
+                  }
+                else if (s1[0].equals("2"))
+                  {
+                     new com.mycompany.applicationmvc.viewMain.MainThuNgan(user,s1[1]).setVisible(true);
+                  }
+                 jf.dispose();
+            }
+        }
+        
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton_DN;
     private javax.swing.JCheckBox jCheckBox_KTPass;
@@ -272,9 +339,12 @@ public class SignInForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel_Icon;
+    private javax.swing.JLabel jLabel_icon1;
+    private javax.swing.JLabel jLabel_tt;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPasswordField jPasswordField_PassDN;
+    private javax.swing.JProgressBar jProgressBar_Loading;
     private javax.swing.JTextField jTextField_TenDN;
     private javax.swing.JButton thoatBtn;
     // End of variables declaration//GEN-END:variables
