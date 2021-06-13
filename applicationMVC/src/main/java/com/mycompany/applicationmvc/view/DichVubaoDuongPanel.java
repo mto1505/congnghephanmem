@@ -49,6 +49,9 @@ public class DichVubaoDuongPanel extends javax.swing.JPanel {
         jDialog_CanhBaoTrungDichVuBaoDuong = new javax.swing.JDialog();
         jLabel9 = new javax.swing.JLabel();
         jButton_TatCanhBaoTrungDichVuBD = new javax.swing.JButton();
+        jDialog_CanhBaoLoiSoTien = new javax.swing.JDialog();
+        jButton1 = new javax.swing.JButton();
+        jLabel12 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jTextField_MaDichVuBaoDuong = new javax.swing.JTextField();
@@ -142,7 +145,7 @@ public class DichVubaoDuongPanel extends javax.swing.JPanel {
                         .addGap(105, 105, 105)
                         .addComponent(jLabel9))
                     .addGroup(jDialog_CanhBaoTrungDichVuBaoDuongLayout.createSequentialGroup()
-                        .addGap(170, 170, 170)
+                        .addGap(163, 163, 163)
                         .addComponent(jButton_TatCanhBaoTrungDichVuBD, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(106, Short.MAX_VALUE))
         );
@@ -151,9 +154,46 @@ public class DichVubaoDuongPanel extends javax.swing.JPanel {
             .addGroup(jDialog_CanhBaoTrungDichVuBaoDuongLayout.createSequentialGroup()
                 .addGap(68, 68, 68)
                 .addComponent(jLabel9)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
+                .addGap(37, 37, 37)
                 .addComponent(jButton_TatCanhBaoTrungDichVuBD)
-                .addGap(42, 42, 42))
+                .addContainerGap(79, Short.MAX_VALUE))
+        );
+
+        jDialog_CanhBaoLoiSoTien.setMinimumSize(new java.awt.Dimension(400, 238));
+        jDialog_CanhBaoLoiSoTien.setLocationRelativeTo(null);
+
+        jButton1.setText("Đồng ý");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jLabel12.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel12.setText("Tên không hợp lệ hoặc Số tiền bận nhập không hợp lệ!!");
+
+        javax.swing.GroupLayout jDialog_CanhBaoLoiSoTienLayout = new javax.swing.GroupLayout(jDialog_CanhBaoLoiSoTien.getContentPane());
+        jDialog_CanhBaoLoiSoTien.getContentPane().setLayout(jDialog_CanhBaoLoiSoTienLayout);
+        jDialog_CanhBaoLoiSoTienLayout.setHorizontalGroup(
+            jDialog_CanhBaoLoiSoTienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDialog_CanhBaoLoiSoTienLayout.createSequentialGroup()
+                .addGroup(jDialog_CanhBaoLoiSoTienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jDialog_CanhBaoLoiSoTienLayout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addComponent(jLabel12))
+                    .addGroup(jDialog_CanhBaoLoiSoTienLayout.createSequentialGroup()
+                        .addGap(155, 155, 155)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(30, Short.MAX_VALUE))
+        );
+        jDialog_CanhBaoLoiSoTienLayout.setVerticalGroup(
+            jDialog_CanhBaoLoiSoTienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDialog_CanhBaoLoiSoTienLayout.createSequentialGroup()
+                .addGap(57, 57, 57)
+                .addComponent(jLabel12)
+                .addGap(36, 36, 36)
+                .addComponent(jButton1)
+                .addContainerGap(70, Short.MAX_VALUE))
         );
 
         setPreferredSize(new java.awt.Dimension(1920, 1080));
@@ -242,7 +282,7 @@ public class DichVubaoDuongPanel extends javax.swing.JPanel {
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(jCheckBox_TrangThaiSuDungDichVuBaoDuong, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
                         .addComponent(jTextField_NgayCapNhat, javax.swing.GroupLayout.Alignment.LEADING)))
-                .addContainerGap(10, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(68, 68, 68)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -358,7 +398,7 @@ public class DichVubaoDuongPanel extends javax.swing.JPanel {
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(90, Short.MAX_VALUE))
+                .addContainerGap(86, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -366,7 +406,7 @@ public class DichVubaoDuongPanel extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -400,6 +440,18 @@ public class DichVubaoDuongPanel extends javax.swing.JPanel {
     private void jButton_TatCanhBaoTrungDichVuBDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_TatCanhBaoTrungDichVuBDActionPerformed
         jDialog_CanhBaoTrungDichVuBaoDuong.setVisible(false);
     }//GEN-LAST:event_jButton_TatCanhBaoTrungDichVuBDActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        jDialog_CanhBaoLoiSoTien.setVisible(false);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    public JDialog getjDialog_CanhBaoLoiSoTien() {
+        return jDialog_CanhBaoLoiSoTien;
+    }
+
+    public void setjDialog_CanhBaoLoiSoTien(JDialog jDialog_CanhBaoLoiSoTien) {
+        this.jDialog_CanhBaoLoiSoTien = jDialog_CanhBaoLoiSoTien;
+    }
 
     public JLabel getjLabel10() {
         return jLabel10;
@@ -650,6 +702,7 @@ public class DichVubaoDuongPanel extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton_LuuDichVuBaoDuong;
     private javax.swing.JButton jButton_TatCanhBaoTrungDichVuBD;
     private javax.swing.JLabel jButton_ThemDichVubaoDUongMoi;
@@ -657,9 +710,11 @@ public class DichVubaoDuongPanel extends javax.swing.JPanel {
     private javax.swing.JCheckBox jCheckBox_TrangThaiSuDungDichVuBaoDuong;
     private javax.swing.JComboBox<String> jComboBox_LoaiXe;
     private javax.swing.JDialog jDialog_CanhBaoKHiCapNhatTrangThaiCuaDichVuBaoDuong;
+    private javax.swing.JDialog jDialog_CanhBaoLoiSoTien;
     private javax.swing.JDialog jDialog_CanhBaoTrungDichVuBaoDuong;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

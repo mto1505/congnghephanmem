@@ -354,6 +354,7 @@ com\mycompany\applicationmvc\controller\DonBaoDuongController$25.class
 com\mycompany\applicationmvc\view\KhachHangPanel$6.class
 com\mycompany\applicationmvc\serviceImpl\XeService.class
 com\mycompany\applicationmvc\controller\KhachHangController$7.class
+com\mycompany\applicationmvc\view\DichVubaoDuongPanel$6.class
 com\mycompany\applicationmvc\view\MenuFrame$7.class
 com\mycompany\applicationmvc\viewMain\MainThuNgan$7.class
 com\mycompany\applicationmvc\controller\DonBaoDuongController$6.class
