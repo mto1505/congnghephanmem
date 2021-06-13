@@ -122,7 +122,7 @@ public class DichVuBaoDuongController {
         });
 
         dichVuPanel.getjButton_LuuDichVuBaoDuong().addActionListener((e) -> {
-            if (Stringlib.kiemtraDInhDangSo(dichVuPanel.getjTextField_PhiDichVuBaoDuong().getText().trim())) {
+            if (Stringlib.kiemtraDInhDangSo(dichVuPanel.getjTextField_PhiDichVuBaoDuong().getText().trim()) && !dichVuPanel.getjTextField_TenDichVuBaoDuong().getText().trim().equalsIgnoreCase("")) {
                 boolean tt = dichVuPanel.getjCheckBox_TrangThaiSuDungDichVuBaoDuong().isSelected();
 
                 DichVuBaoDuongModel dv = new DichVuBaoDuongModel(

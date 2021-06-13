@@ -50,8 +50,8 @@ public class DichVubaoDuongPanel extends javax.swing.JPanel {
         jLabel9 = new javax.swing.JLabel();
         jButton_TatCanhBaoTrungDichVuBD = new javax.swing.JButton();
         jDialog_CanhBaoLoiSoTien = new javax.swing.JDialog();
-        jLabel11 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jLabel12 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jTextField_MaDichVuBaoDuong = new javax.swing.JTextField();
@@ -162,15 +162,15 @@ public class DichVubaoDuongPanel extends javax.swing.JPanel {
         jDialog_CanhBaoLoiSoTien.setMinimumSize(new java.awt.Dimension(400, 238));
         jDialog_CanhBaoLoiSoTien.setLocationRelativeTo(null);
 
-        jLabel11.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel11.setText("Số tiền bận nhập không hợp lệ!!");
-
         jButton1.setText("Đồng ý");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
+
+        jLabel12.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel12.setText("Tên không hợp lệ hoặc Số tiền bận nhập không hợp lệ!!");
 
         javax.swing.GroupLayout jDialog_CanhBaoLoiSoTienLayout = new javax.swing.GroupLayout(jDialog_CanhBaoLoiSoTien.getContentPane());
         jDialog_CanhBaoLoiSoTien.getContentPane().setLayout(jDialog_CanhBaoLoiSoTienLayout);
@@ -179,21 +179,21 @@ public class DichVubaoDuongPanel extends javax.swing.JPanel {
             .addGroup(jDialog_CanhBaoLoiSoTienLayout.createSequentialGroup()
                 .addGroup(jDialog_CanhBaoLoiSoTienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jDialog_CanhBaoLoiSoTienLayout.createSequentialGroup()
-                        .addGap(101, 101, 101)
-                        .addComponent(jLabel11))
+                        .addGap(29, 29, 29)
+                        .addComponent(jLabel12))
                     .addGroup(jDialog_CanhBaoLoiSoTienLayout.createSequentialGroup()
                         .addGap(155, 155, 155)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(103, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         jDialog_CanhBaoLoiSoTienLayout.setVerticalGroup(
             jDialog_CanhBaoLoiSoTienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jDialog_CanhBaoLoiSoTienLayout.createSequentialGroup()
-                .addGap(59, 59, 59)
-                .addComponent(jLabel11)
-                .addGap(48, 48, 48)
+                .addGap(57, 57, 57)
+                .addComponent(jLabel12)
+                .addGap(36, 36, 36)
                 .addComponent(jButton1)
-                .addContainerGap(91, Short.MAX_VALUE))
+                .addContainerGap(70, Short.MAX_VALUE))
         );
 
         setPreferredSize(new java.awt.Dimension(1920, 1080));
@@ -714,7 +714,7 @@ public class DichVubaoDuongPanel extends javax.swing.JPanel {
     private javax.swing.JDialog jDialog_CanhBaoTrungDichVuBaoDuong;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
