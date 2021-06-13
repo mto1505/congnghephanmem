@@ -67,15 +67,15 @@ public class DanhSachPhuTungKiemTraController {
         danhSachPhuTungKiemTraPanel.getjButton_LuuPhuTung().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String ten = danhSachPhuTungKiemTraPanel.getjTextField_TenPhuTung().getText().trim();
+                String ten = danhSachPhuTungKiemTraPanel.getjTextField_TenPhuTung().getText().trim().trim();
                 boolean trangthai = danhSachPhuTungKiemTraPanel.getjCheckBox_TenPhuTung().isSelected();
                 PhuTungModel pt = new PhuTungModel();
                 pt.setTenPhuTung(ten);
                 pt.setTrangThaiSuDung(trangthai);
-                if (danhSachPhuTungKiemTraPanel.getjTextField_MaPhuTung().getText().equalsIgnoreCase("[Tự động tạo]")) {
+                if (danhSachPhuTungKiemTraPanel.getjTextField_MaPhuTung().getText().trim().equalsIgnoreCase("[Tự động tạo]")) {
                     phuTungService.themPhuTung(pt);
                 } else {
-                    int id = Integer.parseInt(danhSachPhuTungKiemTraPanel.getjTextField_MaPhuTung().getText());
+                    int id = Integer.parseInt(danhSachPhuTungKiemTraPanel.getjTextField_MaPhuTung().getText().trim());
                     pt.setId(id);
                     phuTungService.capNhatPhuTung(pt);
                 }

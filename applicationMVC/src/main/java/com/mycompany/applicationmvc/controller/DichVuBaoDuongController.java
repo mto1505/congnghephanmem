@@ -18,6 +18,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.JComboBox;
 import com.mycompany.applicationmvc.Utils.*;
 import com.mycompany.applicationmvc.serviceImpl.LoaiXeService;
+import java.time.LocalDateTime;
 
 /**
  *
@@ -83,12 +84,12 @@ public class DichVuBaoDuongController {
                     DefaultTableModel md = ((DefaultTableModel) dichVuPanel.getjTable_DanhSachDichVuBaoDuong().getModel());
                     dichVuPanel.getjTextField_MaDichVuBaoDuong().setText(md.getValueAt(row, 0).toString());
                     dichVuPanel.getjTextField_TenDichVuBaoDuong().setText(md.getValueAt(row, 1).toString());
-                    dichVuPanel.getjTextField_TenDichVuBaoDuong().setEditable(false);
-                    dichVuPanel.getjTextField_TenDichVuBaoDuong().setEnabled(false);
+
                     dichVuPanel.getjTextField_PhiDichVuBaoDuong().setText(md.getValueAt(row, 2).toString());
                     dichVuPanel.getjTextField_PhiDichVuBaoDuong().setEditable(true);
                     dichVuPanel.getjComboBox_LoaiXe().setSelectedItem(md.getValueAt(row, 3).toString());
                     dichVuPanel.getjComboBox_LoaiXe().setEnabled(false);
+                    dichVuPanel.getjTextField_NgayCapNhat().setText(md.getValueAt(row, 5).toString());
                     if (md.getValueAt(row, 4).toString().equalsIgnoreCase("Được sử dụng")) {
                         dichVuPanel.getjCheckBox_TrangThaiSuDungDichVuBaoDuong().setSelected(true);
                     } else {
@@ -102,7 +103,7 @@ public class DichVuBaoDuongController {
             @Override
             public void keyPressed(KeyEvent e) {
                 ArrayList<DichVuBaoDuongModel> ar = (ArrayList<DichVuBaoDuongModel>) dichVuBaoDuongService.layDanhSachDichVuBaoDuongMoiNhat();
-                String key = dichVuPanel.getjTextField_TimKiemDichVuBaoDuong().getText().trim();
+                String key = dichVuPanel.getjTextField_TimKiemDichVuBaoDuong().getText().trim().trim();
                 DefaultTableModel dm = (DefaultTableModel) dichVuPanel.getjTable_DanhSachDichVuBaoDuong().getModel();
                 if (!key.equalsIgnoreCase("")) {
                     dm.setNumRows(0);
@@ -123,29 +124,33 @@ public class DichVuBaoDuongController {
             boolean tt = dichVuPanel.getjCheckBox_TrangThaiSuDungDichVuBaoDuong().isSelected();
 
             DichVuBaoDuongModel dv = new DichVuBaoDuongModel(
-                    Integer.parseInt(dichVuPanel.getjTextField_MaDichVuBaoDuong().getText()),
-                    dichVuPanel.getjTextField_TenDichVuBaoDuong().getText(),
+                    Integer.parseInt(dichVuPanel.getjTextField_MaDichVuBaoDuong().getText().trim()),
+                    dichVuPanel.getjTextField_TenDichVuBaoDuong().getText().trim(),
                     Long.parseLong(dichVuPanel.getjTextField_PhiDichVuBaoDuong().getText().trim()),
                     loaiXeService.findOneByName(dichVuPanel.getjComboBox_LoaiXe().getSelectedItem().toString()).getMaLoaiXe(),
                     tt,
-                    dichVuPanel.getjTextField_NgayCapNhat().getText());
-            if (dichVuPanel.getjTextField_MaDichVuBaoDuong().getText().equalsIgnoreCase("[Tự động tạo]")) {
+                    dichVuPanel.getjTextField_NgayCapNhat().getText().trim());
+            if (dichVuPanel.getjTextField_MaDichVuBaoDuong().getText().trim().equalsIgnoreCase("[Tự động tạo]")) {
                 DichVuBaoDuongModel tempdv = dichVuBaoDuongService.timDichVuBaoDuongTheoTenVaLoaiXe(dv.getTenDichVuBaoDuong(), dv.getIdLoaiXe());
                 if (tempdv == null) {
                     dichVuBaoDuongService.themDichVuBaoDuong(dv);
-                }else{
+                } else {
                     dichVuPanel.getjDialog_CanhBaoTrungDichVuBaoDuong().setVisible(true);
                 }
             } else {
+                boolean done = true;
                 DichVuBaoDuongModel tempdv = dichVuBaoDuongService.timDichVuBaoDuongTheoIDVaNgayCapNhat(dv.getId(), dv.getNgayCapNhat());
-                if (tempdv.isTrangThai() && !dv.isTrangThai()) {
+                if (tempdv.isTrangThai() != dv.isTrangThai()) {
                     ArrayList<DonBaoDuongModel> ds = (ArrayList<DonBaoDuongModel>) dichVuBaoDuongService.layDanhSachDonBaoDuongBiAnhHuongKHiCapNhatDVBD(dv.getId());
-                    if (ds == null || ds.isEmpty() || ds.get(0) == null) {
-                        dichVuBaoDuongService.capNhatDichVuBaoDuong(dv);
-                    } else {
+                    if (!(ds == null || ds.isEmpty() || ds.get(0) == null)) {
                         dichVuPanel.getjDialog_CanhBaoKHiCapNhatTrangThaiCuaDichVuBaoDuong().setVisible(true);
-                    }
+                        done = false;
+                    } 
 
+                } 
+                if(done){
+                    dv.setNgayCapNhat(LocalDateTime.now().toString());
+                    dichVuBaoDuongService.capNhatDichVuBaoDuong(dv);
                 }
 
             }
@@ -169,6 +174,7 @@ public class DichVuBaoDuongController {
         dichVuPanel.getjTextField_PhiDichVuBaoDuong().setEditable(true);
         dichVuPanel.getjComboBox_LoaiXe().setSelectedIndex(0);
         dichVuPanel.getjComboBox_LoaiXe().setEnabled(true);
+        dichVuPanel.getjTextField_NgayCapNhat().setText("");
         dichVuPanel.getjCheckBox_TrangThaiSuDungDichVuBaoDuong().setSelected(true);
     }
 

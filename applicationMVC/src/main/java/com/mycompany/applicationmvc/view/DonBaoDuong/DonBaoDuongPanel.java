@@ -68,6 +68,8 @@ public class DonBaoDuongPanel extends javax.swing.JPanel {
         soDienThoaiTF_ThemKhachHangMoiDialog = new javax.swing.JTextField();
         SDTKhongHopLE = new javax.swing.JLabel();
         BienSoKhongHopLe = new javax.swing.JLabel();
+        tenKhachKHongHopLe = new javax.swing.JLabel();
+        tenXekhkongHopLe = new javax.swing.JLabel();
         ThemDichVuBaoDuongDailog = new javax.swing.JDialog();
         jScrollPane3 = new javax.swing.JScrollPane();
         DanhSachDichVubaoDuongTB_ThemDichVuBaoDuongiDailog = new javax.swing.JTable();
@@ -200,6 +202,14 @@ public class DonBaoDuongPanel extends javax.swing.JPanel {
         BienSoKhongHopLe.setText("Không hợp lệ");
         BienSoKhongHopLe.setVisible(false);
 
+        tenKhachKHongHopLe.setForeground(new java.awt.Color(255, 0, 0));
+        tenKhachKHongHopLe.setText("Không hợp lệ");
+        SDTKhongHopLE.setVisible(false);
+
+        tenXekhkongHopLe.setForeground(new java.awt.Color(255, 0, 0));
+        tenXekhkongHopLe.setText("Không hợp lệ");
+        SDTKhongHopLE.setVisible(false);
+
         ThemKhachHangMoiDailog.setLocationRelativeTo(null);
 
         javax.swing.GroupLayout ThemKhachHangMoiDailogLayout = new javax.swing.GroupLayout(ThemKhachHangMoiDailog.getContentPane());
@@ -231,7 +241,9 @@ public class DonBaoDuongPanel extends javax.swing.JPanel {
                                             .addGap(27, 27, 27)
                                             .addComponent(LuuThongTinKhachHangMoiBT_ThemKhachHangMoiDailog, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(BienSoKhongHopLe, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(ThemKhachHangMoiDailogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(BienSoKhongHopLe, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(tenXekhkongHopLe, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, ThemKhachHangMoiDailogLayout.createSequentialGroup()
                             .addGroup(ThemKhachHangMoiDailogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ThemKhachHangMoiDailogLayout.createSequentialGroup()
@@ -247,7 +259,9 @@ public class DonBaoDuongPanel extends javax.swing.JPanel {
                                     .addGap(21, 21, 21)
                                     .addComponent(TenKhachHangTF_ThemKhachHangMoiDailog, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGap(31, 31, 31)
-                            .addComponent(SDTKhongHopLE, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(ThemKhachHangMoiDailogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(SDTKhongHopLE, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(tenKhachKHongHopLe, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(57, 57, 57))
         );
         ThemKhachHangMoiDailogLayout.setVerticalGroup(
@@ -266,13 +280,15 @@ public class DonBaoDuongPanel extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(ThemKhachHangMoiDailogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel26)
-                    .addComponent(TenXeMayTF_ThemKhachHangMoiDailog, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(TenXeMayTF_ThemKhachHangMoiDailog, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tenXekhkongHopLe))
                 .addGap(27, 27, 27)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35)
                 .addGroup(ThemKhachHangMoiDailogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel27)
-                    .addComponent(TenKhachHangTF_ThemKhachHangMoiDailog, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(TenKhachHangTF_ThemKhachHangMoiDailog, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tenKhachKHongHopLe))
                 .addGap(14, 14, 14)
                 .addGroup(ThemKhachHangMoiDailogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
@@ -1286,27 +1302,22 @@ public class DonBaoDuongPanel extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
-                            .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 1206, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        ))
-                )
+                                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)))
+                            .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 1206, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(403, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    )
+                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(53, Short.MAX_VALUE))
@@ -1716,6 +1727,22 @@ public class DonBaoDuongPanel extends javax.swing.JPanel {
 
     public JLabel getjLabel23() {
         return jLabel23;
+    }
+
+    public JLabel getTenKhachKHongHopLe() {
+        return tenKhachKHongHopLe;
+    }
+
+    public void setTenKhachKHongHopLe(JLabel tenKhachKHongHopLe) {
+        this.tenKhachKHongHopLe = tenKhachKHongHopLe;
+    }
+
+    public JLabel getTenXekhkongHopLe() {
+        return tenXekhkongHopLe;
+    }
+
+    public void setTenXekhkongHopLe(JLabel tenXekhkongHopLe) {
+        this.tenXekhkongHopLe = tenXekhkongHopLe;
     }
 
     public void setjLabel23(JLabel jLabel23) {
@@ -2618,6 +2645,8 @@ public class DonBaoDuongPanel extends javax.swing.JPanel {
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JComboBox<String> loaiXeComboBox;
     private javax.swing.JTextField soDienThoaiTF_ThemKhachHangMoiDialog;
+    private javax.swing.JLabel tenKhachKHongHopLe;
+    private javax.swing.JLabel tenXekhkongHopLe;
     // End of variables declaration//GEN-END:variables
     private CardLayout cardLayoutContainer;
     private javax.swing.JPanel container;

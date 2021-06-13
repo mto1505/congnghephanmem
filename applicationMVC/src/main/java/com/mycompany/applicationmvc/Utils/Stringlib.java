@@ -37,6 +37,14 @@ public class Stringlib {
     public static boolean kiemTraSDT(String st) {
         return st.matches("^[0-9]{6,11}$");
     }
+    
+    public static boolean kiemtraTenXe(String ten){
+        return ten.length() < 20 && ValidationRegEx.validationTextRegex(ten);
+    }
+    
+    public static boolean kiemtraTenKhachHang(String ten){
+        return ten.length() < 30 && ValidationRegEx.validationTextRegex(ten);
+    }
 
     public static String suaTenDichVuKhiXuatHoaDon(String ten) {
         int max = 30;

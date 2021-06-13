@@ -136,7 +136,7 @@ public class DonBaoDuongController {
         dftb.setNumRows(0);
         for (DichVuBaoDuongModel dichVuBaoDuong : arl) {
             LoaiXeModel lx = loaiXeService.findOne(dichVuBaoDuong.getIdLoaiXe());
-            if (cb.getSelectedItem().toString().trim().equalsIgnoreCase(lx.getTenLoaiXe())) {
+            if (cb.getSelectedItem().toString().equalsIgnoreCase(lx.getTenLoaiXe())) {
                 dftb.addRow(new Object[]{
                     dichVuBaoDuong.getId(),
                     dichVuBaoDuong.getTenDichVuBaoDuong(),
@@ -169,7 +169,7 @@ public class DonBaoDuongController {
         baoduongPanel.getBienSoXeTF().addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent e) {
-                loadKhachHangTrongHoaDon(baoduongPanel.getBienSoXeTF().getText());
+                loadKhachHangTrongHoaDon(baoduongPanel.getBienSoXeTF().getText().trim());
             }
         });
 
@@ -186,10 +186,13 @@ public class DonBaoDuongController {
         baoduongPanel.getLuuThongTinKhachHangMoiBT_ThemKhachHangMoiDailog().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                if (Stringlib.kiemTraChuoiBienSoXe(baoduongPanel.getBienSoXeMayTF_ThemKhachHangMoiDailog().getText())
-                        && Stringlib.kiemTraSDT(baoduongPanel.getSoDienThoaiTF_ThemKhachHangMoiDialog().getText())) {
+                if (Stringlib.kiemTraChuoiBienSoXe(baoduongPanel.getBienSoXeMayTF_ThemKhachHangMoiDailog().getText().trim())
+                        && Stringlib.kiemTraSDT(baoduongPanel.getSoDienThoaiTF_ThemKhachHangMoiDialog().getText().trim())) {
                     baoduongPanel.getBienSoKhongHopLe().setVisible(false);
                     baoduongPanel.getSDTKhongHopLE().setVisible(false);
+                    baoduongPanel.getTenKhachKHongHopLe().setVisible(false);
+                    baoduongPanel.getTenXekhkongHopLe().setVisible(false);
+
                     KhachHangModel kh = new KhachHangModel();
                     kh.setHoTen(baoduongPanel.getTenKhachHangTF_ThemKhachHangMoiDailog().getText().trim());
                     kh.setGioiTinh(baoduongPanel.getGioiTinhKhachHangComboBox_ThemKhachHangMoiDailog().getSelectedItem().toString());
@@ -198,11 +201,11 @@ public class DonBaoDuongController {
                     baoduongPanel.getTenKhachHangTF().setText(kh.getHoTen());
                     baoduongPanel.getSoDienThoaiTF().setText(kh.getSoDienThoai());
 
-                    XeModel xm = xeService.findOne(baoduongPanel.getBienSoXeMayTF_ThemKhachHangMoiDailog().getText().toLowerCase());
+                    XeModel xm = xeService.findOne(baoduongPanel.getBienSoXeMayTF_ThemKhachHangMoiDailog().getText().trim().toLowerCase());
 
                     if (xm == null) {
-                        xeService.save(new XeModel(baoduongPanel.getBienSoXeMayTF_ThemKhachHangMoiDailog().getText().toLowerCase(),
-                                baoduongPanel.getTenXeMayTF_ThemKhachHangMoiDailog().getText(),
+                        xeService.save(new XeModel(baoduongPanel.getBienSoXeMayTF_ThemKhachHangMoiDailog().getText().trim().toLowerCase(),
+                                baoduongPanel.getTenXeMayTF_ThemKhachHangMoiDailog().getText().trim(),
                                 loaiXeService.findOneByName(baoduongPanel.getLoaiXeComboBox_ThemKhachHangMoiDailog().getSelectedItem().toString()),
                                 kh));
                     } else {
@@ -211,17 +214,22 @@ public class DonBaoDuongController {
                         xm.setLoaixe(lx);
                         xeService.update(xm);
                     }
-                    baoduongPanel.getBienSoXeTF().setText(baoduongPanel.getBienSoXeMayTF_ThemKhachHangMoiDailog().getText());
+                    baoduongPanel.getBienSoXeTF().setText(baoduongPanel.getBienSoXeMayTF_ThemKhachHangMoiDailog().getText().trim());
                     baoduongPanel.getTenXeMayTF_ThemKhachHangMoiDailog().setText("");
                     baoduongPanel.getThemKhachHangMoiDailog().setVisible(false);
                     baoduongPanel.getThemKhachHangMoiBT().setVisible(false);
                 } else {
-                    if (!Stringlib.kiemTraChuoiBienSoXe(baoduongPanel.getBienSoXeMayTF_ThemKhachHangMoiDailog().getText())) {
+                    if (!Stringlib.kiemTraChuoiBienSoXe(baoduongPanel.getBienSoXeMayTF_ThemKhachHangMoiDailog().getText().trim())) {
                         baoduongPanel.getBienSoKhongHopLe().setVisible(true);
                     }
-                    if (!Stringlib.kiemTraSDT(baoduongPanel.getSoDienThoaiTF_ThemKhachHangMoiDialog().getText())) {
+                    if (!Stringlib.kiemTraSDT(baoduongPanel.getSoDienThoaiTF_ThemKhachHangMoiDialog().getText().trim())) {
                         baoduongPanel.getSDTKhongHopLE().setVisible(true);
                     }
+                    if (Stringlib.kiemtraTenKhachHang(baoduongPanel.getTenKhachHangTF_ThemKhachHangMoiDailog().getText().trim())) {
+                        baoduongPanel.getTenKhachKHongHopLe().setVisible(true);
+                    }
+                    if(Stringlib.kiemtraTenXe(baoduongPanel.getTenXeMayTF_ThemKhachHangMoiDailog().getText().trim()))
+                    baoduongPanel.getTenXekhkongHopLe().setVisible(false);
                 }
             }
         });
@@ -240,7 +248,7 @@ public class DonBaoDuongController {
                         for (int i = 0; i < lr1.size(); i++) {
                             Vector vt1 = lr1.get(i);
                             if (vt.elementAt(1).toString().equalsIgnoreCase(vt1.elementAt(1).toString())) {
-                                int data = Integer.parseInt(dtm1.getValueAt(i, 2).toString().trim()) + 1;
+                                int data = Integer.parseInt(dtm1.getValueAt(i, 2).toString()) + 1;
                                 if (data > 100) {
                                     data = 100;
                                 }
@@ -290,7 +298,7 @@ public class DonBaoDuongController {
                         for (int i = 0; i < lr1.size(); i++) {
                             Vector vt1 = lr1.get(i);
                             if (vt.elementAt(0).toString().equalsIgnoreCase(vt1.elementAt(0).toString())) {
-                                data = Integer.parseInt(dtm1.getValueAt(i, 2).toString().trim()) + 1;
+                                data = Integer.parseInt(dtm1.getValueAt(i, 2).toString()) + 1;
                                 if (data > 100) {
                                     data = 100;
                                 }
@@ -412,7 +420,7 @@ public class DonBaoDuongController {
             public void mouseClicked(MouseEvent e) {
                 try {
                     luuDonBaoDuong(false);
-                    baoduongPanel.getjDialog_XacNhanLuuHoaDonThanhCong().setVisible(true);
+                    
                 } catch (SQLException ex) {
                     Logger.getLogger(DonBaoDuongController.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (ParseException ex) {
@@ -668,7 +676,7 @@ public class DonBaoDuongController {
                             nv = new NhanVienModel();
                             nv.setTenNhanVien("Lỗi truy vấn");
                         }
-                        
+
                         dm.addRow(new Object[]{d.getId(), d.getBienSo(), tenKhachHang, sdtKhachHang, Stringlib.dinhDangTienHienThi(d.getTongTien()), t, nv.getTenNhanVien()});
                     }
                 }
@@ -679,7 +687,7 @@ public class DonBaoDuongController {
         baoduongPanel.getjButton_GuiEmail().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String email = baoduongPanel.getjTextField_DiaChiEmail().getText().toLowerCase().trim();
+                String email = baoduongPanel.getjTextField_DiaChiEmail().getText().trim().toLowerCase();
                 System.out.println(noiDungHoaDon);
                 if (Stringlib.validateEmail(email)) {
                     Thread t = new Thread(new Runnable() {
@@ -770,7 +778,7 @@ public class DonBaoDuongController {
             for (LinhKienModel maxlk : danhSachLinhKienToiDa) {
                 int idLKTrongDanhSachDangChon = Integer.parseInt(baoduongPanel.getDanhSachLinhKienThayTheTB().getModel().getValueAt(i, 0).toString());
                 int slLKTrongDanhSachDangChon = Integer.parseInt(baoduongPanel.getDanhSachLinhKienThayTheTB().getModel().getValueAt(i, 2).toString());
-                //String ngayCapNhatTrongDanhSachDangChon  = baoduongPanel.getDanhSachLinhKienThayTheTB().getModel().getValueAt(i, 5).toString().trim();
+                //String ngayCapNhatTrongDanhSachDangChon  = baoduongPanel.getDanhSachLinhKienThayTheTB().getModel().getValueAt(i, 5).toString();
                 if (idLKTrongDanhSachDangChon == maxlk.getId()
                         && slLKTrongDanhSachDangChon > maxlk.getSoLuong()) {
                     baoduongPanel.getDanhSachLinhKienThayTheTB().getModel().setValueAt(maxlk.getSoLuong(), i, 2);
@@ -780,7 +788,7 @@ public class DonBaoDuongController {
     }
 
     private void luuThongTinXe() {
-        String bienSo = baoduongPanel.getBienSoXeTF().getText().toLowerCase();
+        String bienSo = baoduongPanel.getBienSoXeTF().getText().trim().toLowerCase();
         String loaiXe = baoduongPanel.getLoaiXeComboBox().getSelectedItem().toString();
         LoaiXeModel lx = loaiXeService.findOneByName(loaiXe);
         if (xeService.findOne(bienSo) == null) {
@@ -856,11 +864,11 @@ public class DonBaoDuongController {
     }
 
     public boolean kiemTraThongTinTruocKhiLuu() {
-        if (!Stringlib.kiemTraChuoiBienSoXe(baoduongPanel.getBienSoXeTF().getText())) {
+        if (!Stringlib.kiemTraChuoiBienSoXe(baoduongPanel.getBienSoXeTF().getText().trim())) {
             baoduongPanel.getBienSoKhongHopLeMainPanel().setVisible(true);
             return true;
         }
-        if (baoduongPanel.getBienSoXeTF().getText().equalsIgnoreCase("")) {
+        if (baoduongPanel.getBienSoXeTF().getText().trim().equalsIgnoreCase("")) {
             baoduongPanel.getBienSoKhongHopLeMainPanel().setVisible(true);
             return true;
         }
@@ -886,8 +894,8 @@ public class DonBaoDuongController {
         baoduongPanel.getXuatHoaDonTextArea().append("Ngày xuất hóa đơn: " + ngayTao + "\n");
         baoduongPanel.getXuatHoaDonTextArea().append("Mã hóa đơn : " + donBaoDuongCurrent.getId() + "\n");
         baoduongPanel.getXuatHoaDonTextArea().append("------------------------------------------------------" + "\n");
-        baoduongPanel.getXuatHoaDonTextArea().append("Tên khách hàng : " + baoduongPanel.getTenKhachHangTF().getText() + "\n");
-        baoduongPanel.getXuatHoaDonTextArea().append("Biển số xe : " + baoduongPanel.getBienSoXeTF().getText() + "\n");
+        baoduongPanel.getXuatHoaDonTextArea().append("Tên khách hàng : " + baoduongPanel.getTenKhachHangTF().getText().trim() + "\n");
+        baoduongPanel.getXuatHoaDonTextArea().append("Biển số xe : " + baoduongPanel.getBienSoXeTF().getText().trim() + "\n");
         baoduongPanel.getXuatHoaDonTextArea().append("\n");
 
         baoduongPanel.getXuatHoaDonTextArea().append("Dịch vụ bảo dưỡng : " + "\n");
@@ -931,10 +939,10 @@ public class DonBaoDuongController {
         baoduongPanel.getXuatHoaDonTextArea().append("> Tổng : " + Stringlib.dinhDangTienHienThi(baoduongPanel.getThanhTienThayTheLinhKienTF().getText().trim()) + "\n");
 
         baoduongPanel.getXuatHoaDonTextArea().append("------------------------------------------------------" + "\n");
-        baoduongPanel.getXuatHoaDonTextArea().append("Tổng chí phí : " + Stringlib.dinhDangTienHienThi(baoduongPanel.getTongChiPhiTF().getText()) + "\n");
-        baoduongPanel.getXuatHoaDonTextArea().append("Thuế VAT : " + Stringlib.dinhDangTienHienThi((long) (Long.parseLong(baoduongPanel.getTongChiPhiTF().getText()) * ConfigReader.getVAT())) + "\n");
-        long tong = ((Long.parseLong(baoduongPanel.getTongChiPhiTF().getText()))
-                + (long) (Long.parseLong(baoduongPanel.getTongChiPhiTF().getText()) * ConfigReader.getVAT()));
+        baoduongPanel.getXuatHoaDonTextArea().append("Tổng chí phí : " + Stringlib.dinhDangTienHienThi(baoduongPanel.getTongChiPhiTF().getText().trim()) + "\n");
+        baoduongPanel.getXuatHoaDonTextArea().append("Thuế VAT : " + Stringlib.dinhDangTienHienThi((long) (Long.parseLong(baoduongPanel.getTongChiPhiTF().getText().trim()) * ConfigReader.getVAT())) + "\n");
+        long tong = ((Long.parseLong(baoduongPanel.getTongChiPhiTF().getText().trim()))
+                + (long) (Long.parseLong(baoduongPanel.getTongChiPhiTF().getText().trim()) * ConfigReader.getVAT()));
         baoduongPanel.getXuatHoaDonTextArea().append("Thành tiền : " + Stringlib.dinhDangTienHienThi(tong) + "\n");
         baoduongPanel.getXuatHoaDonTextArea().append("------------------------------------------------------" + "\n");
         baoduongPanel.getXuatHoaDonTextArea().append("Cảm ơn quý khách" + "\n");
@@ -963,6 +971,8 @@ public class DonBaoDuongController {
         baoduongPanel.getLoaiXeComboBox().setSelectedIndex(0);
         baoduongPanel.getLoaiXeComboBox_ThemKhachHangMoiDailog().setSelectedIndex(0);
         baoduongPanel.getSDTKhongHopLE().setVisible(false);
+        baoduongPanel.getTenKhachKHongHopLe().setVisible(false);
+        baoduongPanel.getTenXekhkongHopLe().setVisible(false);
         baoduongPanel.getBienSoKhongHopLe().setVisible(false);
         baoduongPanel.getBienSoKhongHopLeMainPanel().setVisible(false);
         baoduongPanel.getLoaiXeComboBox().setEnabled(true);
@@ -998,7 +1008,7 @@ public class DonBaoDuongController {
             System.out.println("Loi tim xe may");
         } else {
             baoduongPanel.getBienSoXeTF().setText(xm.getBienSo());
-            baoduongPanel.getLoaiXeComboBox().setSelectedItem(xm.getLoaixe().getTenLoaiXe().trim());
+            baoduongPanel.getLoaiXeComboBox().setSelectedItem(xm.getLoaixe().getTenLoaiXe());
             baoduongPanel.getLoaiXeComboBox().setEnabled(false);
             baoduongPanel.getBienSoXeTF().setEditable(false);
         }
@@ -1060,9 +1070,9 @@ public class DonBaoDuongController {
             baoduongPanel.getLoaiXeComboBox().setEnabled(true);
             baoduongPanel.getThemKhachHangMoiBT().setVisible(true);
             baoduongPanel.getBienSoXeMayTF_ThemKhachHangMoiDailog().setText(baoduongPanel.getBienSoXeTF().getText().trim());
-            baoduongPanel.getTenKhachHangTF_ThemKhachHangMoiDailog().setText(baoduongPanel.getTenKhachHangTF().getText());
-            baoduongPanel.getLoaiXeComboBox_ThemKhachHangMoiDailog().setSelectedItem(baoduongPanel.getLoaiXeComboBox().getSelectedItem().toString().trim());
-            baoduongPanel.getBienSoXeMayTF_ThemKhachHangMoiDailog().setText(baoduongPanel.getBienSoXeTF().getText());
+            baoduongPanel.getTenKhachHangTF_ThemKhachHangMoiDailog().setText(baoduongPanel.getTenKhachHangTF().getText().trim());
+            baoduongPanel.getLoaiXeComboBox_ThemKhachHangMoiDailog().setSelectedItem(baoduongPanel.getLoaiXeComboBox().getSelectedItem().toString());
+            baoduongPanel.getBienSoXeMayTF_ThemKhachHangMoiDailog().setText(baoduongPanel.getBienSoXeTF().getText().trim());
             baoduongPanel.getSoDienThoaiTF_ThemKhachHangMoiDialog().setText(baoduongPanel.getSoDienThoaiTF().getText().trim());
             baoduongPanel.getThemKhachHangMoiBT().setVisible(true);
         } else {
@@ -1071,7 +1081,7 @@ public class DonBaoDuongController {
             baoduongPanel.getTenKhachHangTF().setEditable(false);
             baoduongPanel.getSoDienThoaiTF().setText(kh.getSoDienThoai());
             baoduongPanel.getSoDienThoaiTF().setEditable(false);
-            baoduongPanel.getLoaiXeComboBox().setSelectedItem(xm.getLoaixe().getTenLoaiXe().trim());
+            baoduongPanel.getLoaiXeComboBox().setSelectedItem(xm.getLoaixe().getTenLoaiXe());
             baoduongPanel.getLoaiXeComboBox().setEnabled(false);
             baoduongPanel.getThemKhachHangMoiBT().setVisible(false);
             baoduongPanel.getThemKhachHangMoiBT().setVisible(false);
@@ -1127,14 +1137,14 @@ public class DonBaoDuongController {
                 } catch (Exception e) {
                     t = "Lỗi hiển thị";
                 }
-                
+
             }
             NhanVienModel nv = nhanVienService.findOne(d.getIdNhanVienLapDon());
             if (nv == null) {
                 nv = new NhanVienModel();
                 nv.setTenNhanVien("Lỗi truy vấn");
             }
-            
+
             dm.addRow(new Object[]{d.getId(), d.getBienSo(), tenKhachHang, sdtKhachHang, Stringlib.dinhDangTienHienThi(d.getTongTien()), t, nv.getTenNhanVien()});
         }
     }
@@ -1148,7 +1158,7 @@ public class DonBaoDuongController {
         }
 
         int idNhanVienLapDon = layIDNhanVienLapDon();
-        long tongTien = Long.parseLong(baoduongPanel.getTongThanhToanTF().getText().toString());
+        long tongTien = Long.parseLong(baoduongPanel.getTongThanhToanTF().getText().trim().toString());
 
         return new DonBaoDuongModel(
                 0,
@@ -1192,6 +1202,8 @@ public class DonBaoDuongController {
 
             if (hienThiHoaDon) {
                 hienThiHoaDon();
+            }else{
+                baoduongPanel.getjDialog_XacNhanLuuHoaDonThanhCong().setVisible(true);
             }
         }
     }

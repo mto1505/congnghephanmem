@@ -53,7 +53,10 @@
                                   </Group>
                               </Group>
                               <EmptySpace max="32767" attributes="0"/>
-                              <Component id="BienSoKhongHopLe" min="-2" pref="75" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="BienSoKhongHopLe" alignment="1" min="-2" pref="75" max="-2" attributes="0"/>
+                                  <Component id="tenXekhkongHopLe" alignment="1" min="-2" pref="75" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -75,7 +78,10 @@
                                   </Group>
                               </Group>
                               <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-                              <Component id="SDTKhongHopLE" min="-2" pref="75" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="SDTKhongHopLE" min="-2" pref="75" max="-2" attributes="0"/>
+                                  <Component id="tenKhachKHongHopLe" min="-2" pref="75" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                       </Group>
                   </Group>
@@ -102,6 +108,7 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel26" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="TenXeMayTF_ThemKhachHangMoiDailog" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="tenXekhkongHopLe" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                   <Component id="jSeparator2" min="-2" pref="18" max="-2" attributes="0"/>
@@ -109,6 +116,7 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel27" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="TenKhachHangTF_ThemKhachHangMoiDailog" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="tenKhachKHongHopLe" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -249,6 +257,28 @@
           </Properties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="BienSoKhongHopLe.setVisible(false);"/>
+          </AuxValues>
+        </Component>
+        <Component class="javax.swing.JLabel" name="tenKhachKHongHopLe">
+          <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="0" green="0" red="ff" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Kh&#xf4;ng h&#x1ee3;p l&#x1ec7;"/>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="SDTKhongHopLE.setVisible(false);"/>
+          </AuxValues>
+        </Component>
+        <Component class="javax.swing.JLabel" name="tenXekhkongHopLe">
+          <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="0" green="0" red="ff" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Kh&#xf4;ng h&#x1ee3;p l&#x1ec7;"/>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="SDTKhongHopLE.setVisible(false);"/>
           </AuxValues>
         </Component>
       </SubComponents>
@@ -957,8 +987,6 @@
                               </Group>
                               <Component id="jPanel4" alignment="0" min="-2" pref="1206" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace max="32767" attributes="0"/>
-                          
                       </Group>
                   </Group>
                   <EmptySpace pref="403" max="32767" attributes="0"/>
@@ -968,21 +996,16 @@
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
+                  <Component id="jPanel4" min="-2" pref="73" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Group type="102" attributes="0">
-                          <Component id="jPanel4" min="-2" pref="73" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="jPanel5" max="32767" attributes="0"/>
-                              <Component id="jPanel1" max="32767" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="jPanel2" max="32767" attributes="0"/>
-                              <Component id="jPanel6" max="32767" attributes="0"/>
-                          </Group>
-                      </Group>
-                      
+                      <Component id="jPanel5" max="32767" attributes="0"/>
+                      <Component id="jPanel1" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="jPanel2" max="32767" attributes="0"/>
+                      <Component id="jPanel6" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jToolBar1" min="-2" pref="18" max="-2" attributes="0"/>
