@@ -5,8 +5,8 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <root> 
-<username-database>sa</username-database>
-<password-database>123</password-database>
+<username-database>minhto</username-database>
+<password-database>minhto123</password-database>
 <url-database>jdbc:sqlserver://;databaseName=QuanLyBaoDuong</url-database>
 <vat>0.1</vat>
 <tencuahang>Sơn Tùng Auto</tencuahang>

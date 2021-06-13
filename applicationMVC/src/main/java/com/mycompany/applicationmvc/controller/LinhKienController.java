@@ -488,6 +488,13 @@ public class LinhKienController {
                             errorTenLinhKien.setVisible(true);
                             isNotFormated = true;
                         }
+                        if (ValidationRegEx.validationTextRegex(tenLinhKienField.getText())) {
+                        if (tenLinhKienField.getText().length() > 50) {
+                            errorTenLinhKien.setIcon(new ImageIcon(iconErrorURL));
+                            errorTenLinhKien.setVisible(true);
+                            errorTenLinhKien.setToolTipText("Không đúng định dạng(chỉ chứa các chứ cái và giữa hai từ chỉ có 1 khoảng cách) tối đa 50 kí tự");
+                            isNotFormated = true;
+                        }}
                         if (!ValidationRegEx.validationNumber(soLuongField.getText())) {
                             errorSoLuong.setIcon(new ImageIcon(iconErrorURL));
                             errorSoLuong.setVisible(true);
@@ -617,6 +624,13 @@ public class LinhKienController {
                         errorTenLinhKien.setVisible(true);
                         isNotFormated = true;
                     }
+                      if (ValidationRegEx.validationTextRegex(tenLinhKienField.getText())) {
+                        if (tenLinhKienField.getText().length() > 50) {
+                            errorTenLinhKien.setIcon(new ImageIcon(iconErrorURL));
+                            errorTenLinhKien.setVisible(true);
+                            errorTenLinhKien.setToolTipText("Không đúng định dạng(chỉ chứa các chứ cái và giữa hai từ chỉ có 1 khoảng cách) tối đa 50 kí tự");
+                            isNotFormated = true;
+                        }}
                     if (!ValidationRegEx.validationNumber(soLuongField.getText())) {
                         errorSoLuong.setIcon(new ImageIcon(iconErrorURL));
                         errorSoLuong.setVisible(true);
@@ -693,7 +707,7 @@ public class LinhKienController {
             public void actionPerformed(ActionEvent e) {
                 SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 if (!maLinhKienField.getText().isEmpty() && ngayNhapField.getDate() != null) {
-                    String op[] = {"Suy nghĩ lại", "Đồng ý"};
+                    String op[] = {"Huỷ", "Đồng ý"};
                     int value = JOptionPane.showOptionDialog(panel, "Bạn chắc chắn muốn xoá", "Xoá linh kiện", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, op, op[0]);
                     if (value == 1) {
                         linhKienService.deleteStatus(Integer.parseInt(maLinhKienField.getText()), formatter.format(ngayNhapField.getDate()));
@@ -1035,7 +1049,7 @@ public class LinhKienController {
 //                    //Xoá chi tiết thây thế Linh Kiện
 
                         // Xác nhận xoá hay không
-                        String op[] = {"Suy nghĩ lại", "Đồng ý"};
+                        String op[] = {"Huỷ", "Đồng ý"};
                         int value = JOptionPane.showOptionDialog(panel, "Bạn chắc chắn muốn xoá", "Xoá Nhà cung cấp", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, op, op[0]);
                         if (value == 1) {
                             nhaCungCapService.deleteStatus(Integer.parseInt(maNCCField.getText()));
@@ -1087,7 +1101,7 @@ public class LinhKienController {
                 if (timKiemLinhKienField.getText().trim().isEmpty()) {
                     rowSorter.setRowFilter(null);
                 } else {
-                    rf = RowFilter.regexFilter(timKiemLinhKienField.getText(), 0);
+                    rf = RowFilter.regexFilter(timKiemLinhKienField.getText(), 0,1);
                     rowSorter.setRowFilter(rf);
                 }
 
@@ -1099,7 +1113,7 @@ public class LinhKienController {
                 if (timKiemLinhKienField.getText().trim().isEmpty()) {
                     rowSorter.setRowFilter(null);
                 } else {
-                    rf = RowFilter.regexFilter(timKiemLinhKienField.getText(), 0);
+                    rf = RowFilter.regexFilter(timKiemLinhKienField.getText(), 0,1);
                     rowSorter.setRowFilter(rf);
                 }
             }
@@ -1128,7 +1142,7 @@ public class LinhKienController {
                 if (timKiemNCCField.getText().trim().isEmpty()) {
                     rowSorterNhaCungCap.setRowFilter(null);
                 } else {
-                    rf = RowFilter.regexFilter(timKiemNCCField.getText(), 1);
+                    rf = RowFilter.regexFilter(timKiemNCCField.getText(), 0,1);
                     rowSorterNhaCungCap.setRowFilter(rf);
                 }
 
@@ -1140,7 +1154,7 @@ public class LinhKienController {
                 if (timKiemNCCField.getText().trim().isEmpty()) {
                     rowSorterNhaCungCap.setRowFilter(null);
                 } else {
-                    rf = RowFilter.regexFilter(timKiemNCCField.getText(), 0);
+                    rf = RowFilter.regexFilter(timKiemNCCField.getText(), 0,1);
                     rowSorterNhaCungCap.setRowFilter(rf);
                 }
             }

@@ -626,7 +626,7 @@ public class KhachHangController {
                         "Họ và tên: " + hoTenField.getText(),
                         "Số điện thoại: " + soDienThoaiField.getText()
                     };
-                    String op[] = {"Suy nghĩ lại", "Em đồng ý"};
+                    String op[] = {"Huỷ", "Đồng ý"};
                     int reply = JOptionPane.showOptionDialog(panel, message, "Xoá khách hàng", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, op, op[0]);
                     if (reply == 1) {
                        
@@ -638,7 +638,7 @@ public class KhachHangController {
                          setDataToTable();
                             }
                         else{
-                             JOptionPane.showMessageDialog(panel, "Xoá thất bại", "Thông báo", 1, null);
+                             JOptionPane.showMessageDialog(panel, "Xoá thất bại(Xe của khách hàng đang tồn tại trong hệ thống)", "Thông báo", 1, null);
                              
                         }
                     }
@@ -668,7 +668,7 @@ public class KhachHangController {
                 if (timkiemSDTField.getText().trim().isEmpty()) {
                     rowSorter.setRowFilter(null);
                 } else {
-                    rf = RowFilter.regexFilter(timkiemSDTField.getText(), 0);
+                    rf = RowFilter.regexFilter(timkiemSDTField.getText(), 1,4);
                     rowSorter.setRowFilter(rf);
                 }
             }
@@ -678,7 +678,7 @@ public class KhachHangController {
                 if (timkiemSDTField.getText().trim().isEmpty()) {
                     rowSorter.setRowFilter(null);
                 } else {
-                    rf = RowFilter.regexFilter(timkiemSDTField.getText(), 0);
+                    rf = RowFilter.regexFilter(timkiemSDTField.getText(), 1,4);
                     rowSorter.setRowFilter(rf);
                 }
             }
