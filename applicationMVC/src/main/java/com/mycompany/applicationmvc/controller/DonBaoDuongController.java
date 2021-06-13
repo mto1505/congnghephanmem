@@ -737,8 +737,8 @@ public class DonBaoDuongController {
         baoduongPanel.getThanhTienDichVuBaoDuongTF().setText(Long.toString(tongTienDichVu));
         baoduongPanel.getThanhTienThayTheLinhKienTF().setText(Long.toString(tongTienPhuTung));
         baoduongPanel.getTongChiPhiTF().setText(Long.toString(tongTienDichVu + tongTienPhuTung));
-        baoduongPanel.getThueVATTF().setText(Long.toString((long) ((tongTienDichVu + tongTienPhuTung) * Config.VAT)));
-        baoduongPanel.getTongThanhToanTF().setText(Long.toString((long) (tongTienDichVu + tongTienPhuTung + (tongTienDichVu + tongTienPhuTung) * Config.VAT)));
+        baoduongPanel.getThueVATTF().setText(Long.toString((long) ((tongTienDichVu + tongTienPhuTung) * ConfigReader.getVAT())));
+        baoduongPanel.getTongThanhToanTF().setText(Long.toString((long) (tongTienDichVu + tongTienPhuTung + (tongTienDichVu + tongTienPhuTung) * ConfigReader.getVAT())));
     }
 
     private void cauHinhCacItem() throws SQLException, ParseException {
@@ -881,7 +881,7 @@ public class DonBaoDuongController {
 
     private void hienThiHoaDon() throws ParseException {
         baoduongPanel.getXuatHoaDonTextArea().setText("");
-        baoduongPanel.getXuatHoaDonTextArea().append(Config.TenCuaHang + "\n\n");
+        baoduongPanel.getXuatHoaDonTextArea().append(ConfigReader.getNameStore() + "\n\n");
         String ngayTao = Stringlib.dinhDangNgayHienThitu_yyyyMMdd_Thanh_ddMMyyyy(LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE).toString());
         baoduongPanel.getXuatHoaDonTextArea().append("Ngày xuất hóa đơn: " + ngayTao + "\n");
         baoduongPanel.getXuatHoaDonTextArea().append("Mã hóa đơn : " + donBaoDuongCurrent.getId() + "\n");
@@ -932,9 +932,9 @@ public class DonBaoDuongController {
 
         baoduongPanel.getXuatHoaDonTextArea().append("------------------------------------------------------" + "\n");
         baoduongPanel.getXuatHoaDonTextArea().append("Tổng chí phí : " + Stringlib.dinhDangTienHienThi(baoduongPanel.getTongChiPhiTF().getText()) + "\n");
-        baoduongPanel.getXuatHoaDonTextArea().append("Thuế VAT : " + Stringlib.dinhDangTienHienThi((long) (Long.parseLong(baoduongPanel.getTongChiPhiTF().getText()) * Config.VAT)) + "\n");
+        baoduongPanel.getXuatHoaDonTextArea().append("Thuế VAT : " + Stringlib.dinhDangTienHienThi((long) (Long.parseLong(baoduongPanel.getTongChiPhiTF().getText()) * ConfigReader.getVAT())) + "\n");
         long tong = ((Long.parseLong(baoduongPanel.getTongChiPhiTF().getText()))
-                + (long) (Long.parseLong(baoduongPanel.getTongChiPhiTF().getText()) * Config.VAT));
+                + (long) (Long.parseLong(baoduongPanel.getTongChiPhiTF().getText()) * ConfigReader.getVAT()));
         baoduongPanel.getXuatHoaDonTextArea().append("Thành tiền : " + Stringlib.dinhDangTienHienThi(tong) + "\n");
         baoduongPanel.getXuatHoaDonTextArea().append("------------------------------------------------------" + "\n");
         baoduongPanel.getXuatHoaDonTextArea().append("Cảm ơn quý khách" + "\n");

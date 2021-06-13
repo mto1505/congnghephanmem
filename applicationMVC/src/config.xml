@@ -9,4 +9,5 @@ and open the template in the editor.
 <password-database>123</password-database>
 <url-database>jdbc:sqlserver://;databaseName=QuanLyBaoDuong</url-database>
 <vat>10</vat>
+<tencuahang>Sơn Tùng Auto</tencuahang>
 </root>

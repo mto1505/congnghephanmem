@@ -10,7 +10,7 @@ package com.mycompany.applicationmvc.Utils;
  * @author hesac
  */
 public class Config {
-    public static final float VAT = (float) 0.1;
+    public static final float AT = (float) 0.1;
     public static final String TenCuaHang = "Sơn Tùng Auto";
     
 }
