@@ -5,10 +5,12 @@
  */
 package com.mycompany.applicationmvc.viewMain;
 
+import com.mycompany.applicationmvc.viewAdmin.ControllerAdmin;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -29,7 +31,8 @@ public class MainAdmin extends javax.swing.JFrame {
     public MainAdmin(String id,String ten) {
         initComponents();
         this.setLocationRelativeTo(null);
-        this.setTitle("Quản Lý");
+        setIconImage(ControllerAdmin.readFileBufferedImage("./src/img/maintenance.png"));
+        this.setTitle("QUẢN LÝ BẢO DƯỠNG XE MÁY");
         this.jLabel_TenTK.setText("Username : "+id);
         this.jLabel_TenTG.setText(ten);
     }
@@ -45,10 +48,10 @@ public class MainAdmin extends javax.swing.JFrame {
 
         jPanel_Admin = new javax.swing.JPanel();
         jTabbedPane_QLAdmin = new javax.swing.JTabbedPane();
-        jPanel_QuanLy = new javax.swing.JPanel();
-        jTabbedPane_QuanLy = new javax.swing.JTabbedPane();
         jPanel_ThongKe = new javax.swing.JPanel();
         jTabbedPane_ThongKe = new javax.swing.JTabbedPane();
+        jPanel_QuanLy = new javax.swing.JPanel();
+        jTabbedPane_QuanLy = new javax.swing.JTabbedPane();
         jPanel_LapDBD = new javax.swing.JPanel();
         jTabbedPane_DBD = new javax.swing.JTabbedPane();
         jLabel1 = new javax.swing.JLabel();
@@ -67,6 +70,33 @@ public class MainAdmin extends javax.swing.JFrame {
         jTabbedPane_QLAdmin.setTabLayoutPolicy(javax.swing.JTabbedPane.SCROLL_TAB_LAYOUT);
         jTabbedPane_QLAdmin.setTabPlacement(javax.swing.JTabbedPane.LEFT);
 
+        javax.swing.GroupLayout jPanel_ThongKeLayout = new javax.swing.GroupLayout(jPanel_ThongKe);
+        jPanel_ThongKe.setLayout(jPanel_ThongKeLayout);
+        jPanel_ThongKeLayout.setHorizontalGroup(
+            jPanel_ThongKeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel_ThongKeLayout.createSequentialGroup()
+                .addComponent(jTabbedPane_ThongKe, javax.swing.GroupLayout.DEFAULT_SIZE, 1325, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel_ThongKeLayout.setVerticalGroup(
+            jPanel_ThongKeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel_ThongKeLayout.createSequentialGroup()
+                .addComponent(jTabbedPane_ThongKe, javax.swing.GroupLayout.DEFAULT_SIZE, 721, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        ImageIcon img_bd=ControllerAdmin.setIcon(20,20,"./src/img/bar-chart.png");
+        ImageIcon img_dbd=ControllerAdmin.setIcon(20,20,"./src/img/invoice1.png");
+        ImageIcon img_lk=ControllerAdmin.setIcon(20,20,"./src/img/helmet.png");
+        ImageIcon img_kh=ControllerAdmin.setIcon(20,20,"./src/img/customer1.png");
+
+        jTabbedPane_ThongKe.addTab("BIỂU ĐỒ",img_bd ,new com.mycompany.applicationmvc.viewAdmin.JPanel_BieuDo());
+        jTabbedPane_ThongKe.addTab("ĐƠN BẢO DƯỠNG",img_dbd ,new com.mycompany.applicationmvc.viewAdmin.JPanel_TKDBD());
+        jTabbedPane_ThongKe.addTab("LINH KIỆN",img_lk ,new com.mycompany.applicationmvc.viewAdmin.JPanel_TKLinhKien());
+        jTabbedPane_ThongKe.addTab("KHÁCH HÀNG",img_kh,new com.mycompany.applicationmvc.viewAdmin.JPanel_TKKhachHang());
+
+        jTabbedPane_QLAdmin.addTab("THỐNG KÊ", jPanel_ThongKe);
+
         javax.swing.GroupLayout jPanel_QuanLyLayout = new javax.swing.GroupLayout(jPanel_QuanLy);
         jPanel_QuanLy.setLayout(jPanel_QuanLyLayout);
         jPanel_QuanLyLayout.setHorizontalGroup(
@@ -82,34 +112,16 @@ public class MainAdmin extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jTabbedPane_QuanLy.addTab("TÀI KHOẢN", new com.mycompany.applicationmvc.viewAdmin.JPanel_TaiKhoan());
-        jTabbedPane_QuanLy.addTab("NHÂN VIÊN", new com.mycompany.applicationmvc.viewAdmin.JPanel_NhanVien());
-        jTabbedPane_QuanLy.addTab("KHÁCH HÀNG", new com.mycompany.applicationmvc.view.KhachHangPanel(this));
-        jTabbedPane_QuanLy.addTab("XE MÁY", new com.mycompany.applicationmvc.view.XePanel());
+        ImageIcon img_tk=ControllerAdmin.setIcon(20,20,"./src/img/google.png");
+        ImageIcon img_nv=ControllerAdmin.setIcon(20,20,"./src/img/staff.png");
+        ImageIcon img_xm=ControllerAdmin.setIcon(20,20,"./src/img/scooter.png");
+
+        jTabbedPane_QuanLy.addTab("TÀI KHOẢN", img_tk,new com.mycompany.applicationmvc.viewAdmin.JPanel_TaiKhoan());
+        jTabbedPane_QuanLy.addTab("NHÂN VIÊN",img_nv, new com.mycompany.applicationmvc.viewAdmin.JPanel_NhanVien());
+        jTabbedPane_QuanLy.addTab("KHÁCH HÀNG",img_kh, new com.mycompany.applicationmvc.view.KhachHangPanel(this));
+        jTabbedPane_QuanLy.addTab("XE MÁY",img_xm, new com.mycompany.applicationmvc.view.XePanel());
 
         jTabbedPane_QLAdmin.addTab("QUẢN LÝ", jPanel_QuanLy);
-
-        javax.swing.GroupLayout jPanel_ThongKeLayout = new javax.swing.GroupLayout(jPanel_ThongKe);
-        jPanel_ThongKe.setLayout(jPanel_ThongKeLayout);
-        jPanel_ThongKeLayout.setHorizontalGroup(
-            jPanel_ThongKeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel_ThongKeLayout.createSequentialGroup()
-                .addComponent(jTabbedPane_ThongKe, javax.swing.GroupLayout.DEFAULT_SIZE, 1293, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jPanel_ThongKeLayout.setVerticalGroup(
-            jPanel_ThongKeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel_ThongKeLayout.createSequentialGroup()
-                .addComponent(jTabbedPane_ThongKe, javax.swing.GroupLayout.DEFAULT_SIZE, 721, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        jTabbedPane_ThongKe.addTab("ĐƠN BẢO DƯỠNG", new com.mycompany.applicationmvc.viewAdmin.JPanel_TKDBD());
-        jTabbedPane_ThongKe.addTab("LINH KIỆN", new com.mycompany.applicationmvc.viewAdmin.JPanel_TKLinhKien());
-        jTabbedPane_ThongKe.addTab("KHÁCH HÀNG", new com.mycompany.applicationmvc.viewAdmin.JPanel_TKKhachHang());
-        jTabbedPane_ThongKe.addTab("BIỂU ĐỒ", new com.mycompany.applicationmvc.viewAdmin.JPanel_BieuDo());
-
-        jTabbedPane_QLAdmin.addTab("THỐNG KÊ", jPanel_ThongKe);
 
         javax.swing.GroupLayout jPanel_LapDBDLayout = new javax.swing.GroupLayout(jPanel_LapDBD);
         jPanel_LapDBD.setLayout(jPanel_LapDBDLayout);
@@ -142,15 +154,18 @@ public class MainAdmin extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(MainAdmin.class.getName()).log(Level.SEVERE, null, ex);
         }
-        jTabbedPane_DBD.addTab("LẬP ĐƠN BẢO DƯỠNG",node1);
-        jTabbedPane_DBD.addTab("DỊCH VỤ BẢO DƯỠNG",node2);
-        jTabbedPane_DBD.addTab("DANH SÁCH PHỤ TÙNG KIỂM TRA",node3);
+        ImageIcon img_dv=ControllerAdmin.setIcon(20,20,"./src/img/consult.png");
+        ImageIcon img_ds=ControllerAdmin.setIcon(20,20,"./src/img/list.png");
+        jTabbedPane_DBD.addTab("LẬP ĐƠN BẢO DƯỠNG",img_dbd,node1);
+        jTabbedPane_DBD.addTab("DỊCH VỤ BẢO DƯỠNG",img_dv,node2);
+        jTabbedPane_DBD.addTab("DANH SÁCH PHỤ TÙNG KIỂM TRA",img_ds,node3);
 
-        jTabbedPane_QLAdmin.addTab("ĐƠN BẢO DƯỠNG", jPanel_LapDBD);
+        jTabbedPane_QLAdmin.addTab(" BẢO DƯỠNG", jPanel_LapDBD);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setText("QUẢN LÝ");
 
+        jLabel_TenTG.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel_TenTG.setText("TÊN NHÂN VIÊN QUẢN LÝ");
 
         jButton_Thoat.setText("THOÁT");
@@ -161,15 +176,18 @@ public class MainAdmin extends javax.swing.JFrame {
         });
 
         jButton_XuatExcel.setText("Xuất FILE EXCEL");
+        jButton_XuatExcel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton_XuatExcel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_XuatExcelActionPerformed(evt);
             }
         });
 
+        jLabel_TenTK.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel_TenTK.setText("TÊN TÀI KHOẢN");
 
         jButton_CTK.setText("ĐỔI TÀI KHOẢN");
+        jButton_CTK.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton_CTK.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_CTKActionPerformed(evt);
@@ -181,25 +199,22 @@ public class MainAdmin extends javax.swing.JFrame {
         jPanel_AdminLayout.setHorizontalGroup(
             jPanel_AdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel_AdminLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel_AdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel_AdminLayout.createSequentialGroup()
-                        .addGap(11, 11, 11)
-                        .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel_TenTG)
-                        .addGap(44, 44, 44)
-                        .addComponent(jLabel_TenTK)
-                        .addGap(65, 65, 65)
-                        .addComponent(jButton_XuatExcel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton_CTK)
-                        .addGap(50, 50, 50)
-                        .addComponent(jButton_Thoat)
-                        .addGap(105, 105, 105))
-                    .addGroup(jPanel_AdminLayout.createSequentialGroup()
-                        .addComponent(jTabbedPane_QLAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 1424, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addGap(17, 17, 17)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel_TenTG)
+                .addGap(44, 44, 44)
+                .addComponent(jLabel_TenTK)
+                .addGap(65, 65, 65)
+                .addComponent(jButton_XuatExcel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 460, Short.MAX_VALUE)
+                .addComponent(jButton_CTK)
+                .addGap(50, 50, 50)
+                .addComponent(jButton_Thoat)
+                .addGap(105, 105, 105))
+            .addGroup(jPanel_AdminLayout.createSequentialGroup()
+                .addComponent(jTabbedPane_QLAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 1430, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel_AdminLayout.setVerticalGroup(
             jPanel_AdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -215,6 +230,13 @@ public class MainAdmin extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jTabbedPane_QLAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 729, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
+
+        ImageIcon imageIcon1=ControllerAdmin.setIcon(70,70,"./src/img/analytics.png");
+        ImageIcon imageIcon2=ControllerAdmin.setIcon(70,70,"./src/img/team-management.png");
+        ImageIcon imageIcon3=ControllerAdmin.setIcon(70,70,"./src/img/settings.png");
+        jTabbedPane_QLAdmin.setIconAt(0, imageIcon1);
+        jTabbedPane_QLAdmin.setIconAt(1, imageIcon2);
+        jTabbedPane_QLAdmin.setIconAt(2, imageIcon3);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
