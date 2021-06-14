@@ -591,15 +591,7 @@ public class JPanel_NhanVien extends javax.swing.JPanel {
             boolean kt=true;
             if (ht.equals("") || cmnd.equals("")|| sdt.equals("")){
                 kt=false;
-                JOptionPane.showMessageDialog(this, "Ma Nhan Vien, Ho Ten, CMND, SDT Khong Duoc De Trong");
-            }
-            if ((ControllerAdmin.ktCMND_NV(cmnd)==1) && kt){
-                kt=false;
-                JOptionPane.showMessageDialog(this, "CMND Đã Được Thêm, Hãy Thay Đổi");
-            }
-            if ((ControllerAdmin.ktSDT_NV(sdt)==1) && kt){
-                kt=false;
-                JOptionPane.showMessageDialog(this, "SDT Đã Được Đăng Ký, Thay Đổi SDT Khác");
+                JOptionPane.showMessageDialog(this, "Ho Ten, CMND, SDT Khong Duoc De Trong");
             }
             if (((cmnd.length()!=9 && cmnd.length()!=12) || sdt.length()!=10) && kt){
                 kt=false;
@@ -625,6 +617,14 @@ public class JPanel_NhanVien extends javax.swing.JPanel {
                         }
                     }
                     else if (jRadioButton_CDThem.isSelected()) {
+                         if ((ControllerAdmin.ktCMND_NV(cmnd)==1) && kt){
+                            kt=false;
+                            JOptionPane.showMessageDialog(this, "CMND Đã Được Thêm, Hãy Thay Đổi");
+                        }
+                        if ((ControllerAdmin.ktSDT_NV(sdt)==1) && kt){
+                            kt=false;
+                            JOptionPane.showMessageDialog(this, "SDT Đã Được Đăng Ký, Thay Đổi SDT Khác");
+                        }
                         ModelAdmin.themNV(ht,cmnd,gt,sdt,ns,td);
                         JOptionPane.showMessageDialog(this, "Đã Thêm Nhân Viên Thành Công");
                     }

@@ -330,12 +330,14 @@ public class SignInForm extends javax.swing.JFrame {
                 t.stop();
                 String s=ControllerAdmin.layUser(user);
                 String s1[]=s.split("/");
+                int idnvl=Integer.parseInt(s1[1]);
                 if (s1[0].equals("1")){
-                    new com.mycompany.applicationmvc.viewMain.MainAdmin(user,s1[1]).setVisible(true);
+                    System.out.println(s1[1]);
+                    new com.mycompany.applicationmvc.viewMain.MainAdmin(user,s1[2],idnvl).setVisible(true);
                   }
                 else if (s1[0].equals("2"))
                   {
-                     new com.mycompany.applicationmvc.viewMain.MainThuNgan(user,s1[1]).setVisible(true);
+                     new com.mycompany.applicationmvc.viewMain.MainThuNgan(user,s1[2],idnvl).setVisible(true);
                   }
                  jf.dispose();
             }

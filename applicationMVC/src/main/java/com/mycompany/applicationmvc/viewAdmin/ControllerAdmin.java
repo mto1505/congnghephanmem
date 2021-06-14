@@ -69,7 +69,7 @@ public class ControllerAdmin {
      public static String layUser(String user){
        String s="";
        Connection cn=ModelAdmin.connectMSSQL();
-       String sql="select tk.idQuyen,nv.Ten\n" +
+       String sql="select tk.idQuyen,tk.idNhanVien,nv.Ten\n" +
                   "from TaiKhoan tk,NhanVien nv\n" +
                   "where TenTaiKhoan=? and nv.id=tk.idNhanVien";
        try{
@@ -77,7 +77,7 @@ public class ControllerAdmin {
            ps.setString(1, user);
            ResultSet rs=ps.executeQuery();
            if(rs.next()){
-               s+=rs.getString(1)+"/"+rs.getString(2);
+               s+=rs.getString(1)+"/"+rs.getString(2)+"/"+rs.getString(3);
            }
            rs.close();
            ps.close();

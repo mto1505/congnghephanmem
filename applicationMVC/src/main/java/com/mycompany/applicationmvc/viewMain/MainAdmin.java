@@ -22,13 +22,15 @@ public class MainAdmin extends javax.swing.JFrame {
     /**
      * Creates new form MainAdmin
      */
+    private int idNhanVienLap;
     public MainAdmin() {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setTitle("Quản Lý");
     }
     //set tieue de
-    public MainAdmin(String id,String ten) {
+    public MainAdmin(String id,String ten,int idnvl) {
+        idNhanVienLap=idnvl;
         initComponents();
         this.setLocationRelativeTo(null);
         setIconImage(ControllerAdmin.readFileBufferedImage("./src/img/maintenance.png"));
@@ -134,13 +136,14 @@ public class MainAdmin extends javax.swing.JFrame {
         );
         jPanel_LapDBDLayout.setVerticalGroup(
             jPanel_LapDBDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel_LapDBDLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_LapDBDLayout.createSequentialGroup()
                 .addComponent(jTabbedPane_DBD, javax.swing.GroupLayout.DEFAULT_SIZE, 721, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         com.mycompany.applicationmvc.view.DonBaoDuong.DonBaoDuongContainerPanel node1 = new com.mycompany.applicationmvc.view.DonBaoDuong.DonBaoDuongContainerPanel();
-        new com.mycompany.applicationmvc.controller.DonBaoDuongController((com.mycompany.applicationmvc.view.DonBaoDuong.DonBaoDuongContainerPanel) node1);
+        com.mycompany.applicationmvc.controller.DonBaoDuongController dbd_ctrl= new com.mycompany.applicationmvc.controller.DonBaoDuongController(node1);
+        dbd_ctrl.setIdNhanVienLapDon(idNhanVienLap);
 
         com.mycompany.applicationmvc.view.DichVubaoDuongPanel node2 = new com.mycompany.applicationmvc.view.DichVubaoDuongPanel();
         try {
@@ -176,7 +179,7 @@ public class MainAdmin extends javax.swing.JFrame {
             }
         });
 
-        jButton_XuatExcel.setText("Xuất FILE EXCEL");
+        jButton_XuatExcel.setText("Xuất FILE EXCEL QUẢN LÝ CHUNG");
         jButton_XuatExcel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton_XuatExcel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -204,11 +207,11 @@ public class MainAdmin extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel_TenTG)
-                .addGap(44, 44, 44)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel_TenTK)
-                .addGap(65, 65, 65)
+                .addGap(32, 32, 32)
                 .addComponent(jButton_XuatExcel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 460, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 421, Short.MAX_VALUE)
                 .addComponent(jButton_CTK)
                 .addGap(50, 50, 50)
                 .addComponent(jButton_Thoat)

@@ -46,10 +46,12 @@ public class MainThuNgan extends javax.swing.JFrame {
     /**
      * Creates new form MainNV
      */
+    private int idNhanVienLap;
     public MainThuNgan() {
         initComponents();
     }
-     public MainThuNgan(String id,String ten) {
+     public MainThuNgan(String id,String ten,int idnvl) {
+        idNhanVienLap=idnvl;
         initComponents();
         this.setLocationRelativeTo(null);
         setIconImage(ControllerAdmin.readFileBufferedImage("./src/img/maintenance.png"));
@@ -85,7 +87,6 @@ public class MainThuNgan extends javax.swing.JFrame {
         jPasswordField_OldPass = new javax.swing.JPasswordField();
         jPasswordField_NewPass = new javax.swing.JPasswordField();
         jPasswordField_XNNewPass = new javax.swing.JPasswordField();
-        jButton_QuenCPass = new javax.swing.JButton();
         jPanel_ThuNgan = new javax.swing.JPanel();
         jTabbedPane_QLThuNgan = new javax.swing.JTabbedPane();
         jPanel_LapDBD = new javax.swing.JPanel();
@@ -164,8 +165,6 @@ public class MainThuNgan extends javax.swing.JFrame {
             }
         });
 
-        jButton_QuenCPass.setText("QUÊN MẬT KHẨU");
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -175,37 +174,33 @@ public class MainThuNgan extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(83, 83, 83)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel4))
-                                .addGap(54, 54, 54))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(83, 83, 83)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel3)
+                                            .addComponent(jLabel2)
+                                            .addComponent(jLabel4))
+                                        .addGap(67, 67, 67))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jButton_HuyCPass)
-                                        .addGap(35, 35, 35))
-                                    .addComponent(jLabel_XNNewPass, javax.swing.GroupLayout.Alignment.TRAILING))))
-                        .addGap(13, 13, 13)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addContainerGap()
+                                        .addComponent(jLabel_XNNewPass)
+                                        .addGap(13, 13, 13)))
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(jTextField_TKhoan, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jPasswordField_OldPass, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)
-                                        .addComponent(jPasswordField_NewPass, javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jPasswordField_XNNewPass)))
+                                    .addComponent(jPasswordField_OldPass, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)
+                                    .addComponent(jPasswordField_NewPass)
+                                    .addComponent(jPasswordField_XNNewPass, javax.swing.GroupLayout.Alignment.LEADING))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jCheckBox_passold)
                                     .addComponent(jCheckBox_passnew)
                                     .addComponent(jCheckBox_passXN)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(195, 195, 195)
                                 .addComponent(jButton_XNCPass)
-                                .addGap(42, 42, 42)
-                                .addComponent(jButton_QuenCPass)))
+                                .addGap(48, 48, 48)
+                                .addComponent(jButton_HuyCPass)))
                         .addGap(0, 53, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(194, 194, 194)
@@ -238,7 +233,6 @@ public class MainThuNgan extends javax.swing.JFrame {
                     .addComponent(jPasswordField_XNNewPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(34, 34, 34)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton_QuenCPass)
                     .addComponent(jButton_XNCPass)
                     .addComponent(jButton_HuyCPass))
                 .addContainerGap(9, Short.MAX_VALUE))
@@ -287,7 +281,8 @@ public class MainThuNgan extends javax.swing.JFrame {
         );
 
         com.mycompany.applicationmvc.view.DonBaoDuong.DonBaoDuongContainerPanel node1 = new com.mycompany.applicationmvc.view.DonBaoDuong.DonBaoDuongContainerPanel();
-        new com.mycompany.applicationmvc.controller.DonBaoDuongController((com.mycompany.applicationmvc.view.DonBaoDuong.DonBaoDuongContainerPanel) node1);
+        com.mycompany.applicationmvc.controller.DonBaoDuongController dbd_ctrl= new com.mycompany.applicationmvc.controller.DonBaoDuongController(node1);
+        dbd_ctrl.setIdNhanVienLapDon(idNhanVienLap);
 
         com.mycompany.applicationmvc.view.DichVubaoDuongPanel node2 = new com.mycompany.applicationmvc.view.DichVubaoDuongPanel();
         try {
@@ -390,11 +385,11 @@ public class MainThuNgan extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel_TenTG)
-                .addGap(18, 18, 18)
+                .addGap(24, 24, 24)
                 .addComponent(jLabel_TenTK)
                 .addGap(18, 18, 18)
                 .addComponent(jButton_CPass)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 519, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 513, Short.MAX_VALUE)
                 .addComponent(jButton_CTK)
                 .addGap(34, 34, 34)
                 .addComponent(jButton_Thoat)
@@ -576,7 +571,6 @@ public class MainThuNgan extends javax.swing.JFrame {
     private javax.swing.JButton jButton_CPass;
     private javax.swing.JButton jButton_CTK;
     private javax.swing.JButton jButton_HuyCPass;
-    private javax.swing.JButton jButton_QuenCPass;
     private javax.swing.JButton jButton_Thoat;
     private javax.swing.JButton jButton_XNCPass;
     private javax.swing.JCheckBox jCheckBox_passXN;

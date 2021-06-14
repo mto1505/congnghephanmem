@@ -56,11 +56,11 @@
                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="jLabel_TenTG" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel_TenTK" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                   <Component id="jButton_XuatExcel" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="460" max="32767" attributes="0"/>
+                  <EmptySpace pref="421" max="32767" attributes="0"/>
                   <Component id="jButton_CTK" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
                   <Component id="jButton_Thoat" min="-2" max="-2" attributes="0"/>
@@ -201,7 +201,7 @@
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
+                      <Group type="102" alignment="1" attributes="0">
                           <Component id="jTabbedPane_DBD" pref="721" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -211,7 +211,7 @@
               <SubComponents>
                 <Container class="javax.swing.JTabbedPane" name="jTabbedPane_DBD">
                   <AuxValues>
-                    <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="com.mycompany.applicationmvc.view.DonBaoDuong.DonBaoDuongContainerPanel node1 = new com.mycompany.applicationmvc.view.DonBaoDuong.DonBaoDuongContainerPanel();&#xa;        new com.mycompany.applicationmvc.controller.DonBaoDuongController((com.mycompany.applicationmvc.view.DonBaoDuong.DonBaoDuongContainerPanel) node1);&#xa;&#xa;        com.mycompany.applicationmvc.view.DichVubaoDuongPanel node2 = new com.mycompany.applicationmvc.view.DichVubaoDuongPanel();&#xa;        try {&#xa;            new com.mycompany.applicationmvc.controller.DichVuBaoDuongController((com.mycompany.applicationmvc.view.DichVubaoDuongPanel) node2);&#xa;        } catch (SQLException ex) {&#xa;            Logger.getLogger(MainAdmin.class.getName()).log(Level.SEVERE, null, ex);&#xa;        }&#xa;&#xa;        com.mycompany.applicationmvc.view.DanhSachPhuTungKiemTraPanel node3 = new com.mycompany.applicationmvc.view.DanhSachPhuTungKiemTraPanel();&#xa;        try {&#xa;            new com.mycompany.applicationmvc.controller.DanhSachPhuTungKiemTraController((com.mycompany.applicationmvc.view.DanhSachPhuTungKiemTraPanel) node3);&#xa;        } catch (SQLException ex) {&#xa;            Logger.getLogger(MainAdmin.class.getName()).log(Level.SEVERE, null, ex);&#xa;        }&#xa;ImageIcon img_dv=ControllerAdmin.setIcon(20,20,&quot;./src/img/consult.png&quot;);&#xa;ImageIcon img_ds=ControllerAdmin.setIcon(20,20,&quot;./src/img/list.png&quot;);&#xa;jTabbedPane_DBD.addTab(&quot;L&#x1eac;P &#x110;&#x1a0;N B&#x1ea2;O D&#x1af;&#x1ee0;NG&quot;,img_dbd,node1);&#xa;jTabbedPane_DBD.addTab(&quot;D&#x1eca;CH V&#x1ee4; B&#x1ea2;O D&#x1af;&#x1ee0;NG&quot;,img_dv,node2);&#xa;jTabbedPane_DBD.addTab(&quot;DANH S&#xc1;CH PH&#x1ee4; T&#xd9;NG KI&#x1ec2;M TRA&quot;,img_ds,node3);"/>
+                    <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="com.mycompany.applicationmvc.view.DonBaoDuong.DonBaoDuongContainerPanel node1 = new com.mycompany.applicationmvc.view.DonBaoDuong.DonBaoDuongContainerPanel();&#xa;        com.mycompany.applicationmvc.controller.DonBaoDuongController dbd_ctrl= new com.mycompany.applicationmvc.controller.DonBaoDuongController(node1);&#xa;        dbd_ctrl.setIdNhanVienLapDon(idNhanVienLap);&#xa;       &#xa;&#xa;        com.mycompany.applicationmvc.view.DichVubaoDuongPanel node2 = new com.mycompany.applicationmvc.view.DichVubaoDuongPanel();&#xa;        try {&#xa;            new com.mycompany.applicationmvc.controller.DichVuBaoDuongController((com.mycompany.applicationmvc.view.DichVubaoDuongPanel) node2);&#xa;        } catch (SQLException ex) {&#xa;            Logger.getLogger(MainAdmin.class.getName()).log(Level.SEVERE, null, ex);&#xa;        }&#xa;&#xa;        com.mycompany.applicationmvc.view.DanhSachPhuTungKiemTraPanel node3 = new com.mycompany.applicationmvc.view.DanhSachPhuTungKiemTraPanel();&#xa;        try {&#xa;            new com.mycompany.applicationmvc.controller.DanhSachPhuTungKiemTraController((com.mycompany.applicationmvc.view.DanhSachPhuTungKiemTraPanel) node3);&#xa;        } catch (SQLException ex) {&#xa;            Logger.getLogger(MainAdmin.class.getName()).log(Level.SEVERE, null, ex);&#xa;        }&#xa;ImageIcon img_dv=ControllerAdmin.setIcon(20,20,&quot;./src/img/consult.png&quot;);&#xa;ImageIcon img_ds=ControllerAdmin.setIcon(20,20,&quot;./src/img/list.png&quot;);&#xa;jTabbedPane_DBD.addTab(&quot;L&#x1eac;P &#x110;&#x1a0;N B&#x1ea2;O D&#x1af;&#x1ee0;NG&quot;,img_dbd,node1);&#xa;jTabbedPane_DBD.addTab(&quot;D&#x1eca;CH V&#x1ee4; B&#x1ea2;O D&#x1af;&#x1ee0;NG&quot;,img_dv,node2);&#xa;jTabbedPane_DBD.addTab(&quot;DANH S&#xc1;CH PH&#x1ee4; T&#xd9;NG KI&#x1ec2;M TRA&quot;,img_ds,node3);"/>
                   </AuxValues>
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
@@ -246,7 +246,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="jButton_XuatExcel">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Xu&#x1ea5;t FILE EXCEL"/>
+            <Property name="text" type="java.lang.String" value="Xu&#x1ea5;t FILE EXCEL QU&#x1ea2;N L&#xdd; CHUNG"/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
               <Color id="Hand Cursor"/>
             </Property>
