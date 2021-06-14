@@ -6,12 +6,20 @@
 package com.mycompany.applicationmvc.viewMain;
 
 import com.mycompany.applicationmvc.viewAdmin.ControllerAdmin;
+import com.mycompany.applicationmvc.viewAdmin.JPanel_BieuDo;
+import com.mycompany.applicationmvc.viewAdmin.JPanel_TKDBD;
+import com.mycompany.applicationmvc.viewAdmin.JPanel_TKKhachHang;
+import com.mycompany.applicationmvc.viewAdmin.JPanel_TKLinhKien;
+import com.mycompany.applicationmvc.viewAdmin.JPanel_TaiKhoan;
+import com.mycompany.applicationmvc.viewAdmin.JPanel_NhanVien;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 /**
  *
@@ -77,17 +85,17 @@ public class MainAdmin extends javax.swing.JFrame {
         jPanel_ThongKeLayout.setHorizontalGroup(
             jPanel_ThongKeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel_ThongKeLayout.createSequentialGroup()
-                .addComponent(jTabbedPane_ThongKe, javax.swing.GroupLayout.DEFAULT_SIZE, 1325, Short.MAX_VALUE)
+                .addComponent(jTabbedPane_ThongKe)
                 .addContainerGap())
         );
         jPanel_ThongKeLayout.setVerticalGroup(
             jPanel_ThongKeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel_ThongKeLayout.createSequentialGroup()
-                .addComponent(jTabbedPane_ThongKe, javax.swing.GroupLayout.DEFAULT_SIZE, 721, Short.MAX_VALUE)
+                .addComponent(jTabbedPane_ThongKe)
                 .addContainerGap())
         );
 
-        ImageIcon img_bd=ControllerAdmin.setIcon(20,20,"./src/img/bar-chart.png");
+        ImageIcon img_bd=ControllerAdmin.setIcon(20,20,"./src/img/analytics.png");
         ImageIcon img_dbd=ControllerAdmin.setIcon(20,20,"./src/img/invoice1.png");
         ImageIcon img_lk=ControllerAdmin.setIcon(20,20,"./src/img/helmet.png");
         ImageIcon img_kh=ControllerAdmin.setIcon(20,20,"./src/img/customer1.png");
@@ -96,6 +104,25 @@ public class MainAdmin extends javax.swing.JFrame {
         jTabbedPane_ThongKe.addTab("ĐƠN BẢO DƯỠNG",img_dbd ,new com.mycompany.applicationmvc.viewAdmin.JPanel_TKDBD());
         jTabbedPane_ThongKe.addTab("LINH KIỆN",img_lk ,new com.mycompany.applicationmvc.viewAdmin.JPanel_TKLinhKien());
         jTabbedPane_ThongKe.addTab("KHÁCH HÀNG",img_kh,new com.mycompany.applicationmvc.viewAdmin.JPanel_TKKhachHang());
+
+        jTabbedPane_ThongKe.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e)
+            {
+                int ttsc=jTabbedPane_ThongKe.getSelectedIndex();
+                switch (ttsc){
+                    case 0 :jTabbedPane_ThongKe.setComponentAt(ttsc,new JPanel_BieuDo());
+                    break;
+                    case 1 :jTabbedPane_ThongKe.setComponentAt(ttsc,new JPanel_TKDBD());
+                    break;
+                    case 2 :jTabbedPane_ThongKe.setComponentAt(ttsc,new JPanel_TKLinhKien());
+                    break;
+                    case 3 :jTabbedPane_ThongKe.setComponentAt(ttsc,new JPanel_TKKhachHang());
+                    break;
+                    default: break;
+                }
+            }
+        });
 
         jTabbedPane_QLAdmin.addTab("THỐNG KÊ", jPanel_ThongKe);
 
@@ -123,6 +150,20 @@ public class MainAdmin extends javax.swing.JFrame {
         jTabbedPane_QuanLy.addTab("KHÁCH HÀNG",img_kh, new com.mycompany.applicationmvc.view.KhachHangPanel(this));
         jTabbedPane_QuanLy.addTab("XE MÁY",img_xm, new com.mycompany.applicationmvc.view.XePanel());
         jTabbedPane_QuanLy.addTab("LINH KIỆN + NHÀ SẢN XUẤT",img_lk, new com.mycompany.applicationmvc.view.LinhKienPanel());
+
+        jTabbedPane_QuanLy.addChangeListener( new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                if (jTabbedPane_QuanLy.getSelectedIndex()==0){
+                    //System.out.println("doan 0");
+                    jTabbedPane_QuanLy.setComponentAt(0, new JPanel_TaiKhoan());
+                }
+                if (jTabbedPane_QuanLy.getSelectedIndex()==1){
+                    //System.out.println("doan 1");
+                    jTabbedPane_QuanLy.setComponentAt(1, new JPanel_NhanVien());
+                }
+            }
+        });
 
         jTabbedPane_QLAdmin.addTab("QUẢN LÝ", jPanel_QuanLy);
 

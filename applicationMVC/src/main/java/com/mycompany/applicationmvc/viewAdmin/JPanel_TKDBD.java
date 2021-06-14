@@ -700,7 +700,7 @@ public class JPanel_TKDBD extends javax.swing.JPanel {
          //System.out.println(g1+" "+g2);
         long gia1=0,gia2=0;
        
-        System.out.println(gia1+" "+gia2);
+       // System.out.println(gia1+" "+gia2);
 
         //-----------------------Xử lý Trnạg thái đơn bao dưỡng-------------------------------------
        // String tt=(String)jComboBox_TrangThai.getSelectedItem();
@@ -758,7 +758,7 @@ public class JPanel_TKDBD extends javax.swing.JPanel {
                  //-----------Xử Lý Tong Tien---------
                 String a2=rs.getString(7);
                 if (kt_HT && kt){
-                    System.out.println(i_tt);
+                   // System.out.println(i_tt);
                     String b2=a2;
                     b2=b2.substring(0,b2.length()-5);
                     long gia=Long.parseLong(b2);

@@ -41,7 +41,7 @@ public class JPanel_TKKhachHang extends javax.swing.JPanel {
         jScrollPane4 = new javax.swing.JScrollPane();
         jTable_DanhSachTKKH = new javax.swing.JTable();
 
-        setBorder(javax.swing.BorderFactory.createTitledBorder("THỐNG KÊ KHÁCH HÀNG"));
+        setBorder(javax.swing.BorderFactory.createTitledBorder(null, "THỐNG KÊ KHÁCH HÀNG", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12))); // NOI18N
         setMaximumSize(new java.awt.Dimension(1300, 700));
         setMinimumSize(new java.awt.Dimension(1300, 700));
         setPreferredSize(new java.awt.Dimension(1300, 700));

@@ -159,7 +159,7 @@
                     </Property>
                   </Properties>
                   <AuxValues>
-                    <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jTabbedPane_TKChung.addTab(&quot;BI&#x1ec2;U &#x110;&#x1ed2; 1&quot;, new JPanel_BieuDo());"/>
+                    <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jTabbedPane_TKChung.addTab(&quot;BI&#x1ec2;U &#x110;&#x1ed2; 1&quot;, new com.mycompany.applicationmvc.viewAdmin.JPanel_BieuDo());"/>
                   </AuxValues>
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>

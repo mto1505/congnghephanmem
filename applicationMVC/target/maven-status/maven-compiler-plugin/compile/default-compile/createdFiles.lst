@@ -330,6 +330,7 @@ com\mycompany\applicationmvc\controller\DonBaoDuongController$7.class
 com\mycompany\applicationmvc\viewMain\MainThuNgan$8.class
 com\mycompany\applicationmvc\view\MenuFrame$8.class
 com\mycompany\applicationmvc\view\DonBaoDuong\DonBaoDuongContainerPanel.class
+com\mycompany\applicationmvc\viewMain\MainAdmin$5.class
 com\mycompany\applicationmvc\serviceImpl\DonBaoDuongService.class
 com\mycompany\applicationmvc\daoImpl\DichVuBaoDuongDAO.class
 com\mycompany\applicationmvc\view\KhachHangPanel$4.class
@@ -368,6 +369,7 @@ com\mycompany\applicationmvc\viewMain\MainThuNgan$7.class
 com\mycompany\applicationmvc\controller\DonBaoDuongController$6.class
 com\mycompany\applicationmvc\view\KhachHangPanel$9.class
 com\mycompany\applicationmvc\controller\KhachHangController$11.class
+com\mycompany\applicationmvc\viewMain\MainAdmin$6.class
 com\mycompany\applicationmvc\controller\DonBaoDuongController$18.class
 com\mycompany\applicationmvc\controller\DonBaoDuongController$3.class
 com\mycompany\applicationmvc\controller\LoginTask.class
