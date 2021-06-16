@@ -989,9 +989,9 @@ public class LinhKienController {
                     NhaCungCapModel nhaCungCapOld = nhaCungCapService.findOne(Integer.parseInt(maNCCField.getText()));
 
                     if (!tenNhaCung.equals(nhaCungCapOld.getTen()) || !soDienThoai.equals(nhaCungCapOld.getSoDienThoai())) {
-                        if (!tenNhaCung.equals(nhaCungCapOld.getTen())) {
+                        if (!tenNhaCung.equals(nhaCungCapOld.getTen())) {   
                             if (nhaCungCapService.findOneByName(tenNhaCung) != null) {
-                                JOptionPane.showMessageDialog(panel, "Nhà Cung Cấp tồn tại", "Thông tin", JOptionPane.INFORMATION_MESSAGE);
+                                JOptionPane.showMessageDialog(panel, "ten Nhà Cung Cấp tồn tại", "Thông tin", JOptionPane.INFORMATION_MESSAGE);
                             } else {
                                 if (nhaCungCapService.update(nhaCungCap) != null) {
                                     JOptionPane.showMessageDialog(panel, "Cập nhật thành công", "Thông tin", JOptionPane.INFORMATION_MESSAGE);
@@ -1002,7 +1002,7 @@ public class LinhKienController {
                             }
                         } else if (!soDienThoai.equals(nhaCungCapOld.getSoDienThoai())) {
                             if (nhaCungCapService.findOneBySDT(soDienThoai) != null) {
-                                JOptionPane.showMessageDialog(panel, "Nhà Cung Cấp tồn tại", "Thông tin", JOptionPane.INFORMATION_MESSAGE);
+                                JOptionPane.showMessageDialog(panel, "so dien thoai Nhà Cung Cấp tồn tại", "Thông tin", JOptionPane.INFORMATION_MESSAGE);
                             } else {
                                 if (nhaCungCapService.update(nhaCungCap) != null) {
                                     JOptionPane.showMessageDialog(panel, "Cập nhật thành công", "Thông tin", JOptionPane.INFORMATION_MESSAGE);

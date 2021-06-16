@@ -39,14 +39,14 @@ public class NhaCungCapDAO extends AbstractDAO<NhaCungCapModel> implements INhaC
 
     @Override
     public List<NhaCungCapModel> findAll() {
-        String sql="select * from NhaCungCap where trangthai=0 OR trangthai IS NULL";
+        String sql="select * from NhaCungCap where (trangthai=0 OR trangthai IS NULL)";
         return query(sql, new NhaCungCapMapper());
         
     }
 
     @Override
     public NhaCungCapModel findOneByName(String ten) {
-        String sql="select * from NhaCungCap where ten=? and trangthai=0 OR trangthai IS NULL";
+        String sql="select * from NhaCungCap where ten=? and (trangthai=0 OR trangthai IS NULL)";
         List<NhaCungCapModel> listNhaCungCapModels=query(sql, new NhaCungCapMapper(),ten);
         return listNhaCungCapModels.isEmpty()? null:listNhaCungCapModels.get(0);
   
@@ -60,14 +60,14 @@ public class NhaCungCapDAO extends AbstractDAO<NhaCungCapModel> implements INhaC
 
     @Override
     public NhaCungCapModel findOneBySDT(String sdt) {
-        String sql="select * from NhaCungCap where ten=? and trangthai=0 OR trangthai IS NULL";
+        String sql="select * from NhaCungCap where ten=? and( trangthai=0 OR trangthai IS NULL)";
         List<NhaCungCapModel> listNhaCungCapModels=query(sql, new NhaCungCapMapper(),sdt);
         return listNhaCungCapModels.isEmpty()? null:listNhaCungCapModels.get(0);
     }
 
     @Override
     public NhaCungCapModel findOneByNameAndSDT(String name, String sdt) {
-        String sql="select * from NhaCungCap where ten=? and sodienthoai=? and trangthai=0 OR trangthai IS NULL";
+        String sql="select * from NhaCungCap where ten=? and (sodienthoai=? and trangthai=0 OR trangthai IS NULL)";
         List<NhaCungCapModel> listNhaCungCapModels=query(sql, new NhaCungCapMapper(),name,sdt);
         return listNhaCungCapModels.isEmpty()? null:listNhaCungCapModels.get(0);
     }
