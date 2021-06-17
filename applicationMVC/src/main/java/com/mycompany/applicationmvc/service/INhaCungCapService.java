@@ -20,7 +20,9 @@ public interface INhaCungCapService {
     NhaCungCapModel update(NhaCungCapModel updateModel);
 
     void delete(int id);
+
     void deleteStatus(int id);
+
     List<NhaCungCapModel> findAll();
 
     int getTotalItem();
@@ -28,6 +30,8 @@ public interface INhaCungCapService {
     NhaCungCapModel findOne(int id);
 
     NhaCungCapModel findOneByName(String name);
+
+    NhaCungCapModel findOneByInLinhKien(int id);
 
     NhaCungCapModel findOneBySDT(String name);
 

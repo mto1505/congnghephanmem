@@ -23,7 +23,7 @@ public interface ILinhKienDAO extends GenericDAO<LinhKienModel> {
     
     
       void deleteStatus(int id,String ngayNhap);
-      
+       
     int insert(LinhKienModel linhKien);
 
     int insert(LinhKienModel linhKien, boolean autoId);
@@ -31,6 +31,8 @@ public interface ILinhKienDAO extends GenericDAO<LinhKienModel> {
     List<LinhKienModel> findAll();
 
     LinhKienModel findOne(int id);
+    
+    LinhKienModel findOneExistInDonBaoDuong(int id);
     
     LinhKienModel findOneByIdAndDate(int id,String date);
     

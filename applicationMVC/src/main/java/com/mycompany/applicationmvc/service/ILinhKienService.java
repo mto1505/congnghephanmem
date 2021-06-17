@@ -21,6 +21,7 @@ public interface ILinhKienService {
 	void delete(int id);
         void deleteStatus(int id,String ngayNhap);
         void deleteByIDNhaCungCap(int idNhaCungCap );
+        LinhKienModel findOneExistInDonBaoDuong(int id);
 	List<LinhKienModel> findAll();
 	int getTotalItem();
 	LinhKienModel findOne(int id);

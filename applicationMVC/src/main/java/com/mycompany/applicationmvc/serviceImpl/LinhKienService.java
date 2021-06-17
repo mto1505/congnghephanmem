@@ -109,4 +109,9 @@ public class LinhKienService implements ILinhKienService {
         return linhKienDAO.timLinhKienMoiNhatTheoID(id);
     }
 
+    @Override
+    public LinhKienModel findOneExistInDonBaoDuong(int id) {
+        return linhKienDAO.findOneExistInDonBaoDuong(id);
+    }
+
 }

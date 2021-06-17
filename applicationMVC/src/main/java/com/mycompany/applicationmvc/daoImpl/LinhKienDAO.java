@@ -7,14 +7,7 @@ package com.mycompany.applicationmvc.daoImpl;
 
 import com.mycompany.applicationmvc.dao.ILinhKienDAO;
 import com.mycompany.applicationmvc.mapper.LinhKienMapper;
-import com.mycompany.applicationmvc.mapper.RowMapper;
 import com.mycompany.applicationmvc.model.LinhKienModel;
-import java.sql.Connection;
-import java.sql.Date;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -118,8 +111,8 @@ public class LinhKienDAO extends AbstractDAO<LinhKienModel> implements ILinhKien
     @Override
     public LinhKienModel findOneByIdAndDate(int id, String ngaynhap, boolean mode) {
         String sql = "select  * from LinhKien where id=? and ngaynhap=? ";
-        if(mode){
-            sql+="and (trangthai=0 OR trangthai IS NULL)";
+        if (mode) {
+            sql += "and (trangthai=0 OR trangthai IS NULL)";
         }
         List<LinhKienModel> listLinhKien = query(sql, new LinhKienMapper(), id, ngaynhap);
         return listLinhKien.isEmpty() ? null : listLinhKien.get(0);
@@ -155,6 +148,16 @@ public class LinhKienDAO extends AbstractDAO<LinhKienModel> implements ILinhKien
     @Override
     public LinhKienModel findOne(int id, String ngay) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public LinhKienModel findOneExistInDonBaoDuong(int id) {
+        // String sql = "select  * from LinhKien where id=?  and (trangthai=0 OR trangthai IS NULL)";
+        String sql = "select lk.id,lk.TenLinhKien,lk.SoLuong,lk.Gia,lk.NhaCungCap,lk.NgayNhap from  LinhKien lk join ChiTietThayTheLinhKien ctttlk on ctttlk.idLinkKien=lk.id and lk.id=? and (lk.trangthai=0 OR lk.trangthai IS NULL) \n"
+                + "join DonBaoDuong dbd on dbd.id =ctttlk.idDonBaoDuong and dbd.NgayHoanThanh<'2010-10-01'";
+        List<LinhKienModel> listLinhKien = query(sql, new LinhKienMapper(), id);
+        return listLinhKien.isEmpty() ? null : listLinhKien.get(0);
+
     }
 
 }

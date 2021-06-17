@@ -489,12 +489,13 @@ public class LinhKienController {
                             isNotFormated = true;
                         }
                         if (ValidationRegEx.validationTextRegex(tenLinhKienField.getText())) {
-                        if (tenLinhKienField.getText().length() > 50) {
-                            errorTenLinhKien.setIcon(new ImageIcon(iconErrorURL));
-                            errorTenLinhKien.setVisible(true);
-                            errorTenLinhKien.setToolTipText("Không đúng định dạng(chỉ chứa các chứ cái và giữa hai từ chỉ có 1 khoảng cách) tối đa 50 kí tự");
-                            isNotFormated = true;
-                        }}
+                            if (tenLinhKienField.getText().length() > 50) {
+                                errorTenLinhKien.setIcon(new ImageIcon(iconErrorURL));
+                                errorTenLinhKien.setVisible(true);
+                                errorTenLinhKien.setToolTipText("Không đúng định dạng(chỉ chứa các chứ cái và giữa hai từ chỉ có 1 khoảng cách) tối đa 50 kí tự");
+                                isNotFormated = true;
+                            }
+                        }
                         if (!ValidationRegEx.validationNumber(soLuongField.getText())) {
                             errorSoLuong.setIcon(new ImageIcon(iconErrorURL));
                             errorSoLuong.setVisible(true);
@@ -624,13 +625,14 @@ public class LinhKienController {
                         errorTenLinhKien.setVisible(true);
                         isNotFormated = true;
                     }
-                      if (ValidationRegEx.validationTextRegex(tenLinhKienField.getText())) {
+                    if (ValidationRegEx.validationTextRegex(tenLinhKienField.getText())) {
                         if (tenLinhKienField.getText().length() > 50) {
                             errorTenLinhKien.setIcon(new ImageIcon(iconErrorURL));
                             errorTenLinhKien.setVisible(true);
                             errorTenLinhKien.setToolTipText("Không đúng định dạng(chỉ chứa các chứ cái và giữa hai từ chỉ có 1 khoảng cách) tối đa 50 kí tự");
                             isNotFormated = true;
-                        }}
+                        }
+                    }
                     if (!ValidationRegEx.validationNumber(soLuongField.getText())) {
                         errorSoLuong.setIcon(new ImageIcon(iconErrorURL));
                         errorSoLuong.setVisible(true);
@@ -707,15 +709,19 @@ public class LinhKienController {
             public void actionPerformed(ActionEvent e) {
                 SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 if (!maLinhKienField.getText().isEmpty() && ngayNhapField.getDate() != null) {
-                    String op[] = {"Huỷ", "Đồng ý"};
-                    int value = JOptionPane.showOptionDialog(panel, "Bạn chắc chắn muốn xoá", "Xoá linh kiện", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, op, op[0]);
-                    if (value == 1) {
-                        linhKienService.deleteStatus(Integer.parseInt(maLinhKienField.getText()), formatter.format(ngayNhapField.getDate()));
-                        JOptionPane.showMessageDialog(panel, "Xoá thành công", "Thông tin", JOptionPane.INFORMATION_MESSAGE);
-                                                        setDataToTable();
+                    if (linhKienService.findOneExistInDonBaoDuong(Integer.parseInt(maLinhKienField.getText())) == null) {
+                        String op[] = {"Huỷ", "Đồng ý"};
+                        int value = JOptionPane.showOptionDialog(panel, "Bạn chắc chắn muốn xoá", "Xoá linh kiện", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, op, op[0]);
+                        if (value == 1) {
+                            linhKienService.deleteStatus(Integer.parseInt(maLinhKienField.getText()), formatter.format(ngayNhapField.getDate()));
+                            JOptionPane.showMessageDialog(panel, "Xoá thành công", "Thông tin", JOptionPane.INFORMATION_MESSAGE);
+                            setDataToTable();
 
+                        } else {
+                            JOptionPane.showMessageDialog(panel, "Xoá thất bại", "Thông tin", JOptionPane.INFORMATION_MESSAGE);
+                        }
                     } else {
-                        JOptionPane.showMessageDialog(panel, "Xoá thất bại", "Thông tin", JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(panel, "Xoá thất bại(linh kiện nằm trong đơn chưa hoàn thành)", "Thông tin", JOptionPane.INFORMATION_MESSAGE);
                     }
                 }
             }
@@ -989,7 +995,7 @@ public class LinhKienController {
                     NhaCungCapModel nhaCungCapOld = nhaCungCapService.findOne(Integer.parseInt(maNCCField.getText()));
 
                     if (!tenNhaCung.equals(nhaCungCapOld.getTen()) || !soDienThoai.equals(nhaCungCapOld.getSoDienThoai())) {
-                        if (!tenNhaCung.equals(nhaCungCapOld.getTen())) {   
+                        if (!tenNhaCung.equals(nhaCungCapOld.getTen())) {
                             if (nhaCungCapService.findOneByName(tenNhaCung) != null) {
                                 JOptionPane.showMessageDialog(panel, "ten Nhà Cung Cấp tồn tại", "Thông tin", JOptionPane.INFORMATION_MESSAGE);
                             } else {
@@ -1041,8 +1047,7 @@ public class LinhKienController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (!maNCCField.getText().isEmpty()) {
-
-                    {
+                    if (nhaCungCapService.findOneByInLinhKien(Integer.parseInt(maNCCField.getText())) == null) {
 //                    //xoa Linh kien 
 //                    linhKienService.deleteByIDNhaCungCap(Integer.parseInt(maNCCField.getText()));
 //                    //Xoá dịch vụ bảo dưỡng
@@ -1058,6 +1063,8 @@ public class LinhKienController {
                         } else {
                             JOptionPane.showMessageDialog(panel, "Xoá thất bại", "Thông tin", JOptionPane.INFORMATION_MESSAGE);
                         }
+                    } else {
+                        JOptionPane.showMessageDialog(panel, "Xoá thất bại(Nhà cung cấp đang cung cấp Linh Kiện)", "Thông tin", JOptionPane.INFORMATION_MESSAGE);
                     }
                 } else {
                     JOptionPane.showMessageDialog(panel, "Vui lòng chọn Nhà cung cấp cần xoá", "Thông tin", JOptionPane.INFORMATION_MESSAGE);
@@ -1101,7 +1108,7 @@ public class LinhKienController {
                 if (timKiemLinhKienField.getText().trim().isEmpty()) {
                     rowSorter.setRowFilter(null);
                 } else {
-                    rf = RowFilter.regexFilter(timKiemLinhKienField.getText(), 0,1);
+                    rf = RowFilter.regexFilter(timKiemLinhKienField.getText(), 0, 1);
                     rowSorter.setRowFilter(rf);
                 }
 
@@ -1113,7 +1120,7 @@ public class LinhKienController {
                 if (timKiemLinhKienField.getText().trim().isEmpty()) {
                     rowSorter.setRowFilter(null);
                 } else {
-                    rf = RowFilter.regexFilter(timKiemLinhKienField.getText(), 0,1);
+                    rf = RowFilter.regexFilter(timKiemLinhKienField.getText(), 0, 1);
                     rowSorter.setRowFilter(rf);
                 }
             }
@@ -1142,7 +1149,7 @@ public class LinhKienController {
                 if (timKiemNCCField.getText().trim().isEmpty()) {
                     rowSorterNhaCungCap.setRowFilter(null);
                 } else {
-                    rf = RowFilter.regexFilter(timKiemNCCField.getText(), 0,1);
+                    rf = RowFilter.regexFilter(timKiemNCCField.getText(), 0, 1);
                     rowSorterNhaCungCap.setRowFilter(rf);
                 }
 
@@ -1154,7 +1161,7 @@ public class LinhKienController {
                 if (timKiemNCCField.getText().trim().isEmpty()) {
                     rowSorterNhaCungCap.setRowFilter(null);
                 } else {
-                    rf = RowFilter.regexFilter(timKiemNCCField.getText(), 0,1);
+                    rf = RowFilter.regexFilter(timKiemNCCField.getText(), 0, 1);
                     rowSorterNhaCungCap.setRowFilter(rf);
                 }
             }

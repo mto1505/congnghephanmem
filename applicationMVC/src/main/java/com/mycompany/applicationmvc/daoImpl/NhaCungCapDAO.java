@@ -78,6 +78,13 @@ public class NhaCungCapDAO extends AbstractDAO<NhaCungCapModel> implements INhaC
         update(sql,id);
     }
 
+    @Override
+    public NhaCungCapModel findOneByInLinhKien(int id) {
+        String sql="select ncc.id,ncc.ten,ncc.sodienthoai,ncc.GhiChu,ncc.TrangThai from NhaCungCap ncc join LinhKien lk on lk.NhaCungCap=ncc.id and ncc.id=? and ( ncc.trangthai=0 OR ncc.trangthai IS NULL)";
+         List<NhaCungCapModel> listNhaCungCapModels=query(sql, new NhaCungCapMapper(),id);
+        return listNhaCungCapModels.isEmpty()? null:listNhaCungCapModels.get(0);
+    }
+
   
     
 }

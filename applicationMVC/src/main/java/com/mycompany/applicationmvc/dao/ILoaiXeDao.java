@@ -14,23 +14,31 @@ import java.util.List;
  * @author MinhTo
  */
 public interface ILoaiXeDao {
-    
+
     LoaiXeModel findOne(int id);
-   LoaiXeModel findOneByName(String tenloai);
-   LoaiXeModel findOneByCode(int idMaLoaiXe);
-   int save(LoaiXeModel xeModel);
+
+    LoaiXeModel findOneByName(String tenloai);
+
+    LoaiXeModel findOneByCode(int idMaLoaiXe);
+
+    int save(LoaiXeModel xeModel);
 
     void update(LoaiXeModel updateNhanVien);
 
     void delete(int id);
+
     void deleteStatus(int id);
 
     List<LoaiXeModel> findAll();
 
     int getTotalItem();
-    
+
     //true: tim tất cả
-    LoaiXeModel findOne(int id,boolean mode);
-   LoaiXeModel findOneByName(String tenloai,boolean mode);
-   List<LoaiXeModel> findAll(boolean mode);
+    LoaiXeModel findOne(int id, boolean mode);
+
+    LoaiXeModel findOneInXe(int id);
+
+    LoaiXeModel findOneByName(String tenloai, boolean mode);
+
+    List<LoaiXeModel> findAll(boolean mode);
 }

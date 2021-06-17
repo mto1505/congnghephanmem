@@ -18,6 +18,7 @@ public interface INhaCungCapDAO extends GenericDAO<NhaCungCapModel>{
       void delete(int id);
       void deleteStatus(int id);
       NhaCungCapModel findOne(int id);
+        NhaCungCapModel findOneByInLinhKien(int id);
       List<NhaCungCapModel> findAll();
       NhaCungCapModel findOneByName(String ten);
           NhaCungCapModel findOneBySDT(String name);

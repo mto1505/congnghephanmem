@@ -1277,14 +1277,18 @@ public class XeController {
             public void actionPerformed(ActionEvent e) {
                 if (!maLoaiXeField.getText().isEmpty()) {
                     int maLoaiXe = Integer.parseInt(maLoaiXeField.getText());
-                    String op[] = {"Huỷ", "Đồng ý"};
-                    int value = JOptionPane.showOptionDialog(jpanel, "Bạn chắc chắn muốn xoá", "Xoá loai xe", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, op, op[0]);
-                    if (value == 1) {
-                        loaiXeService.deleteStatus(maLoaiXe);
-                        JOptionPane.showMessageDialog(jpanel, "Xoá thành công", "Thông tin", JOptionPane.INFORMATION_MESSAGE);
-                        setDataToTableModel();
+                    if (loaiXeService.findOneInXe(maLoaiXe) == null) {
+                        String op[] = {"Huỷ", "Đồng ý"};
+                        int value = JOptionPane.showOptionDialog(jpanel, "Bạn chắc chắn muốn xoá", "Xoá loai xe", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, op, op[0]);
+                        if (value == 1) {
+                            loaiXeService.deleteStatus(maLoaiXe);
+                            JOptionPane.showMessageDialog(jpanel, "Xoá thành công", "Thông tin", JOptionPane.INFORMATION_MESSAGE);
+                            setDataToTableModel();
+                        } else {
+                            JOptionPane.showMessageDialog(jpanel, "Xoá thất bại", "Thông tin", JOptionPane.INFORMATION_MESSAGE);
+                        }
                     } else {
-                        JOptionPane.showMessageDialog(jpanel, "Xoá thất bại", "Thông tin", JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(jpanel, "Xoá thất bại(Có xe thuộc loại xe này)", "Thông tin", JOptionPane.INFORMATION_MESSAGE);
                     }
 
                 }

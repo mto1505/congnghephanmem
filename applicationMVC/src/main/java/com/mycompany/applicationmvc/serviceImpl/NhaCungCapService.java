@@ -70,5 +70,10 @@ public class NhaCungCapService implements  INhaCungCapService{
     public void deleteStatus(int id) {
         nhaCungCapDAO.deleteStatus(id);
     }
+
+    @Override
+    public NhaCungCapModel findOneByInLinhKien(int id) {
+        return nhaCungCapDAO.findOneByInLinhKien(id);
+    }
     
 }

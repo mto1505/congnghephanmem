@@ -104,4 +104,12 @@ public class LoaiXeDAO extends AbstractDAO<LoaiXeModel> implements ILoaiXeDao {
         return query(sql, new LoaiXeMapper());
     }
 
+    @Override
+    public LoaiXeModel findOneInXe(int id) {
+              String sql = new String("select lx.id, lx.TenLoai from LoaiXe lx join XeMay xm on xm.idLoaiXe=lx.id and lx.id=? and (lx.trangthai=0 OR lx.trangthai IS NULL)");
+        List<LoaiXeModel> xelist = query(sql, new LoaiXeMapper(), id);
+        return xelist.isEmpty() ? null : xelist.get(0);
+ 
+    }
+
 }

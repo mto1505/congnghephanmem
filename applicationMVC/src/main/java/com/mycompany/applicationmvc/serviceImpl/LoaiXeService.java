@@ -76,6 +76,11 @@ public class LoaiXeService implements ILoaiXeService {
     public void deleteStatus(int id) {
         loaiXeDao.deleteStatus(id);
     }
+
+    @Override
+    public LoaiXeModel findOneInXe(int id) {
+        return loaiXeDao.findOneInXe(id);
+    }
     
     
 }
