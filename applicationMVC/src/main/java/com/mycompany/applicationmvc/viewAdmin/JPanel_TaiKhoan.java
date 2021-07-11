@@ -482,6 +482,10 @@ public class JPanel_TaiKhoan extends javax.swing.JPanel {
             jComboBox_IDNV.setSelectedItem((String) jTable_DanhSachTK.getValueAt(i, 2) +" - "+(String) jTable_DanhSachTK.getValueAt(i, 3));
             jComboBox_Quyen.setSelectedItem((String) jTable_DanhSachTK.getValueAt(i, 4)+" - "+(String) jTable_DanhSachTK.getValueAt(i, 5));
         }
+        if (jRadioButton_CDThem.isSelected() || jRadioButton_CDSua.isSelected()){
+            jCheckBox_pass.setSelected(false);
+            if (jRadioButton_CDThem.isSelected() ) jPasswordField_nv.setEchoChar('\u25cf');
+        }
     }//GEN-LAST:event_jTable_DanhSachTKMouseClicked
 
     private void jTextField_FindID_TKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_FindID_TKActionPerformed

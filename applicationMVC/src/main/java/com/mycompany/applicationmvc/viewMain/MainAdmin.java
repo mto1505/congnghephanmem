@@ -164,6 +164,24 @@ public class MainAdmin extends javax.swing.JFrame {
                 }
             }
         });
+        com.mycompany.applicationmvc.view.DichVubaoDuongPanel node2 = new com.mycompany.applicationmvc.view.DichVubaoDuongPanel();
+        try {
+            new com.mycompany.applicationmvc.controller.DichVuBaoDuongController((com.mycompany.applicationmvc.view.DichVubaoDuongPanel) node2);
+        } catch (SQLException ex) {
+            Logger.getLogger(MainAdmin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        com.mycompany.applicationmvc.view.DanhSachPhuTungKiemTraPanel node3 = new com.mycompany.applicationmvc.view.DanhSachPhuTungKiemTraPanel();
+        try {
+            new com.mycompany.applicationmvc.controller.DanhSachPhuTungKiemTraController((com.mycompany.applicationmvc.view.DanhSachPhuTungKiemTraPanel) node3);
+        } catch (SQLException ex) {
+            Logger.getLogger(MainAdmin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        ImageIcon img_dv=ControllerAdmin.setIcon(20,20,"./src/img/consult.png");
+        ImageIcon img_ds=ControllerAdmin.setIcon(20,20,"./src/img/list.png");
+
+        jTabbedPane_QuanLy.addTab("DỊCH VỤ BẢO DƯỠNG",img_dv,node2);
+        jTabbedPane_QuanLy.addTab("DANH SÁCH PHỤ TÙNG KIỂM TRA",img_ds,node3);
 
         jTabbedPane_QLAdmin.addTab("QUẢN LÝ", jPanel_QuanLy);
 
@@ -185,25 +203,7 @@ public class MainAdmin extends javax.swing.JFrame {
         com.mycompany.applicationmvc.view.DonBaoDuong.DonBaoDuongContainerPanel node1 = new com.mycompany.applicationmvc.view.DonBaoDuong.DonBaoDuongContainerPanel();
         com.mycompany.applicationmvc.controller.DonBaoDuongController dbd_ctrl= new com.mycompany.applicationmvc.controller.DonBaoDuongController(node1);
         dbd_ctrl.setIdNhanVienLapDon(idNhanVienLap);
-
-        com.mycompany.applicationmvc.view.DichVubaoDuongPanel node2 = new com.mycompany.applicationmvc.view.DichVubaoDuongPanel();
-        try {
-            new com.mycompany.applicationmvc.controller.DichVuBaoDuongController((com.mycompany.applicationmvc.view.DichVubaoDuongPanel) node2);
-        } catch (SQLException ex) {
-            Logger.getLogger(MainAdmin.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        com.mycompany.applicationmvc.view.DanhSachPhuTungKiemTraPanel node3 = new com.mycompany.applicationmvc.view.DanhSachPhuTungKiemTraPanel();
-        try {
-            new com.mycompany.applicationmvc.controller.DanhSachPhuTungKiemTraController((com.mycompany.applicationmvc.view.DanhSachPhuTungKiemTraPanel) node3);
-        } catch (SQLException ex) {
-            Logger.getLogger(MainAdmin.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        ImageIcon img_dv=ControllerAdmin.setIcon(20,20,"./src/img/consult.png");
-        ImageIcon img_ds=ControllerAdmin.setIcon(20,20,"./src/img/list.png");
         jTabbedPane_DBD.addTab("LẬP ĐƠN BẢO DƯỠNG",img_dbd,node1);
-        jTabbedPane_DBD.addTab("DỊCH VỤ BẢO DƯỠNG",img_dv,node2);
-        jTabbedPane_DBD.addTab("DANH SÁCH PHỤ TÙNG KIỂM TRA",img_ds,node3);
 
         jTabbedPane_QLAdmin.addTab(" BẢO DƯỠNG", jPanel_LapDBD);
 
