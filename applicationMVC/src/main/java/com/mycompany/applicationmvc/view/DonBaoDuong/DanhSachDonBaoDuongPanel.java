@@ -123,7 +123,7 @@ public class DanhSachDonBaoDuongPanel extends javax.swing.JPanel {
         jButton_TaoHoaDonMoi.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jButton_XacNhanHoanThanhButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton_XacNhanHoanThanhButton.setText("Xác nhận hoàn thành");
+        jButton_XacNhanHoanThanhButton.setText("Xác nhận đã sửa xong");
         jButton_XacNhanHoanThanhButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jButton_SuaDonBaoDuong.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -279,7 +279,7 @@ public class DanhSachDonBaoDuongPanel extends javax.swing.JPanel {
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -288,7 +288,7 @@ public class DanhSachDonBaoDuongPanel extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -297,7 +297,7 @@ public class DanhSachDonBaoDuongPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(274, 274, 274)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1237, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1216, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(

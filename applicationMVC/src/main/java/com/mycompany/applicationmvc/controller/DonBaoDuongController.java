@@ -291,7 +291,8 @@ public class DonBaoDuongController {
 
                 for (int j = 0; j < lr.size(); j++) {
                     Vector vt = lr.get(j);
-                    if (vt.elementAt(6) != null && (boolean) vt.elementAt(6) == true) {
+                    int SLConLai = Integer.parseInt(vt.elementAt(5).toString());
+                    if (vt.elementAt(6) != null && (boolean) vt.elementAt(6) == true && SLConLai > 0) {
                         boolean doit = false;
                         int data = 0;
 
@@ -594,9 +595,10 @@ public class DonBaoDuongController {
             public void actionPerformed(ActionEvent e) {
 
                 if (danhSachDonBaoDuongPanel.getjTable_DanhSachDonBaoDuong().getSelectedRow() > -1) {
-                    voHieuHoaChucNang(false);
+                    
                     String id = danhSachDonBaoDuongPanel.getjTable_DanhSachDonBaoDuong().getValueAt(danhSachDonBaoDuongPanel.getjTable_DanhSachDonBaoDuong().getSelectedRow(), 0).toString();
                     loadDonBaoDuong(id);
+                    voHieuHoaChucNang(false);
                     danhSachDonBaoDuongPanel.getCardLayoutContainer().next(danhSachDonBaoDuongPanel.getContainer());
                 }
 
@@ -709,6 +711,9 @@ public class DonBaoDuongController {
     }
 
     private void voHieuHoaChucNang(boolean kichHoat) {
+        
+        baoduongPanel.getThemKhachHangMoiBT().setEnabled(kichHoat);
+        baoduongPanel.getLoaiXeComboBox().setEnabled(kichHoat);
         baoduongPanel.getThemKhachHangMoiBT().setVisible(kichHoat);
         baoduongPanel.getThemDichVuBaoDuongBT().setVisible(kichHoat);
         baoduongPanel.getThemLinhKienThayTheBT().setVisible(kichHoat);
@@ -722,7 +727,8 @@ public class DonBaoDuongController {
         baoduongPanel.getTrangThaiDonBaoDuongCheckBox().setEnabled(kichHoat);
         baoduongPanel.getBienSoXeTF().setEditable(kichHoat);
         baoduongPanel.getXuatDonBaoDuongBT().setVisible(kichHoat);
-        baoduongPanel.getThemKhachHangMoiBT().setVisible(kichHoat);
+        
+        System.out.println("Trang thai hien tai :"+kichHoat);
     }
 
     private void capNhatNhatTinhTienTF() {
