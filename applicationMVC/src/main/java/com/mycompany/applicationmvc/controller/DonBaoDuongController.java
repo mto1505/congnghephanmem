@@ -722,7 +722,7 @@ public class DonBaoDuongController {
         baoduongPanel.getTrangThaiDonBaoDuongCheckBox().setEnabled(kichHoat);
         baoduongPanel.getBienSoXeTF().setEditable(kichHoat);
         baoduongPanel.getXuatDonBaoDuongBT().setVisible(kichHoat);
-
+        baoduongPanel.getThemKhachHangMoiBT().setVisible(kichHoat);
     }
 
     private void capNhatNhatTinhTienTF() {

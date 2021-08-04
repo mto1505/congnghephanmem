@@ -162,7 +162,7 @@ public class SendEmail {
                 + "						<table>\n"
                 + "							<tr>\n"
                 + "								<td class=\"title\">\n"
-                + "									<img src=\"https://www.sparksuite.com/images/logo.png\" style=\"width: 100%; max-width: 300px\" />\n"
+                + "									<img src=\"https://i.postimg.cc/G2GQHTyX/logo.png\" style=\"width: 100%; max-width: 300px\" />\n"
                 + "								</td>\n"
                 + "\n"
                 + "								<td>\n"
@@ -259,7 +259,7 @@ public class SendEmail {
 
     public static void send(String noidung, String toEmail){
         Send("minh",
-                "F0AEA256F04605F6088D0FA6074A123F81D5A0268F67E4FD3056929F419EB9256665C91420B0DF2EC0718741DD60A375",
+                "DBA18045A3D394F05EE1FAFD83AA32AB49B317C503A035BE4EC21DDC5751AAF4FEA23FE29261AC25C44C765F381A942E",
                 "hesaclocon@gmail.com", "Cửa hàng sửa chữa", "Hóa đơn thanh toán", noidung , toEmail, "true");
     }
     
