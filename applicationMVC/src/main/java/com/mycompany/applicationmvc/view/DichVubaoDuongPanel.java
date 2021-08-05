@@ -82,8 +82,10 @@ public class DichVubaoDuongPanel extends javax.swing.JPanel {
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Thay đổi trạng thái của dịch vụ này sẽ ảnh hưởng đến những hóa đơn chưa hoàn thành!!!");
 
+        jLabel7.setBackground(new java.awt.Color(255, 153, 153));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("Vui lòng  hoàn thành những hóa đơn trên để thực hiện thay đổi này");
+        jLabel7.setOpaque(true);
 
         jButton_XacNhanTrongDialogCanhBao.setText("Tắt");
         jButton_XacNhanTrongDialogCanhBao.addActionListener(new java.awt.event.ActionListener() {
@@ -99,26 +101,28 @@ public class DichVubaoDuongPanel extends javax.swing.JPanel {
             .addGroup(jDialog_CanhBaoKHiCapNhatTrangThaiCuaDichVuBaoDuongLayout.createSequentialGroup()
                 .addGroup(jDialog_CanhBaoKHiCapNhatTrangThaiCuaDichVuBaoDuongLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jDialog_CanhBaoKHiCapNhatTrangThaiCuaDichVuBaoDuongLayout.createSequentialGroup()
-                        .addContainerGap()
+                        .addGap(0, 22, Short.MAX_VALUE)
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 517, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jDialog_CanhBaoKHiCapNhatTrangThaiCuaDichVuBaoDuongLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 393, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jDialog_CanhBaoKHiCapNhatTrangThaiCuaDichVuBaoDuongLayout.createSequentialGroup()
-                        .addGap(220, 220, 220)
-                        .addComponent(jButton_XacNhanTrongDialogCanhBao, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(22, Short.MAX_VALUE))
+                        .addGap(68, 68, 68)
+                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 393, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addGroup(jDialog_CanhBaoKHiCapNhatTrangThaiCuaDichVuBaoDuongLayout.createSequentialGroup()
+                .addGap(206, 206, 206)
+                .addComponent(jButton_XacNhanTrongDialogCanhBao, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jDialog_CanhBaoKHiCapNhatTrangThaiCuaDichVuBaoDuongLayout.setVerticalGroup(
             jDialog_CanhBaoKHiCapNhatTrangThaiCuaDichVuBaoDuongLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jDialog_CanhBaoKHiCapNhatTrangThaiCuaDichVuBaoDuongLayout.createSequentialGroup()
                 .addGap(42, 42, 42)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
+                .addGap(18, 18, 18)
                 .addComponent(jButton_XacNhanTrongDialogCanhBao)
-                .addContainerGap(60, Short.MAX_VALUE))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
         jDialog_CanhBaoTrungDichVuBaoDuong.setMinimumSize(new java.awt.Dimension(440, 224));
@@ -156,7 +160,7 @@ public class DichVubaoDuongPanel extends javax.swing.JPanel {
                 .addComponent(jLabel9)
                 .addGap(37, 37, 37)
                 .addComponent(jButton_TatCanhBaoTrungDichVuBD)
-                .addContainerGap(79, Short.MAX_VALUE))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
 
         jDialog_CanhBaoLoiSoTien.setMinimumSize(new java.awt.Dimension(400, 238));
@@ -193,7 +197,7 @@ public class DichVubaoDuongPanel extends javax.swing.JPanel {
                 .addComponent(jLabel12)
                 .addGap(36, 36, 36)
                 .addComponent(jButton1)
-                .addContainerGap(70, Short.MAX_VALUE))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
 
         setPreferredSize(new java.awt.Dimension(1920, 1080));
