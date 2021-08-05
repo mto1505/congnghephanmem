@@ -165,7 +165,7 @@ public class LinhKienPanel extends javax.swing.JPanel {
         });
 
         btnSuaNhaCungCap.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        btnSuaNhaCungCap.setText("Sửa");
+        btnSuaNhaCungCap.setText("Lưu");
         btnSuaNhaCungCap.setPreferredSize(new java.awt.Dimension(70, 35));
 
         nhaCungCapTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -385,7 +385,7 @@ public class LinhKienPanel extends javax.swing.JPanel {
         });
 
         btnSuaLinhKien.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        btnSuaLinhKien.setText("Sửa");
+        btnSuaLinhKien.setText("Lưu");
         btnSuaLinhKien.setPreferredSize(new java.awt.Dimension(70, 35));
 
         lbGioiTinh3.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
@@ -583,8 +583,8 @@ public class LinhKienPanel extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, 1146, Short.MAX_VALUE)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 1146, Short.MAX_VALUE))
+                    .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 1138, Short.MAX_VALUE)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 1138, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
