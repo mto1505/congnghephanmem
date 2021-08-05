@@ -626,7 +626,7 @@ public class LinhKienController {
                         isNotFormated = true;
                     }
                     if (ValidationRegEx.validationTextRegex(tenLinhKienField.getText())) {
-                        if (tenLinhKienField.getText().length() > 50) {
+                        if (tenLinhKienField.getText().length() > 100) {
                             errorTenLinhKien.setIcon(new ImageIcon(iconErrorURL));
                             errorTenLinhKien.setVisible(true);
                             errorTenLinhKien.setToolTipText("Không đúng định dạng(chỉ chứa các chứ cái và giữa hai từ chỉ có 1 khoảng cách) tối đa 50 kí tự");
