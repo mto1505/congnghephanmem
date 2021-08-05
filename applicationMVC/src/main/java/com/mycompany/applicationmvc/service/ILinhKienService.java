@@ -28,5 +28,6 @@ public interface ILinhKienService {
         LinhKienModel findOneByIdAndDate(int id,String ngayNhap);
         LinhKienModel findOneByName(String name);
         LinhKienModel findOneByNameAndMaNhaCungCap(String name,int maNCC,String ngayNhap);
+        List<LinhKienModel> layDanhSachLinhKienMoiNhat();
    
 }

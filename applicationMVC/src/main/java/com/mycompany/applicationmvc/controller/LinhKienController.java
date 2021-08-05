@@ -1091,10 +1091,11 @@ public class LinhKienController {
         //set   date fomat string
         // ngayNhapField.setDateFormatString("dd-MM-yyyy");
         //set data to LinhKien  table
-        List<LinhKienModel> listLinhKien = linhKienService.findAll();
+        List<LinhKienModel> listLinhKien = linhKienService.layDanhSachLinhKienMoiNhat();
         DefaultTableModel linhKienModelTable = (DefaultTableModel) linhKienTable.getModel();
         linhKienModelTable.setRowCount(0);
         linhKienModelTable = linhKienTableModel.setTableData(listLinhKien, linhKienModelTable);
+        
 
         //khoi tạo TableRowSorter
         TableRowSorter<DefaultTableModel> rowSorter = new TableRowSorter<>(linhKienModelTable);
