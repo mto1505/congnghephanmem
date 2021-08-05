@@ -674,7 +674,7 @@ public class LinhKienController {
                     // LinhKienModel linhKien = new LinhKienModel(maLinhKien, tenLinhKien, soLuong, gia, nhaCungCap, ngayNhap);
                     LinhKienModel linhKienCu = linhKienService.findOneByIdAndDate(maLinhKien, formatter.format(ngayNhap));
                     if (linhKienCu != null) {
-                        LinhKienModel linhKien2 = new LinhKienModel(maLinhKien, tenLinhKien, soLuong, gia, nhaCungCap, new Date());
+                        LinhKienModel linhKien2 = new LinhKienModel(maLinhKien, tenLinhKien, soLuong, gia, nhaCungCap, linhKienCu.getNgayNhap());
                         if (linhKienCu.getGia() != gia) {
                             System.out.println("Them");
                             {

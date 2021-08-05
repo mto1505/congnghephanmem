@@ -81,7 +81,7 @@ public class LinhKienService implements ILinhKienService {
     @Override
     public LinhKienModel save(LinhKienModel linhKienModel, boolean autoID) {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        linhKienModel.setNgayNhapString(formatter.format(linhKienModel.getNgayNhap()));
+       linhKienModel.setNgayNhapString(formatter.format(new java.util.Date()));
         int id = linhKienDAO.insert(linhKienModel, false);
         return linhKienDAO.findOne(id);
 
