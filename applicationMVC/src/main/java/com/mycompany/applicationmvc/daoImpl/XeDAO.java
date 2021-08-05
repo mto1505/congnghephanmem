@@ -28,7 +28,7 @@ public class XeDAO extends AbstractDAO<XeModel> implements IXeDAO {
 
     @Override
     public XeModel findOne(String bienso) {
-        String sqlString = "select bienso,tenxe,ten,sdt,tenloai,gioitinh "
+        String sqlString = "select bienso,tenxe,idChuSoHuu,ten,sdt,tenloai,gioitinh "
                 + "from XeMay as xe left join KhachHang kh on kh.id=xe.idChuSoHuu "
                 + "join LoaiXe loaixe on xe.idLoaiXe=loaixe.id WHERE xe.bienso= ? ";
         List<XeModel> xelist = query(sqlString, new XeMapper(), bienso);

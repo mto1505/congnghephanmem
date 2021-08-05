@@ -20,10 +20,18 @@ public class DichVuBaoDuongDAO extends AbstractDAO<DichVuBaoDuongModel> implemen
 
     @Override
     public void themDichVuBaoDuong(DichVuBaoDuongModel d) {
-        String q = "INSERT INTO DichVuBaoDuong(Ten,idLoaiXe,Phi,TrangThai,NgayCapNhat) "
-                + "VALUES (?,?,?,?,?)";
-        int tt = d.isTrangThai() ? 0 : 1;
-        insert(q, d.getTenDichVuBaoDuong(), d.getIdLoaiXe(), d.getPhi(), tt, d.getNgayCapNhat());
+        if (d.getNgayCapNhat() != null && !d.getNgayCapNhat().equalsIgnoreCase("")) {
+            String q = "INSERT INTO DichVuBaoDuong(Ten,idLoaiXe,Phi,TrangThai,NgayCapNhat) "
+                    + "VALUES (?,?,?,?,?)";
+            int tt = d.isTrangThai() ? 0 : 1;
+            insert(q, d.getTenDichVuBaoDuong(), d.getIdLoaiXe(), d.getPhi(), tt, d.getNgayCapNhat());
+        }else{
+            String q = "INSERT INTO DichVuBaoDuong(Ten,idLoaiXe,Phi,TrangThai) "
+                    + "VALUES (?,?,?,?)";
+            int tt = d.isTrangThai() ? 0 : 1;
+            insert(q, d.getTenDichVuBaoDuong(), d.getIdLoaiXe(), d.getPhi(), tt);
+        }
+
     }
 
     @Override
@@ -86,7 +94,7 @@ public class DichVuBaoDuongDAO extends AbstractDAO<DichVuBaoDuongModel> implemen
                 + "WHERE DichVuBaoDuong.Ten = ?  AND DichVuBaoDuong.idLoaiXe = ? ;";
 
         List<DichVuBaoDuongModel> temp = query(q, new DichVuBaoDuongMapper(), ten, idLoaiXe);
-        if (temp != null && temp.get(0) != null) {
+        if (temp != null && !temp.isEmpty() && temp.get(0) != null) {
             return temp.get(0);
         }
         return null;

@@ -126,7 +126,7 @@ public class DichVuBaoDuongController {
                 boolean tt = dichVuPanel.getjCheckBox_TrangThaiSuDungDichVuBaoDuong().isSelected();
 
                 DichVuBaoDuongModel dv = new DichVuBaoDuongModel(
-                        Integer.parseInt(dichVuPanel.getjTextField_MaDichVuBaoDuong().getText().trim()),
+                        0,
                         dichVuPanel.getjTextField_TenDichVuBaoDuong().getText().trim(),
                         Long.parseLong(dichVuPanel.getjTextField_PhiDichVuBaoDuong().getText().trim()),
                         loaiXeService.findOneByName(dichVuPanel.getjComboBox_LoaiXe().getSelectedItem().toString()).getMaLoaiXe(),
@@ -140,6 +140,7 @@ public class DichVuBaoDuongController {
                         dichVuPanel.getjDialog_CanhBaoTrungDichVuBaoDuong().setVisible(true);
                     }
                 } else {
+                    dv.setId(Integer.parseInt(dichVuPanel.getjTextField_MaDichVuBaoDuong().getText().trim()));
                     boolean done = true;
                     DichVuBaoDuongModel tempdv = dichVuBaoDuongService.timDichVuBaoDuongTheoIDVaNgayCapNhat(dv.getId(), dv.getNgayCapNhat());
                     if (tempdv.isTrangThai() != dv.isTrangThai()) {
